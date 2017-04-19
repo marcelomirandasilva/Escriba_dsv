@@ -17,7 +17,7 @@
     <!-- footer content -->
     <footer>
         <div class="pull-right">
-            XXXXXXXXXGentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Desenvolvido por Marcelo Miranda - 2017</a>
         </div>
         <div class="clearfix"></div>
     </footer>
