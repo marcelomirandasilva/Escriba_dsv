@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Gentellela Alela! | </title>
+    <title>Escriba - Online </title>
     
     <!-- Bootstrap -->
     <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
@@ -15,25 +15,28 @@
     <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+    <!-- MEU CSS  -->
+    <link href="{{ asset("css/styles.css") }}" rel="stylesheet">
 
 </head>
 
 <body class="login">
 <div>
-    <div class="login_wrapper">
+    <div  class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
 				{!! BootForm::open(['url' => url('/login'), 'method' => 'post']) !!}
                     
-				<h1>Login Form</h1>
-			
+				<h1 class="bordo" >Login </h1>
+				
+
 				{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
 			
-				{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
+				{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
 				
 				<div>
 					{!! BootForm::submit('Log in', ['class' => 'btn btn-default submit']) !!}
-					<a class="reset_pass" href="{{  url('/password/reset') }}">Lost your password ?</a>
+					<a class="reset_pass" href="{{  url('/password/reset') }}">Perdeu sua senha ?</a>
 				</div>
                     
 				<div class="clearfix"></div>
@@ -47,8 +50,9 @@
 					<br />
                         
 					<div>
-						<h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-						<p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+					 <i class="logo"></i> <span><h1>Escriba </h1> </span>
+					
+					
 					</div>
 				</div>
 				{!! BootForm::close() !!}

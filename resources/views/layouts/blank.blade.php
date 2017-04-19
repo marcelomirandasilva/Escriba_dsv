@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Gentellela Alela! | </title>
+        <title>Escriba online</title>
 
         <!-- Bootstrap -->
         <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
@@ -18,6 +18,9 @@
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
 
+        <!-- MEU CSS  -->
+        <link href="{{ asset("css/styles.css") }}" rel="stylesheet">
+    
         @stack('stylesheets')
 
     </head>

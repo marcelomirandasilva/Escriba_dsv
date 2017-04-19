@@ -1,11 +1,50 @@
 .left_col {
-    background: #541729;
+    background: #5F021F;
 }
 
 .nav_title {
     width: 230px;
     float: left;
-    background: #541729;
+    background: #5F021F;
     border-radius: 0;
     height: 57px;
 }
+
+body {
+    color: #5F021F;
+    background: #2A3F54;
+    font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+}
+
+body.login{
+	color: #5F021F;
+}
+
+
+body a{
+	 color: #5F021F ;
+}
+
+.reset_pass {
+    	 color: #5F021F !important;
+
+}
+
+.logo{
+    
+    width: 35px;
+    height: 35px;
+    background-size: 35px 35px;
+    background-image: url(../images/thoth.ico);
+  	position: relative;
+    bottom:  10px;
+    left:  110px;
+    display: inline-block;
+    line-height: 1;
+    float: left;
+    
+}
+#2A3F54
