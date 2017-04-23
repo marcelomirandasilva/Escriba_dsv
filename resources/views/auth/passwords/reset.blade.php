@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Gentellela Alela! | </title>
+    <title>Escriba - Online </title>
     
     <!-- Bootstrap -->
     <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
@@ -15,6 +15,9 @@
     <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+
+        <!-- MEU CSS  -->
+    <link href="{{ asset("css/styles.css") }}" rel="stylesheet">
 
 </head>
 
@@ -32,13 +35,13 @@
                     </div>
                 @endif
 					{!! BootForm::open(['url' => url('/password/reset'), 'method' => 'post']) !!}
-                    <h1>Reset Password</h1>
+                    <h1>Zerar senha</h1>
                     
                     {!! BootForm::hidden('token', $token) !!}
 	
 					{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
 	
-					{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
+					{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
 	
 					{!! BootForm::password('password_confirmation', 'Password confirmation', ['placeholder' => 'Confirmation']) !!}
 	

@@ -1,3 +1,4 @@
+/*
 .left_col {
     background: #5F021F;
 }
@@ -28,10 +29,11 @@ body a{
 	 color: #5F021F ;
 }
 
-.reset_pass {
+.reset_pass, .change_link {
     	 color: #5F021F !important;
 
 }
+ */
 
 .logo{
     
@@ -39,12 +41,36 @@ body a{
     height: 35px;
     background-size: 35px 35px;
     background-image: url(../images/thoth.ico);
-  	position: relative;
+    position: relative;
     bottom:  10px;
     left:  110px;
     display: inline-block;
     line-height: 1;
     float: left;
-    
+
 }
-#2A3F54
+.logo_side_bar{
+    
+    width: 35px;
+    height: 35px;
+    background-size: 35px 35px;
+    background-image: url(../images/thoth.ico);
+  	position: relative;
+    top:  10px;
+    left:  -5px;
+    display: inline-block;
+    line-height: 1;
+    float: left;
+ }
+.site_title {
+    font-weight: 400;
+    font-size: 32px;
+    width: 100%;
+    line-height: 60px;
+    display: block;
+    height: 55px;
+    margin: 0;
+    padding-left: 27px;
+}
+
+
