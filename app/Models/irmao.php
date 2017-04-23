@@ -8,6 +8,8 @@ class irmao extends Model
 {
     protected $table = "irmao";
 
+    protected $primaryKey = 'id';
+
     protected $fillable =[
         'no_irmao',
         'co_cim',
@@ -28,9 +30,10 @@ class irmao extends Model
         'de_profissao',
         'ic_aposentado'
     ];
-
+/*
     public function loja()
     {
         return $this->belongsTo(loja::class);
     }
+*/
 }

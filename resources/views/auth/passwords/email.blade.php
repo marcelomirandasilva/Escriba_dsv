@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Gentellela Alela! | </title>
+    <title>Escriba - Online </title>
     
     <!-- Bootstrap -->
     <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
@@ -15,6 +15,9 @@
     <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+
+            <!-- MEU CSS  -->
+    <link href="{{ asset("css/styles.css") }}" rel="stylesheet">
 
 </head>
 
@@ -36,22 +39,19 @@
 	
 				{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
 					
-				{!! BootForm::submit('Send Password Reset Link', ['class' => 'btn btn-default col-md-9']) !!}
+				{!! BootForm::submit('Envie Link para zerar a senha', ['class' => 'btn btn-default col-md-9']) !!}
 	
 				<div class="clearfix"></div>
 					
 				<div class="separator">
-					<p class="change_link">You have a password ?
-						<a href="{{ url('/login') }}" class="to_register"> Log in </a>
+					<p class="change_link">Você tem a senha?
+						<a href="{{ url('/login') }}" class="to_register"> Entre no site! </a>
 					</p>
 					
 					<div class="clearfix"></div>
 					<br />
 					
-					<div>
-						<h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-						<p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-					</div>
+	
 				</div>
 					
                 {!! BootForm::close() !!}

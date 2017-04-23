@@ -14,3 +14,8 @@
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
+
+Route::get('/irmaos',               'IrmaosController@index');
+Route::get('/irmaos/novo',          'IrmaosController@novo');
+Route::get('/irmaos/{irmao}/editar',      'IrmaosController@editar');
+Route::post('/irmaos/salvar',       'IrmaosController@salvar');

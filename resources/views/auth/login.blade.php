@@ -30,7 +30,7 @@
 				<h1 class="bordo" >Login </h1>
 				
 
-				{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
+				{!! BootForm::email('email', 'Email / Usuário', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
 			
 				{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
 				
@@ -42,8 +42,8 @@
 				<div class="clearfix"></div>
                     
 				<div class="separator">
-					<p class="change_link">New to site?
-						<a href="{{ url('/register') }}" class="to_register"> Create Account </a>
+					<p class="change_link">Novo no site?
+						<a href="{{ url('/register') }}" class="to_register"> Crie uma conta! </a>
 					</p>
                         
 					<div class="clearfix"></div>
