@@ -35,10 +35,11 @@ class CreateIrmaoTable extends Migration
             $table->unsignedInteger('fk_loja_instalacao')   ->nullable();
 
             $table->binary('im_irmao')                      ->nullable();
+
             $table->char('ic_situacao',1);
             $table->char('ic_escolaridade',1)               ->nullable();
             $table->string('de_profissao',50)               ->nullable();
-            $table->char('ic_aposentado',1);
+            $table->char('ic_aposentado',1)                 ->nullable();
 
             $table->timestamps();
         });

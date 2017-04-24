@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,7 +36,7 @@
 
                 @include('includes/topbar')
 
-                @yield('main_container')
+                @yield('conteudo')
 
             </div>
         </div>

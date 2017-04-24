@@ -6,7 +6,7 @@
 
 @endpush
 
-@section('main_container')
+@section('conteudo')
 
     <!-- page content -->
     <div class="right_col" role="main">

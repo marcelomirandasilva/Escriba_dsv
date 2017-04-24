@@ -70,7 +70,11 @@ body a{
     display: block;
     height: 55px;
     margin: 0;
-    padding-left: 27px;
+    padding-left: 20px;
 }
 
-
+.site_title i {
+    border: 1px ; */
+    padding: 5px 6px;
+    border-radius: 0%; */
+}

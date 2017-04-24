@@ -57,7 +57,7 @@
                    
 
                             <li>
-                                <a href="#">Lojas</a>
+                                <li><a href="{{ url('/lojas') }}">Lojas</a></li>
                             </li>
                         </ul>
                     </li>

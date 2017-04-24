@@ -5,24 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\irmao;
 use Illuminate\Http\Request;
 
-class IrmaosController extends Controller
+class IrmaoController extends Controller
 {
 
-
+    // todas as rotas aqui serão antes autenticadas
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
         $irmaos = irmao::get();
-        return view('irmaos.lista', ['irmaos' => $irmaos]);
+        return view('irmaos/lista', ['irmaos' => $irmaos]);
     }
-
 
     public function novo()
     {
         return view('irmaos.formulario');
     }
 
-    public function salvar(Request $request)
+    public function salva(Request $request)
     {
 
         $irmao = new Irmao();
@@ -34,7 +37,12 @@ class IrmaosController extends Controller
 
     }
 
-    protected function editar($id)
+    protected function edita($id)
+    {
+        return "edita o irmão: {$id}";
+    }
+
+    protected function exlui($id)
     {
 
     }
