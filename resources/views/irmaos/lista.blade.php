@@ -21,7 +21,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2> Listagem de Irmãos </h2>
-                    <a class="pull-right" href="{{ url('irmao/novo') }}"> Novo Irmão </a>
+                    <a class="pull-right" href="{{ url('irmaos/novo') }}"> Novo Irmão </a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

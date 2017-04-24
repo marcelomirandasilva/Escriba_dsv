@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class IrmaosController extends Controller
 {
+
+    private $irmao;
+
+    public public function __construct( Irmao $irmao)
+    {
+        $this->irmao = $irmao;
+    }
+
     public function index()
     {
         $irmaos = irmao::get();
