@@ -78,3 +78,21 @@ body a{
     padding: 5px 6px;
     border-radius: 0%; */
 }
+
+.edit{
+    background: #242063;
+}
+.destroy{
+    background: #b12020;
+}
+.action{
+    padding: 6px;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 0px 2px;
+}
+.action:hover{
+    text-decoration: none;;
+    color: #FFF;
+}

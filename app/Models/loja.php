@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class loja extends Model
 {
-	protected $table = 'loja';
+  	protected $table = "loja";
 
+	protected $primaryKey = 'id';
 
-
-    $table->timestamps();
+	protected $fillable =[
+	    'co_titulo',
+	    'no_loja',
+	    'nu_loja',
+	    'dt_fundacao',
+	    'co_potencia'
+	];
 }

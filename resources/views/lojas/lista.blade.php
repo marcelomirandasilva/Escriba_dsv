@@ -15,20 +15,47 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2> Listagem de Lojas </h2>
-                    <a class="pull-right" href="{{ url('lojas/create') }}"> Nova Loja </a>
+                    
+                    <a href="{{ url('lojas/create') }}" class="btn btn-primary  pull-right">
+                        <span class="glyphicon glyphicon-plus"> Nova Loja </span>
+                    </a>
+
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
-                    {{$teste}} - {{$teste2}} - {{$teste3}}
+                    <div class="panel-body">   
+                        <table class="table">
+                            <th>Título</th>
+                            <th>Loja</th>
+                            <th>Num</th>
+                            <th>Fundação</th>
+                            <th>Potencia</th>
+                            <th>Ações</th>
+                            <tbody>
+                                @foreach($lojas as $loja )
+                                <tr>
+                                    <td>{{ $loja->co_titulo    }}</td>
+                                    <td>{{ $loja->no_loja      }}</td>
+                                    <td>{{ $loja->nu_loja      }}</td>
+                                    <td>{{ $loja->dt_fundacao  }}</td>
+                                    <td>{{ $loja->co_potencia  }}</td>
+                                    <td>
+                                        <a href="/lojas/{{$loja->id}}/edit" class="edit action">
+                                            <span class="glyphicon glyphicon-pencil"></span> 
+                                        </a>
+ 
+                                        <a href="/lojas/{{$loja->id}}/destroy" class="destroy action">
+                                            <span class="glyphicon glyphicon-trash"></span> 
+                                        </a>
+ 
+                                    </td>
 
-                    {{$teste5 or ''}}
-
-                    @if( $var1 == '123')
-                        <p> é igual a {{$var1}} </p>
-                    @else
-                        <p> é diferente {{$var1}} </p>
-                    @endif
+                                </td>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>

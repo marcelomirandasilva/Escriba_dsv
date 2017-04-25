@@ -14,7 +14,17 @@ Route::group(['prefix' => 'irmaos'],function(){
 });
 
 
-Route::resource('/lojas', 'LojaController');
+Route::group(['prefix' => 'lojas'],function(){
+	Route::get ('/',               	'LojaController@index');
+	Route::get ('/create',          'LojaController@create');
+	Route::get ('/{id}/edit',		'LojaController@edit');
+	Route::get ('/{id}/exclui',		'LojaController@exclui');
+	Route::post('/salva',       	'LojaController@salva');
+});
+
+
+
+//Route::resource('/lojas', 'LojaController');
 
 //=============================================================================
 

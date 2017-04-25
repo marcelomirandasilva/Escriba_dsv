@@ -2,23 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\loja;
 use Illuminate\Http\Request;
 
-use app\Models\loja;
 
 class LojaController extends Controller
 {
+    //cria a loja para ser usada em todas as rotas
+    private $loja;
+    public function __construct(Loja $loja)
+    {
+        $this->loja = $loja; 
+        
+        // todas as rotas aqui serão antes autenticadas
+        $this->middleware('auth');
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Loja $loja)
+ 
+   public function index()
     {
-        $loja = $loja->all();
+        $lojas = $this->loja->all();
 
-        return view('lojas\lista', compact('loja'));
+        return view('lojas\lista', compact('lojas'));
     }
+
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +42,8 @@ class LojaController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('lojas/create');
     }
 
     /**
@@ -38,7 +54,18 @@ class LojaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $salvou =$this->loja->create([
+            'co_titulo'    =>  'ARBLS',
+            'no_loja'      =>  'LOJA MUITO aaaa LONGE',
+            'nu_loja'      =>  1999,
+            'dt_fundacao'  =>  '1940/01/19',
+            'co_potencia'  =>  'GOH',
+        ]);            
+
+        if( $salvou )
+            return "Salvou";
+        else
+            return "falha no insert";
     }
 
     /**
@@ -60,7 +87,14 @@ class LojaController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+
+        $loja = $this->loja->dbplus_find($id);
+
+        dd($loja);
+
+
+
     }
 
     /**
