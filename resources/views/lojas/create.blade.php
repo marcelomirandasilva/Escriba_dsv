@@ -110,6 +110,7 @@
                             data-inputmask="'mask': '99/99/9999'"
                             class="form-control col-md-7 col-xs-12"
                             type="date"
+                            class="form-control input-md data"
                         >
                     </div>
                 </form>    
@@ -117,30 +118,14 @@
         <div class="ln_solid"></div>
         <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
-            <button           type="submit" class="btn btn-danger">  Cancela     </button>
+
+            <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela        </a>
             <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
         </div>
     </div>
 </div>
 
         <!-- /page content -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -157,3 +142,26 @@
     </footer>
     <!-- /footer content -->
 @endsection
+
+
+@push('scripts')
+
+        {{-- Script para máscara numérica. Ex.: CPF, RG --}}
+    <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
+
+
+    <script type="text/javascript">
+
+    {{-- Máscarasa dos campos CPF e RG --}}
+          $(document).ready(function(){
+        $(".cpf").inputmask("999.999.999-99");
+        $(".rg").inputmask("99.999.999-9");
+        $(".cep").inputmask("99-999.999");
+        $(".data").inputmask("99/99/9999");
+        $(".celular").inputmask("(99)99999-9999");
+        $(".telefone").inputmask("(99)9999-9999");
+        });
+
+    </script>
+
+@endpush

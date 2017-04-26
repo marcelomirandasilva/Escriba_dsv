@@ -1,8 +1,11 @@
 @extends('layouts.blank')
 
 @push('stylesheets')
-<!-- Example -->
-<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
+   <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
 
 @endpush
 
@@ -25,13 +28,19 @@
                 <div class="x_content">
 
                     <div class="panel-body">   
-                        <table class="table">
-                            <th>Título</th>
-                            <th>Loja</th>
-                            <th>Num</th>
-                            <th>Fundação</th>
-                            <th>Potencia</th>
-                            <th>Ações</th>
+                        <table class="table" id="tabela-maconica">
+
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Loja</th>
+                                    <th>Num</th>
+                                    <th>Fundação</th>
+                                    <th>Potencia</th>
+                                    <th>Ações</th>        
+                                </tr>
+                            </thead>
+                            
                             <tbody>
                                 @foreach($lojas as $loja )
                                 <tr>
@@ -51,7 +60,7 @@
  
                                     </td>
 
-                                </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -76,3 +85,36 @@
     </footer>
     <!-- /footer content -->
 @endsection
+
+
+@push("scripts")
+ 
+     <!-- Datatables -->
+    <script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}" type="text/javascript"></script>
+
+    <script>
+        
+        $(function(){
+
+            $("#tabela-maconica").DataTable({
+                'language' : {
+                    'url' : '{{ asset('js/portugues.json') }}'
+                }
+            });
+
+        });
+
+    </script>
+
+@endpush
