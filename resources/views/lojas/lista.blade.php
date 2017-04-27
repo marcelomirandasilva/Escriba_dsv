@@ -1,7 +1,7 @@
 @extends('layouts.blank')
 
 @push('stylesheets')
-   <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
@@ -13,23 +13,18 @@
 
     <!-- page content -->
     <div class="right_col" role="main">
-
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2> Listagem de Lojas </h2>
-                    
                     <a href="{{ url('lojas/create') }}" class="btn btn-primary  pull-right">
                         <span class="glyphicon glyphicon-plus"> Nova Loja </span>
                     </a>
-
-                    <div class="clearfix"></div>
+                <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-
                     <div class="panel-body">   
-                        <table class="table" id="tabela-maconica">
-
+                        <table class="table" id="tabela-lojas">
                             <thead>
                                 <tr>
                                     <th>Título</th>
@@ -107,7 +102,7 @@
         
         $(function(){
 
-            $("#tabela-maconica").DataTable({
+            $("#tabela-lojas").DataTable({
                 'language' : {
                     'url' : '{{ asset('js/portugues.json') }}'
                 }

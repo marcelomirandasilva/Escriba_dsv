@@ -7,10 +7,10 @@ Route::get ('/', 					'HomeController@index');
 
 Route::group(['prefix' => 'irmaos'],function(){
 	Route::get ('/',               	'IrmaoController@index');
-	Route::get ('/novo',          	'IrmaoController@novo');
-	Route::get ('/{id}/edita',		'IrmaoController@edita');
-	Route::get ('/{id}/exclui',		'IrmaoController@exclui');
-	Route::post('/salva',       	'IrmaoController@salva');
+	Route::get ('/create',         	'IrmaoController@create');
+	Route::get ('/{id}/edit',		'IrmaoController@edit');
+	Route::get ('/{id}/delete',		'IrmaoController@delete');
+	Route::post('/store',       	'IrmaoController@store');
 });
 
 
@@ -18,8 +18,8 @@ Route::group(['prefix' => 'lojas'],function(){
 	Route::get ('/',               	'LojaController@index');
 	Route::get ('/create',          'LojaController@create');
 	Route::get ('/{id}/edit',		'LojaController@edit');
-	Route::get ('/{id}/exclui',		'LojaController@exclui');
-	Route::post('/salva',       	'LojaController@salva');
+	Route::get ('/{id}/delete',		'LojaController@delete');
+	Route::post('/store',       	'LojaController@store');
 });
 
 

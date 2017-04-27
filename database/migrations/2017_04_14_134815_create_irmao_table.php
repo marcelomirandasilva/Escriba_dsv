@@ -20,7 +20,24 @@ class CreateIrmaoTable extends Migration
             $table->char('co_cim',10);
             $table->char('nu_cpf',11)                       ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
-            $table->char('ic_estado_civil',1)               ->nullable();
+            
+            $table->enum('ic_estado_civil', [
+                                                'Solteiro',
+                                                'Casado', 
+                                                'Divorciado',
+                                                'Viúvo',
+                                                'Separado',
+                                                'União estável'
+                                            ])              ->nullable();
+
+            $table->enum('ic_grau', [
+                                        'PF',
+                                        'AP', 
+                                        'CM',
+                                        'MM',
+                                        'MI'
+                                    ]);
+
 
             $table->date('dt_iniciacao')                    ->nullable();
             $table->unsignedInteger('fk_loja_iniciacao')    ->nullable();
@@ -36,10 +53,33 @@ class CreateIrmaoTable extends Migration
 
             $table->binary('im_irmao')                      ->nullable();
 
-            $table->char('ic_situacao',1);
-            $table->char('ic_escolaridade',1)               ->nullable();
+            $table->enum('ic_situacao', [
+                'Regular',
+                'Suspenso', 
+                'XXXXXXXXX',
+                'YYYYYYYYY',
+                'ZZZZZZZZZ'
+                                        ]);
+
+
+            $table->enum('ic_escolaridade', [
+
+                'Fundamental - Incompleto',
+                'Fundamental - Completo',
+                'Médio - Incompleto',
+                'Médio - Completo',
+                'Superior - Incompleto',
+                'Superior - Completo',
+                'Pós-graduação - Incompleto',
+                'Pós-graduação - Completo',
+                'Mestrado - Incompleto',
+                'Mestrado - Completo',
+                'Doutorado - Incompleto',
+                'Doutorado - Completo'
+                                            ])              ->nullable();
+
             $table->string('de_profissao',50)               ->nullable();
-            $table->char('ic_aposentado',1)                 ->nullable();
+            $table->enum('ic_aposentado',['Não', 'Sim'])    ->nullable();
 
             $table->timestamps();
         });
