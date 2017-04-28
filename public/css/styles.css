@@ -96,3 +96,8 @@ body a{
     text-decoration: none;;
     color: #FFF;
 }
+
+.datas_input{
+     padding-right: 7px;
+    padding-left: 7px;
+}
