@@ -35,18 +35,26 @@ class IrmaoController extends Controller
     public function create()
     {
         $estado_civil   = ['Solteiro','Casado', 'Divorciado','Viúvo','Separado','União estável'];
-        $grau           = ['PF','AP', 'CM','MM','MI'];
+        $grau           = ['Profano','Aprendiz', 'Companheiro','Mestre','M. Instalado'];
         $situacao       = ['Regular','Suspenso', 'XXXXXXXXX','YYYYYYYYY','ZZZZZZZZZ'];
-        $escolaridade   = ['Fundamental - Incompleto','Fundamental - Completo','Médio - Incompleto','Médio - Completo','Superior - Incompleto','Superior - Completo','Pós-graduação - Incompleto','Pós-graduação - Completo','Mestrado - Incompleto','Mestrado - Completo','Doutorado - Incompleto','Doutorado - Completo'];
+        $escolaridade   = ['Fundamental - Incompleto','Fundamental - Completo','Médio - Incompleto','Médio - Completo',
+                            'Superior - Incompleto','Superior - Completo','Pós-graduação - Incompleto',
+                            'Pós-graduação - Completo','Mestrado - Incompleto','Mestrado - Completo',
+                            'Doutorado - Incompleto','Doutorado - Completo'];
+
         $aposentado     = ['Sim','Não'];
 
+        $tipo_endereco  = ['Residencial','Comercial'];  
+        $tipo_logradouro= ['Aeroporto',
+                            'Alameda','Área','Avenida','Campo','Chácara','Colônia','Condomínio','Conjunto',
+                            'Distrito','Esplanada','Estação','Estrada','Favela','Fazenda','Feira','Jardim',
+                            'Ladeira','Lago','Lagoa','Largo','Loteamento','Morro','Núcleo','Parque','Passarela',
+                            'Pátio','Praça','Quadra','Recanto','Residencial','Rodovia','Rua','Setor','Sítio','Travessa',
+                            'Trecho','Trevo','Vale','Vereda','Via','Viaduto','Viela','Vila'];
 
 
 
-
-
-
-        return view('irmaos.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado']));
+        return view('irmaos.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','tipo_endereco','tipo_logradouro']));
 
     }
 

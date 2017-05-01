@@ -31,11 +31,11 @@ class CreateIrmaoTable extends Migration
                                             ])              ->nullable();
 
             $table->enum('ic_grau', [
-                                        'PF',
-                                        'AP', 
-                                        'CM',
-                                        'MM',
-                                        'MI'
+                                        'Profano',
+                                        'Aprendiz', 
+                                        'Companheiro',
+                                        'Mestre',
+                                        'M.Instalado'
                                     ]);
 
 
