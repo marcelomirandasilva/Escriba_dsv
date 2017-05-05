@@ -1,6 +1,7 @@
 <?php
-
+use App\Models\loja;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class LojaTableSeeder extends Seeder
 {
@@ -11,7 +12,8 @@ class LojaTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
+        //DB::table('loja')->truncate();
+
         DB::table('loja')->insert([
             'co_titulo'   => 'ARLS',
             'no_loja'     => 'PIONEIROS DO PROGRESSO',
@@ -19,14 +21,19 @@ class LojaTableSeeder extends Seeder
             'dt_fundacao' => '01/01/1960',
             'co_potencia' => 'GOB'
         ]);
-        */
+        
+       $faker = Faker::create('pt_BR');
 
-        DB::table('loja')->insert([
-            'co_titulo'   => 'ARLS',
-            'no_loja'     => str_random(50),
-            'nu_loja'     => rand(1000, 9999),
-            'dt_fundacao' => '1111/11/11',
-            'co_potencia' => 'GOB'
-        ]);
+        foreach (range(1,50) as $i) {
+          
+
+            DB::table('loja')->insert([
+                'co_titulo'   => 'ARLS',
+                'no_loja'     => $faker->company,
+                'nu_loja'     => $faker->numberBetween($min = 1000, $max = 9000), 
+                'dt_fundacao' => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'co_potencia' => $faker->randomElement($array = array ('GOB-RJ', 'GOB-SP','GLMRJ','GLMMG')),
+            ]);
+        }
     }
 }

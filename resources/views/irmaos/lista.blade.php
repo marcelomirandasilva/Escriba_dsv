@@ -41,8 +41,15 @@
                                     <td>{{ $irmao->co_cim  }}</td>
                                     <td>{{ $irmao->nu_cpf  }}</td>
                                     <td>
-                                        <a href="/irmaos/{{$irmao->id}}/editar" button class="btn btn-sm"> Editar </abutton>
-                                        <button class="btn btn-sm"> Excluir </button>
+
+                                         <a href="/irmaos/{{$irmao->id}}/editar" class="edit action">
+                                            <span class="glyphicon glyphicon-pencil"></span> 
+                                        </a>
+ 
+                                        <a href="/irmaos/{{$irmao->id}}/excluir" class="destroy action">
+                                            <span class="glyphicon glyphicon-trash"></span> 
+                                        </a>
+                                    
                                     </td>
 
                                 </tr>
@@ -90,7 +97,7 @@
         
         $(function(){
 
-            $("#tabela-maconica").DataTable({
+            $("#tabela-irmaos").DataTable({
                 'language' : {
                     'url' : '{{ asset('js/portugues.json') }}'
                 }

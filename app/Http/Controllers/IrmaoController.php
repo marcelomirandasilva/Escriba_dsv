@@ -80,7 +80,7 @@ class IrmaoController extends Controller
 
     protected function destroy($id)
     {
-
+        return "exclui o irmão: {$id}";
     }
     public function update(Request $request, $id)
     {

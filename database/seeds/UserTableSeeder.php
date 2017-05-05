@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\users;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class UserTableSeeder extends Seeder
 {
@@ -11,7 +13,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+        //DB::table('users')->truncate();
 
         DB::table('users')->insert([
         'name'      =>  'marcelo',
