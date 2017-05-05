@@ -33,7 +33,7 @@
     <body class="nav-md">
         <div class="container body">
             <div class="main_container">
-#F5F5F5
+
                 @include('includes/sidebar')
 
                 @include('includes/topbar')

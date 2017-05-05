@@ -52,9 +52,11 @@ class IrmaoController extends Controller
                             'Pátio','Praça','Quadra','Recanto','Residencial','Rodovia','Rua','Setor','Sítio','Travessa',
                             'Trecho','Trevo','Vale','Vereda','Via','Viaduto','Viela','Vila'];
 
+        $grau_parentesco  = ['Avós','Bisavós','Bisneto(a)','Companheira','Enteado(a)','Esposa','Ex-esposa','Filho(a)',
+                             'Irmão(ã)','Neto(a)','Pais','Outras'];  
 
 
-        return view('irmaos.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','tipo_endereco','tipo_logradouro']));
+        return view('irmaos.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','tipo_endereco','tipo_logradouro','grau_parentesco']));
 
     }
 

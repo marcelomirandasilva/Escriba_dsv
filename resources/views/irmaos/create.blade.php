@@ -39,9 +39,12 @@
                       </li>
                       <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Endereços</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Dependentes</a>
+                      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Contatos</a>
                       </li>
-                      <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Cerimonias</a>
+
+                      <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Dependentes</a>
+                      </li>
+                      <li role="presentation" class=""><a href="#tab_content5" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Cerimonias</a>
                       </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -54,25 +57,28 @@
                         @include('irmaos/create_endereco')
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                        @include('irmaos/create_dependentes')
+                        @include('irmaos/create_contatos')
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
+                        @include('irmaos/create_dependentes')
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab_content5 " aria-labelledby="profile-tab">
                         @include('irmaos/create_cerimonias')
                       </div>
                     </div>
-                  </div>
+                  
                 </form>
+                 <!- botoes -> 
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-offset-8">
+                    <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela     </a>
+                    <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
+                </div>
+                <!- fim botoes -> 
               </div>
             </div>
           </div>
-
-          <!-- FIM do conteudo -->
-        </div>
-        <div class="ln_solid"></div>
-        <div class="form-group">
-        <div class="col-md-6 col-md-offset-3">
-          <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela        </a>
-          <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
         </div>
       </div>
     </div>
