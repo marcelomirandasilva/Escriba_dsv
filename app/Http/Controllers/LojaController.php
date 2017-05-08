@@ -63,37 +63,41 @@ class LojaController extends Controller
         //     ''
         // ]);
 
-        $nova_loja = new Loja($request);
+        $nova_loja = new Loja($request->all );
 
         $nova_loja->save();
 
-        $pais = Pais::find($request->input('pais_id'));
-
-        $endereco->pais()->save($pais);
 
         // Obter o Pais
-        // Obter o Bairro
+        $pais = Pais::find($request->input('nu_pais'));
+
+        // Obter a uf
+        $uf = Uf::find($request->input('nu_uf'));
+
         // Obter o Municipio
+        $Municipio = Municipio::find($request->input('nu_municipio'));
 
-        $endereco = new endereco($request);
-        // id da loja
-        $endereco->pais_id = $request->input('pais_id');
-        // id do bairro
+        // Obter o Bairro
+        $bairro = Bairro::find($request->input('nu_bairro'));
 
-        #ender
 
-        $nova_loja->endereco()->save($endereco);
-
-        $dadosFormulario = $request->all();
-
-        $inclui = $this->loja->create($dadosFormulario);
+        $endereco->pais()->save($pais);
+        $endereco->uf()->save($uf);
+        $endereco->municipio()->save($municipio);
+        $endereco->bairro()->save($bairro);
+        
+    
+              
+/*
 
         if ($inclui) {
             return redirect('lojas');
         } else {
             return redirect()->back();
         }
-        
+  */     
+
+    return redirect()->back(); 
     }
 
     /**
