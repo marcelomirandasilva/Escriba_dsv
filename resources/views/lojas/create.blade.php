@@ -30,7 +30,8 @@
 				<div class="x_content">
 
 					<form id="form_loja" method="post" action="{{ url('lojas/store') }}" class="form-horizontal form-label-left" >
-						{!! csrf_field() !!}
+						
+						{{ csrf_field() }}
 
 						<div class="item form-group">
 							<label class="control-label col-md-1 col-sm-1 col-xs-12" for="co_titulo">
@@ -128,15 +129,22 @@
 								</select>
 							</div> 
 					
+							<!-- UF-->
+							<label class="col-md-1 control-label" for="nu_uf">UF</label>
+							<div class="col-md-1">
+								<input id="uf" name="nu_uf" type="text"  class="form-control input-md uf">
+							</div>
+
+
 							<!-- CEP-->
 							<label class="col-md-1 control-label" for="nu_cep">CEP</label>
-							<div class="col-md-2">
+							<div class="col-md-1">
 								<input id="cep" name="nu_cep" type="text" placeholder="99999-999" class="form-control input-md cep">
 							</div>
 
 							<!-- Município-->
 							<label class="col-md-1 control-label" for="pa-municipio">Município</label>
-							<div class="col-md-4">
+							<div class="col-md-3">
 								<input id="cidade" name="no_municipio" type="text" class="form-control input-md" >
 							</div>
 						</div>

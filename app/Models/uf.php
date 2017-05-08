@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class uf extends Model
 {
-    //
+    protected $table = "uf";
+
+    
 }

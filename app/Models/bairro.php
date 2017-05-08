@@ -11,6 +11,7 @@ class bairro extends Model
     /**
 	 * Relacionamentos
 	 */
+    protected $table = "bairro";
 
     public function enderecos()
     {

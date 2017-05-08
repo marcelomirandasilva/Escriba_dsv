@@ -15,7 +15,6 @@ class loja extends Model
 	    'no_loja',
 	    'nu_loja',
 	    'dt_fundacao',
-	    'co_potencia',
 	    'fk_potencia_id'
 
 	];
