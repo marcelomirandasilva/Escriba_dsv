@@ -19,4 +19,18 @@ class loja extends Model
 	    'fk_potencia_id'
 
 	];
+
+	/**
+	 * Relacionamentos
+	 */
+
+	public function potencia()
+	{
+		return $this->belongsTo('App\Models\Potencia');
+	}
+
+	public function endereco()
+	{
+		return $this->hasOne('App\Models\endereco');
+	}
 }

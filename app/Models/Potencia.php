@@ -14,4 +14,13 @@ class Potencia extends Model
         'no_continente',
         'no_potencia'
     ];
+
+    /**
+     * Relacionamentos
+     */
+
+    public function lojas()
+    {
+    	return $this->hasMany('App\Models\loja');
+    }
 }

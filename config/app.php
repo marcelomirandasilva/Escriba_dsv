@@ -162,7 +162,8 @@ return [
 		Conner\Tagging\Providers\TaggingServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
 		Watson\BootstrapForm\BootstrapFormServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
     ],
 
     /*

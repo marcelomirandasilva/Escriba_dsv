@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pais extends Model
+class Pais extends Model
 {
      protected $table = "pais";
 
@@ -14,4 +14,13 @@ class pais extends Model
         'no_pais',
         'no_continente'
     ];
+
+    /**
+     * Relacionamentos!
+     */
+
+    public function enderecos()
+    {
+    	return $this->hasMany('App\Models\endereco');
+    }
 }

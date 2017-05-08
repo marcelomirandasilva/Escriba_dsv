@@ -24,7 +24,7 @@ class LojaController extends Controller
     {
         $lojas = $this->loja->all();
 
-        return view('lojas\lista', compact('lojas'));
+        return view('lojas.lista', compact('lojas'));
     }
 
  
@@ -39,7 +39,7 @@ class LojaController extends Controller
         $potencias  = Potencia::all()->sortBy('no_potencia');
         $paises     = Pais::all()->sortBy('no_pais');        
 
-        return view('lojas/create',compact('potencias','paises'));
+        return view('lojas.create',compact('potencias','paises'));
     }
 
     /**
@@ -55,6 +55,34 @@ class LojaController extends Controller
         //dd($request->only(['no_loja','nu_loja']));    //pega somente os selecionados
         //dd($request->except(['nu_pais']));            //não pega os selecionados
         //dd($request->input(['nu_pais']));             //pega um campo
+
+        // Validar
+
+        // $this->validate($request, [
+        //     'nome' => 'required',
+        //     ''
+        // ]);
+
+        $nova_loja = new Loja($request);
+
+        $nova_loja->save();
+
+        $pais = Pais::find($request->input('pais_id'));
+
+        $endereco->pais()->save($pais);
+
+        // Obter o Pais
+        // Obter o Bairro
+        // Obter o Municipio
+
+        $endereco = new endereco($request);
+        // id da loja
+        $endereco->pais_id = $request->input('pais_id');
+        // id do bairro
+
+        #ender
+
+        $nova_loja->endereco()->save($endereco);
 
         $dadosFormulario = $request->all();
 

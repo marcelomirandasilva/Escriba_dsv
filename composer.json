@@ -29,7 +29,8 @@
         "laravelcollective/html": "^5.3.0",
 	  	"watson/bootstrap-form": "1.1.*",
         "barryvdh/laravel-ide-helper": "^2.3",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
