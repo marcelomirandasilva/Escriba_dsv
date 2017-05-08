@@ -17,13 +17,17 @@ class CreateEmailTable extends Migration
             $table->increments('id');
             $table->string('de_email',200);
             $table->char('ic_tipo_email',1);
-            $table->unsignedInteger('fk_id_irmao')->nullable();
-            $table->unsignedInteger('fk_id_loja')->nullable();
-            $table->unsignedInteger('fk_id_dependente')->nullable();
-            $table->unsignedInteger('fk_id_visitante')->nullable();
+            $table->unsignedInteger('fk_irmao_id')->nullable();
+            $table->unsignedInteger('fk_loja_id')->nullable();
+            $table->unsignedInteger('fk_dependente_id')->nullable();
+            $table->unsignedInteger('fk_visitante_id')->nullable();
 
 
             $table->timestamps();
+            $table->foreign('fk_irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('fk_loja_id')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('fk_dependente_id')->references('id')->on('dependente')->onDelete('cascade');
+            $table->foreign('fk_visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });
     }
 

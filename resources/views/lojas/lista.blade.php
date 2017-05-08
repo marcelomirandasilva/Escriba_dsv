@@ -17,9 +17,13 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2> Listagem de Lojas </h2>
-                    <a href="{{ url('lojas/create') }}" class="btn btn-primary  pull-right">
-                        <span class="glyphicon glyphicon-plus"> Nova Loja </span>
+                    <a href="{{ url('lojas/create') }}" class="btn btn-primary  botao_novo pull-right "  >
+
+                        <span class="glyphicon glyphicon-plus">  </span>
+
                     </a>
+                    
+            
                 <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -45,6 +49,11 @@
                                     <td>{{ $loja->dt_fundacao  }}</td>
                                     <td>{{ $loja->co_potencia  }}</td>
                                     <td>
+
+                                        <a href="/lojas/{{$loja->id}}/show" class="icone_olho action">
+                                            <span class="glyphicon glyphicon-eye-open"></span> 
+                                        </a>
+ 
                                         <a href="/lojas/{{$loja->id}}/edit" class="edit action">
                                             <span class="glyphicon glyphicon-pencil"></span> 
                                         </a>
@@ -85,18 +94,19 @@
 @push("scripts")
  
      <!-- Datatables -->
-    <script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}"                  type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"            type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}"         type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"       type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}"              type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}"              type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}"              type="text/javascript"></script>
     <script src="{{ asset('datatables/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"       type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}"   type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"     type="text/javascript"></script>
+    <script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
+   
 
     <script>
         

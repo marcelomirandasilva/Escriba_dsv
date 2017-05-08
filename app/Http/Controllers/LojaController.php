@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\loja;
+use App\Models\Pais;
+use App\Models\Potencia;
 use Illuminate\Http\Request;
 
 
@@ -34,8 +36,10 @@ class LojaController extends Controller
      */
     public function create()
     {
+        $potencias  = Potencia::all()->sortBy('no_potencia');
+        $paises     = Pais::all()->sortBy('no_pais');        
 
-        return view('lojas/create');
+        return view('lojas/create',compact('potencias','paises'));
     }
 
     /**
@@ -46,18 +50,22 @@ class LojaController extends Controller
      */
     public function store(Request $request)
     {
-        $salvou =$this->loja->create([
-            'co_titulo'    =>  'ARBLS',
-            'no_loja'      =>  'LOJA MUITO aaaa LONGE',
-            'nu_loja'      =>  1999,
-            'dt_fundacao'  =>  '1940/01/19',
-            'co_potencia'  =>  'GOH',
-        ]);            
 
-        if( $salvou )
-            return "Salvou";
-        else
-            return "falha no insert";
+        //dd($request->all());                          //pega todos
+        //dd($request->only(['no_loja','nu_loja']));    //pega somente os selecionados
+        //dd($request->except(['nu_pais']));            //não pega os selecionados
+        //dd($request->input(['nu_pais']));             //pega um campo
+
+        $dadosFormulario = $request->all();
+
+        $inclui = $this->loja->create($dadosFormulario);
+
+        if ($inclui) {
+            return redirect('lojas');
+        } else {
+            return redirect()->back();
+        }
+        
     }
 
     /**

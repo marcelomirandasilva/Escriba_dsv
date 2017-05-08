@@ -20,7 +20,13 @@ class CreateLojaTable extends Migration
             $table->string('no_loja',50);
             $table->smallInteger('nu_loja');
             $table->date('dt_fundacao');
-            $table->string('co_potencia',10);
+           
+
+            $table->integer('fk_potencia_id')->unsigned();
+            $table->foreign('fk_potencia_id')->references('id')->on('potencia')->onDelete('cascade');
+
+
+
 
             $table->timestamps();
         });

@@ -26,6 +26,9 @@ class CreateVisitanteTable extends Migration
             $table->enum('ic_grau',['AM','CM','MM','MI']);
             
             $table->timestamps();
+
+            $table->integer('fk_loja_id')->unsigned();
+            $table->foreign('fk_loja_id')->references('id')->on('loja')->onDelete('cascade');
         });
     }
 

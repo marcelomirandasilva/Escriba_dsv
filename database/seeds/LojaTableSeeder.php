@@ -19,7 +19,7 @@ class LojaTableSeeder extends Seeder
             'no_loja'     => 'PIONEIROS DO PROGRESSO',
             'nu_loja'     => 1731,
             'dt_fundacao' => '01/01/1960',
-            'co_potencia' => 'GOB'
+            'fk_potencia_id' => 176
         ]);
         
        $faker = Faker::create('pt_BR');
@@ -28,11 +28,11 @@ class LojaTableSeeder extends Seeder
           
 
             DB::table('loja')->insert([
-                'co_titulo'   => 'ARLS',
-                'no_loja'     => $faker->company,
-                'nu_loja'     => $faker->numberBetween($min = 1000, $max = 9000), 
-                'dt_fundacao' => $faker->date($format = 'Y-m-d', $max = 'now'),
-                'co_potencia' => $faker->randomElement($array = array ('GOB-RJ', 'GOB-SP','GLMRJ','GLMMG')),
+                'co_titulo'         => 'ARLS',
+                'no_loja'           => $faker->company,
+                'nu_loja'           => $faker->numberBetween($min = 1000, $max = 9000), 
+                'dt_fundacao'       => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'fk_potencia_id'    => rand(1, 193),
             ]);
         }
     }

@@ -20,17 +20,30 @@ class CreateEnderecoTable extends Migration
             $table->string('no_logradouro',100);
             $table->integer('nu_logradouro');
             $table->char('nu_cep',8);
-            $table->char('ic_tipo_endereco',1);
-            $table->unsignedInteger('fk_id_pais');
-            $table->unsignedInteger('fk_id_uf');
-            $table->unsignedInteger('fk_id_municipio');
-            $table->unsignedInteger('fk_id_bairro');
-            $table->unsignedInteger('fk_id_irmao')->nullable();
-            $table->unsignedInteger('fk_id_loja')->nullable();
-            $table->unsignedInteger('fk_id_visitante')->nullable();
+            $table->string('de_complemennto',10);
+
+            
+            $table->enum('ic_tipo_endereco', ['Residencial','Comercial','Loja']);
+
+
+            $table->unsignedInteger('fk_pais_id');
+            $table->unsignedInteger('fk_uf_id');
+            $table->unsignedInteger('fk_municipio_id');
+            $table->unsignedInteger('fk_bairro_id');
+            $table->unsignedInteger('fk_irmao_id')->nullable();
+            $table->unsignedInteger('fk_loja_id')->nullable();
+            $table->unsignedInteger('fk_visitante_id')->nullable();
 
 
             $table->timestamps();
+
+            $table->foreign('fk_pais_id')->references('id')->on('pais')->onDelete('cascade');
+            $table->foreign('fk_uf_id')->references('id')->on('uf')->onDelete('cascade');
+            $table->foreign('fk_municipio_id')->references('id')->on('municipio')->onDelete('cascade');
+            $table->foreign('fk_bairro_id')->references('id')->on('bairro')->onDelete('cascade');
+            $table->foreign('fk_irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('fk_loja_id')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('fk_visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });
     }
 

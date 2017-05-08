@@ -81,7 +81,7 @@ class IrmaosTableSeeder extends Seeder
 
                                                                             
 
-                'de_profissao'          => $faker->jobTitle,
+                'no_profissao'          => $faker->jobTitle,
                 
                 'ic_aposentado'         => $faker->randomElement($array = array ('Não', 'Sim')),
 

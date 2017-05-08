@@ -16,8 +16,10 @@ class CreateVisitaTable extends Migration
         Schema::create('visita', function (Blueprint $table) {
             $table->increments('id');
             $table->date('dt_visita');
-            $table->unsignedInteger('fk_id_visitante');
+            $table->unsignedInteger('fk_visitante_id');
             $table->timestamps();
+
+            $table->foreign('fk_visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });
     }
 

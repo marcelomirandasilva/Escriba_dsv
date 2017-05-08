@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pais extends Model
+class Potencia extends Model
 {
-     protected $table = "pais";
+     protected $table = "potencia";
 
     protected $primaryKey = 'id';
 
     protected $fillable =[
-        'no_pais',
-        'no_continente'
+        'no_continente',
+        'no_potencia'
     ];
 }

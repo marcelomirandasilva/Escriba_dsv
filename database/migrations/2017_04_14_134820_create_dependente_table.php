@@ -15,12 +15,13 @@ class CreateDependenteTable extends Migration
     {
         Schema::create('dependente', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('fk_id_irmao');
+            $table->unsignedInteger('fk_irmao_id');
             $table->string('no_dependente',100);
             $table->date('dt_nascimento')->nullable();
             $table->char('ic_grau_parentesco',1);
 
             $table->timestamps();
+            $table->foreign('fk_irmao_id')->references('id')->on('irmao')->onDelete('cascade');
         });
     }
 

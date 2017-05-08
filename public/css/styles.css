@@ -82,6 +82,9 @@ body a{
 .edit{
     background: #242063;
 }
+.icone_olho{
+    background: #329c06;
+}
 .destroy{
     background: #b12020;
 }
@@ -103,3 +106,11 @@ body a{
     font-size: 13px;
     
 }
+
+.nu_loja_input{
+    padding-right: 2px;
+    padding-left: 2px;
+    font-size: 13px;
+    
+}
+.botao_novo
