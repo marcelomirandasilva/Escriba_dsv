@@ -76,6 +76,7 @@
 									required="required" 
 									class="form-control "
 									type="text"
+									autofocus
 								>
 							</div>
 
@@ -97,7 +98,7 @@
 
 						<div class="item form-group">
 
-							<label class="control-label col-md-1 " for="potencia_id">Potência</label>
+							<label class="control-label col-md-1 " for="potencia_id">Potência*</label>
 							<div class="col-md-5 ">
 								<select id="potencia_id"   
 									class="form-control col-md-5 " 
@@ -128,12 +129,14 @@
 						<div class="item form-group">
 							{{-- Logradouro, Número, Complemento --}}
 							<label class="control-label col-md-1 " for="nu_pais">Pais</label>
-							<div class="col-md-3 ">
+							<div class="col-md-2 ">
 								<select id="nu_pais"   
-									class="form-control col-md-3 " 
+									class="form-control col-md-2 " 
 									name="nu_pais" 
 									placeholder="Nome do Pais" 
-									type="text">
+									type="text"
+									onChange="desabilita();"
+									>
 									@foreach($paises as $pais)
 										@if ($pais->no_pais == ('Brasil'))
 											<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
@@ -143,6 +146,12 @@
 									@endforeach
 								</select>
 							</div> 
+
+							<!-- CEP-->
+							<label class="col-md-1 control-label" for="nu_cep">CEP</label>
+							<div class="col-md-2">
+								<input id="cep" name="nu_cep" type="text" placeholder="99.999-999" class="form-control input-md cep">
+							</div>
 					
 							<!-- UF-->
 							<label class="col-md-1 control-label" for="sg_uf">UF</label>
@@ -150,12 +159,6 @@
 								<input id="uf" name="sg_uf" type="text"  class="form-control input-md uf">
 							</div>
 
-
-							<!-- CEP-->
-							<label class="col-md-1 control-label" for="nu_cep">CEP</label>
-							<div class="col-md-1">
-								<input id="cep" name="nu_cep" type="text" placeholder="99999-999" class="form-control input-md cep">
-							</div>
 
 							<!-- Município-->
 							<label class="col-md-1 control-label" for="pa-municipio">Município</label>
@@ -211,7 +214,7 @@
 						<div class="ln_solid"></div>
 						
 						<div class="col-md-offset-4">
-						  <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela     </a>
+						  <a href="{{ url('lojas') }}" class="btn btn-danger">  Cancela     </a>
 						  <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
 						</div>
 						<!- fim botoes ->
@@ -237,23 +240,7 @@
 
 @push('scripts')
 
-{{-- Script para máscara numérica. Ex.: CPF, RG --}}
-<script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
 
-
-<script type="text/javascript">
-
-	{{-- Máscarasa dos campos CPF e RG --}}
-	$(document).ready(function(){
-		$(".cpf").inputmask("999.999.999-99");
-		$(".rg").inputmask("99.999.999-9");
-		$(".cep").inputmask("99-999.999");
-		$(".data").inputmask("99/99/9999");
-		$(".celular").inputmask("(99)99999-9999");
-		$(".telefone").inputmask("(99)9999-9999");
-	});
-
-</script>
 
 
 
@@ -328,6 +315,39 @@
 	});
 
 </script>
+
+{{-- Script para máscara numérica. Ex.: CPF, RG --}}
+<script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
+
+
+<script type="text/javascript">
+
+	{{-- Máscarasa dos campos CPF e RG --}}
+	$(document).ready(function(){
+		$(".cpf").inputmask("999.999.999-99");
+		$(".rg").inputmask("99.999.999-9");
+		$(".cep").inputmask("99.999-999");
+		$(".data").inputmask("99/99/9999");
+		$(".celular").inputmask("(99)99999-9999");
+		$(".telefone").inputmask("(99)9999-9999");
+	});
+
+
+</script>
+
+<script type="text/javascript" charset="utf-8" >
+	
+	function desabilita(){
+ 		if( this.value == 'Brasil' ){
+    		document.getElementById('cep').disabled = false;
+    		document.getElementById('uf').disabled = false;
+		}else{
+    		document.getElementById('cep').disabled = true;
+    		document.getElementById('uf').disabled = true;
+  }
+}
+</script>
+
 
 @endpush
 

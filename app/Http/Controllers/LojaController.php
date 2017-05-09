@@ -69,13 +69,7 @@ class LojaController extends Controller
             'nu_loja'       => 'required',
             'potencia_id'   => 'required',
             'dt_fundacao'   => 'date',
-            'nu_pais'       => 'required',
-            'sg_uf'         => 'required',
-            'nu_cep'        => 'required',
-            'no_municipio'  => 'required',
-            'no_bairro'     => 'required',
-            'no_logradouro' => 'required',
-            'nu_logradouro' => 'required',
+            
             'de_email'      => 'email',
 
         ]);
@@ -88,6 +82,8 @@ class LojaController extends Controller
 
         // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
+        
+
 
         // Obter o Pais
         $pais = Pais::find($request->input('nu_pais'));
