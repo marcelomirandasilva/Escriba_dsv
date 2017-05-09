@@ -59,7 +59,8 @@ class LojaController extends Controller
         //dd($request->input(['nu_pais']));             //pega um campo
 
         $request->merge([
-            'dt_fundacao' => $this->inverterData($request->input('dt_fundacao'))
+            'dt_fundacao' => $this->inverterData($request->input('dt_fundacao')),
+            'ic_tipo_endereco' => 'Loja'
         ]);
 
         // Validar
@@ -82,7 +83,7 @@ class LojaController extends Controller
 
         // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
-        
+
 
 
         // Obter o Pais
