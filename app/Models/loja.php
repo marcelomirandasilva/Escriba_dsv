@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class loja extends Model
+class Loja extends Model
 {
   	protected $table = "loja";
 
@@ -15,7 +15,7 @@ class loja extends Model
 	    'no_loja',
 	    'nu_loja',
 	    'dt_fundacao',
-	    'fk_potencia_id'
+	    'potencia_id'
 
 	];
 
@@ -30,6 +30,6 @@ class loja extends Model
 
 	public function endereco()
 	{
-		return $this->hasOne('App\Models\endereco');
+		return $this->hasOne('App\Models\Endereco');
 	}
 }

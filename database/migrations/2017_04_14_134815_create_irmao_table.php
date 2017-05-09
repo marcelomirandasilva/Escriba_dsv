@@ -67,16 +67,16 @@ class CreateIrmaoTable extends Migration
 
 
             $table->date('dt_iniciacao')                    ->nullable();
-            $table->unsignedInteger('fk_loja_id_iniciacao') ->nullable();
+            $table->unsignedInteger('loja_id_iniciacao')    ->nullable();
 
             $table->date('dt_elevacao')                     ->nullable();
-            $table->unsignedInteger('fk_loja_id_elevacao')  ->nullable();
+            $table->unsignedInteger('loja_id_elevacao')     ->nullable();
 
             $table->date('dt_exaltacao')                    ->nullable();
-            $table->unsignedInteger('fk_loja_id_exaltacao') ->nullable();
+            $table->unsignedInteger('loja_id_exaltacao')    ->nullable();
 
             $table->date('dt_instalacao')                   ->nullable();
-            $table->unsignedInteger('fk_loja_id_instalacao')->nullable();
+            $table->unsignedInteger('loja_id_instalacao')   ->nullable();
 
             $table->date('dt_filiacao')                     ->nullable();
             $table->date('dt_regularizacao')                ->nullable();
@@ -95,7 +95,6 @@ class CreateIrmaoTable extends Migration
 
             $table->integer('nu_ato_comenda_pedro')         ->nullable();
             $table->date('dt_comenda_pedro')                ->nullable();
-
 
 
             $table->binary('im_irmao')                      ->nullable();
@@ -128,10 +127,10 @@ class CreateIrmaoTable extends Migration
             
             $table->timestamps();
 
-            $table->foreign('fk_loja_id_iniciacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('fk_loja_id_elevacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('fk_loja_id_exaltacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('fk_loja_id_instalacao')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('loja_id_iniciacao')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('loja_id_elevacao')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('loja_id_exaltacao')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('loja_id_instalacao')->references('id')->on('loja')->onDelete('cascade');
         });
     }
 

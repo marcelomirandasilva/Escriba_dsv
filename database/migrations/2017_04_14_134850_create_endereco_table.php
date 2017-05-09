@@ -15,35 +15,30 @@ class CreateEnderecoTable extends Migration
     {
         Schema::create('endereco', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->string('sg_logradouro',3);
+            
+            $table->char('sg_uf',2);
+            $table->string('no_municipio',50);
+            $table->string('no_bairro',20);
             $table->string('no_logradouro',100);
             $table->integer('nu_logradouro');
-            $table->char('nu_cep',8);
-            $table->string('de_complemennto',10);
-
+            $table->string('de_complemento',20);
+            $table->char('nu_cep',9);
             
             $table->enum('ic_tipo_endereco', ['Residencial','Comercial','Loja']);
 
-
-            $table->unsignedInteger('fk_pais_id');
-            $table->unsignedInteger('fk_uf_id');
-            $table->unsignedInteger('fk_municipio_id');
-            $table->unsignedInteger('fk_bairro_id');
-            $table->unsignedInteger('fk_irmao_id')->nullable();
-            $table->unsignedInteger('fk_loja_id')->nullable();
-            $table->unsignedInteger('fk_visitante_id')->nullable();
+            $table->unsignedInteger('pais_id');
+            $table->unsignedInteger('irmao_id')->nullable();
+            $table->unsignedInteger('loja_id')->nullable();
+            $table->unsignedInteger('visitante_id')->nullable();
 
 
             $table->timestamps();
 
-            $table->foreign('fk_pais_id')->references('id')->on('pais')->onDelete('cascade');
-            $table->foreign('fk_uf_id')->references('id')->on('uf')->onDelete('cascade');
-            $table->foreign('fk_municipio_id')->references('id')->on('municipio')->onDelete('cascade');
-            $table->foreign('fk_bairro_id')->references('id')->on('bairro')->onDelete('cascade');
-            $table->foreign('fk_irmao_id')->references('id')->on('irmao')->onDelete('cascade');
-            $table->foreign('fk_loja_id')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('fk_visitante_id')->references('id')->on('visitante')->onDelete('cascade');
+            // CHAVES ESTRANGEIRAS
+            $table->foreign('pais_id')->references('id')->on('pais')->onDelete('cascade');
+            $table->foreign('irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('loja_id')->references('id')->on('loja')->onDelete('cascade');
+            $table->foreign('visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });
     }
 

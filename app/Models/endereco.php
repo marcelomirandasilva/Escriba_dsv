@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class endereco extends Model
+class Endereco extends Model
 {
     //
 
@@ -13,46 +13,35 @@ class endereco extends Model
      */
     protected $table = "endereco";
 
-     protected $fillable =[
+    protected $fillable =[
 
-            'sg_logradouro',
-            'no_logradouro',
-            'nu_logradouro',
-            'nu_cep',
-            'de_complemennto',
-            'ic_tipo_endereco',
+        'sg_logradouro',
+        'no_logradouro',
+        'nu_logradouro',
+        'nu_cep',
+        'de_complemento',
+        'ic_tipo_endereco',
+        'sg_uf',
+        'no_municipio',
+        'no_bairro',
 
-     ];
+    ];
 
 
     public function pais()
     {
-    	return $this->belongsTo('App\Models\Pais', "fk_pais_id");
+    	return $this->belongsTo('App\Models\Pais', "pais_id");
     }
 
-    public function municipio()
-    {
-    	return $this->belongsTo('App\Models\municipio', 'fk_municipio_id');
-    }
-
-    public function uf()
-    {
-    	return $this->belongsTo('App\Models\uf', 'fk_uf_id');
-    }
-
-    public function bairro()
-    {
-    	return $this->belongsTo('App\Models\bairro', 'fk_bairro_id');
-    }
-
+    
     public function irmao()
     {
-    	return $this->belongsTo('App\Models\irmao', 'fk_irmao_id');
+    	return $this->belongsTo('App\Models\Irmao', 'irmao_id');
     }
 
     public function loja()
     {
-    	return $this->belongsTo('App\Models\loja', 'fk_loja_id');
+    	return $this->belongsTo('App\Models\Loja', 'loja_id');
     }
 
 }

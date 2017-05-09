@@ -13,8 +13,6 @@
 
 
 
-
-
 <!-- page content -->
 <div class="right_col" role="main">
 	<div class=""> </div>
@@ -82,11 +80,11 @@
 
 						<div class="item form-group">
 
-							<label class="control-label col-md-1 " for="fk_potencia_id">Potência</label>
+							<label class="control-label col-md-1 " for="potencia_id">Potência</label>
 							<div class="col-md-5 ">
-								<select id="fk_potencia_id"   
+								<select id="potencia_id"   
 									class="form-control col-md-5 " 
-									name="fk_potencia_id" 
+									name="potencia_id" 
 									placeholder="Nome da Potência" 
 									type="text">
 									@foreach($potencias as $potencia)
@@ -130,9 +128,9 @@
 							</div> 
 					
 							<!-- UF-->
-							<label class="col-md-1 control-label" for="nu_uf">UF</label>
+							<label class="col-md-1 control-label" for="sg_uf">UF</label>
 							<div class="col-md-1">
-								<input id="uf" name="nu_uf" type="text"  class="form-control input-md uf">
+								<input id="uf" name="sg_uf" type="text"  class="form-control input-md uf">
 							</div>
 
 

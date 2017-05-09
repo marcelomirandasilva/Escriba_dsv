@@ -21,6 +21,6 @@ class Pais extends Model
 
     public function enderecos()
     {
-    	return $this->hasMany('App\Models\endereco');
+    	return $this->hasMany('App\Models\Endereco');
     }
 }

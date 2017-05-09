@@ -15,15 +15,15 @@ class CreatePresencaSessaoTable extends Migration
     {
         Schema::create('presenca_sessao', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('fk_sessao_id');
-            $table->unsignedInteger('fk_irmao_id');
-            $table->unsignedInteger('fk_cargo_id');
+            $table->unsignedInteger('sessao_id');
+            $table->unsignedInteger('irmao_id');
+            $table->unsignedInteger('cargo_id');
 
             $table->timestamps();
 
-            $table->foreign('fk_sessao_id')->references('id')->on('sessao')->onDelete('cascade');
-            $table->foreign('fk_irmao_id')->references('id')->on('irmao')->onDelete('cascade');
-            $table->foreign('fk_cargo_id')->references('id')->on('cargo')->onDelete('cascade');
+            $table->foreign('sessao_id')->references('id')->on('sessao')->onDelete('cascade');
+            $table->foreign('irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargo')->onDelete('cascade');
         });
     }
 

@@ -21,6 +21,6 @@ class Potencia extends Model
 
     public function lojas()
     {
-    	return $this->hasMany('App\Models\loja');
+    	return $this->hasMany('App\Models\Loja');
     }
 }

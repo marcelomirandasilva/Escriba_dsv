@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\loja;
 use App\Models\Pais;
 use App\Models\Potencia;
-use App\Models\uf;
-use App\Models\municipio;
-use App\Models\bairro;
-use App\Models\endereco;
+use App\Models\Endereco;
+
 use Illuminate\Http\Request;
 
 
@@ -67,33 +65,24 @@ class LojaController extends Controller
         //     ''
         // ]);
 
-        $nova_loja = new Loja($request->all());
+        $loja = new Loja($request->all());
 
-        $nova_loja->save();
+        $loja->save();
 
-        $endereco = new endereco($request->all());
+        $endereco = new Endereco($request->all());
 
         // Obter o Pais
         $pais = Pais::find($request->input('nu_pais'));
 
-        // Obter a uf
-        $uf = uf::find($request->input('nu_uf'));
-
-        // Obter o Municipio
-        $municipio = Municipio::find($request->input('nu_municipio'));
-
-        // Obter o Bairro
-        $bairro = Bairro::find($request->input('nu_bairro'));
 
 
         $endereco->pais()->associate($pais);
-        $endereco->uf()->associate($uf);
-        $endereco->municipio()->associate($municipio);
-        $endereco->bairro()->associate($bairro);
 
-        echo "<pre>";
-        print_r($endereco->toJson());
-        exit;
+        //echo "<pre>";
+        //print_r($endereco->toJson());
+
+        //print_r($loja->toJson());
+        //exit;
 
         $endereco->save();
         

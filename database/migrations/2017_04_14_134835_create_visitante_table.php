@@ -24,11 +24,12 @@ class CreateVisitanteTable extends Migration
             $table->char('ic_estado_civil',1)       ->nullable();
 
             $table->enum('ic_grau',['AM','CM','MM','MI']);
+            $table->integer('loja_id')->unsigned();
             
             $table->timestamps();
 
-            $table->integer('fk_loja_id')->unsigned();
-            $table->foreign('fk_loja_id')->references('id')->on('loja')->onDelete('cascade');
+            
+            $table->foreign('loja_id')->references('id')->on('loja')->onDelete('cascade');
         });
     }
 
