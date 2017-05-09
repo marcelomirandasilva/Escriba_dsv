@@ -15,6 +15,23 @@
 
 <!-- page content -->
 <div class="right_col" role="main">
+
+	@if( count($errors) > 0 )
+
+		@foreach($errors->all() as $erro)
+
+			<div class="alert alert-danger alert-dismissible" role="alert">
+
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+				<strong>Atenção!</strong> {{ $erro }}
+
+			</div>
+
+		@endforeach
+
+	@endif
+
 	<div class=""> </div>
 	<div class="clearfix"></div>
 	<div class="row">

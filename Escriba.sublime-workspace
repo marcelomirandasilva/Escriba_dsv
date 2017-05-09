@@ -1,0 +1,763 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"navb",
+				"navbar-brand"
+			],
+			[
+				"container-",
+				"container-documentos"
+			],
+			[
+				"sub",
+				"subiu"
+			],
+			[
+				"nov",
+				"nova_experiencia"
+			],
+			[
+				"input",
+				"inputmask"
+			],
+			[
+				"form",
+				"formacao"
+			],
+			[
+				"formaca",
+				"formacao_old"
+			],
+			[
+				"data-",
+				"data-termino"
+			],
+			[
+				"data",
+				"data-inicio"
+			],
+			[
+				"inptu",
+				"inputmask"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"btn-add-",
+				"btn-add-experiencia"
+			],
+			[
+				"e",
+				"e"
+			],
+			[
+				"for",
+				"form-control"
+			],
+			[
+				"col",
+				"col-sm-2"
+			],
+			[
+				"cont",
+				"control-label"
+			],
+			[
+				"todo",
+				"todos_selecionados"
+			],
+			[
+				"todos",
+				"todos_selectionados"
+			],
+			[
+				"btn-confi",
+				"btn-confirmar-encaminhamento"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"areas",
+				"areas_selecionadas"
+			],
+			[
+				"pri",
+				"print_r"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/Http/Controllers/LojaController.php",
+			"settings":
+			{
+				"buffer_size": 3876,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/lojas/create.blade.php",
+			"settings":
+			{
+				"buffer_size": 9715,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/lang/pt-br/validation.php",
+			"settings":
+			{
+				"buffer_size": 5704,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"toggle",
+				"View: Toggle Menu"
+			],
+			[
+				"togle",
+				"View: Toggle Menu"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"toggle ",
+				"View: Toggle Menu"
+			],
+			[
+				"syntax vu",
+				"Set Syntax: Vue Component"
+			],
+			[
+				"syntax sa",
+				"Set Syntax: Sass"
+			],
+			[
+				"syntax ph",
+				"Set Syntax: PHP"
+			],
+			[
+				"syntax bl",
+				"Set Syntax: Laravel Blade"
+			],
+			[
+				"mater",
+				"Material Theme: Activate theme"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 431.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv",
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv/app",
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv/app/Http",
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv/app/Http/Controllers",
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv/resources",
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv/resources/lang",
+		"/home/filipemolina/Documentos/Projetos/Escriba_dsv/resources/lang/pt-br"
+	],
+	"file_history":
+	[
+		"/var/www/Laravel/fw_processo_seletivo/app/Formacao.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Experiencia.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/ProfessorController.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Professor.php",
+		"/var/www/Laravel/fw_processo_seletivo/resources/views/professors/create.blade.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Cargo.php",
+		"/home/filipemolina/Documentos/Cargos.txt",
+		"/var/www/html/processo_seletivo/css/sass/_variables.scss",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/AdminController.php",
+		"/var/www/Laravel/fw_processo_seletivo/routes/web.php",
+		"/var/www/Laravel/fw_processo_seletivo/resources/views/admin/dashboard.blade.php",
+		"/var/www/Laravel/fw_processo_seletivo/resources/views/layouts/app.blade.php",
+		"/var/www/html/processo_seletivo/css/styles.scss",
+		"/var/www/Laravel/fw_processo_seletivo/resources/views/includes/sidebar.blade.php",
+		"/home/filipemolina/Documentos/Utilidades/flot/examples/examples.css",
+		"/home/filipemolina/Documentos/Utilidades/flot/examples/basic-usage/index.html",
+		"/home/filipemolina/Documentos/Utilidades/CanvasJS/examples/02-column-chart/basic-column-chart.html",
+		"/var/www/html/processo_seletivo/js/jquery.flot.min.js",
+		"/home/filipemolina/Documentos/Utilidades/flot/jquery.flot.min.js",
+		"/var/www/html/processo_seletivo/js/canvas.min.js",
+		"/home/filipemolina/Documentos/Utilidades/CanvasJS/canvasjs.min.js",
+		"/var/www/html/processo_seletivo/css/sass/_menu.scss",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/Auth/LoginController.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/Auth/RegisterController.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/Auth/ResetPasswordController.php",
+		"/home/filipemolina/Documentos/cores.txt",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/HomeController.php",
+		"/var/www/html/processo_seletivo/css/styles.css",
+		"/var/www/Laravel/fw_processo_seletivo/resources/lang/en/validation.php",
+		"/var/www/html/processo_seletivo/vendors/select2/vendor/jquery-2.1.0.js",
+		"/var/www/html/processo_seletivo/js/cidades-estados.js",
+		"/home/filipemolina/Documentos/Utilidades/cidades-estados-js-master/cidades-estados-1.4-utf8.js",
+		"/home/filipemolina/Documentos/Utilidades/cidades-estados-js-master/implementacao-utf8.html",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_20_164928_add_codigo_to_professors.php",
+		"/var/www/html/processo_seletivo/css/styles.css.map",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_10_175433_create_professors_table.php",
+		"/var/www/Laravel/fw_processo_seletivo/.env",
+		"/var/www/Laravel/fw_processo_seletivo/resources/views/home.blade.php",
+		"/var/www/Laravel/fw_processo_seletivo/resources/assets/sass/app.scss",
+		"/var/www/Laravel/fw_processo_seletivo/app/Http/Controllers/Controller.php",
+		"/var/www/Laravel/fw_processo_seletivo/bootstrap/app.php",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_10_191517_create_formacaos_table.php",
+		"/var/www/Laravel/fw_processo_seletivo/resources/views/auth/login.blade.php",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_10_193705_criar_tabela_experiencia_professor.php",
+		"/var/www/Laravel/fw_processo_seletivo/app/Providers/AppServiceProvider.php",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_10_192923_create_experiencias_table.php",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_10_191734_add_foreign_to_professor.php",
+		"/var/www/Laravel/fw_processo_seletivo/database/migrations/2017_04_10_191224_create_cargos_table.php",
+		"/var/www/html/processo_seletivo/index.php",
+		"/var/www/Laravel/fw_trabalho/routes/web.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/curriculos/index.blade.php",
+		"/var/www/Laravel/fw_trabalho/app/Curriculo.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/layouts/gentellela.blade.php",
+		"/var/www/html/trabalho/css/styles.scss",
+		"/var/www/html/trabalho/css/styles.css",
+		"/var/www/Laravel/fw_trabalho/resources/views/auth/login.blade.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/curriculos/edit.blade.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/curriculos/create.blade.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/curriculos/excluidos.blade.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/curriculos/encaminhados.blade.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/pdf/curriculo.blade.php",
+		"/var/www/Laravel/fw_trabalho/database/factories/ModelFactory.php",
+		"/var/www/Laravel/fw_trabalho/app/Http/Controllers/CurriculosController.php",
+		"/var/www/Laravel/fw_trabalho/app/Empresa.php",
+		"/var/www/Laravel/fw_trabalho/app/Http/Controllers/HomeController.php",
+		"/var/www/Laravel/fw_trabalho/database/migrations/2017_03_15_183044_add_encaminhado_field.php",
+		"/var/www/Laravel/fw_trabalho/database/migrations/2017_04_04_172720_add_empresas_table.php",
+		"/var/www/Laravel/fw_trabalho/resources/lang/en/validation.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/areas/create.blade.php",
+		"/var/www/Laravel/fw_trabalho/app/User.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/curriculos/vazio.blade.php",
+		"/home/filipemolina/Documentos/Utilidades/gentelella/production/form.html",
+		"/var/www/Laravel/fw_trabalho/database/migrations/2017_03_09_162152_create_curriculos_table.php",
+		"/var/www/Laravel/fw_trabalho/app/Providers/AppServiceProvider.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/areas/index.blade.php",
+		"/home/filipemolina/Documentos/Projetos/Intranet/css/styles.css",
+		"/var/www/html/trabalho/scss/functions.scss",
+		"/var/www/Laravel/fw_trabalho/app/Console/Kernel.php",
+		"/var/www/html/trabalho/scss/variables.scss",
+		"/home/filipemolina/Documentos/Projetos/Intranet/index.html",
+		"/home/filipemolina/Documentos/Utilidades/gentelella/production/pricing_tables.html",
+		"/home/filipemolina/Documentos/Projetos/index.php",
+		"/var/www/Laravel/fw_trabalho/README.md",
+		"/var/www/html/trabalho/index.php",
+		"/var/www/Laravel/fw_trabalho/resources/views/users/index.blade.php",
+		"/home/filipemolina/Documentos/teste.html",
+		"/root/.config/sublime-text-3/Packages/User/html5.sublime-snippet",
+		"/var/www/html/trabalho/.gitignore"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 158.0,
+		"where_history":
+		[
+			"/var/www/Laravel/fw_trabalho",
+			"/var/www/Laravel/fw_trabalho/resources/views"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"erro",
+			"',",
+			"anos",
+			"year",
+			"div",
+			"$dourado",
+			"$roxo",
+			"$doura",
+			"#BFA15F",
+			"#3D276B",
+			"btn-info",
+			"inicio",
+			"],[",
+			"AL",
+			"'],['",
+			"],[",
+			"cidades",
+			"Indígena",
+			"Amarelo",
+			"Branca",
+			"nascimento",
+			"value",
+			"experiencia",
+			"formacoes[][conclusao]",
+			"formacoes[][instituicao]",
+			"formacoes[][formacao]",
+			"formacoes[formacao]",
+			"formacoes[instituicao]",
+			"inicio",
+			"cor_raca",
+			"control",
+			"uf_emissor",
+			"\"rg\"",
+			"\"cpf\"",
+			"cpf\"",
+			"\"cpf\"",
+			"cpf",
+			"nome",
+			"Currículos ",
+			"encaminhados",
+			"with",
+			"electiona",
+			"$c",
+			"$curriculo",
+			"curriculo",
+			"curriculos",
+			"btn-confirmar-modal",
+			"nome",
+			"$idade ",
+			"idade",
+			";\n",
+			"the :attribute must be",
+			"button",
+			"nome",
+			"selected",
+			"@if ($curriculo->formacao == '",
+			"$secundaria",
+			"$principal",
+			"principal",
+			"#BFA161",
+			"roxo",
+			"#3E276B",
+			"price element",
+			"/js/portugues.json",
+			"echo \"foi<br>\";"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$secundaria",
+			"$primaria",
+			"$dourado",
+			"$roxo",
+			"{{ asset('/js/portugues.json') }}"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/Http/Controllers/LojaController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3876,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1548,
+								1548
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 511.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/views/lojas/create.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9715,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								677,
+								677
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "resources/lang/pt-br/validation.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5691,
+								5691
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 890.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 61.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Escriba.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"professocon",
+				"fw_processo_seletivo/app/Http/Controllers/ProfessorController.php"
+			],
+			[
+				"web.",
+				"fw_processo_seletivo/routes/web.php"
+			],
+			[
+				"profe",
+				"fw_processo_seletivo/app/Http/Controllers/ProfessorController.php"
+			],
+			[
+				"control",
+				"fw_processo_seletivo/app/Http/Controllers/Controller.php"
+			],
+			[
+				"app.",
+				"fw_processo_seletivo/bootstrap/app.php"
+			],
+			[
+				"style",
+				"trabalho/css/styles.css"
+			],
+			[
+				"curriculocre",
+				"fw_trabalho/resources/views/curriculos/create.blade.php"
+			],
+			[
+				"routeweb",
+				"fw_trabalho/routes/web.php"
+			],
+			[
+				"gentel",
+				"fw_trabalho/resources/views/layouts/gentellela.blade.php"
+			],
+			[
+				"gente",
+				"fw_trabalho/resources/views/layouts/gentellela.blade.php"
+			],
+			[
+				"styles.cs",
+				"trabalho/css/styles.css"
+			],
+			[
+				"homecon",
+				"fw_trabalho/app/Http/Controllers/HomeController.php"
+			],
+			[
+				"curriculoscon",
+				"fw_trabalho/app/Http/Controllers/CurriculosController.php"
+			],
+			[
+				"curriculosedit",
+				"fw_trabalho/resources/views/curriculos/edit.blade.php"
+			],
+			[
+				"routew",
+				"fw_trabalho/routes/web.php"
+			],
+			[
+				"curriccrea",
+				"fw_trabalho/resources/views/curriculos/create.blade.php"
+			],
+			[
+				"curriculoexclu",
+				"fw_trabalho/resources/views/curriculos/excluidos.blade.php"
+			],
+			[
+				"curriinde",
+				"fw_trabalho/resources/views/curriculos/index.blade.php"
+			],
+			[
+				"curricont",
+				"fw_trabalho/app/Http/Controllers/CurriculosController.php"
+			],
+			[
+				"curricre",
+				"fw_trabalho/resources/views/curriculos/create.blade.php"
+			],
+			[
+				"curredi",
+				"fw_trabalho/resources/views/curriculos/edit.blade.php"
+			],
+			[
+				"curriind",
+				"fw_trabalho/resources/views/curriculos/index.blade.php"
+			],
+			[
+				"curricul",
+				"fw_trabalho/app/Curriculo.php"
+			],
+			[
+				"currccontro",
+				"fw_trabalho/app/Http/Controllers/CurriculosController.php"
+			],
+			[
+				"curriculosin",
+				"fw_trabalho/resources/views/curriculos/index.blade.php"
+			],
+			[
+				"exclui",
+				"fw_trabalho/resources/views/curriculos/excluidos.blade.php"
+			],
+			[
+				"curriculosco",
+				"fw_trabalho/app/Http/Controllers/CurriculosController.php"
+			],
+			[
+				"curriculoin",
+				"fw_trabalho/resources/views/curriculos/index.blade.php"
+			],
+			[
+				"areascre",
+				"fw_trabalho/resources/views/areas/create.blade.php"
+			],
+			[
+				"vazi",
+				"fw_trabalho/resources/views/curriculos/vazio.blade.php"
+			],
+			[
+				"curriculoscontro",
+				"fw_trabalho/app/Http/Controllers/CurriculosController.php"
+			],
+			[
+				"curriculocrea",
+				"fw_trabalho/resources/views/curriculos/create.blade.php"
+			],
+			[
+				"gentelle",
+				"fw_trabalho/resources/views/layouts/gentellela.blade.php"
+			],
+			[
+				"appuser",
+				"fw_trabalho/app/User.php"
+			],
+			[
+				"appcurri",
+				"fw_trabalho/app/Curriculo.php"
+			],
+			[
+				"routewe",
+				"fw_trabalho/routes/web.php"
+			],
+			[
+				"gentele",
+				"fw_trabalho/resources/views/layouts/gentellela.blade.php"
+			],
+			[
+				"appuse",
+				"fw_trabalho/app/User.php"
+			],
+			[
+				"curriculosinde",
+				"fw_trabalho/resources/views/curriculos/index.blade.php"
+			],
+			[
+				"gentelel",
+				"fw_trabalho/resources/views/layouts/gentellela.blade.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/home/filipemolina/Documentos/Laravel/ProcessoSeletivo.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 270.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -105,6 +105,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+
+        'nu_logradouro' => "Número",
+
+    ],
 
 ];

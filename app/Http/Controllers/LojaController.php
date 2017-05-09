@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\loja;
+use App\Models\Loja;
 use App\Models\Pais;
 use App\Models\Potencia;
 use App\Models\Endereco;
@@ -58,46 +58,48 @@ class LojaController extends Controller
         //dd($request->except(['nu_pais']));            //não pega os selecionados
         //dd($request->input(['nu_pais']));             //pega um campo
 
+        $request->merge([
+            'dt_fundacao' => $this->inverterData($request->input('dt_fundacao'))
+        ]);
+
         // Validar
+        $this->validate($request, [
+            'co_titulo'     => 'required',
+            'no_loja'       => 'required',
+            'nu_loja'       => 'required',
+            'potencia_id'   => 'required',
+            'dt_fundacao'   => 'date',
+            'nu_pais'       => 'required',
+            'sg_uf'         => 'required',
+            'nu_cep'        => 'required',
+            'no_municipio'  => 'required',
+            'no_bairro'     => 'required',
+            'no_logradouro' => 'required',
+            'nu_logradouro' => 'required',
+            'de_email'      => 'email',
 
-        // $this->validate($request, [
-        //     'nome' => 'required',
-        //     ''
-        // ]);
+        ]);
 
+        // Criar uma nova loja
         $loja = new Loja($request->all());
 
+        // Salvar no banco para obter o ID
         $loja->save();
 
+        // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
 
         // Obter o Pais
         $pais = Pais::find($request->input('nu_pais'));
 
-
-
+        // Associar o país e a loja ao endereço (chaves estrangeiras)
         $endereco->pais()->associate($pais);
+        $endereco->loja()->associate($loja);
 
-        //echo "<pre>";
-        //print_r($endereco->toJson());
+        // Salvar o endereço
+        $endereco->save(); 
 
-        //print_r($loja->toJson());
-        //exit;
-
-        $endereco->save();
-        
-    
-              
-/*
-
-        if ($inclui) {
-            return redirect('lojas');
-        } else {
-            return redirect()->back();
-        }
-  */     
-
-    return redirect()->back(); 
+        return redirect()->back(); 
     }
 
     /**
@@ -150,5 +152,14 @@ class LojaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Formatar a data para o padrão americano
+     */
+
+    protected function inverterData($data)
+    {
+        return implode("-", array_reverse(explode("/", $data)));
     }
 }

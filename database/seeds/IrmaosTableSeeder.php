@@ -40,16 +40,16 @@ class IrmaosTableSeeder extends Seeder
 
 
                 'dt_iniciacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'fk_loja_id_iniciacao'     =>$faker->numberBetween($min = 1, $max = 5),
+                'loja_id_iniciacao'     =>$faker->numberBetween($min = 1, $max = 5),
 
                 'dt_elevacao'           =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'fk_loja_id_elevacao'      =>$faker->numberBetween($min = 1, $max = 5),
+                'loja_id_elevacao'      =>$faker->numberBetween($min = 1, $max = 5),
 
                 'dt_exaltacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'fk_loja_id_exaltacao'      =>$faker->numberBetween($min = 1, $max = 5),
+                'loja_id_exaltacao'      =>$faker->numberBetween($min = 1, $max = 5),
 
                 'dt_instalacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'fk_loja_id_instalacao'     =>$faker->numberBetween($min = 1, $max = 5),
+                'loja_id_instalacao'     =>$faker->numberBetween($min = 1, $max = 5),
 
                 
 
