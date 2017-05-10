@@ -19,6 +19,11 @@ class CreateLojaTable extends Migration
             $table->string('co_titulo',10);
             $table->string('no_loja',50);
             $table->smallInteger('nu_loja');
+            $table->enum('ic_rito', [
+                                        'Escocês', 'Brasileiro','York','Moderno','Adonhiramita','Emulação ','Schröder',
+                                        'Memphis-Misraïm','Escocês Retificado'
+                                    ]);
+
             $table->date('dt_fundacao');
            
 

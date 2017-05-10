@@ -21,6 +21,7 @@ class LojaTableSeeder extends Seeder
                 'no_loja'     => 'PIONEIROS DO PROGRESSO',
                 'nu_loja'     => 1731,
                 'dt_fundacao' => '01/01/1960',
+                'ic_rito'     => 'Brasileiro'
                 'potencia_id' => 176
             ]);
         }
@@ -37,6 +38,7 @@ class LojaTableSeeder extends Seeder
                 'no_loja'           => $faker->company,
                 'nu_loja'           => $faker->numberBetween($min = 1000, $max = 9000), 
                 'dt_fundacao'       => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'ic_rito'           => 'Escocês'
                 'potencia_id'    => rand(1, 193),
             ]);
         }

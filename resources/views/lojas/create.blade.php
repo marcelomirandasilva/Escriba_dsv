@@ -115,7 +115,29 @@
 									@endforeach
 								</select>
 							</div>
-							<label class="control-label col-md-4 " for="dt_fundacao">Fundação</label>
+
+							<label class="control-label col-md-1 " for="ic_rito">Rito*</label>
+							<div class="col-md-2 ">
+								<select id="ic_rito"   
+									class="form-control col-md-2 " 
+									name="ic_rito" 
+									placeholder="Rito praticado" 
+									type="text">
+									@foreach($ritos as $rito)
+										   
+										@if ($rito == ('Brasileiro'))
+											<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
+										@else 
+											<option value="{{$rito}}"> {{$rito}} </option>  
+										@endif
+									@endforeach
+								</select>
+							</div>
+
+
+
+
+							<label class="control-label col-md-1 " for="dt_fundacao">Fundação</label>
 							<div class="col-md-2 ">
 								<input id="dt_fundacao"   
 									class="form-control col-md-2 datas_input " 

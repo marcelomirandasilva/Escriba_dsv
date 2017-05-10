@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Bibliotecas\Geral;
+
 use App\Models\Loja;
 use App\Models\Pais;
 use App\Models\Potencia;
@@ -41,7 +43,11 @@ class LojaController extends Controller
         $potencias  = Potencia::all()->sortBy('no_potencia');
         $paises     = Pais::all()->sortBy('no_pais');        
 
-        return view('lojas.create',compact('potencias','paises'));
+        $ritos      =  pegaValorEnum('loja','ic_rito') ;
+
+        //dd($ritos);
+
+        return view('lojas.create',compact('potencias','paises','ritos'));
     }
 
     /**
@@ -69,6 +75,7 @@ class LojaController extends Controller
             'no_loja'       => 'required',
             'nu_loja'       => 'required',
             'potencia_id'   => 'required',
+            'ic_rito'       => 'required',
             'dt_fundacao'   => 'date',
             
             'de_email'      => 'email',
@@ -160,3 +167,5 @@ class LojaController extends Controller
         return implode("-", array_reverse(explode("/", $data)));
     }
 }
+
+
