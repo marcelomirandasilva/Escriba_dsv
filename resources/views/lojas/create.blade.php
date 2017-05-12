@@ -100,19 +100,12 @@
 
 							<label class="control-label col-md-1 " for="potencia_id">Potência*</label>
 							<div class="col-md-5 ">
-								<select id="potencia_id"   
-									class="form-control col-md-5 " 
+								<input id="potencia_id"   
+									class="form-control col-md-5" 
 									name="potencia_id" 
 									placeholder="Nome da Potência" 
-									type="text">
-									@foreach($potencias as $potencia)
-										<option value="{{$potencia->id}}"> {{$potencia->no_potencia}} </option>   
-										@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
-											<option value="{{$potencia->id}}" selected="selected"> {{$potencia->no_potencia}} </option>          
-										@else 
-											<option value="{{$potencia->id}}"> {{$potencia->no_potencia}} </option>  
-										@endif
-									@endforeach
+									type="text"/>
+										
 								</select>
 							</div>
 
@@ -153,12 +146,10 @@
 							<label class="control-label col-md-1 " for="nu_pais">Pais</label>
 							<div class="col-md-2 ">
 								<select id="nu_pais"   
-									class="form-control col-md-2 " 
+									class="form-control col-md-2" 
 									name="nu_pais" 
 									placeholder="Nome do Pais" 
-									type="text"
-									onChange="desabilita();"
-									>
+									type="text">
 									@foreach($paises as $pais)
 										@if ($pais->no_pais == ('Brasil'))
 											<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
@@ -269,8 +260,16 @@
 <!-- Adicionando JQuery  do correios para pegar endereço-->
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
+{{-- Script para máscara numérica. Ex.: CPF, RG --}}
+<script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
+
 <!-- Adicionando Javascript -->
 <script type="text/javascript" >
+
+	function global()
+	{
+
+	}
 
 	$(document).ready(function() {
 
@@ -282,6 +281,21 @@
 			$("#uf").val("");
 			$("#ibge").val("");
 		}
+
+		////////////////////////////// Eventos
+
+		$("select#nu_pais").change(function(){
+
+			if($("select#nu_pais>option:selected").text() == " Brasil ")
+			{
+				$("input.cep, input.uf").removeAttr('disabled');
+			}
+			else
+			{
+				$("input.cep, input.uf").attr('disabled', 'disabled');
+			}
+
+		});
 		
 		//Quando o campo cep perde o foco.
 		$("#cep").blur(function() {
@@ -334,18 +348,9 @@
 				limpa_formulário_cep();
 			}
 		});
-	});
 
-</script>
+		{{-- Máscarasa dos campos CPF e RG --}}
 
-{{-- Script para máscara numérica. Ex.: CPF, RG --}}
-<script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
-
-
-<script type="text/javascript">
-
-	{{-- Máscarasa dos campos CPF e RG --}}
-	$(document).ready(function(){
 		$(".cpf").inputmask("999.999.999-99");
 		$(".rg").inputmask("99.999.999-9");
 		$(".cep").inputmask("99.999-999");
@@ -354,22 +359,41 @@
 		$(".telefone").inputmask("(99)9999-9999");
 	});
 
-
 </script>
 
 <script type="text/javascript" charset="utf-8" >
 	
 	function desabilita(){
- 		if( this.value == 'Brasil' ){
+ 		if( this.text == 'Brasil' ){
     		document.getElementById('cep').disabled = false;
     		document.getElementById('uf').disabled = false;
 		}else{
     		document.getElementById('cep').disabled = true;
     		document.getElementById('uf').disabled = true;
-  }
-}
+		}
+  	}
+
 </script>
 
+
+
+<script  type="text/javascript" charset="utf-8" >
+
+	var input = document.getElementById("potencia_id");
+		//$potencia
+		new Awesomplete(input, {
+		list: [
+			
+			@foreach($potencias as $potencia)
+
+				{ label: "{{ $potencia->no_potencia }}", value: "{{ $potencia->id }}" },
+
+			@endforeach
+
+			]
+		});
+	
+</script>
 
 @endpush
 
