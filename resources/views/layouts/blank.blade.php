@@ -25,6 +25,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  
+
+      
         {{-- CSS Customizado do Projeto --}}
 
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -55,7 +58,7 @@
         <script src="{{ asset("js/gentelella.min.js") }}"></script>
         <!-- Awesomplete -->
         <script src="{{ asset("js/awesomplete.js") }}"></script>
-    
+
 
         @stack('scripts')
 

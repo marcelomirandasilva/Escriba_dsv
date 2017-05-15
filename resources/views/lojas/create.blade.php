@@ -100,11 +100,20 @@
 
 							<label class="control-label col-md-1 " for="potencia_id">Potência*</label>
 							<div class="col-md-5 ">
-								<input id="potencia_id"   
-									class="form-control col-md-5" 
+								<select id="potencia_id"   
+									class="form-control col-md-5 " 
 									name="potencia_id" 
 									placeholder="Nome da Potência" 
-									type="text"/>
+									type="text"
+									data-live-search="true"/>
+									@foreach($potencias as $potencia)
+										   
+										@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
+											<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>          
+										@else 
+											<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
+										@endif
+									@endforeach
 										
 								</select>
 							</div>
@@ -376,7 +385,7 @@
 </script>
 
 
-
+<!--
 <script  type="text/javascript" charset="utf-8" >
 
 	var input = document.getElementById("potencia_id");
@@ -394,7 +403,7 @@
 		});
 	
 </script>
-
+-->
 @endpush
 
 

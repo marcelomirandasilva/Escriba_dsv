@@ -88,20 +88,22 @@ class LojaController extends Controller
         // Salvar no banco para obter o ID
         $loja->save();
 
+
+
         // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
-
-
-
         // Obter o Pais
         $pais = Pais::find($request->input('nu_pais'));
-
         // Associar o país e a loja ao endereço (chaves estrangeiras)
         $endereco->pais()->associate($pais);
         $endereco->loja()->associate($loja);
-
         // Salvar o endereço
         $endereco->save(); 
+
+
+        // Cria um novo telefone com as informações inseridas
+        $telefone = new Telefone($request->all());
+
 
         return redirect()->back(); 
     }
@@ -114,7 +116,11 @@ class LojaController extends Controller
      */
     public function show($id)
     {
-        //
+        $loja = $this->loja->find($id);
+
+        $phone = User::find(1)->phone;
+
+        return view('lojas.show',compact('loja'));
     }
 
     /**
