@@ -28,7 +28,7 @@
                 </div>
                 <div class="x_content">
                     <div class="panel-body">   
-                        <table class="table" id="tabela-lojas">
+                        <table class="table table-striped" id="tabela-lojas">
                             <thead>
                                 <tr>
                                     <th>Título</th>
@@ -43,11 +43,11 @@
                             <tbody>
                                 @foreach($lojas as $loja )
                                 <tr>
-                                    <td>{{ $loja->co_titulo    }}</td>
-                                    <td>{{ $loja->no_loja      }}</td>
-                                    <td>{{ $loja->nu_loja      }}</td>
-                                    <td>{{ $loja->dt_fundacao  }}</td>
-                                    <td>{{ $loja->co_potencia  }}</td>
+                                    <td>{{ $loja->co_titulo             }}</td>
+                                    <td>{{ $loja->no_loja               }}</td>
+                                    <td>{{ $loja->nu_loja               }}</td>
+                                    <td>{{ $loja->dt_fundacao           }}</td>
+                                    <td>{{ $loja->potencia->no_potencia  }}</td>
                                     <td>
 
                                         <a href="/lojas/{{$loja->id}}/show" class="icone_olho action">
@@ -116,6 +116,7 @@
                 'language' : {
                     'url' : '{{ asset('js/portugues.json') }}'
                 }
+                
             });
 
         });

@@ -35,11 +35,11 @@ body a{
 }
  */
 body {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 input[type="text"]{
-    font-size:12px;
+    font-size:13px;
 }
 
 .form-control {
@@ -47,7 +47,7 @@ input[type="text"]{
     width: 100%;
     height: 30px;
     padding: 6px 10px;
-    font-size: 12;
+    font-size: 13;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
@@ -140,3 +140,18 @@ input[type="text"]{
     font-size: 13px;
     
 }
+
+input:focus, select:focus {
+    border: 1px solid #2A3F54 !important;
+
+   -moz-border-radius: 7px;
+   -webkit-border-radius: 7px;
+   
+   box-shadow: 15px -10px 3px #000 !important;
+   -webkit-box-shadow: 15px -10px 3px #000 !important;
+   -moz-box-shadow: 15px -10px 3px #000 !important;
+}
+
+
+
+

@@ -33,4 +33,14 @@ class Loja extends Model
 	{
 		return $this->hasOne('App\Models\Endereco');
 	}
+
+	public function telefone()
+	{
+		return $this->hasOne('App\Models\Telefone');
+	}
+
+	public function email()
+	{
+		return $this->hasOne('App\Models\Email');
+	}
 }

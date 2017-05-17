@@ -100,6 +100,7 @@
 
 							<label class="control-label col-md-1 " for="potencia_id">Potência*</label>
 							<div class="col-md-5 ">
+
 								<select id="potencia_id"   
 									class="form-control col-md-5 " 
 									name="potencia_id" 
@@ -114,9 +115,17 @@
 											<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
 										@endif
 									@endforeach
-										
 								</select>
+								
+								<a href="/lojas/" >
+	                                <button  class="col-md-0  glyphicon glyphicon-plus"></button>
+	                            </a>				
 							</div>
+							
+							
+							
+
+							
 
 							<label class="control-label col-md-1 " for="ic_rito">Rito*</label>
 							<div class="col-md-2 ">

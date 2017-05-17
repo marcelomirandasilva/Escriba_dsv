@@ -24,14 +24,39 @@
 			</div>
 			<div class="x_content">
 				<div class="panel-body">   
-					<h5> {{ $loja->co_titulo }} {{ $loja->no_loja }} - {{  $loja->nu_loja }} </h5>
+					
+					<h5><b>{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} </b> </h5> 
+
+					<br> Pertence a: {{$loja->potencia->no_potencia}}
+					<br> Fundada em: {{ date('d-m-Y', strtotime($loja->dt_fundacao)) }}  
+					<br> Rito: {{ $loja->ic_rito}} 
+					<br><br>
+
+					<div class="x_title"> </div>
+					<br> Endereço: {{$loja->endereco->no_logradouro}}, {{$loja->endereco->nu_logradouro}} -
+										{{$loja->endereco->no_bairro}} - {{$loja->endereco->no_municipio}} -
+										{{$loja->endereco->de_complemento}} - {{$loja->endereco->nu_cep}} - 
+										{{$loja->endereco->sg_uf}} - {{$loja->endereco->pais->no_pais}}  
+					<br><br>
+
+					<div class="x_title"> </div>
+					<br> Telefone: {{$loja->telefone->nu_telefone}}
+					<br> Email: {{$loja->email->de_email}}
+					
 
 
 
 
 
 
-
+						<!- botoes -> 
+						<div class="ln_solid"></div>
+						
+						<div class="col-md-offset-4">
+						  <a href="{{ url('lojas') }}" class="btn btn-danger">  Cancela     </a>
+						  <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
+						</div>
+						<!- fim botoes ->
 
 
 				</div>

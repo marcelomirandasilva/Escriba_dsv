@@ -16,9 +16,8 @@ class CreateTelefoneTable extends Migration
         Schema::create('telefone', function (Blueprint $table) {
             $table->increments('id');
             //$table->char('co_ddd',2);
-            $table->char('nu_telefone',11);
-            $table->char('ic_tipo_telefone',1);
-            $table->unsignedInteger('irmao_id')->nullable();
+            $table->char('nu_telefone',15);
+             $table->unsignedInteger('irmao_id')->nullable();
             $table->unsignedInteger('loja_id')->nullable();
             $table->unsignedInteger('dependente_id')->nullable();
             $table->unsignedInteger('visitante_id')->nullable();

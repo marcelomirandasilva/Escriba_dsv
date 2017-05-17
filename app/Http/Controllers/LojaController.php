@@ -8,6 +8,8 @@ use App\Models\Loja;
 use App\Models\Pais;
 use App\Models\Potencia;
 use App\Models\Endereco;
+use App\Models\Telefone;
+use App\Models\Email;
 
 use Illuminate\Http\Request;
 
@@ -27,6 +29,8 @@ class LojaController extends Controller
    public function index()
     {
         $lojas = $this->loja->all();
+
+
 
         return view('lojas.lista', compact('lojas'));
     }
@@ -103,6 +107,13 @@ class LojaController extends Controller
 
         // Cria um novo telefone com as informações inseridas
         $telefone = new Telefone($request->all());
+        $telefone->loja()->associate($loja);
+        $telefone->save();
+
+        // Cria um novo email com as informações inseridas
+        $email = new Email($request->all());
+        $email->loja()->associate($loja);
+        $email->save();
 
 
         return redirect()->back(); 
@@ -118,8 +129,7 @@ class LojaController extends Controller
     {
         $loja = $this->loja->find($id);
 
-        $phone = User::find(1)->phone;
-
+        
         return view('lojas.show',compact('loja'));
     }
 
