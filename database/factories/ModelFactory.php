@@ -80,7 +80,7 @@ $factory->define(App\Models\Irmao::class, function(Faker\Generator $faker) {
 
 		'ic_aposentado'         => $faker->randomElement($array = array ('Não', 'Sim')),
 	];
-
+});
 
 $factory->define(App\Models\Loja::class, function(Faker\Generator $faker) {
 
@@ -94,6 +94,8 @@ $factory->define(App\Models\Loja::class, function(Faker\Generator $faker) {
 		'ic_rito'      => $faker->randomElement(['Escocês', 'Brasileiro','York','Moderno','Adonhiramita','Emulação ','Schröder','Memphis-Misraïm','Escocês Retificado']),
 		//'potencia_id'  => rand(1, 193)
 	],
+});
+
 
 $factory->define(App\Models\Pais::class, function(Faker\Generator $faker) {
 
@@ -298,6 +300,7 @@ $factory->define(App\Models\Pais::class, function(Faker\Generator $faker) {
 		DB::table('pais')->insert(['no_pais'   => 'Zâmbia','no_continente' => 'África']);
 		DB::table('pais')->insert(['no_pais'   => 'Zimbábue','no_continente' => 'África']);
 	],
+});
 
 $factory->define(App\Models\Potencia::class, function(Faker\Generator $faker) {
 
@@ -325,8 +328,7 @@ $factory->define(App\Models\Potencia::class, function(Faker\Generator $faker) {
 		DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Uruguay']);
 		DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da the Republic da Venezuela']);
 	],
-
-
+});
 
 $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 
@@ -355,8 +357,8 @@ $factory->define(App\Telefone::class, function(Faker\Generator $faker) {
 	{
 		return [
 
-			'numero'         => "(21) ".$faker->cellphone(true, 21),
-			'tipo_telefone'  => "Celular",
+			'nu_telefone'  => "(21) ".$faker->cellphone(true, 21),
+			'ic_telefone'  => "Celular",
 
 		];	
 	}
@@ -364,15 +366,23 @@ $factory->define(App\Telefone::class, function(Faker\Generator $faker) {
 	{
 		return [
 
-			'numero'         => "(21) $faker->landline",
-			'tipo_telefone'  => "Fixo",
+			'nu_telefone'  => "(21) $faker->landline",
+			'ic_telefone'  => "Fixo",
 
 		];
 	}
-
-	
-
 });
+
+
+$factory->define(App\Email::class, function(Faker\Generator $faker) {
+
+	$faker = Faker\Models\Factory::create('pt_BR');
+
+	return [
+		'de_email'  => $faker->safeEmail,
+	];	
+});
+
 
 
 

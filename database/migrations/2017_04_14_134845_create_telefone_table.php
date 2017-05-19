@@ -17,7 +17,8 @@ class CreateTelefoneTable extends Migration
             $table->increments('id');
             //$table->char('co_ddd',2);
             $table->char('nu_telefone',15);
-             $table->unsignedInteger('irmao_id')->nullable();
+            $table->enum('ic_telefone', ['Fixo','Celular']);
+            $table->unsignedInteger('irmao_id')->nullable();
             $table->unsignedInteger('loja_id')->nullable();
             $table->unsignedInteger('dependente_id')->nullable();
             $table->unsignedInteger('visitante_id')->nullable();

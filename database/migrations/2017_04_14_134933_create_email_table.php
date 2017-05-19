@@ -16,7 +16,7 @@ class CreateEmailTable extends Migration
         Schema::create('email', function (Blueprint $table) {
             $table->increments('id');
             $table->string('de_email',200);
-            $table->char('ic_tipo_email',1);
+            
             $table->unsignedInteger('irmao_id')->nullable();
             $table->unsignedInteger('loja_id')->nullable();
             $table->unsignedInteger('dependente_id')->nullable();

@@ -16,9 +16,14 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2> Visualização de Loja </h2>
+				<a href="{{ url('lojas/$loja->id/edit') }}" class="btn  edit action botao_novo pull-right "  >
+					<span class="glyphicon glyphicon-pencil">  </span>
+				</a>
+
 				<a href="{{ url('lojas/$loja->id/destroy') }}" class="btn  destroy action botao_novo pull-right "  >
 					<span class="glyphicon glyphicon-trash">  </span>
 				</a>
+
 
 				<div class="clearfix"></div>
 			</div>
@@ -52,9 +57,9 @@
 						<!- botoes -> 
 						<div class="ln_solid"></div>
 						
-						<div class="col-md-offset-4">
-						  <a href="{{ url('lojas') }}" class="btn btn-danger">  Cancela     </a>
-						  <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
+						<div class="col-md-12">
+						  <a href="{{ url('lojas') }}" class="btn btn-primary">  Voltar     </a>
+
 						</div>
 						<!- fim botoes ->
 
