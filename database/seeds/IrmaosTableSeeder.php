@@ -1,95 +1,34 @@
 <?php
 use Illuminate\Database\Seeder;
-use App\Models\irmao;
-use Faker\Factory as Faker;
+//use App\Models\Irmao;
+//use App\Models\Endereco;
+//use App\Models\Telefone;
+//use App\Models\Dependente;
+//use App\Models\Email;
+
+
 
 class IrmaosTableSeeder extends Seeder
 {
 
     public function run()
     {
-        //DB::table('irmao')->truncate();
 
-        $faker = Faker::create('pt_BR');
+       // factory(App\Models\Irmao::class, 20)->create();
 
-        foreach (range(1,50) as $i) {
+        factory(App\Models\Irmao::class, 20)->create()->each(function($irmao)
+        {
           
-            DB::table('irmao')->insert([
-                'no_irmao'              => $faker->name,
-                'co_cim'                => $faker->numberBetween($min = 11111, $max = 9999999),
-                'nu_cpf'                => $faker->cpf(false),
-                'dt_nascimento'         => $faker->date($format = 'Y-m-d', $max = 'now'),
+             //Criar um endereço
+             $irmao->endereco()->save(factory(App\Models\Endereco::class)->make());
+            // Criar 2 telefones
+            $irmao->telefone()->saveMany(factory(App\Models\Telefone::class, 2)->make());
 
-                'ic_estado_civil'       => $faker->randomElement($array = array (
-                                                                                    'Solteiro',
-                                                                                    'Casado',
-                                                                                    'Divorciado',
-                                                                                    'Viúvo',
-                                                                                    'Separado',
-                                                                                    'União estável'
-                                                                                )),
+            //Cria até 5 dependentes
+            $irmao->dependente()->saveMany(factory(App\Models\Dependente::class, rand(1, 5))->make());
 
-                'ic_grau'               => $faker->randomElement($array = array (
-
-                                                                                    'Profano',
-                                                                                    'Aprendiz',
-                                                                                    'Companheiro',
-                                                                                    'Mestre',
-                                                                                    'M.Instalado'
-                                                                                )),                                                                                
-
-
-                'dt_iniciacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'loja_id_iniciacao'     =>$faker->numberBetween($min = 1, $max = 5),
-
-                'dt_elevacao'           =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'loja_id_elevacao'      =>$faker->numberBetween($min = 1, $max = 5),
-
-                'dt_exaltacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'loja_id_exaltacao'      =>$faker->numberBetween($min = 1, $max = 5),
-
-                'dt_instalacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-                'loja_id_instalacao'     =>$faker->numberBetween($min = 1, $max = 5),
-
-                
-
-                'ic_situacao'            => $faker->randomElement($array = array (
-                
-                                                                                    'Regular',
-                                                                                    'Suspenso',
-                                                                                    'XXXXXXXXX',
-                                                                                    'YYYYYYYYY',
-                                                                                    'ZZZZZZZZZ'
-                                                                                )),
-                
-
-                'ic_escolaridade'       => $faker->randomElement($array = array (
-
-                                                                                'Fundamental - Incompleto',
-                                                                                'Fundamental - Completo',
-                                                                                'Médio - Incompleto',
-                                                                                'Médio - Completo',
-                                                                                'Superior - Incompleto',
-                                                                                'Superior - Completo',
-                                                                                'Pós-graduação - Incompleto',
-                                                                                'Pós-graduação - Completo',
-                                                                                'Mestrado - Incompleto',
-                                                                                'Mestrado - Completo',
-                                                                                'Doutorado - Incompleto',
-                                                                                'Doutorado - Completo'
-                                                                                )),
-
-                                                                            
-
-                'no_profissao'          => $faker->jobTitle,
-                
-                'ic_aposentado'         => $faker->randomElement($array = array ('Não', 'Sim')),
-
-            
-            ]);
-
-
-
-        }
+            // Criar 2 emails
+            $irmao->email()->saveMany(factory(App\Models\Email::class, 2)->make());
+        });
     }
 }

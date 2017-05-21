@@ -8,6 +8,27 @@
 @endpush
 
 @section('conteudo')
+<!-- Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Exclusão de Loja</h4>
+      </div>
+      <div class="modal-body">
+        Deseja realmente excluir esta Loja?
+      </div>
+      <div class="modal-footer">
+				 
+        <a href="{{ url("lojas/$loja->id/destroy") }}"  type="button" class="btn btn-primary">Sim</a>
+ 		<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- /.modal -->
+
 
 <!-- page content -->
 <!-- page content -->
@@ -16,13 +37,30 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2> Visualização de Loja </h2>
-				<a href="{{ url('lojas/$loja->id/edit') }}" class="btn  edit action botao_novo pull-right "  >
-					<span class="glyphicon glyphicon-pencil">  </span>
+
+
+				<a 
+					
+					data-target="#delete-modal"
+
+					class="btn btn-danger btn-md    pull-right"  
+					data-toggle="modal" 
+					data-toggle="tooltip" 
+					 
+					data-placement="bottom" 
+					title="Exclui essa Loja">
+					<i class="fa fa-trash"></i>
+				</a>
+				
+
+				<a href="{{ url("lojas/$loja->id/edit") }}"
+					class="btn btn-warning btn-md   pull-right "  
+					data-toggle="tooltip" 
+					data-placement="bottom" 
+					title="Edita essa Loja">
+					<i class="fa fa-pencil"></i>
 				</a>
 
-				<a href="{{ url('lojas/$loja->id/destroy') }}" class="btn  destroy action botao_novo pull-right "  >
-					<span class="glyphicon glyphicon-trash">  </span>
-				</a>
 
 
 				<div class="clearfix"></div>
@@ -32,9 +70,7 @@
 					
 					<h5><b>{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} </b> </h5> 
 
-					<br> Pertence a: {{$loja->potencia->no_potencia}}
-					<br> Fundada em: {{ date('d-m-Y', strtotime($loja->dt_fundacao)) }}  
-					<br> Rito: {{ $loja->ic_rito}} 
+					
 					<br><br>
 
 					<div class="x_title"> </div>
@@ -57,7 +93,7 @@
 						<!- botoes -> 
 						<div class="ln_solid"></div>
 						
-						<div class="col-md-12">
+						<div class="col-md-1 col-md-offset-11">
 						  <a href="{{ url('lojas') }}" class="btn btn-primary">  Voltar     </a>
 
 						</div>
@@ -84,3 +120,12 @@
 </footer>
 <!-- /footer content -->
 @endsection
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".tip-top").tooltip({placement : 'top'});
+    $(".tip-right").tooltip({placement : 'right'});
+    $(".tip-bottom").tooltip({placement : 'bottom'});
+    $(".tip-left").tooltip({ placement : 'left'});
+});
+</script>

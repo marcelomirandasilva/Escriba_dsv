@@ -12,7 +12,7 @@ class PotenciaTableSeeder extends Seeder
     public function run()
     {
         
-        DB::table('potencia')->insert(['no_continente'   => 'Ilhas Brtânicas','no_potencia'     => 'Grande Loja da Ireland']);
+       /* DB::table('potencia')->insert(['no_continente'   => 'Ilhas Brtânicas','no_potencia'     => 'Grande Loja da Ireland']);
         DB::table('potencia')->insert(['no_continente'   => 'Ilhas Brtânicas','no_potencia'     => 'Grande Loja da Scotland']);
 
         DB::table('potencia')->insert(['no_continente'   => 'Europa','no_potencia'     => 'Grande Loja da Albania']);
@@ -196,27 +196,28 @@ class PotenciaTableSeeder extends Seeder
         DB::table('potencia')->insert(['no_continente'   => 'América Central','no_potencia'     => 'Grande Oriente do Haiti']);
         DB::table('potencia')->insert(['no_continente'   => 'América Central','no_potencia'     => 'Grande Loja de Puerto Rico']);
 
+*/
 
-
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Argentina']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Bolivia']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Argentina']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Bolivia']);
         DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Oriente do Brasil']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja do Estado do  Espírito Santo']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja do Estado de Mato Grosso Do Sul']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja do Estado do  Rio De Janeiro']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja do estado do  Rio Grande do Sul']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja do Estado São Paulo']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Chile']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Barranquilla']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Bogota']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Cali']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Cartagena']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Oriental da Colombia ‘Francisco de Paula Santander’']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Los Andes']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Ecuador']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Simbólica da da Paraguay']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Peru']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Uruguay']);
-        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da the Republic da Venezuela']);
+        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Maçônica do Estado do Espírito Santo']);
+        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Maçônica do Estado de Mato Grosso Do Sul']);
+        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Maçônica do Estado do Rio De Janeiro']);
+        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Maçônica do estado do Rio Grande do Sul']);
+        DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Maçônica do Estado São Paulo']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Chile']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Barranquilla']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Bogota']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Cali']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Colombia em Cartagena']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Oriental da Colombia ‘Francisco de Paula Santander’']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Los Andes']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Ecuador']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja Simbólica da da Paraguay']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Peru']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da Uruguay']);
+        //DB::table('potencia')->insert(['no_continente'   => 'América do Sul','no_potencia'     => 'Grande Loja da the Republic da Venezuela']);
+        
     }
 }

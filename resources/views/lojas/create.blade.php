@@ -106,7 +106,8 @@
 									name="potencia_id" 
 									placeholder="Nome da Potência" 
 									type="text"
-									data-live-search="true"/>
+									data-live-search="true"
+									style="width:90%;"/>
 									@foreach($potencias as $potencia)
 										   
 										@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
@@ -118,7 +119,10 @@
 								</select>
 								
 								<a href="/lojas/" >
-	                                <button  class="col-md-0  glyphicon glyphicon-plus"></button>
+	                                <button  
+                                		class="col-md-0  glyphicon glyphicon-plus" 
+                                		style="float: right; top: 5px;">
+                                	</button>
 	                            </a>				
 							</div>
 							
@@ -244,9 +248,13 @@
 						<!- botoes -> 
 						<div class="ln_solid"></div>
 						
-						<div class="col-md-offset-4">
-						  <a href="{{ url('lojas') }}" class="btn btn-danger">  Cancela     </a>
-						  <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
+						<div class="col-md-offset-9">
+						  	<a href="{{ url('lojas') }}" 
+						  		class="btn btn-danger">  Cancela     
+					  		</a>
+						  	<button id="send" type="submit" class="btn btn-success">  
+						  		Confirma    
+					  		</button>
 						</div>
 						<!- fim botoes ->
 					</form>  

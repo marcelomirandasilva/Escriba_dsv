@@ -30,10 +30,27 @@ class Irmao extends Model
         'de_profissao',
         'ic_aposentado'
     ];
-/*
-    public function loja()
+
+
+
+    public function endereco()
     {
-        return $this->belongsTo(loja::class);
+        return $this->hasMany('App\Models\Endereco');
     }
-*/
+
+    public function telefone()
+    {
+        return $this->hasMany('App\Models\Telefone');
+    }
+
+    public function email()
+    {
+        return $this->hasMany('App\Models\Email');
+    }
+
+    public function dependente()
+    {
+        return $this->hasMany('App\Models\Dependente');
+    }
+    
 }

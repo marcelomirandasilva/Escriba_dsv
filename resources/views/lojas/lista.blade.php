@@ -13,64 +13,75 @@
 
 <!-- page content -->
 <div class="right_col" role="main">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2> Listagem de Lojas </h2>
-                <a href="{{ url('lojas/create') }}" class="btn btn-primary  botao_novo pull-right "  >
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2> Listagem de Lojas </h2>
 
-                    <span class="glyphicon glyphicon-plus">  </span>
+         <a href="{{ url('lojas/create') }}" 
+            class="btn btn-primary btn-md   pull-right " 
+            data-toggle="tooltip"  
+            data-placement="bottom" 
+            title="Adiciona uma Loja">
+            <span class="fa fa-plus">  </span>
+         </a>
 
-                </a>
-                
-                
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div class="panel-body">   
-                    <table class="table table-striped" id="tabela-lojas">
-                        <thead>
-                            <tr>
-                                <th>Título</th>
-                                <th>Loja</th>
-                                <th>Num</th>
-                                <th>Fundação</th>
-                                <th>Potencia</th>
-                                <th>Ações</th>        
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            @foreach($lojas as $loja )
-                            <tr>
-                                <td>{{ $loja->co_titulo             }}</td>
-                                <td>{{ $loja->no_loja               }}</td>
-                                <td>{{ $loja->nu_loja               }}</td>
-                                <td>{{ $loja->dt_fundacao           }}</td>
-                                <td>{{ $loja->potencia->no_potencia  }}</td>
-                                <td>
-
-                                    <a href="/lojas/{{$loja->id}}/show" class="icone_olho action">
-                                        <span class="glyphicon glyphicon-eye-open"></span> 
-                                    </a>
-                                    
-                                    <a href="/lojas/{{$loja->id}}/edit" class="edit action">
-                                        <span class="glyphicon glyphicon-pencil"></span> 
-                                    </a>
-                                    
-
-                                    
-                                </td>
-
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
+       <div class="clearfix"></div>
     </div>
+    <div class="x_content">
+     <div class="panel-body">   
+       <table class="table table-striped" id="tabela-lojas">
+         <thead>
+           <tr>
+             <th>Título</th>
+             <th>Loja</th>
+             <th>Num</th>
+             <th>Fundação</th>
+             <th>Potencia</th>
+             <th>Ações</th>        
+          </tr>
+       </thead>
+
+       <tbody>
+        @foreach($lojas as $loja )
+        <tr>
+          <td>{{ $loja->co_titulo             }}</td>
+          <td>{{ $loja->no_loja               }}</td>
+          <td>{{ $loja->nu_loja               }}</td>
+          <td>{{ $loja->dt_fundacao           }}</td>
+          <td>{{ $loja->potencia->no_potencia  }}</td>
+          <td>
+
+ 
+          <a href="{{ url("lojas/$loja->id/edit") }}"
+               class="btn btn-warning btn-xs action botao_lista pull-right " 
+               data-toggle="tooltip" 
+               data-placement="bottom" 
+               title="Edita essa Loja">  
+               <i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
+           </a>
+
+
+           <a href="{{ url("lojas/$loja->id/show") }}" 
+               class="btn btn-primary btn-xs  action botao_lista pull-right "  
+               data-toggle="tooltip"  
+               data-placement="bottom" 
+               title="Visualiza essa Loja"> 
+               <i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
+           </a>
+
+
+        </td>
+
+     </tr>
+     @endforeach
+  </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</div>
 
 
 
@@ -80,10 +91,10 @@
 
 <!-- footer content -->
 <footer>
-    <div class="pull-right">
-        Desenvolvido por Marcelo Miranda - 2017</a>
-    </div>
-    <div class="clearfix"></div>
+  <div class="pull-right">
+    Desenvolvido por Marcelo Miranda - 2017</a>
+ </div>
+ <div class="clearfix"></div>
 </footer>
 <!-- /footer content -->
 @endsection
@@ -107,17 +118,17 @@
 
 
 <script>
-    
-    $(function(){
 
-        $("#tabela-lojas").DataTable({
-            'language' : {
-                'url' : '{{ asset('js/portugues.json') }}'
-            }
-            
-        });
+  $(function(){
 
-    });
+    $("#tabela-lojas").DataTable({
+      'language' : {
+        'url' : '{{ asset('js/portugues.json') }}'
+     }
+
+  });
+
+ });
 
 </script>
 

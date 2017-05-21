@@ -17,9 +17,15 @@ class CreateDependenteTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('irmao_id');
             $table->string('no_dependente',100);
-            $table->date('dt_nascimento')->nullable();
-            $table->char('ic_grau_parentesco',1);
 
+            $table->date('dt_nascimento')->nullable();
+            
+            $table->enum('ic_grau_parentesco',[
+                            'Avós','Bisavós','Bisneto(a)','Companheiro(a)',
+                            'Cônjuge','Enteado(a)','Ex-esposa','Filho(a)',
+                            'Irmão(ã)','Neto(a)','Pais','Outros'
+                        ]);
+            
             $table->timestamps();
             $table->foreign('irmao_id')->references('id')->on('irmao')->onDelete('cascade');
         });
