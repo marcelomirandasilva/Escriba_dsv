@@ -17,7 +17,9 @@
         <h4 class="modal-title" id="modalLabel">Exclusão de Loja</h4>
       </div>
       <div class="modal-body">
-        Deseja realmente excluir esta Loja?
+        Deseja realmente excluir essa Loja?
+        <h5><b>{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} </b> </h5> 
+
       </div>
       <div class="modal-footer">
 				 
@@ -38,20 +40,15 @@
 			<div class="x_title">
 				<h2> Visualização de Loja </h2>
 
-
 				<a 
-					
 					data-target="#delete-modal"
-
 					class="btn btn-danger btn-md    pull-right"  
 					data-toggle="modal" 
 					data-toggle="tooltip" 
-					 
 					data-placement="bottom" 
 					title="Exclui essa Loja">
 					<i class="fa fa-trash"></i>
 				</a>
-				
 
 				<a href="{{ url("lojas/$loja->id/edit") }}"
 					class="btn btn-warning btn-md   pull-right "  
@@ -61,7 +58,21 @@
 					<i class="fa fa-pencil"></i>
 				</a>
 
+				<a href="{{ url("lojas/$proximo->id/show") }}"
+					class="btn btn-primary btn-md   pull-right "  
+					data-toggle="tooltip" 
+					data-placement="bottom" 
+					title="Próxima Loja">
+					<i class="fa fa-step-forward"></i>
+				</a>
 
+				<a href="{{ url("lojas/$anterior->id/show") }}"
+					class="btn btn-primary btn-md   pull-right "  
+					data-toggle="tooltip" 
+					data-placement="bottom" 
+					title="Loja anterior">
+					<i class="fa fa-step-backward"></i>
+				</a>
 
 				<div class="clearfix"></div>
 			</div>

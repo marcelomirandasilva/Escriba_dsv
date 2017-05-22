@@ -1,6 +1,7 @@
 -- mysql -h localhost -u root -p
--- source drop .sql
+-- source drop.sql
 
+SET foreign_key_checks = 0;
 drop table if exists escriba.ocupacao_cargo cascade; 
 drop table if exists escriba.cargo cascade; 
 drop table if exists escriba.pais cascade; 
@@ -32,3 +33,4 @@ drop table if exists escriba.tagging_tagged cascade;
 drop table if exists escriba.tagging_tags cascade; 
 drop table if exists escriba.migrations cascade; 
 
+SET foreign_key_checks = 1;

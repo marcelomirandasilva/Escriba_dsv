@@ -129,8 +129,21 @@ class LojaController extends Controller
     {
         $loja = $this->loja->find($id);
 
+        if( $this->loja->find($id-1))
+            { $anterior = $this->loja->find($id-1); }
+        else
+            { $anterior = $this->loja->find($id); }
+
+        if( $this->loja->find($id+1))
+            { $proximo = $this->loja->find($id+1); }
+        else
+            { $proximo = $this->loja->find($id); }
+
+
         
-        return view('lojas.show',compact('loja'));
+
+        
+        return view('lojas.show',compact('loja','anterior','proximo'));
     }
 
     /**
@@ -143,7 +156,7 @@ class LojaController extends Controller
     {
         
 
-        $loja = $this->loja->dbplus_find($id);
+        $loja = $this->loja->find($id);
 
         dd($loja);
 
@@ -171,7 +184,10 @@ class LojaController extends Controller
      */
     public function destroy($id)
     {
-        return  "$id";
+        $loja = Loja::findOrFail($id);
+        $loja->delete();
+
+        return redirect('lojas');
 
     }
 

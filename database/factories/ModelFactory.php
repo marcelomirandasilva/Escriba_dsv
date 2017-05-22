@@ -93,7 +93,7 @@ $factory->define(App\Models\Loja::class, function(Faker\Generator $faker) {
 		'nu_loja'      => $faker->numberBetween($min = 1000, $max = 9000), 
 		'dt_fundacao'  => $faker->date($format = 'Y-m-d', $max = 'now'),
 		'ic_rito'      => $faker->randomElement(['Escocês', 'Brasileiro','York','Moderno','Adonhiramita','Emulação', 'Schröder','Memphis-Misraïm','Escocês Retificado']),
-		'potencia_id'  => 1,
+		'potencia_id'  => App\Models\Potencia::all()->random()->id,
 	];
 });
 
@@ -102,7 +102,8 @@ $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 	$faker = Faker\Factory::create('pt_BR');
 
 	return [
-		'pais_id'			=> 1,
+		//'pais_id'			=> 1,
+		'pais_id'			=> App\Models\Pais::all()->random()->id,
 		'sg_uf'			 	=> $faker->stateAbbr,
 		'no_municipio'	 	=> $faker->city,
 		'no_bairro'			=> $faker->cityPrefix,
