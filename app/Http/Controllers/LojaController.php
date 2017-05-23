@@ -44,6 +44,8 @@ class LojaController extends Controller
      */
     public function create()
     {
+        $titulo = "Cadastro de Lojas";
+
         $potencias  = Potencia::all()->sortBy('no_potencia');
         $paises     = Pais::all()->sortBy('no_pais');        
 
@@ -51,7 +53,7 @@ class LojaController extends Controller
 
         //dd($ritos);
 
-        return view('lojas.create',compact('potencias','paises','ritos'));
+        return view('lojas.create_edit',compact('potencias','paises','ritos','titulo'));
     }
 
     /**
@@ -75,16 +77,30 @@ class LojaController extends Controller
 
         // Validar
         $this->validate($request, [
-            'co_titulo'     => 'required',
-            'no_loja'       => 'required',
-            'nu_loja'       => 'required',
+            'co_titulo'     => 'required|min:3|max:10',
+            'no_loja'       => 'required|min:3|max:50',
+            'nu_loja'       => 'required|numeric',
             'potencia_id'   => 'required',
             'ic_rito'       => 'required',
             'dt_fundacao'   => 'date',
             
+            //email
             'de_email'      => 'email',
 
+            //telefone
+            'nu_telefone'   => 'min:9|max:15',
+
+
+            //endereço
+            'nu_cep'        => 'min:10|max:10',
+            'sg_uf'         => 'alpha|min:2|max:2',
+            'no_municipio'  => 'alpha_num|min:3|max:50',
+            'no_bairro'     => 'alpha_num|min:3|max:20',
+            'no_logradouro' => 'alpha_num|min:3|max:100',
+            'nu_logradouro' => 'numeric',
+            'de_complemento'=> 'min:3|max:20',
         ]);
+
 
         // Criar uma nova loja
         $loja = new Loja($request->all());
@@ -156,10 +172,17 @@ class LojaController extends Controller
     {
         
 
+        $potencias  = Potencia::all()->sortBy('no_potencia');
+        $paises     = Pais::all()->sortBy('no_pais');        
+        $ritos      = pegaValorEnum('loja','ic_rito') ;
+
         $loja = $this->loja->find($id);
 
-        dd($loja);
+        $titulo = "Edição da Loja: {$loja->co_titulo} {$loja->no_loja} N°{$loja->nu_loja}";
 
+        //dd($loja);
+
+        return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo'));
 
 
     }

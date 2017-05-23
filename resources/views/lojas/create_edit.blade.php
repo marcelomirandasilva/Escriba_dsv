@@ -16,21 +16,18 @@
 <!-- page content -->
 <div class="right_col" role="main">
 
+	<!---------------------- Mostra os erros de validação ------------------------------>
+
 	@if( count($errors) > 0 )
-
-		@foreach($errors->all() as $erro)
-
-			<div class="alert alert-danger alert-dismissible" role="alert">
-
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-				<strong>Atenção!</strong> {{ $erro }}
-
-			</div>
-
-		@endforeach
-
+		<div class="alert alert-danger alert-dismissible" role="alert">
+			@foreach($errors->all() as $erro)
+				<p> {{ $erro }} </p>
+			@endforeach
+		</div>
 	@endif
+	<!------------------------------------------------------------------------------------>
+
+
 
 	<div class=""> </div>
 	<div class="clearfix"></div>
@@ -38,7 +35,7 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 				<div class="x_title">
-					<h2>Cadastro de Lojas</h2>
+					<h2> {{ $titulo }} </h2>
 					
 					<div class="clearfix"></div>
 				</div>
@@ -56,11 +53,13 @@
 								<input id="co_titulo"   
 									class="form-control col-md-2" 
 									name="co_titulo" 
-									placeholder="----" 
+									placeholder="ARLS" 
 									required="required" 
 									type="text"
-									value="ARLS" 
+									
 									style="text-transform: uppercase;"
+									autofocus
+									value="{{$loja->co_titulo or old('co_titulo')}}" 
 								>
 							</div>
 
@@ -76,7 +75,8 @@
 									required="required" 
 									class="form-control "
 									type="text"
-									autofocus
+									
+									value="{{ $loja->no_loja or old('no_loja')}}" 
 									
 								>
 							</div>
@@ -93,6 +93,7 @@
 									required="required" 
 									class="form-control "
 									type="number"
+									value="{{ $loja->nu_loja or old('nu_loja')}}" 
 								>
 							</div>
 						</div>
@@ -109,14 +110,22 @@
 									type="text"
 									data-live-search="true"
 									style="width:90%;"/>
+
+
 									@foreach($potencias as $potencia)
-										   
-										@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
-											<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>          
-										@else 
-											<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
+										@if (isset($loja) && $loja->potencia_id == $potencia->id)
+											<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
+											<h1> entrou </h1>
+										@else
+											@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
+												<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
+											@else 
+												<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
+											@endif
 										@endif
 									@endforeach
+
+
 								</select>
 								
 								<a href="/lojas/" >
@@ -127,9 +136,6 @@
 	                            </a>				
 							</div>
 							
-							
-							
-
 							
 
 							<label class="control-label col-md-1 " for="ic_rito">Rito*</label>
@@ -151,8 +157,6 @@
 							</div>
 
 
-
-
 							<label class="control-label col-md-1 " for="dt_fundacao">Fundação</label>
 							<div class="col-md-2 ">
 								<input id="dt_fundacao"   
@@ -161,6 +165,7 @@
 									placeholder="00/00/0000" 
 									data-inputmask="'mask': '99/99/9999'"
 									type="date"
+									value="{{old('dt_fundacao')}}" 
 								>
 							</div>
 						</div>
@@ -186,34 +191,58 @@
 							<!-- CEP-->
 							<label class="col-md-1 control-label" for="nu_cep">CEP</label>
 							<div class="col-md-2">
-								<input id="cep" name="nu_cep" type="text" placeholder="99.999-999" class="form-control input-md cep">
+								<input id="cep" 
+										name="nu_cep" 
+										type="text" 
+										placeholder="99.999-999" 
+										class="form-control input-md cep" 
+										value="{{old('nu_cep')}}" >
+
 							</div>
 					
 							<!-- UF-->
 							<label class="col-md-1 control-label" for="sg_uf">UF</label>
 							<div class="col-md-1">
-								<input id="uf" name="sg_uf" type="text"  class="form-control input-md uf">
+								<input id="uf" 
+										name="sg_uf" 
+										type="text"  
+										class="form-control input-md uf"
+										value="{{old('sg_uf')}}" >
 							</div>
 
 
 							<!-- Município-->
 							<label class="col-md-1 control-label" for="pa-municipio">Município</label>
 							<div class="col-md-3">
-								<input id="cidade" name="no_municipio" type="text" class="form-control input-md" >
+								<input id="cidade" 
+										name="no_municipio" 
+										type="text" 
+										class="form-control input-md" 
+										value="{{old('no_municipio')}}" >
 							</div>
 						</div>
 						<div class="item form-group">
 							{{-- Bairro --}}
 							<label class="col-md-1 control-label" for="no_bairro">Bairro</label>
 							<div class="col-md-3">
-								<input id="bairro" name="no_bairro" type="text" placeholder="Centro" class="form-control input-md">
+								<input id="bairro" 
+										name="no_bairro" 
+										type="text" 
+										placeholder="Centro" 
+										class="form-control input-md"
+										value="{{old('no_bairro')}}" >
 							</div>
 
 
 							<!-- Logradouro ...Av...Rua....etc-->
 							<label class="col-md-1 control-label" for="no_logradouro">Logradouro</label>
 							<div class="col-md-7">
-								<input id="rua" name="no_logradouro" type="text" placeholder="Av, Rua, Travessa..." class="form-control input-md">
+								<input id="rua" 
+										name="no_logradouro" 
+										type="text" 
+										placeholder="Av, Rua, Travessa..." 
+										class="form-control input-md"
+										value="{{old('no_logradouro')}}" >
 							</div>
 
 						</div>
@@ -222,13 +251,23 @@
 							<!-- Número da residência-->
 							<label class="col-md-1 control-label" for="nu_logradouro">Numero</label>
 							<div class="col-md-2">
-								<input id="nu_logradouro" name="nu_logradouro" type="text" placeholder="999" class="form-control input-md">
+								<input id="nu_logradouro" 
+										name="nu_logradouro" 
+										type="text" 
+										placeholder="999" 
+										class="form-control input-md"
+										value="{{old('nu_logradouro')}}" >
 							</div>
 
 							{{-- Complemento --}}
 							<label class="col-md-2 control-label" for="de_complemento">Complemento</label>
 							<div class="col-md-3">
-								<input id="de_complemento" name="de_complemento" type="text" placeholder="Ap., Fundos,..." class="form-control input-md">
+								<input id="de_complemento" 
+										name="de_complemento" 
+										type="text" 
+										placeholder="Ap., Fundos,..." 
+										class="form-control input-md"
+										value="{{old('de_complemento')}}" >
 							</div>
 						</div>	
 						<div class="item form-group">
@@ -236,13 +275,23 @@
 							{{-- Telefone --}}
 							<label class="col-md-1 control-label" for="nu_telefone">Tel.</label>
 							<div class="col-md-2">
-								<input id="nu_telefone" name="nu_telefone" type="text" placeholder="(99) 9999-9999" class="form-control input-md telefone">
+								<input id="nu_telefone" 
+										name="nu_telefone" 
+										type="text" 
+										placeholder="(99) 9999-9999" 
+										class="form-control input-md telefone"
+										value="{{old('nu_telefone')}}" >
 							</div>
 
 							{{-- Email --}}
 							<label class="col-md-2 control-label" for="de_email">Email</label>  
 							<div class="col-md-5">
-								<input id="de_email" name="de_email" type="text" placeholder="email@servidor.com.br" class="form-control input-md email">
+								<input id="de_email" 
+										name="de_email" 
+										type="text" 
+										placeholder="email@servidor.com.br" 
+										class="form-control input-md email"
+										value="{{old('de_email')}}" >
 							</div>
 
 						</div>						
