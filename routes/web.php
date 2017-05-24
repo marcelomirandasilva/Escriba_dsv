@@ -9,9 +9,11 @@ Route::group(['prefix' => 'irmaos'],function(){
 	Route::get ('/',               	'IrmaoController@index');
 	Route::get ('/create',         	'IrmaoController@create');
 	Route::get ('/{id}/edit',		'IrmaoController@edit');
+	Route::get ('/{id}/update',		'IrmaoController@update');
 	Route::get ('/{id}/show',		'IrmaoController@show');
 	Route::get ('/{id}/destroy',	'IrmaoController@destroy');
 	Route::post('/store',       	'IrmaoController@store');
+	
 });
 
 
@@ -19,9 +21,11 @@ Route::group(['prefix' => 'lojas'],function(){
 	Route::get ('/',               	'LojaController@index');
 	Route::get ('/create',          'LojaController@create');
 	Route::get ('/{id}/edit',		'LojaController@edit');
+	Route::put ('/{id}/update',		'LojaController@update');
 	Route::get ('/{id}/destroy',	'LojaController@destroy');
 	Route::get ('/{id}/show',		'LojaController@show');
 	Route::post('/store',       	'LojaController@store');
+
 });
 
 

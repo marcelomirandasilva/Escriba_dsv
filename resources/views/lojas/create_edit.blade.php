@@ -41,7 +41,14 @@
 				</div>
 				<div class="x_content">
 
-					<form id="form_loja" method="post" action="{{ url('lojas/store') }}" class="form-horizontal form-label-left" >
+					@if( isset($loja))
+						<form id="form_loja" method="post" action="{{ url("lojas/$loja->id/update") }}" class="form-horizontal form-label-left" >
+							{!! method_field('PUT') !!}
+					@else
+						<form id="form_loja" method="post" action="{{ url('lojas/store') }}" class="form-horizontal form-label-left" >
+					@endif
+
+					
 						
 						{{ csrf_field() }}
 
@@ -112,18 +119,26 @@
 									style="width:90%;"/>
 
 
-									@foreach($potencias as $potencia)
-										@if (isset($loja) && $loja->potencia_id == $potencia->id)
-											<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
-											<h1> entrou </h1>
-										@else
+									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+										@foreach($potencias as $potencia)
+											@if ( $loja->potencia_id == $potencia->id)
+												<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
+											@else
+												<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
+											@endif
+										@endforeach
+									@else
+										@foreach($potencias as $potencia)
 											@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
 												<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
 											@else 
 												<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
 											@endif
-										@endif
-									@endforeach
+										@endforeach
+									@endif
+
+									
+
 
 
 								</select>
@@ -145,14 +160,25 @@
 									name="ic_rito" 
 									placeholder="Rito praticado" 
 									type="text">
-									@foreach($ritos as $rito)
-										   
-										@if ($rito == ('Brasileiro'))
-											<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
-										@else 
-											<option value="{{$rito}}"> {{$rito}} </option>  
-										@endif
-									@endforeach
+
+									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+										@foreach($ritos as $rito)
+											@if ( $loja->ic_rito == $rito)
+												<option value="{{$rito}}" selected="selected"> {{$rito}} </option>
+											@else
+												<option value="{{$rito}}"> {{$rito}} </option>    
+											@endif
+										@endforeach
+									@else
+										@foreach($ritos as $rito)
+											@if ($rito == ('Brasileiro'))
+												<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
+											@else 
+												<option value="{{$rito}}"> {{$rito}} </option>  
+											@endif
+										@endforeach
+									@endif
+
 								</select>
 							</div>
 
@@ -165,7 +191,8 @@
 									placeholder="00/00/0000" 
 									data-inputmask="'mask': '99/99/9999'"
 									type="date"
-									value="{{old('dt_fundacao')}}" 
+									value="{{$loja->dt_fundacao or  old('dt_fundacao')}}" 
+
 								>
 							</div>
 						</div>
@@ -178,13 +205,27 @@
 									name="nu_pais" 
 									placeholder="Nome do Pais" 
 									type="text">
-									@foreach($paises as $pais)
-										@if ($pais->no_pais == ('Brasil'))
-											<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
-										@else 
-											<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
-										@endif
-									@endforeach
+
+									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+										@foreach($paises as $pais)
+											@if ( $loja->endereco->pais == $pais)
+												<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>
+											@else
+												<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>    
+											@endif
+										@endforeach
+									@else
+										@foreach($paises as $pais)
+											@if ($pais->no_pais == ('Brasil'))
+												<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
+											@else 
+												<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
+											@endif
+										@endforeach
+									@endif
+
+
+										
 								</select>
 							</div> 
 
@@ -196,7 +237,7 @@
 										type="text" 
 										placeholder="99.999-999" 
 										class="form-control input-md cep" 
-										value="{{old('nu_cep')}}" >
+										value="{{$loja->endereco->nu_cep or old('nu_cep')}}" >
 
 							</div>
 					
@@ -207,7 +248,7 @@
 										name="sg_uf" 
 										type="text"  
 										class="form-control input-md uf"
-										value="{{old('sg_uf')}}" >
+										value="{{$loja->endereco->sg_uf or old('sg_uf')}}" >
 							</div>
 
 
@@ -218,7 +259,7 @@
 										name="no_municipio" 
 										type="text" 
 										class="form-control input-md" 
-										value="{{old('no_municipio')}}" >
+										value="{{$loja->endereco->no_municipio or old('no_municipio')}}" >
 							</div>
 						</div>
 						<div class="item form-group">
@@ -230,7 +271,7 @@
 										type="text" 
 										placeholder="Centro" 
 										class="form-control input-md"
-										value="{{old('no_bairro')}}" >
+										value="{{$loja->endereco->no_bairro or old('no_bairro')}}" >
 							</div>
 
 
@@ -242,7 +283,7 @@
 										type="text" 
 										placeholder="Av, Rua, Travessa..." 
 										class="form-control input-md"
-										value="{{old('no_logradouro')}}" >
+										value="{{$loja->endereco->no_logradouro or old('no_logradouro')}}" >
 							</div>
 
 						</div>
@@ -256,7 +297,7 @@
 										type="text" 
 										placeholder="999" 
 										class="form-control input-md"
-										value="{{old('nu_logradouro')}}" >
+										value="{{$loja->endereco->nu_logradouro or old('nu_logradouro')}}" >
 							</div>
 
 							{{-- Complemento --}}
@@ -267,7 +308,7 @@
 										type="text" 
 										placeholder="Ap., Fundos,..." 
 										class="form-control input-md"
-										value="{{old('de_complemento')}}" >
+										value="{{$loja->endereco->de_complemento or old('de_complemento')}}" >
 							</div>
 						</div>	
 						<div class="item form-group">
@@ -280,7 +321,7 @@
 										type="text" 
 										placeholder="(99) 9999-9999" 
 										class="form-control input-md telefone"
-										value="{{old('nu_telefone')}}" >
+										value="{{$loja->telefone->nu_telefone or old('nu_telefone')}}" >
 							</div>
 
 							{{-- Email --}}
@@ -291,7 +332,7 @@
 										type="text" 
 										placeholder="email@servidor.com.br" 
 										class="form-control input-md email"
-										value="{{old('de_email')}}" >
+										value="{{$loja->email->de_email or old('de_email')}}" >
 							</div>
 
 						</div>						

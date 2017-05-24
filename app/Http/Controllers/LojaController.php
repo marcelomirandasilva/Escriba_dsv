@@ -75,31 +75,8 @@ class LojaController extends Controller
             'ic_tipo_endereco' => 'Loja'
         ]);
 
-        // Validar
-        $this->validate($request, [
-            'co_titulo'     => 'required|min:3|max:10',
-            'no_loja'       => 'required|min:3|max:50',
-            'nu_loja'       => 'required|numeric',
-            'potencia_id'   => 'required',
-            'ic_rito'       => 'required',
-            'dt_fundacao'   => 'date',
-            
-            //email
-            'de_email'      => 'email',
-
-            //telefone
-            'nu_telefone'   => 'min:9|max:15',
-
-
-            //endereço
-            'nu_cep'        => 'min:10|max:10',
-            'sg_uf'         => 'alpha|min:2|max:2',
-            'no_municipio'  => 'alpha_num|min:3|max:50',
-            'no_bairro'     => 'alpha_num|min:3|max:20',
-            'no_logradouro' => 'alpha_num|min:3|max:100',
-            'nu_logradouro' => 'numeric',
-            'de_complemento'=> 'min:3|max:20',
-        ]);
+        // Validar dados do formulário
+        $this->validar($request);
 
 
         // Criar uma nova loja
@@ -178,11 +155,11 @@ class LojaController extends Controller
 
         $loja = $this->loja->find($id);
 
+        $edita = true;
+
         $titulo = "Edição da Loja: {$loja->co_titulo} {$loja->no_loja} N°{$loja->nu_loja}";
 
-        //dd($loja);
-
-        return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo'));
+        return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo','edita'));
 
 
     }
@@ -196,7 +173,36 @@ class LojaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
+       // Validar dados do formulário
+        //$this->validar($request);
+
+        $dadosFormulario = $request->all();
+
+        $loja = $this->loja->find($id);
+
+        //dd($loja->endereco->pais->nu_pais);
+
+        $atualiza = $loja->update($dadosFormulario);
+
+
+        
+        $loja->endereco->update($dadosFormulario);
+        $loja->endereco->pais->update($dadosFormulario->nu_pais);
+        $loja->telefone->update($dadosFormulario);
+        $loja->email->update($dadosFormulario);
+
+
+
+
+
+        if ($atualiza) {
+            return redirect('lojas');
+        } else {
+            //return redirect(back); 
+            return redirect('lojas.edit', $id)->whith(['erros' => 'Falha ao editar']); 
+        }
+        
     }
 
     /**
@@ -221,6 +227,35 @@ class LojaController extends Controller
     protected function inverterData($data)
     {
         return implode("-", array_reverse(explode("/", $data)));
+    }
+
+    protected function validar($request)
+    {
+        // Validar
+        $this->validate($request, [
+            'co_titulo'     => 'required|min:3|max:10',
+            'no_loja'       => 'required|min:3|max:50',
+            'nu_loja'       => 'required|numeric',
+            'potencia_id'   => 'required',
+            'ic_rito'       => 'required',
+            'dt_fundacao'   => 'date',
+            
+            //email
+            'de_email'      => 'email',
+
+            //telefone
+            'nu_telefone'   => 'min:9|max:15',
+
+            //endereço
+            'nu_cep'        => 'min:10|max:10',
+            'sg_uf'         => 'alpha|min:2|max:2',
+            'no_municipio'  => 'alpha_num|min:3|max:50',
+            'no_bairro'     => 'alpha_num|min:3|max:20',
+            'no_logradouro' => 'alpha_num|min:3|max:100',
+            'nu_logradouro' => 'numeric',
+            'de_complemento'=> 'min:3|max:20',
+        ]);
+
     }
 }
 
