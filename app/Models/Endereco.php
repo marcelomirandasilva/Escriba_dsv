@@ -24,13 +24,14 @@ class Endereco extends Model
         'sg_uf',
         'no_municipio',
         'no_bairro',
+        'pais_id',
 
     ];
 
 
     public function pais()
     {
-    	return $this->belongsTo('App\Models\Pais', "pais_id");
+    	return $this->belongsTo('App\Models\Pais');
     }
 
     

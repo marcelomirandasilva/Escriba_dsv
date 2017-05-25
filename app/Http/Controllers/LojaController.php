@@ -71,10 +71,14 @@ class LojaController extends Controller
         //dd($request->input(['nu_pais']));             //pega um campo
 
         $request->merge([
-            'dt_fundacao' => $this->inverterData($request->input('dt_fundacao')),
-            'ic_tipo_endereco' => 'Loja'
+            'dt_fundacao'       => $this->inverterData($request->input('dt_fundacao')),
+            'ic_tipo_endereco'  => 'Loja',
+            'co_titulo'         => strtoupper($request->co_titulo),
+            'sg_uf'             => strtoupper($request->sg_uf),
         ]);
 
+
+        //dd($request->all());
         // Validar dados do formulário
         $this->validar($request);
 
@@ -89,14 +93,16 @@ class LojaController extends Controller
 
         // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
+
         // Obter o Pais
-        $pais = Pais::find($request->input('nu_pais'));
+        $pais = Pais::find($request->input('pais_id'));
+
         // Associar o país e a loja ao endereço (chaves estrangeiras)
         $endereco->pais()->associate($pais);
         $endereco->loja()->associate($loja);
+
         // Salvar o endereço
         $endereco->save(); 
-
 
         // Cria um novo telefone com as informações inseridas
         $telefone = new Telefone($request->all());
@@ -173,30 +179,30 @@ class LojaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
        // Validar dados do formulário
         //$this->validar($request);
 
         $dadosFormulario = $request->all();
 
         $loja = $this->loja->find($id);
+        
+        $status1 = $loja->update($dadosFormulario);
 
-        //dd($loja->endereco->pais->nu_pais);
+        $status2 = $loja->endereco->update($dadosFormulario);
 
-        $atualiza = $loja->update($dadosFormulario);
+        // $loja->endereco()->associate($request->input('pais_id'));
 
+        //$status3 = $loja->endereco->update($dadosFormulario);
 
         
-        $loja->endereco->update($dadosFormulario);
-        $loja->endereco->pais->update($dadosFormulario->nu_pais);
-        $loja->telefone->update($dadosFormulario);
-        $loja->email->update($dadosFormulario);
+        
+        $status4 = $loja->telefone->update($dadosFormulario);
+        $status5 = $loja->email->update($dadosFormulario);
 
+        //dd($dadosFormulario);
 
-
-
-
-        if ($atualiza) {
+        if ($status1 or $status2 or $status3 or $status4 or $status5) {
             return redirect('lojas');
         } else {
             //return redirect(back); 
@@ -249,9 +255,9 @@ class LojaController extends Controller
             //endereço
             'nu_cep'        => 'min:10|max:10',
             'sg_uf'         => 'alpha|min:2|max:2',
-            'no_municipio'  => 'alpha_num|min:3|max:50',
-            'no_bairro'     => 'alpha_num|min:3|max:20',
-            'no_logradouro' => 'alpha_num|min:3|max:100',
+            'no_municipio'  => 'min:3|max:50',
+            'no_bairro'     => 'min:3|max:20',
+            'no_logradouro' => 'min:3|max:100',
             'nu_logradouro' => 'numeric',
             'de_complemento'=> 'min:3|max:20',
         ]);

@@ -80,7 +80,7 @@
 				<div class="panel-body">   
 					
 					<h5><b>{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} </b> </h5> 
-
+					<br> Pertence a: {{$loja->potencia->no_potencia}}
 					
 					<br><br>
 

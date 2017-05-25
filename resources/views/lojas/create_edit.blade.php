@@ -66,8 +66,7 @@
 									
 									style="text-transform: uppercase;"
 									autofocus
-									value="{{$loja->co_titulo or old('co_titulo')}}" 
-								>
+									value="{{$loja->co_titulo or old('co_titulo')}}" >
 							</div>
 
 							<label class="control-label col-md-1 " for="no_loja">
@@ -198,11 +197,11 @@
 						</div>
 						<div class="item form-group">
 							{{-- Logradouro, Número, Complemento --}}
-							<label class="control-label col-md-1 " for="nu_pais">Pais</label>
+							<label class="control-label col-md-1 " for="pais_id">Pais</label>
 							<div class="col-md-2 ">
-								<select id="nu_pais"   
+								<select id="pais_id"   
 									class="form-control col-md-2" 
-									name="nu_pais" 
+									name="pais_id" 
 									placeholder="Nome do Pais" 
 									type="text">
 
@@ -319,7 +318,7 @@
 								<input id="nu_telefone" 
 										name="nu_telefone" 
 										type="text" 
-										placeholder="(99) 9999-9999" 
+										placeholder="(99)9999-9999" 
 										class="form-control input-md telefone"
 										value="{{$loja->telefone->nu_telefone or old('nu_telefone')}}" >
 							</div>
@@ -375,10 +374,11 @@
 
 
 <!-- Adicionando JQuery  do correios para pegar endereço-->
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
 
 {{-- Script para máscara numérica. Ex.: CPF, RG --}}
 <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
+
 
 <!-- Adicionando Javascript -->
 <script type="text/javascript" >
@@ -401,9 +401,9 @@
 
 		////////////////////////////// Eventos
 
-		$("select#nu_pais").change(function(){
+		$("select#pais_id").change(function(){
 
-			if($("select#nu_pais>option:selected").text() == " Brasil ")
+			if($("select#pais_id>option:selected").text() == " Brasil ")
 			{
 				$("input.cep, input.uf").removeAttr('disabled');
 			}
@@ -493,25 +493,7 @@
 </script>
 
 
-<!--
-<script  type="text/javascript" charset="utf-8" >
 
-	var input = document.getElementById("potencia_id");
-		//$potencia
-		new Awesomplete(input, {
-		list: [
-			
-			@foreach($potencias as $potencia)
-
-				{ label: "{{ $potencia->no_potencia }}", value: "{{ $potencia->id }}" },
-
-			@endforeach
-
-			]
-		});
-	
-</script>
--->
 @endpush
 
 
