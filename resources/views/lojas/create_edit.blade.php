@@ -135,11 +135,6 @@
 											@endif
 										@endforeach
 									@endif
-
-									
-
-
-
 								</select>
 								
 								<a href="/lojas/" >
@@ -150,8 +145,6 @@
 	                            </a>				
 							</div>
 							
-							
-
 							<label class="control-label col-md-1 " for="ic_rito">Rito*</label>
 							<div class="col-md-2 ">
 								<select id="ic_rito"   
@@ -177,7 +170,6 @@
 											@endif
 										@endforeach
 									@endif
-
 								</select>
 							</div>
 
@@ -222,9 +214,6 @@
 											@endif
 										@endforeach
 									@endif
-
-
-										
 								</select>
 							</div> 
 
@@ -336,16 +325,27 @@
 
 						</div>						
 						<!- botoes -> 
-						<div class="ln_solid"></div>
-						
-						<div class="col-md-offset-9">
-						  	<a href="{{ url('lojas') }}" 
-						  		class="btn btn-danger">  Cancela     
-					  		</a>
-						  	<button id="send" type="submit" class="btn btn-success">  
-						  		Confirma    
+						<div class="ln_solid">
+							
+						</div>
+
+						<div class="col-md-3 col-md-offset-9">
+					  		<a href="{{ url('lojas') }}" 
+					  			class="btn btn-danger" 
+					  			data-toggle="tooltip" 
+					  			title="Cancela e retorna a tela anterior">  
+					  			Cancela
+				  			</a>
+					  		<button id="send" 
+					  					type="submit" 
+					  					class="btn btn-success"
+					  					data-toggle="tooltip" 
+					  					title="Confirma a operação">  
+							  		Confirma    
 					  		</button>
 						</div>
+						
+
 						<!- fim botoes ->
 					</form>  
 					   

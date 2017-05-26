@@ -105,8 +105,12 @@
 						<div class="ln_solid"></div>
 						
 						<div class="col-md-1 col-md-offset-11">
-						  <a href="{{ url('lojas') }}" class="btn btn-primary">  Voltar     </a>
-
+					  		<a href="{{ url('lojas') }}" 
+					  			class="btn btn-primary" 
+					  			data-toggle="tooltip" 
+					  			title="Retorna a tela anterior">  
+					  			Voltar     
+				  			</a>
 						</div>
 						<!- fim botoes ->
 
