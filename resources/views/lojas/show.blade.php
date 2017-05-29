@@ -40,6 +40,9 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2> Visualização de Loja </h2>
+					<button type="button" class="btn btn-info btn-circle">
+						<i class="glyphicon glyphicon-ok"></i>
+					</button>
 
 				<a 
 					data-target="#delete-modal"

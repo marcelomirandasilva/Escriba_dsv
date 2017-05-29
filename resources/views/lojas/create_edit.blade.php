@@ -11,21 +11,56 @@
 <!-- page content -->
 <!-- Modal -->
 <div class="modal fade" id="cad_potencia" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalLabel">Exclusão de Loja</h4>
+        <h4 class="modal-title" id="modalLabel">Cadastro de Potência</h4>
       </div>
       <div class="modal-body">
-        Deseja realmente excluir essa Loja?
-        <h5><b>teste </b> </h5> 
 
-      </div>
+			<form id="form_modal" method="post" action="{{ url('lojas/store') }}" class="form-horizontal form-label-left" >
+
+				<div class="item form-group">
+					<label class="control-label col-md-3 " for="no_potencia">
+						Potência <span class="required">*</span>
+					</label>
+					<div class="col-md-8 ">
+						<input id="no_potencia"   
+							class="form-control col-md-8" 
+							name="no_potencia" 
+							placeholder="Nome da nova Potência" 
+							required="required" 
+							type="text"
+							autofocus
+						>
+					</div>
+				</div>
+			</form>  
+
+	
+   	</div>
       <div class="modal-footer">
-				 
-        <a href="#"  type="button" class="btn btn-primary">Sim</a>
- 		<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+
+			<div class="col-md-11 ">
+				<button type="button" 
+				  			data-toggle="tooltip" 
+				  			class="btn btn-danger"
+				  			title="Cancela e retorna a tela anterior"
+							data-dismiss="modal">
+							Cancela
+				</button>
+				<a href="#"  
+							type="button" 
+							class="btn btn-success"
+		  					data-toggle="tooltip" 
+		  					title="Confirma a operação">  
+				  		Confirma    
+				</a>
+
+			</div>
+
+
       </div>
     </div>
   </div>
