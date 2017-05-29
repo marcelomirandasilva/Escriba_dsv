@@ -8,6 +8,7 @@
 @endpush
 
 @section('conteudo')
+
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
   <div class="modal-dialog" role="document">
@@ -23,7 +24,7 @@
       </div>
       <div class="modal-footer">
 				 
-        <a href="{{ url("lojas/$loja->id/destroy") }}"  type="button" class="btn btn-primary">Sim</a>
+        <a href="{{ url("lojas/destroy/$loja->id") }}"  type="button" class="btn btn-primary">Sim</a>
  		<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
       </div>
     </div>
@@ -50,7 +51,7 @@
 					<i class="fa fa-trash"></i>
 				</a>
 
-				<a href="{{ url("lojas/$loja->id/edit") }}"
+				<a href="{{ url("lojas/edit/$loja->id") }}"
 					class="btn btn-warning btn-md   pull-right "  
 					data-toggle="tooltip" 
 					data-placement="bottom" 
@@ -58,7 +59,7 @@
 					<i class="fa fa-pencil"></i>
 				</a>
 
-				<a href="{{ url("lojas/$proximo->id/show") }}"
+				<a href="{{ url("lojas/show/$proximo->id") }}"
 					class="btn btn-primary btn-md   pull-right "  
 					data-toggle="tooltip" 
 					data-placement="bottom" 
@@ -66,7 +67,7 @@
 					<i class="fa fa-step-forward"></i>
 				</a>
 
-				<a href="{{ url("lojas/$anterior->id/show") }}"
+				<a href="{{ url("lojas/show/$anterior->id") }}"
 					class="btn btn-primary btn-md   pull-right "  
 					data-toggle="tooltip" 
 					data-placement="bottom" 

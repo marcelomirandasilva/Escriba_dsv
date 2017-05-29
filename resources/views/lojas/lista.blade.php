@@ -1,11 +1,11 @@
 @extends('layouts.blank')
 
 @push('stylesheets')
-<link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"               rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}"          rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}"  rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}"    rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}"        rel="stylesheet">
 
 @endpush
 
@@ -53,7 +53,7 @@
           <td>
 
  
-          <a href="{{ url("lojas/$loja->id/edit") }}"
+          <a href="{{ url("lojas/edit/$loja->id") }}"
                class="btn btn-warning btn-xs action botao_lista pull-right " 
                data-toggle="tooltip" 
                data-placement="bottom" 
@@ -62,7 +62,7 @@
            </a>
 
 
-           <a href="{{ url("lojas/$loja->id/show") }}" 
+           <a href="{{ url("lojas/show/$loja->id") }}" 
                class="btn btn-primary btn-xs  action botao_lista pull-right "  
                data-toggle="tooltip"  
                data-placement="bottom" 

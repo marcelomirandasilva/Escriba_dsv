@@ -11,11 +11,11 @@
            <!-- menu profile quick info
            <div class="profile">
                <div class="profile_pic">
-                   <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
+                   <img src="{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of { Auth::user()->name }}" class="img-circle profile_img">
                </div>
                <div class="profile_info">
                    <span>Bem-vindo,</span>
-                   <h2>{{ Auth::user()->name }}</h2>
+                   <h2>{ Auth::user()->name }}</h2>
                </div>
            </div>
            /menu profile quick info -->

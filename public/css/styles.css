@@ -141,16 +141,40 @@ input[type="text"]{
     
 }
 
-input:focus, select:focus {
+.botao_adiciona_elemento:focus, input:focus, select:focus {
     border: 1px solid #2A3F54 !important;
 
    -moz-border-radius: 7px;
    -webkit-border-radius: 7px;
    
-   box-shadow: 15px -10px 3px #000 !important;
-   -webkit-box-shadow: 15px -10px 3px #000 !important;
-   -moz-box-shadow: 15px -10px 3px #000 !important;
 }
+
+
+.botao_adiciona_elemento{
+    float: right; top: 5px; 
+
+    right: 0px;
+    left: 11px;
+    bottom: 24px !important;
+    border-top-width: 1px;
+    
+
+    font: bold 11px Arial;
+    -webkit-border-radius: 4px !important ;
+    -moz-border-radius: 4px !important;
+    border-radius: 8px;
+    border: solid 1px #20538D;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: #4479BA;
+    color: #FFF;
+    padding: 4px 6px;
+    text-decoration: none;"
+}
+
+
 
 .icone_botao_lista{
    position: static !important;
@@ -159,3 +183,13 @@ input:focus, select:focus {
    height: 22px;
 }
 
+body .container.body .right_col {
+    background: #F7F7D8;
+}
+
+footer {
+    background: #fff;
+    padding: 15px 20px;
+    display: block;
+    background: #F7F7D8;
+}

@@ -8,8 +8,29 @@
 @endpush
 
 @section('conteudo')
-
 <!-- page content -->
+<!-- Modal -->
+<div class="modal fade" id="cad_potencia" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Exclusão de Loja</h4>
+      </div>
+      <div class="modal-body">
+        Deseja realmente excluir essa Loja?
+        <h5><b>teste </b> </h5> 
+
+      </div>
+      <div class="modal-footer">
+				 
+        <a href="#"  type="button" class="btn btn-primary">Sim</a>
+ 		<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- /.modal -->
 
 
 
@@ -42,7 +63,7 @@
 				<div class="x_content">
 
 					@if( isset($loja))
-						<form id="form_loja" method="post" action="{{ url("lojas/$loja->id/update") }}" class="form-horizontal form-label-left" >
+						<form id="form_loja" method="post" action="{{ url("lojas/update/$loja->id") }}" class="form-horizontal form-label-left" >
 							{!! method_field('PUT') !!}
 					@else
 						<form id="form_loja" method="post" action="{{ url('lojas/store') }}" class="form-horizontal form-label-left" >
@@ -136,13 +157,20 @@
 										@endforeach
 									@endif
 								</select>
+
+								<div class="col-md-1 ">
+							  		<button
+							  			data-target="#cad_potencia"
+					  					class="btn col-md-0  glyphicon glyphicon-plus botao_adiciona_elemento" 
+                                		data-toggle="modal" 
+                                		
+							  			title="Cria uma nova Potência ">  
+						  			</button>
+								</div>
+
+
 								
-								<a href="/lojas/" >
-	                                <button  
-                                		class="col-md-0  glyphicon glyphicon-plus" 
-                                		style="float: right; top: 5px;">
-                                	</button>
-	                            </a>				
+				
 							</div>
 							
 							<label class="control-label col-md-1 " for="ic_rito">Rito*</label>
@@ -330,7 +358,7 @@
 						</div>
 
 						<div class="col-md-3 col-md-offset-9">
-					  		<a href="{{ url('lojas') }}" 
+					  		<a href="{{ URL::previous() }}"
 					  			class="btn btn-danger" 
 					  			data-toggle="tooltip" 
 					  			title="Cancela e retorna a tela anterior">  
