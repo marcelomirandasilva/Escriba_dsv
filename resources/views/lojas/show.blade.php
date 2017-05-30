@@ -40,13 +40,10 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2> Visualização de Loja </h2>
-					<button type="button" class="btn btn-info btn-circle">
-						<i class="glyphicon glyphicon-ok"></i>
-					</button>
-
+					
 				<a 
 					data-target="#delete-modal"
-					class="btn btn-danger btn-md    pull-right"  
+					class="btn btn-circulo btn btn-danger btn-md    pull-right"  
 					data-toggle="modal" 
 					data-toggle="tooltip" 
 					data-placement="bottom" 
@@ -55,15 +52,21 @@
 				</a>
 
 				<a href="{{ url("lojas/edit/$loja->id") }}"
-					class="btn btn-warning btn-md   pull-right "  
+					class="btn btn-warning btn-md  btn btn-circulo pull-right "  
 					data-toggle="tooltip" 
 					data-placement="bottom" 
 					title="Edita essa Loja">
 					<i class="fa fa-pencil"></i>
 				</a>
+				<a href="" 
+					class="btn btn-circulo btn-default cor-padrao glyphicon glyphicon-print  pull-right"
+					data-toggle="tooltip" 
+					data-placement="bottom" 
+					title="Envia para impressora">
+				</a>
 
 				<a href="{{ url("lojas/show/$proximo->id") }}"
-					class="btn btn-primary btn-md   pull-right "  
+					class="btn  btn btn-circulo btn-primary btn-md   pull-right "  
 					data-toggle="tooltip" 
 					data-placement="bottom" 
 					title="Próxima Loja">
@@ -71,7 +74,7 @@
 				</a>
 
 				<a href="{{ url("lojas/show/$anterior->id") }}"
-					class="btn btn-primary btn-md   pull-right "  
+					class="btn btn-circulo btn btn-primary btn-md   pull-right "  
 					data-toggle="tooltip" 
 					data-placement="bottom" 
 					title="Loja anterior">
@@ -85,6 +88,8 @@
 					
 					<h5><b>{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} </b> </h5> 
 					<br> Pertence a: {{$loja->potencia->no_potencia}}
+					<br> Fundada em: {{ \Carbon\Carbon::parse( $loja->dt_fundacao)->format('d/m/Y')}}
+					<br> Rito: {{$loja->ic_rito}}
 					
 					<br><br>
 

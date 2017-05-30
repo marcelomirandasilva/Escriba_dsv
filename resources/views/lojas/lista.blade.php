@@ -19,7 +19,7 @@
         <h2> Listagem de Lojas </h2>
 
          <a href="{{ url('lojas/create') }}" 
-            class="btn btn-primary btn-md   pull-right " 
+            class="btn-circulo btn btn-primary btn-md   pull-right " 
             data-toggle="tooltip"  
             data-placement="bottom" 
             title="Adiciona uma Loja">
@@ -45,11 +45,11 @@
        <tbody>
         @foreach($lojas as $loja )
         <tr>
-          <td>{{ $loja->co_titulo             }}</td>
-          <td>{{ $loja->no_loja               }}</td>
-          <td>{{ $loja->nu_loja               }}</td>
-          <td>{{ $loja->dt_fundacao           }}</td>
-          <td>{{ $loja->potencia->no_potencia  }}</td>
+          <td>{{ $loja->co_titulo                                             }}</td>
+          <td>{{ $loja->no_loja                                               }}</td>
+          <td>{{ $loja->nu_loja                                               }}</td>
+          <td>{{ \Carbon\Carbon::parse( $loja->dt_fundacao)->format('d/m/Y')  }}</td>
+          <td>{{ $loja->potencia->no_potencia                                 }}</td>
           <td>
 
  

@@ -196,7 +196,7 @@
 								<div class="col-md-1 ">
 							  		<button
 							  			data-target="#cad_potencia"
-					  					class="btn col-md-0  glyphicon glyphicon-plus botao_adiciona_elemento" 
+					  					class="btn btn-default btn-circulo   glyphicon glyphicon-plus  " 
                                 		data-toggle="modal" 
                                 		
 							  			title="Cria uma nova Potência ">  
