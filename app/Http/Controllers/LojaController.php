@@ -261,8 +261,9 @@ class LojaController extends Controller
             'nu_logradouro' => 'numeric',
             'de_complemento'=> 'min:3|max:20',
         ]);
-
     }
+
+
 }
 
 

@@ -41,15 +41,13 @@
 			<div class="x_title">
 				<h2> Visualização de Loja </h2>
 					
-				<a 
+				<button 
 					data-target="#delete-modal"
 					class="btn btn-circulo btn btn-danger btn-md    pull-right"  
 					data-toggle="modal" 
-					data-toggle="tooltip" 
-					data-placement="bottom" 
 					title="Exclui essa Loja">
 					<i class="fa fa-trash"></i>
-				</a>
+				</button>
 
 				<a href="{{ url("lojas/edit/$loja->id") }}"
 					class="btn btn-warning btn-md  btn btn-circulo pull-right "  
@@ -146,6 +144,8 @@
 @endsection
 
 <script type="text/javascript">
+$('[data-toggle="modal"][title]').tooltip();
+
 $(document).ready(function(){
     $(".tip-top").tooltip({placement : 'top'});
     $(".tip-right").tooltip({placement : 'right'});

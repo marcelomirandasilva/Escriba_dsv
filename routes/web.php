@@ -26,6 +26,8 @@ Route::group(['prefix' => 'lojas'],function(){
 	Route::get ('/show/{id}',		'LojaController@show');
 	Route::post('/store',       	'LojaController@store');
 
+	Route::post('/potencia/store', 	'PotenciaController@store');
+
 });
 
 

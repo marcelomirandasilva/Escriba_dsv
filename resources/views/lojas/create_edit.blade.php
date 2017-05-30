@@ -9,63 +9,64 @@
 
 @section('conteudo')
 <!-- page content -->
-<!-- Modal -->
+
+<!-- Modal ---------------------------------------------------------------------------------------------->
 <div class="modal fade" id="cad_potencia" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
 	<div class="modal-dialog" role="document">
     	<div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalLabel">Cadastro de Potência</h4>
-      </div>
-      <div class="modal-body">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+        				<span aria-hidden="true">&times;</span>
+				</button>
+        		<h4 class="modal-title" id="modalLabel">Cadastro de Potência</h4>
+      		</div>
 
-			<form id="form_modal" method="post" action="{{ url('lojas/store') }}" class="form-horizontal form-label-left" >
+      		<div class="modal-body">
 
-				<div class="item form-group">
-					<label class="control-label col-md-3 " for="no_potencia">
-						Potência <span class="required">*</span>
-					</label>
-					<div class="col-md-8 ">
-						<input id="no_potencia"   
-							class="form-control col-md-8" 
-							name="no_potencia" 
-							placeholder="Nome da nova Potência" 
-							required="required" 
-							type="text"
-							autofocus
-						>
+				<form id="form_modal" method="post" action="#" class="form-horizontal form-label-left" >
+
+					{{ csrf_field() }}
+
+					<div class="item form-group">
+						<label class="control-label col-md-3 " for="no_potencia">
+							Potência <span class="required">*</span>
+						</label>
+						<div class="col-md-8 ">
+							<input id="no_potencia"   
+								class="form-control col-md-8" 
+								name="no_potencia" 
+								placeholder="Nome da nova Potência" 
+								required="required" 
+								type="text"
+								autofocus
+							>
+						</div>
 					</div>
-				</div>
-			</form>  
-
-	
-   	</div>
-      <div class="modal-footer">
-
-			<div class="col-md-11 ">
-				<button type="button" 
-				  			data-toggle="tooltip" 
-				  			class="btn btn-danger"
-				  			title="Cancela e retorna a tela anterior"
+				</form>  
+	   		</div>
+	      	<div class="modal-footer">
+				<div class="col-md-11 ">
+					<button id="fecha_modal"
+							type="button" 
+					  		data-toggle="tooltip" 
+					  		class="btn btn-danger"
+					  		title="Cancela e retorna a tela anterior"
 							data-dismiss="modal">
 							Cancela
-				</button>
-				<a href="#"  
+					</button>
+					<a href="#"  
 							type="button" 
-							class="btn btn-success"
+							class="envia_nova_potencia btn btn-success"
 		  					data-toggle="tooltip" 
 		  					title="Confirma a operação">  
-				  		Confirma    
+				  			Confirma    
 				</a>
-
-			</div>
-
-
-      </div>
-    </div>
-  </div>
+				</div>
+	      	</div>
+    	</div>
+  	</div>
 </div> 
-<!-- /.modal -->
+<!-- /Modal ---------------------------------------------------------------------------------------------->
 
 
 
@@ -194,13 +195,12 @@
 								</select>
 
 								<div class="col-md-1 ">
-							  		<button
+							  		<a 
 							  			data-target="#cad_potencia"
 					  					class="btn btn-default btn-circulo   glyphicon glyphicon-plus  " 
-                                		data-toggle="modal" 
-                                		
+                          		data-toggle="modal" 
 							  			title="Cria uma nova Potência ">  
-						  			</button>
+						  			</a>
 								</div>
 
 
@@ -446,21 +446,45 @@
 <!-- Adicionando Javascript -->
 <script type="text/javascript" >
 
-	function global()
-	{
-
+	function limpa_formulário_cep() {
+		// Limpa valores do formulário de cep.
+		$("#rua").val("");
+		$("#bairro").val("");
+		$("#cidade").val("");
+		$("#uf").val("");
+		$("#ibge").val("");
 	}
 
 	$(document).ready(function() {
 
-		function limpa_formulário_cep() {
-			// Limpa valores do formulário de cep.
-			$("#rua").val("");
-			$("#bairro").val("");
-			$("#cidade").val("");
-			$("#uf").val("");
-			$("#ibge").val("");
-		}
+		$('[data-toggle="modal"][title]').tooltip();
+
+		$(".envia_nova_potencia").click(function(e){ 
+
+			var potencia = $("input#no_potencia").val();
+			var token = $("[name='_token']").val();
+
+			$.post("/lojas/potencia/store", { no_potencia : potencia, _token : token }, function(dados){
+
+				if(dados.id)
+				{
+					
+					//$("<option value='dados.id' selected='selected'> dados.no_potencia </option>").appendTo("potencia_id");
+
+					$('#potencia_id').append('<option value="' + dados.id + '" selected="selected">' + dados.no_potencia + '</option>'); 
+
+					//console.log("Gravou a potência");
+					//console.log(dados.id);
+
+					 $('.fecha_modal').trigger('click');
+					 
+						}
+			
+			}).fail(function(dados){
+				console.log(dados);
+			});
+
+		});
 
 		////////////////////////////// Eventos
 
