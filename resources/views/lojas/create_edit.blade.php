@@ -393,7 +393,13 @@
 						</div>
 
 						<div class="col-md-3 col-md-offset-9">
-					  		<a href="{{ URL::previous() }}"
+								<!---testa para saber se está editando ou cadastrando -->
+								@if( isset($edita))
+									<a href="{{ url("lojas/$loja->id") }}"
+								@else
+									<a href="{{ url("lojas") }}"
+								@endif
+
 					  			class="btn btn-danger" 
 					  			data-toggle="tooltip" 
 					  			title="Cancela e retorna a tela anterior">  

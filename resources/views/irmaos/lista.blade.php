@@ -101,9 +101,18 @@
 
    <script>
         
-      $(function(){
-         $("#tabela-irmaos").DataTable({'language' : {'url' : '{{ asset('js/portugues.json') }}'} });
+    
+    $(document).ready(function(){
+      $("#tabela-lojas").DataTable({
+            language : {
+                          'url' : '{{ asset('js/portugues.json') }}',
+                          "decimal": ",",
+                          "thousands": "."
+                        }, 
+            stateSave: true,
+            stateDuration: -1
       });
+    });
 
 
    </script>

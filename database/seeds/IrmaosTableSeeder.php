@@ -16,7 +16,7 @@ class IrmaosTableSeeder extends Seeder
 
        // factory(App\Models\Irmao::class, 20)->create();
 
-        factory(App\Models\Irmao::class, 20)->create()->each(function($irmao)
+        factory(App\Models\Irmao::class, 200)->create()->each(function($irmao)
         {
           
              //Criar um endereço

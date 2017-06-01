@@ -18,6 +18,7 @@ class LojaController extends Controller
 {
     //cria a loja para ser usada em todas as rotas
     private $loja;
+    
     public function __construct(Loja $loja)
     {
         $this->loja = $loja; 
@@ -26,12 +27,10 @@ class LojaController extends Controller
         $this->middleware('auth');
     }
 
+
    public function index()
     {
         $lojas = $this->loja->all();
-
-
-
         return view('lojas.lista', compact('lojas'));
     }
 
@@ -126,6 +125,7 @@ class LojaController extends Controller
      */
     public function show($id)
     {
+
         $loja = $this->loja->find($id);
 
         if( $this->loja->find($id-1))
@@ -137,11 +137,15 @@ class LojaController extends Controller
             { $proximo = $this->loja->find($id+1); }
         else
             { $proximo = $this->loja->find($id); }
+        //dd($proximo);
+
+        echo '<pre>';
+
+        //dd($input);
+
+        echo '</pre>';
 
 
-        
-
-        
         return view('lojas.show',compact('loja','anterior','proximo'));
     }
 
