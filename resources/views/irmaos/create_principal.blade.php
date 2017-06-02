@@ -13,11 +13,12 @@
                 <label class="control-label col-md-1" for="co_cim">CIM*</label>
                 <div  class="col-md-2" >
                     <input  id="co_cim"   
-                            class="form-control col-md-1 cim" 
+                            class="form-control col-md-2 cim" 
                             name="co_cim" 
                             placeholder="1234567" 
                             required="required" 
-                            type="text">
+                            type="text"
+                      >
                 </div>
               </div>
 

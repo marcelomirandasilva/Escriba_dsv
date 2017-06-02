@@ -99,8 +99,8 @@
   <footer>
     <div class="pull-right">
       Desenvolvido por Marcelo Miranda - 2017</a>
-   </div>
-   <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
   </footer>
   <!-- /footer content -->
 @endsection
@@ -121,8 +121,8 @@
   <script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}"   type="text/javascript"></script>
   <script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"     type="text/javascript"></script>
   <script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"       type="text/javascript"></script>
-  <script src="//cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"       type="text/javascript"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
+  <script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 
 
   <script>
@@ -138,6 +138,13 @@
                           }, 
               stateSave: true,
               stateDuration: -1,
+
+        "columnDefs": 
+        [
+          { className: "text-center", "targets": [5] },
+          { className: "text-right",  "targets": [2] }
+        ]
+
         });
     });
   </script>

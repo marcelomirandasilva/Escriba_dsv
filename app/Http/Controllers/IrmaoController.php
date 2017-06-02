@@ -35,7 +35,7 @@ class IrmaoController extends Controller
     public function create()
     {
         $estado_civil   = ['Solteiro','Casado', 'Divorciado','Viúvo','Separado','União estável'];
-        $grau           = ['Profano','Aprendiz', 'Companheiro','Mestre','M. Instalado'];
+        $grau           = ['Profano','Aprendiz', 'Companheiro','Mestre','Mestre Instalado'];
         $situacao       = ['Regular','Suspenso', 'XXXXXXXXX','YYYYYYYYY','ZZZZZZZZZ'];
         $escolaridade   = ['Fundamental - Incompleto','Fundamental - Completo','Médio - Incompleto','Médio - Completo',
                             'Superior - Incompleto','Superior - Completo','Pós-graduação - Incompleto',
@@ -55,7 +55,14 @@ class IrmaoController extends Controller
         $grau_parentesco  = ['Avós','Bisavós','Bisneto(a)','Companheira','Enteado(a)','Esposa','Ex-esposa','Filho(a)',
                              'Irmão(ã)','Neto(a)','Pais','Outras'];  
 
+        //orderna os valores dos arrays
+        sort($estado_civil);
+        sort($grau);                             
+        sort($situacao);
+        sort($escolaridade);
+        sort($grau_parentesco);
 
+        
         return view('irmaos.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','tipo_endereco','tipo_logradouro','grau_parentesco']));
 
     }

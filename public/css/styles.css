@@ -208,3 +208,9 @@ footer {
     background-color: blue;
     color: #3D276B;
 }
+
+.celula_CIM { 
+    text-align: center;
+    padding-right: 45px !important;
+}
+

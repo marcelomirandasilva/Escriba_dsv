@@ -6,16 +6,16 @@ Route::get ('/logout', 				'Auth\LoginController@logout');
 Route::get ('/', 					'HomeController@index');
 
 
-Route::group(['prefix' => 'irmaos'],function(){
-	Route::get ('/',              	'IrmaoController@index');
-	Route::get ('/create',        	'IrmaoController@create');
-	Route::get ('/edit/{id}',			'IrmaoController@edit');
-	Route::get ('/update/{id}',		'IrmaoController@update');
-	Route::get ('/show/{id}',			'IrmaoController@show');
-	Route::get ('/destroy/{id}',		'IrmaoController@destroy');
-	Route::post('/store',       		'IrmaoController@store');
-	
-});
+//Route::group(['prefix' => 'irmaos'],function(){
+//	Route::get ('/',              	'IrmaoController@index');
+//	Route::get ('/create',        	'IrmaoController@create');
+//	Route::get ('/edit/{id}',			'IrmaoController@edit');
+//	Route::get ('/update/{id}',		'IrmaoController@update');
+//	Route::get ('/show/{id}',			'IrmaoController@show');
+//	Route::get ('/destroy/{id}',		'IrmaoController@destroy');
+//	Route::post('/store',       		'IrmaoController@store');
+	//
+//});
 
 
 
@@ -33,5 +33,8 @@ Route::group(['prefix' => 'irmaos'],function(){
 
 // });
 
-Route::resource('lojas', 'LojaController');
+Route::post('/potencia/store', 	'PotenciaController@store');
+
+Route::resource('irmaos', 			'IrmaoController');
+Route::resource('lojas', 			'LojaController');
 	
