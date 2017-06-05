@@ -14,75 +14,80 @@
   <!-- page content -->
 
   
-  <div class="right_col" role="main">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="x_panel"  ">
-          <div class="x_title">
-            <h2>Cadastro de Irmãos</h2>
-            <div class="clearfix"></div>
-          </div>
-          <!-- conteudo aqui-->
-
-
-
-          <div class="col-md-12">
-            <div class="x_panel">
-              
-              <div class="x_content">
-                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-
-                <form id="form_loja" method="post" action="" class="form-horizontal form-label-left" >
-
-                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Principal</a>
-                      </li>
-                      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Endereços</a>
-                      </li>
-                      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Contatos</a>
-                      </li>
-
-                      <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Dependentes</a>
-                      </li>
-                      <li role="presentation" class=""><a href="#tab_content5" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Cerimonias</a>
-                      </li>
-                    </ul>
-                    <div id="myTabContent" class="tab-content">
-                      <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                             
-                       @include('irmaos/create_principal')
-                        
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                        @include('irmaos/create_endereco')
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                        @include('irmaos/create_contatos')
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
-                        @include('irmaos/create_dependentes')
-                      </div>
-                      <div role="tabpanel" class="tab-pane fade" id="tab_content5 " aria-labelledby="profile-tab">
-                        @include('irmaos/create_cerimonias')
-                      </div>
-                    </div>
-                  
-                </form>
-                 <!- botoes -> 
-                <div class="ln_solid"></div>
-                <div class="form-group">
-                  <div class="col-md-offset-8">
-                    <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela     </a>
-                    <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
-                </div>
-                <!- fim botoes -> 
-              </div>
+   <div class="right_col" role="main">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="x_panel"  ">
+               <div class="x_title">
+                  <h2>Cadastro de Irmãos</h2>
+               <div class="clearfix"></div>
             </div>
-          </div>
-        </div>
+            <!-- conteudo aqui-->
+            <div class="col-md-12">
+               <div class="x_panel">
+               <div class="x_content">
+                  <div class="" role="tabpanel" data-example-id="togglable-tabs">
+
+                     <form id="form_loja" method="post" action="" class="form-horizontal form-label-left" >
+
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                           
+                           <li role="presentation" class="active"><a href="#tab_content1" role="tab" id="tab_pri"  data-toggle="tab" aria-expanded="true">Principal</a> </li>
+                           
+                           <li role="presentation" class="">      <a href="#tab_content2" role="tab" id="tab_doc" data-toggle="tab" aria-expanded="false">Documentos</a></li>
+                           
+                           <li role="presentation" class="">      <a href="#tab_content3" role="tab" id="tab_end" data-toggle="tab" aria-expanded="false">Endereços</a></li>
+                           
+                           <li role="presentation" class="">      <a href="#tab_content4" role="tab" id="tab_con" data-toggle="tab" aria-expanded="false">Contatos</a></li>
+                           
+                           <li role="presentation" class="">      <a href="#tab_content5" role="tab" id="tab_dep" data-toggle="tab" aria-expanded="false">Dependentes</a></li>
+                           
+                           <li role="presentation" class="">      <a href="#tab_content6" role="tab" id="tab_cer" data-toggle="tab" aria-expanded="false">Cerimonias</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+
+                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="tab_pri">
+                              @include('irmaos/create_principal')
+                           </div>
+
+                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="tab_doc">
+                              @include('irmaos/create_documentos')
+                           </div>
+
+                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="tab_end">
+                              @include('irmaos/create_endereco')
+                           </div>
+
+                           <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="tab_con">
+                              @include('irmaos/create_contatos')
+                           </div>
+
+                           <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="tab_dep">
+                              @include('irmaos/create_dependentes')
+                           </div>
+
+                           <div role="tabpanel" class="tab-pane fade" id="tab_content6 " aria-labelledby="tab_cer">
+                              @include('irmaos/create_cerimonias')
+                           </div>
+
+                        </div>
+
+                        <!-- botoes --> 
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                           <div class="col-md-offset-8">
+                              <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela     </a>
+                              <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
+                           </div>
+                        </div>
+                        <!-- fim botoes --> 
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 
   <!-- /page content -->
   <!-- /page content -->
