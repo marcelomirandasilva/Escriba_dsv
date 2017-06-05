@@ -1,4 +1,4 @@
-<!-- NOME, CIM  -------------------------------------------------------------------------->    
+
 <div class="item form-group">
    <label class="control-label col-md-1" for="ic_endereco"> Tipo de Endereço </label>
    <div class="col-md-2">
@@ -35,7 +35,7 @@
    </div>
 </div>
 
-<!--  ------------------------------------>
+
 
 <div class="item form-group">
    <label class="control-label col-md-1 " for="no_bairro">Bairro</label>

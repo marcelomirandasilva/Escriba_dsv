@@ -7,7 +7,9 @@
          name="no_irmao" 
          placeholder="Nome completo do Irmão" 
          required="required" 
-         type="text">
+         type="text"
+         autofocus
+      >
    </div>
 
    <label class="control-label col-md-1" for="co_cim">CIM*</label>
@@ -35,7 +37,7 @@
    </div>
 </div>
 
-<!-- NASCIMENTO, ESTADO CIVIL, CPF, ESCOLARIDADE, PROFISSÃO ------------------------------------>
+<!-- NASCIMENTO, ESTADO CIVIL, ESCOLARIDADE, PROFISSÃO ------------------------------------>
 <div class="item form-group">
    <label class="control-label col-md-1 " for="dt_nascimento">Nascim.*</label>
    <div class="col-md-2 ">
@@ -48,7 +50,34 @@
       >
    </div>
 
-   <label class="control-label col-md-2 " for="ic_estado_civil">Estado Civil*</label>
+   <label class="control-label col-md-1" for="no_nacionalidade">Nacionalida*</label>
+   <div class="col-md-3 ">
+      <input  id="no_nacionalidade"   
+         class="form-control col-md-3" 
+         name="no_nacionalidade" 
+         value="Brasileiro" 
+         placeholder="Nacionalidade" 
+         required="required" 
+         type="text">
+   </div>
+
+   <label class="control-label col-md-1" for="no_naturalidade">Naturalidade*</label>
+   <div class="col-md-3 ">
+      <input  id="no_naturalidade"   
+         class="form-control col-md-3" 
+         name="no_naturalidade" 
+         placeholder="Naturalidade" 
+         required="required" 
+         type="text">
+   </div>
+
+   
+</div>
+
+<!-- INSTRUÇÃO, PROFISSÃO ------------------------------------>
+<div class="item form-group">
+
+   <label class="control-label col-md-1 " for="ic_estado_civil">Est. Civil*</label>
    <div class="col-md-2 ">
       <select   name="ic_estado_civil" 
          id="ic_estado_civil" 
@@ -61,20 +90,6 @@
       </select>
    </div>
 
-   <label class="control-label col-md-1" for="nu_cpf"> CPF* </label>
-   <div class="col-md-2">
-      <input id="nu_cpf"   
-         class="form-control col-md-2 cpf" 
-         name="nu_cpf" 
-         placeholder="999.999.999-99" 
-         required="required" 
-         type="text"
-      >
-   </div>
-</div>
-
-<!-- INSTRUÇÃO, PROFISSÃO ------------------------------------>
-<div class="item form-group">
    <label class="control-label col-md-1 " for="ic_escolaridade"> Instrução* </label>
    <div class="col-md-3">
       <select   name="ic_escolaridade" 
@@ -114,3 +129,11 @@
       </select>
    </div>
 </div>
+
+
+
+
+
+
+
+

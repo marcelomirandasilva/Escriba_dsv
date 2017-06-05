@@ -59,7 +59,7 @@
             <td>
 
    
-            <a href="{{ url("lojas/edit/$loja->id") }}"
+            <a href="{{ url("lojas/$loja->id/edit") }}"
                  class="btn btn-warning btn-xs action botao_lista pull-right " 
                  data-toggle="tooltip" 
                  data-placement="bottom" 

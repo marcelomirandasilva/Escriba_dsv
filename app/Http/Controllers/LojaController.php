@@ -158,7 +158,7 @@ class LojaController extends Controller
     public function edit($id)
     {
         
-
+        //dd($id);
         $potencias  = Potencia::all()->sortBy('no_potencia');
         $paises     = Pais::all()->sortBy('no_pais');        
         $ritos      = pegaValorEnum('loja','ic_rito') ;

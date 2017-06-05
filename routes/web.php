@@ -33,7 +33,7 @@ Route::get ('/', 					'HomeController@index');
 
 // });
 
-Route::post('/potencia/store', 	'PotenciaController@store');
+Route::post('lojas/potencia/store', 	'PotenciaController@store');
 
 Route::resource('irmaos', 			'IrmaoController');
 Route::resource('lojas', 			'LojaController');
