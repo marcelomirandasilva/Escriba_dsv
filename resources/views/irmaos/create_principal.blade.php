@@ -50,7 +50,7 @@
       >
    </div>
 
-   <label class="control-label col-md-1" for="no_nacionalidade">Nacionalida*</label>
+   <label class="control-label col-md-2" for="no_nacionalidade">Nacionalidade*</label>
    <div class="col-md-3 ">
       <input  id="no_nacionalidade"   
          class="form-control col-md-3" 
@@ -90,7 +90,18 @@
       </select>
    </div>
 
-   <label class="control-label col-md-1 " for="ic_escolaridade"> Instrução* </label>
+   <label class="control-label col-md-2 " for="dt_casamento">Data casamento</label>
+   <div class="col-md-2 ">
+      <input id="dt_casamento"   
+         class="form-control col-md-2 datas_input " 
+         name="dt_casamento" 
+         placeholder="Data de Casamento" 
+         type="date"
+      >
+   </div>
+
+
+   <label class="control-label col-md-2 " for="ic_escolaridade"> Instrução* </label>
    <div class="col-md-3">
       <select   name="ic_escolaridade" 
          id="ic_escolaridade" 
@@ -103,6 +114,10 @@
       </select>
    </div>
 
+</div>
+
+<div class="item form-group">
+
    <label class="control-label col-md-1 " for="de_profissao">Profissão</label>
    <div class="col-md-4 ">
       <input id="de_profissao"   
@@ -113,10 +128,18 @@
          type="text"
       >
    </div>
-</div>
 
-<div class="item form-group">
-   <label class="control-label col-md-5 " for="ic_grau"> Situação </label>
+
+   <div class="form-check col-md-2">
+      <label class="form-check-label">
+         Aposentado  
+         <input class="form-check-input" type="checkbox" value="" name="ic_aposentado">
+      </label>
+   </div>
+
+
+
+   <label class="control-label col-md-2 " for="ic_grau"> Situação </label>
    <div class="col-md-2">
       <select   name="ic_situacao"
          id="ic_situacao" 
@@ -129,11 +152,3 @@
       </select>
    </div>
 </div>
-
-
-
-
-
-
-
-
