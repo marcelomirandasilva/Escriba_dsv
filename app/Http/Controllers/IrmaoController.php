@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\irmao;
+use App\Models\pais;
 use Illuminate\Http\Request;
 
 
@@ -44,16 +45,12 @@ class IrmaoController extends Controller
 
         $aposentado     = ['Sim','Não'];
 
-        $tipo_endereco  = ['Residencial','Comercial'];  
-        $tipo_logradouro= ['Aeroporto',
-                            'Alameda','Área','Avenida','Campo','Chácara','Colônia','Condomínio','Conjunto',
-                            'Distrito','Esplanada','Estação','Estrada','Favela','Fazenda','Feira','Jardim',
-                            'Ladeira','Lago','Lagoa','Largo','Loteamento','Morro','Núcleo','Parque','Passarela',
-                            'Pátio','Praça','Quadra','Recanto','Residencial','Rodovia','Rua','Setor','Sítio','Travessa',
-                            'Trecho','Trevo','Vale','Vereda','Via','Viaduto','Viela','Vila'];
 
         $grau_parentesco  = ['Avós','Bisavós','Bisneto(a)','Companheira','Enteado(a)','Esposa','Ex-esposa','Filho(a)',
                              'Irmão(ã)','Neto(a)','Pais','Outras'];  
+
+
+        $tipo_telefone    = pegaValorEnum('telefone','ic_telefone'); 
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -62,8 +59,16 @@ class IrmaoController extends Controller
         //sort($escolaridade);
         sort($grau_parentesco);
 
-        
-        return view('irmaos.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','tipo_endereco','tipo_logradouro','grau_parentesco']));
+        $titulo = "Cadastro de Irmaõs";
+
+        $paises     = Pais::all()->sortBy('no_pais');        
+
+
+
+        return view('irmaos.create',compact([   'estado_civil','grau','situacao',
+                                                'escolaridade','aposentado','paises',
+                                                'titulo','grau_parentesco','tipo_telefone'
+                                            ]));
 
     }
 
@@ -82,6 +87,12 @@ class IrmaoController extends Controller
 
     protected function edit($id)
     {
+        $edita = true;
+
+        $titulo = "Edição do Irmão: {$irmao->no_irmao} {$irmao->nu_cim}";
+
+        //return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo','edita'));
+
         return "edita o irmão: {$id}";
     }
 

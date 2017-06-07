@@ -134,21 +134,71 @@
   {{-- Script para máscara numérica. Ex.: CPF, RG --}}
   <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
 
+  {{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
+  <script src="{{ asset("js/endereco.js") }}"></script>
+
 
   <script type="text/javascript">
 
     {{-- Máscarasa dos campos CPF e RG --}}
     $(document).ready(function(){
-      $(".cim").inputmask('#.999.999', { numericInput: true });
+
+      //desabilita data de casamento se não for casado
+      $("select#ic_estado_civil").change(function(){
+        if($("select#ic_estado_civil>option:selected").text() == " Casado ")
+        {
+          document.getElementById("dt_casamento").disabled = false;
+        } else {
+          document.getElementById("dt_casamento").disabled = true;
+        }
+      });
+
+      //desabilita orgão emissor  edata de emissão se não tiver RG
+      $("input#nu_identidade").change(function(){
+        if($("input#nu_identidade").value == "")
+        {
+          document.getElementById("no_orgao_emissor_idt").disabled = true;
+          document.getElementById("dt_emissao_idt").disabled = true;
+        } else {
+          document.getElementById("no_orgao_emissor_idt").disabled = false;
+          document.getElementById("dt_emissao_idt").disabled = false;
+        }
+      });
+
+      //desabilita zona eleitoral e data de emissão se não tiver titulo
+      $("input#nu_titulo_eleitor").change(function(){
+        if($("input#nu_titulo_eleitor").value == "")
+        {
+          document.getElementById("nu_zona_eleitoral").disabled = true;
+          document.getElementById("dt_emissao_titulo").disabled = true;
+        } else {
+          document.getElementById("nu_zona_eleitoral").disabled = false;
+          document.getElementById("dt_emissao_titulo").disabled = false;
+        }
+      });
+
+
+      //$(".cim").inputmask('#.999.999', { numericInput: true });
       //$('.cim').mask('9.999.999', {reverse: true});
-      $(".num_logradouro").inputmask("999.999");
-      $(".cpf").inputmask("999.999.999-99", { numericInput: true });
-      $(".rg").inputmask("99.999.999-9", { numericInput: true });
-      $(".cep").inputmask("99.999-999", { numericInput: true });
-      $(".data").inputmask("99/99/9999");
-      $(".celular").inputmask("(99)99999-9999");
-      $(".telefone").inputmask("(99)9999-9999");
+      //$(".num_logradouro").inputmask("999.999");
+      //$(".cpf").inputmask("999.999.999-99", { numericInput: true });
+      //$(".rg").inputmask("99.999.999-9", { numericInput: true });
+      //$(".cep").inputmask("99.999-999", { numericInput: true });
+      //$(".data").inputmask("99/99/9999");
+      //$(".celular").inputmask("(99)99999-9999");
+      //$(".telefone").inputmask("(99)9999-9999");
     });
+
+    function desabilita(){
+      if( this.text == 'Casado' ){
+          document.getElementById('cep').disabled = false;
+          document.getElementById('uf').disabled = false;
+      }else{
+          document.getElementById('cep').disabled = true;
+          document.getElementById('uf').disabled = true;
+      }
+    }
+    
 
     </script>
 
