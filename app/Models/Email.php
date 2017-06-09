@@ -12,8 +12,7 @@ class Email extends Model
 
 	protected $fillable =[
 
-   			'de_email',
-            'ic_tipo_email',
+   			'email',
             'irmao_id',
             'loja_id',
             'dependente_id',

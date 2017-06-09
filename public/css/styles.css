@@ -214,3 +214,13 @@ footer {
     padding-right: 45px !important;
 }
 
+.panel_telefones, .clone_telefones  {
+
+    top: 3px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+
+
+
+}

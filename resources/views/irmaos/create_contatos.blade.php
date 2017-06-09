@@ -1,70 +1,92 @@
-<div class="x_panel"  ">
+<div class="col-md-6 "  >
    <div class="clearfix"></div>
+   <div class="x_title" style="margin-bottom: 15px;"> Telefone <div class="clearfix"></div> </div>
 
-   <div class="col-md-6">
-      <div class="x_panel">            
+   <button  name="submit" value="clonar_telefone" 
+      class="btn-circulo btn btn-primary btn-md   pull-right  clonar_telefone "
+      data-toggle="tooltip"
+      title="Adiciona um telefone">
+      <span class="fa fa-plus">  </span>
+   </button>   
 
-         <div class="x_title" >  Telefone  1  </div>
 
-      
+   <div class="col-md-11">
+      <div class="x_panel panel_telefones">            
+
+         {{-- bloco de telefone --}}
          <div class="form-group">
+            
+           {{--  <label class="control-label col-md-1 " for="irmao[0][ic_telefone]">Tipo</label>  --}}
+            <div class="col-md-5" style="top: 4px;">
+               <select id="irmao[0][ic_telefone]"  name="irmao[0][ic_telefone]"     data-cip-id="irmao[0][ic_telefone]" 
+                  class="form-control col-md-2 "   placeholder="Tipo de telefone"   type="text" >
 
-            <label class="control-label col-md-1 " for="ic_telefone">Rito*</label>
-            <div class="col-md-2 ">
-               <select id="ic_telefone"   
-                  class="form-control col-md-2 " 
-                  name="ic_telefone" 
-                  placeholder="Tipo de telefone" 
-                  type="text">
-
-                  @foreach($tipos_telefone as $tipo_telefone)
-                     
-                        <option value="{{$tipo_telefone}}"> {{$tipos_telefone}} </option>  
-                     
+                  @foreach($tipo_telefone as $tipo)
+                     <option value="{{$tipo}}"> {{$tipo}} </option>  
                   @endforeach
 
                </select>
             </div>
-
-
-
-
-            <label class="col-md-1 control-label" for="nu_telefone">Tel.</label>
-            <div class="col-md-2">
-               <input id="nu_telefone" 
-                     name="nu_telefone" 
-                     type="text" 
-                     placeholder="(99)9999-9999" 
-                     class="form-control input-md telefone"
-                     >
-            </div>
-      
-            {{-- Celular --}}
-            <label class="col-md-1 control-label" for="pa-celular">Celular</label>
-            <div class="col-md-2">
-               <input id="pa-celular" name="pa-celular" type="text" placeholder="(99) 9 9999-9999" class="form-control input-md celular">
+            {{-- <label class="col-md-2 control-label" for="nu_telefone">Numero</label>  --}}
+            <div class="col-md-6" style="top: 4px;">
+               <input id="irmao[0][nu_telefone]"   name="irmao[0][nu_telefone]"     data-cip-id="irmao[0][nu_telefone]"  
+                     class="form-control input-md telefone" placeholder="(99)9999-9999"  type="text" >
             </div>
 
-            {{-- Telefone --}}
-            <label class="col-md-1 control-label" for="pa-telefone1">Tel.</label>
-            <div class="col-md-2">
-               <input id="pa-telefone1" name="pa-telefone1" type="text" placeholder="(99) 9999-9999" class="form-control input-md telefone">
-            </div>
-
-            </div> {{-- FIM Email, Celular e Telefone --}}
+            <div class="col-md-11"></div>
+               <button name="submit" value="excluir" 
+                  data-toggle="tooltip" 
+                  title="Remover o telefone" 
+                  class="btn btn-circulo btn-danger glyphicon glyphicon-trash excluir" 
+                  selected style="display:none;">
+               </button>
          </div>
+         {{-- FIM bloco de telefone --}}
       </div>
 
+      <div class="div-clone"></div> {{-- Clonagem da div panel_dependentes --}}
 
-      <button name="submit" value="clonar" class="btn btn-xs btn-primary clonar "> Adicionar mais um</button>
+   </div>
 
 </div>
 
+{{-- ==============================================================EMAIL ============================================ --}}
+
+<div class="col-md-6 "  >
+   <div class="clearfix"></div>
+   <div class="x_title" style="margin-bottom: 15px;"> Email <div class="clearfix"></div> </div>
+
+   <button  name="submit" value="clonar_email" 
+      class="btn-circulo btn btn-primary btn-md   pull-right  clonar_email "
+      data-toggle="tooltip"
+      title="Adiciona um Email">
+      <span class="fa fa-plus">  </span>
+   </button>   
 
 
+   <div class="col-md-11">
+      <div class="x_panel panel_emails">            
 
-      {{-- Email --}}
-            <label class="col-md-1 control-label" for="pa-email">Email</label>  
-            <div class="col-md-5">
-               <input id="pa-email" name="pa-email" type="text" placeholder="email@servidor.com.br" class="form-control input-md email">
+         {{-- bloco de email --}}
+         <div class="form-group">
+            <div class="col-md-2" style="top: 4px;">
+               <input id="irmao[0][email]"   name="irmao[0][email]"     data-cip-id="irmao[0][email]"  
+                     class="form-control input-md telefone" placeholder="(99)9999-9999"  type="text" >
             </div>
+
+            <div class="col-md-11"></div>
+               <button name="submit" value="excluir_email" 
+                  data-toggle="tooltip" 
+                  title="Remover o email" 
+                  class="btn btn-circulo btn-danger glyphicon glyphicon-trash excluir_email" 
+                  selected style="display:none;">
+               </button>
+         </div>
+         {{-- FIM bloco de email --}}
+      </div>
+
+      <div class="div_clone_emails"></div> {{-- Clonagem da div panel_emails --}}
+
+   </div>
+
+</div>
