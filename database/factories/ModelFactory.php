@@ -124,7 +124,7 @@ $factory->define(App\Models\Email::class, function(Faker\Generator $faker) {
 	$faker = Faker\Factory::create('pt_BR');
 
 	return [
-		'de_email'  => $faker->safeEmail,
+		'email'  => $faker->safeEmail,
 	];	
 });
 

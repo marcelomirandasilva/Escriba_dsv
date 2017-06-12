@@ -206,64 +206,67 @@
 
       $(function(){
         // Clonar div panel_telefones
-         $(".clonar").click(function(e){
+         $(".clonar_tel").click(function(e){
 
             e.preventDefault();
 
-            $(".panel_telefones").clone()
+            $(".panel_telefone").clone()
 
             // Adicionar a classe clone e remover a classe panel_telefones
 
-            .addClass("clone_telefones x_panel")
-            .removeClass("panel_telefones")
+            .addClass("telefone_clonado x_panel")
+            .removeClass("panel_telefone")
 
             // Mostrar o botão excluir
 
-            .find("button.excluir").css("display","block")
+            .find("button.excluir_tel").css("display","block")
 
             // Colocar os campos clonados no lugar correto
 
-            .parent().parent().appendTo(".div-clone")
+            .parent().parent().appendTo(".local_clone_tel")
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
             .find("select[name='irmao[0][ic_telefone]']")
-                .attr("name", "irmao["+cont+"][ic_telefone]")
-                .attr("id", "irmao["+cont+"][ic_telefone]")
+                .attr("name", "irmao["+cont_telefone+"][ic_telefone]")
+                .attr("id", "irmao["+cont_telefone+"][ic_telefone]")
                 .val("")
             
             .parent().parent().parent().find("input[name='irmao[0][nu_telefone]']")
-                .attr("name", "irmao["+cont+"][nu_telefone]")
-                .attr("id", "irmao["+cont+"][nu_telefone]")
+                .attr("name", "irmao["+cont_telefone+"][nu_telefone]")
+                .attr("id", "irmao["+cont_telefone+"][nu_telefone]")
                 .val("")
             
-            
-
-            // Incrementar o contador de dependentes
+             // Incrementar o contador de dependentes
 
             cont_telefone++;
          });
 
          // Botão de excluir telefone
 
-         $("body").on("click", "button.excluir", function(){ 
+         $("body").on("click", "button.excluir_tel", function(){ 
 
             $(this).parent().parent().remove(); 
 
          });
+       });
+
      
-      //=================================== clone email====================================================
+
+
+
+ //=================================== clone email====================================================
       $(function(){
-        // Clonar div panel_telefones
+        // Clonar div clonar_email
          $(".clonar_email").click(function(e){
 
             e.preventDefault();
 
             $(".panel_emails").clone()
 
-            // Adicionar a classe clone e remover a classe panel_telefones
+            // Adicionar a classe clone e remover a classe 
 
-            .addClass("clone_emails x_panel")
+            .addClass("email_clonado x_panel")
             .removeClass("panel_emails")
 
             // Mostrar o botão excluir
@@ -272,7 +275,7 @@
 
             // Colocar os campos clonados no lugar correto
 
-            .parent().parent().appendTo(".div_clone_emails")
+            .parent().parent().appendTo(".local_clone_email")
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
@@ -288,14 +291,14 @@
 
          // Botão de excluir telefone
 
-         $("body").on("click", "button.excluir", function(){ 
+         $("body").on("click", "button.excluir_email", function(){ 
 
             $(this).parent().parent().remove(); 
 
          });
          
-      });
-
+      });     
+     
 
    </script>
 

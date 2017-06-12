@@ -2,8 +2,8 @@
    <div class="clearfix"></div>
    <div class="x_title" style="margin-bottom: 15px;"> Telefone <div class="clearfix"></div> </div>
 
-   <button  name="submit" value="clonar_telefone" 
-      class="btn-circulo btn btn-primary btn-md   pull-right  clonar_telefone "
+   <button  name="submit" value="clonar_tel" 
+      class="btn-circulo btn btn-primary btn-md   pull-right  clonar_tel "
       data-toggle="tooltip"
       title="Adiciona um telefone">
       <span class="fa fa-plus">  </span>
@@ -11,7 +11,7 @@
 
 
    <div class="col-md-11">
-      <div class="x_panel panel_telefones">            
+      <div class="x_panel panel_telefone">            
 
          {{-- bloco de telefone --}}
          <div class="form-group">
@@ -24,7 +24,6 @@
                   @foreach($tipo_telefone as $tipo)
                      <option value="{{$tipo}}"> {{$tipo}} </option>  
                   @endforeach
-
                </select>
             </div>
             {{-- <label class="col-md-2 control-label" for="nu_telefone">Numero</label>  --}}
@@ -34,21 +33,21 @@
             </div>
 
             <div class="col-md-11"></div>
-               <button name="submit" value="excluir" 
-                  data-toggle="tooltip" 
-                  title="Remover o telefone" 
-                  class="btn btn-circulo btn-danger glyphicon glyphicon-trash excluir" 
-                  selected style="display:none;">
-               </button>
+            <button value="excluir_tel" 
+               data-toggle="tooltip" 
+               title="Remover o telefone" 
+               class="btn btn-circulo btn-danger glyphicon glyphicon-trash excluir excluir_tel" 
+               selected style="display:none;">
+            </button>
          </div>
          {{-- FIM bloco de telefone --}}
       </div>
 
-      <div class="div-clone"></div> {{-- Clonagem da div panel_dependentes --}}
-
+      <div class="local_clone_tel"></div> {{-- Clonagem da div panel_dependentes --}}
    </div>
-
 </div>
+
+
 
 {{-- ==============================================================EMAIL ============================================ --}}
 
@@ -69,12 +68,12 @@
 
          {{-- bloco de email --}}
          <div class="form-group">
-            <div class="col-md-2" style="top: 4px;">
+            <div class="col-md-11" style="top: 4px;">
                <input id="irmao[0][email]"   name="irmao[0][email]"     data-cip-id="irmao[0][email]"  
-                     class="form-control input-md telefone" placeholder="(99)9999-9999"  type="text" >
+                     class="form-control input-md telefone" placeholder="email@servidor.com.br"  type="email" >
             </div>
 
-            <div class="col-md-11"></div>
+            <div class="col-md-12"></div>
                <button name="submit" value="excluir_email" 
                   data-toggle="tooltip" 
                   title="Remover o email" 
@@ -85,8 +84,9 @@
          {{-- FIM bloco de email --}}
       </div>
 
-      <div class="div_clone_emails"></div> {{-- Clonagem da div panel_emails --}}
+      <div class="local_clone_email"></div> {{-- Clonagem da div panel_emails --}}
 
    </div>
 
 </div>
+
