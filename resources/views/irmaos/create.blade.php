@@ -178,6 +178,10 @@
          });
 
 
+         {{-- coloca a mascara no numero de telefone de contato de acordo com o tipo de telefone escolhido --}}
+
+
+
          //$(".cim").inputmask('#.999.999', { numericInput: true });
          //$('.cim').mask('9.999.999', {reverse: true});
          //$(".num_logradouro").inputmask("999.999");
@@ -187,9 +191,9 @@
          //$(".data").inputmask("99/99/9999");
          //$(".celular").inputmask("(99)99999-9999");
          //$(".telefone").inputmask("(99)9999-9999");
-       });
+      });
 
-       function desabilita(){
+      function desabilita(){
          if( this.text == 'Casado' ){
              document.getElementById('cep').disabled = false;
              document.getElementById('uf').disabled = false;
@@ -197,12 +201,13 @@
              document.getElementById('cep').disabled = true;
              document.getElementById('uf').disabled = true;
          }
-       }
+      }
 
 
 
-       var cont_telefone=1 
-       var cont_email=1;
+      var cont_telefone=1 
+      var cont_email=1;
+      var cont_dependente=1;
 
       $(function(){
         // Clonar div panel_telefones
@@ -249,13 +254,9 @@
             $(this).parent().parent().remove(); 
 
          });
-       });
+      });
 
-     
-
-
-
- //=================================== clone email====================================================
+      //=================================== clone email====================================================
       $(function(){
         // Clonar div clonar_email
          $(".clonar_email").click(function(e){
@@ -280,8 +281,8 @@
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
             .find("select[name='irmao[0][email]']")
-                .attr("name", "irmao["+cont+"][email]")
-                .attr("id", "irmao["+cont+"][email]")
+                .attr("name", "irmao["+cont_email+"][email]")
+                .attr("id", "irmao["+cont_email+"][email]")
                 .val("")
             
             // Incrementar o contador de dependentes
@@ -296,11 +297,62 @@
             $(this).parent().parent().remove(); 
 
          });
-         
+      }); 
+
+
+      //=================================== clone DEPENDENTE====================================================
+      $(function(){
+         $(".clonar_dependente").click(function(e){
+
+            e.preventDefault();
+
+            $(".panel_dependente").clone()
+
+            // Adicionar a classe clone e remover a classe 
+
+            .addClass("dependente_clonado x_panel")
+            .removeClass("panel_dependente")
+
+            // Mostrar o botão excluir
+
+            .find("button.excluir_dependente").css("display","block")
+
+            // Colocar os campos clonados no lugar correto
+
+            .parent().parent().appendTo(".local_clone_dependente")
+
+            // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
+
+            .find("input[name='dependente[0][nome]']")
+                .attr("name", "dependente["+cont_dependente+"][nome]")
+                .attr("id", "dependente["+cont_dependente+"][nome]")
+                .val("")
+
+            .find("select[name='dependente[0][parentesco]']")
+                .attr("name", "dependente["+cont_dependente+"][parentesco]")
+                .attr("id", "dependente["+cont_dependente+"][parentesco]")
+                .val("")
+
+            .find("input[name='dependente[0][nascimento]']")
+                .attr("name", "dependente["+cont_dependente+"][nascimento]")
+                .attr("id", "dependente["+cont_dependente+"][nascimento]")
+                .val("")
+            
+            // Incrementar o contador de dependentes
+
+            cont_dependente++;
+         });
+
+         // Botão de excluir telefone
+
+         $("body").on("click", "button.excluir_dependente", function(){ 
+
+            $(this).parent().remove(); 
+
+         });
       });     
-     
+
 
    </script>
-
 @endpush
 

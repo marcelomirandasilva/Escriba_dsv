@@ -127,7 +127,7 @@ input[type="text"]{
     color: #FFF;
 }
 
-.datas_input{
+.datas_input, .diminui_espacos{
     padding-right: 2px;
     padding-left: 4px;
     font-size: 13px;
@@ -223,6 +223,7 @@ footer {
 }
 
 .form-control:focus {
-    border-color: #CCD0D7;
-    box-shadow: 1px 1px !important;
+    -webkit-box-shadow: 1px 1px 20px -3px #2A3F54 !important;
+    -moz-box-shadow:    1px 1px 20px -3px #2A3F54 !important;
+    box-shadow:         1px 1px 20px -3px #2A3F54 !important;
 }

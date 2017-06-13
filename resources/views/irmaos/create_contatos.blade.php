@@ -14,9 +14,9 @@
       <div class="x_panel panel_telefone">            
 
          {{-- bloco de telefone --}}
-         <div class="form-group">
+         <div class="item form-group">
             
-           {{--  <label class="control-label col-md-1 " for="irmao[0][ic_telefone]">Tipo</label>  --}}
+           {{--  TIPO DE TELEFONE  --}}
             <div class="col-md-5" style="top: 4px;">
                <select id="irmao[0][ic_telefone]"  name="irmao[0][ic_telefone]"     data-cip-id="irmao[0][ic_telefone]" 
                   class="form-control col-md-2 "   placeholder="Tipo de telefone"   type="text" >
@@ -26,10 +26,12 @@
                   @endforeach
                </select>
             </div>
-            {{-- <label class="col-md-2 control-label" for="nu_telefone">Numero</label>  --}}
+
+            {{-- NUMERO DO TELEFONE  --}}
             <div class="col-md-6" style="top: 4px;">
                <input id="irmao[0][nu_telefone]"   name="irmao[0][nu_telefone]"     data-cip-id="irmao[0][nu_telefone]"  
-                     class="form-control input-md telefone" placeholder="(99)9999-9999"  type="text" >
+                     class="form-control input-md telefone" placeholder="(99)99999-9999"  
+                     data-inputmask="'mask' : '(99)[9]9999-9999', 'numericInput': 'false' " type="text">
             </div>
 
             <div class="col-md-11"></div>

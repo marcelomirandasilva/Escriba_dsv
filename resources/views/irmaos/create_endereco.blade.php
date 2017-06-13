@@ -11,8 +11,7 @@
          <select id="pais_id"   
             class="form-control col-md-2" 
             name="pais_id" 
-            placeholder="Nome do Pais" 
-            type="text">
+            placeholder="Nome do Pais" >
 
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
@@ -136,8 +135,7 @@
          <select id="pais_id"   
             class="form-control col-md-2" 
             name="pais_id" 
-            placeholder="Nome do Pais" 
-            type="text">
+            placeholder="Nome do Pais">
 
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
