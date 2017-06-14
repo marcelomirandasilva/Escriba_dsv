@@ -1,4 +1,4 @@
-<div class="item form-group">
+<div class="item form-group modal-content">
    <label class="control-label col-md-1 " for="dt_iniciacao">Iniciação</label>
       <div class="col-md-2 ">
          <input id="dt_iniciacao"   

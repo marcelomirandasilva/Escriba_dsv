@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Irmao extends Model
+class Membro extends Model
 {
-    protected $table = "irmao";
+    protected $table = "membro";
 
     protected $primaryKey = 'id';
 
     protected $fillable =[
-        'no_irmao',
+        'no_membro',
         'co_cim',
         'nu_cpf',
         'dt_nascimento',
@@ -24,7 +24,7 @@ class Irmao extends Model
         'fk_loja_exaltacao',
         'dt_instalacao',
         'fk_loja_instalacao',
-        'im_iirmao',
+        'im_membro',
         'ic_situacao',
         'ic_escolaridade',
         'de_profissao',

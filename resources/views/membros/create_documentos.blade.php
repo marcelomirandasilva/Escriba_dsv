@@ -1,4 +1,4 @@
-<div class="x_panel"  ">
+<div class="x_panel modal-content">
    <div class="clearfix"></div>
 
    {{---------------------- CPF --------------------------------}}      

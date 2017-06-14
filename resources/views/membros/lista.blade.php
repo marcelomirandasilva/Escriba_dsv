@@ -14,10 +14,10 @@
   <!-- page content -->
   <div class="right_col" role="main">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel">
+      <div class="x_panel modal-content">
         <div class="x_title">
           <h2> Listagem de Irmãos </h2>
-          <a href="{{ url('irmaos/create') }}" 
+          <a href="{{ url('membros/create') }}" 
             class="btn-circulo btn btn-primary btn-md   pull-right " 
             data-toggle="tooltip"  
             data-placement="bottom" 
@@ -26,9 +26,9 @@
           </a>
           <div class="clearfix"></div>
         </div>
-        <div class="x_content">
+        <div class="x_content ">
           <div class="panel-body">
-            <table class="table table-striped" id="tabela-irmaos">
+            <table class="table table-striped" id="tabela-membros">
               <thead>
                 <tr>
                   <th> Nome       </th>
@@ -39,20 +39,20 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($irmaos as $irmao )
+                @foreach($membros as $membro )
                   <tr>
-                    <td> {{ $irmao->no_irmao  }}                                                   </td>
-                    <td  > {{ number_format($irmao->co_cim,0,",",".")  }}      </td>
+                    <td> {{ $membro->no_membro  }}                                                   </td>
+                    <td  > {{ number_format($membro->co_cim,0,",",".")  }}      </td>
 
-                    @if( $irmao->dt_nascimento <> '0000-00-00')
-                      <td>{{ \Carbon\Carbon::parse( $irmao->dt_nascimento)->format('d/m/Y')  }}     </td>
+                    @if( $membro->dt_nascimento <> '0000-00-00')
+                      <td>{{ \Carbon\Carbon::parse( $membro->dt_nascimento)->format('d/m/Y')  }}     </td>
                     @else
                       <td> -------------- </td>
                     @endif
-                    <td> {{ $irmao->ic_situacao  }}                                                 </td>
+                    <td> {{ $membro->ic_situacao  }}                                                 </td>
                     <td>
 
-                      <a href="{{ url("irmaos/$irmao->id") }}" 
+                      <a href="{{ url("membros/$membro->id") }}" 
                         class="btn btn-primary btn-xs  action botao_lista  "  
                         data-toggle="tooltip"  
                         data-placement="bottom" 
@@ -60,7 +60,7 @@
                         <i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
                       </a>
 
-                      <a href="{{ url("irmaos/edit/$irmao->id") }}"
+                      <a href="{{ url("membros/edit/$membro->id") }}"
                         class="btn btn-warning btn-xs action botao_lista  " 
                         data-toggle="tooltip" 
                         data-placement="bottom" 
@@ -109,7 +109,7 @@
   <script>
     $(document).ready(function(){
       $.fn.dataTable.moment( 'DD/MM/YYYY' );
-      $("#tabela-irmaos").DataTable({
+      $("#tabela-membros").DataTable({
 
         language : {
           'url' : '{{ asset('js/portugues.json') }}',

@@ -31,7 +31,7 @@
                   <a><i class="fa fa-pencil"></i> Secretaria <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li>
-                      <li><a href="{{ url('/irmaos') }}">Irmãos</a></li>
+                      <li><a href="{{ url('/membros') }}">Membros</a></li>
                    </li>
 
                    <li>

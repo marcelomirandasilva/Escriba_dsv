@@ -13,7 +13,7 @@ class Email extends Model
 	protected $fillable =[
 
    			'email',
-            'irmao_id',
+            'membro_id',
             'loja_id',
             'dependente_id',
             'visitante_id',
@@ -27,6 +27,6 @@ class Email extends Model
 
     public function irmao()
     {
-        return $this->belongsTo('App\Models\Irmao', 'irmao_id');
+        return $this->belongsTo('App\Models\Membro', 'membro_id');
     }
 }

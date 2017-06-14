@@ -15,7 +15,7 @@ class CreateDependenteTable extends Migration
     {
         Schema::create('dependente', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('irmao_id');
+            $table->unsignedInteger('membro_id');
             $table->string('no_dependente',100);
 
             $table->date('dt_nascimento')->nullable();
@@ -27,7 +27,7 @@ class CreateDependenteTable extends Migration
                         ]);
             
             $table->timestamps();
-            $table->foreign('irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
         });
     }
 

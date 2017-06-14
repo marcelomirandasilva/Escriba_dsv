@@ -35,9 +35,9 @@ class Endereco extends Model
     }
 
     
-    public function irmao()
+    public function membro()
     {
-    	return $this->belongsTo('App\Models\Irmao', 'irmao_id');
+    	return $this->belongsTo('App\Models\Membro', 'membro_id');
     }
 
     public function loja()

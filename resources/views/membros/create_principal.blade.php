@@ -1,13 +1,13 @@
-<div class="x_panel"  ">
+<div class="x_panel modal-content" >
    <div class="clearfix"></div>
 
    <!-- NOME, CIM  -------------------------------------------------------------------------->    
-   <div class="item form-group">
-      <label class="control-label col-md-1" for="no_irmao">Nome*</label>
+   <div class="item form-group ">
+      <label class="control-label col-md-1" for="no_membro">Nome*</label>
       <div class="col-md-5 ">
-         <input  id="no_irmao"   
+         <input  id="no_membro"   
             class="form-control col-md-5" 
-            name="no_irmao" 
+            name="no_membro" 
             placeholder="Nome completo do Irmão" 
             required="required" 
             type="text"

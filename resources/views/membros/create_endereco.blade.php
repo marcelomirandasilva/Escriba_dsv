@@ -1,5 +1,5 @@
 
-<div class="x_panel"  ">
+<div class="x_panel modal-content">
    <div class="x_title">  Residencial </div>
    <div class="clearfix"></div>
 
@@ -122,7 +122,7 @@
 
 <br><br>
 
-<div class="x_panel"  ">
+<div class="x_panel modal-content">
    <div class="x_title">  Comercial </div>
    <div class="clearfix"></div>
 

@@ -14,7 +14,7 @@ class FkTables extends Migration
     public function up()
     {
 
-        Schema::table('irmao', function($table){
+        Schema::table('membro', function($table){
             
         });
 

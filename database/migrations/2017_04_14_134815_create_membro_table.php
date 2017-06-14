@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIrmaoTable extends Migration
+class CreateMembroTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateIrmaoTable extends Migration
      */
     public function up()
     {
-        Schema::create('irmao', function (Blueprint $table) {
+        Schema::create('membro', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('no_irmao',50);
+            $table->string('no_membro',50);
             $table->char('co_cim',10);
             $table->date('dt_nascimento')                   ->nullable();
             $table->string('no_naturalidade',20);
@@ -97,7 +97,7 @@ class CreateIrmaoTable extends Migration
             $table->date('dt_comenda_pedro')                ->nullable();
 
 
-            $table->binary('im_irmao')                      ->nullable();
+            $table->binary('im_membro')                      ->nullable();
 
             $table->enum('ic_situacao', [
                 'Regular',
@@ -141,6 +141,6 @@ class CreateIrmaoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('irmao');
+        Schema::dropIfExists('membro');
     }
 }

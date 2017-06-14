@@ -27,7 +27,7 @@ class CreateEnderecoTable extends Migration
             $table->enum('ic_tipo_endereco', ['Residencial','Comercial','Loja']);
 
             $table->unsignedInteger('pais_id');
-            $table->unsignedInteger('irmao_id')->nullable();
+            $table->unsignedInteger('membro_id')->nullable();
             $table->unsignedInteger('loja_id')->nullable();
             $table->unsignedInteger('visitante_id')->nullable();
 
@@ -36,7 +36,7 @@ class CreateEnderecoTable extends Migration
 
             // CHAVES ESTRANGEIRAS
             $table->foreign('pais_id')->references('id')->on('pais')->onDelete('cascade');
-            $table->foreign('irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
             $table->foreign('loja_id')->references('id')->on('loja')->onDelete('cascade');
             $table->foreign('visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });

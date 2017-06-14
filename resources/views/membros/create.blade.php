@@ -74,27 +74,27 @@
                         <div id="myTabContent" class="tab-content">
 
                            <div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
-                              @include('irmaos/create_principal')
+                              @include('membros/create_principal')
                            </div>
 
                            <div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
-                              @include('irmaos/create_documentos')
+                              @include('membros/create_documentos')
                            </div>
 
                            <div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-                              @include('irmaos/create_endereco')
+                              @include('membros/create_endereco')
                            </div>
 
                            <div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
-                              @include('irmaos/create_contatos')
+                              @include('membros/create_contatos')
                            </div>
 
                            <div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-                              @include('irmaos/create_dependentes')
+                              @include('membros/create_dependentes')
                            </div>
 
                            <div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
-                              @include('irmaos/create_cerimonias')
+                              @include('membros/create_cerimonias')
                            </div>
 
                         </div>
@@ -232,14 +232,14 @@
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
-            .find("select[name='irmao[0][ic_telefone]']")
-                .attr("name", "irmao["+cont_telefone+"][ic_telefone]")
-                .attr("id", "irmao["+cont_telefone+"][ic_telefone]")
+            .find("select[name='membro[0][ic_telefone]']")
+                .attr("name", "membro["+cont_telefone+"][ic_telefone]")
+                .attr("id", "membro["+cont_telefone+"][ic_telefone]")
                 .val("")
             
-            .parent().parent().parent().find("input[name='irmao[0][nu_telefone]']")
-                .attr("name", "irmao["+cont_telefone+"][nu_telefone]")
-                .attr("id", "irmao["+cont_telefone+"][nu_telefone]")
+            .parent().parent().parent().find("input[name='membro[0][nu_telefone]']")
+                .attr("name", "membro["+cont_telefone+"][nu_telefone]")
+                .attr("id", "membro["+cont_telefone+"][nu_telefone]")
                 .val("")
             
              // Incrementar o contador de dependentes
@@ -280,9 +280,9 @@
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
-            .find("select[name='irmao[0][email]']")
-                .attr("name", "irmao["+cont_email+"][email]")
-                .attr("id", "irmao["+cont_email+"][email]")
+            .find("select[name='membro[0][email]']")
+                .attr("name", "membro["+cont_email+"][email]")
+                .attr("id", "membro["+cont_email+"][email]")
                 .val("")
             
             // Incrementar o contador de dependentes

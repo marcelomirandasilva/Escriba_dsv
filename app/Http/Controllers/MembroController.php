@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\irmao;
+use App\Models\membro;
 use App\Models\pais;
 use Illuminate\Http\Request;
 
 
-class IrmaoController extends Controller
+class MembroController extends Controller
 {
     // todas as rotas aqui serão antes autenticadas
-    private $irmao;
-    public function __construct(Irmao $irmao)
+    private $membro;
+    public function __construct(membro $membro)
     {
-        $this->irmao = $irmao; 
+        $this->membro = $membro; 
         
         // todas as rotas aqui serão antes autenticadas
         $this->middleware('auth');
@@ -21,13 +21,13 @@ class IrmaoController extends Controller
 
     public function index()
     {
-        //$irmaos = irmao::get();
-        //return view('irmaos/lista', ['irmaos' => $irmaos]);
+        //$membros = membro::get();
+        //return view('membros/lista', ['membros' => $membros]);
 
 
-        $irmaos = $this->irmao->all();
+        $membros = $this->membro->all();
 
-        return view('irmaos\lista', compact('irmaos'));
+        return view('membros\lista', compact('membros'));
 
     }
 
@@ -59,13 +59,13 @@ class IrmaoController extends Controller
         //sort($escolaridade);
         sort($grau_parentesco);
 
-        $titulo = "Cadastro de Irmaõs";
+        $titulo = "Cadastro de Membros";
 
         $paises     = Pais::all()->sortBy('no_pais');        
 
 
 
-        return view('irmaos.create',compact([   'estado_civil','grau','situacao',
+        return view('membros.create',compact([   'estado_civil','grau','situacao',
                                                 'escolaridade','aposentado','paises',
                                                 'titulo','grau_parentesco','tipo_telefone'
                                             ]));
@@ -76,12 +76,12 @@ class IrmaoController extends Controller
     {
 
 
-        $irmao = new Irmao();
+        $membro = new membro();
 
-        $irmao = $irmao->create($request->all());
+        $membro = $membro->create($request->all());
 
-        \Session::flash('mensagem_sucesso','irmaos cadastrado com sucesso');
-        return Redirect::to('irmaos/create');
+        \Session::flash('mensagem_sucesso','membros cadastrado com sucesso');
+        return Redirect::to('membros/create');
 
     }
 
@@ -89,7 +89,7 @@ class IrmaoController extends Controller
     {
         $edita = true;
 
-        $titulo = "Edição do Irmão: {$irmao->no_irmao} {$irmao->nu_cim}";
+        $titulo = "Edição de Membro: {$membro->no_membro} {$membro->nu_cim}";
 
         //return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo','edita'));
 
@@ -98,7 +98,7 @@ class IrmaoController extends Controller
 
     protected function destroy($id)
     {
-        return "exclui o irmão: {$id}";
+        return "exclui o Membro: {$id}";
     }
     public function update(Request $request, $id)
     {

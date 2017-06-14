@@ -20,13 +20,13 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 	];
 });
 
-$factory->define(App\Models\Irmao::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 
 	$faker = Faker\Factory::create('pt_BR');
 
 	return [
 
-		'no_irmao'              => $faker->name,
+		'no_membro'             => $faker->name,
 		'co_cim'                => $faker->numberBetween($min = 11111, $max = 9999999),
 		'dt_nascimento'         => $faker->date('Y-m-d', '-18 years'),
 		'no_naturalidade'		=> $faker->city,

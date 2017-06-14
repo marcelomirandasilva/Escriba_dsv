@@ -16,13 +16,13 @@ class CreatePresencaSessaoTable extends Migration
         Schema::create('presenca_sessao', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('sessao_id');
-            $table->unsignedInteger('irmao_id');
+            $table->unsignedInteger('membro_id');
             $table->unsignedInteger('cargo_id');
 
             $table->timestamps();
 
             $table->foreign('sessao_id')->references('id')->on('sessao')->onDelete('cascade');
-            $table->foreign('irmao_id')->references('id')->on('irmao')->onDelete('cascade');
+            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
             $table->foreign('cargo_id')->references('id')->on('cargo')->onDelete('cascade');
         });
     }

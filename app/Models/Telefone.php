@@ -22,7 +22,7 @@ class Telefone extends Model
 
     public function irmao()
     {
-        return $this->belongsTo('App\Models\Irmao', 'irmao_id');
+        return $this->belongsTo('App\Models\Membro', 'membro_id');
     }
 }
 

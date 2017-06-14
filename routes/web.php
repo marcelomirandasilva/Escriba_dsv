@@ -35,6 +35,6 @@ Route::get ('/', 					'HomeController@index');
 
 Route::post('lojas/potencia/store', 	'PotenciaController@store');
 
-Route::resource('irmaos', 			'IrmaoController');
+Route::resource('membros', 			'MembroController');
 Route::resource('lojas', 			'LojaController');
 	
