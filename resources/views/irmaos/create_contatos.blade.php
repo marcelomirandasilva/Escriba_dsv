@@ -76,12 +76,12 @@
             </div>
 
             <div class="col-md-12"></div>
-               <button name="submit" value="excluir_email" 
-                  data-toggle="tooltip" 
-                  title="Remover o email" 
-                  class="btn btn-circulo btn-danger glyphicon glyphicon-trash excluir_email" 
-                  selected style="display:none;">
-               </button>
+            <button name="submit" value="excluir_email" 
+               data-toggle="tooltip" 
+               title="Remover o email" 
+               class="btn btn-circulo btn-danger glyphicon glyphicon-trash excluir_email" 
+               selected style="display:none;">
+            </button>
          </div>
          {{-- FIM bloco de email --}}
       </div>

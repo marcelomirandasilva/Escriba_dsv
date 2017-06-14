@@ -227,3 +227,12 @@ footer {
     -moz-box-shadow:    1px 1px 20px -3px #2A3F54 !important;
     box-shadow:         1px 1px 20px -3px #2A3F54 !important;
 }
+
+.panel_dependente, .dependente_clonado{
+    margin-bottom: 0px;
+    padding-top: 6px;
+    padding-bottom: 5px;
+
+}
+
+    

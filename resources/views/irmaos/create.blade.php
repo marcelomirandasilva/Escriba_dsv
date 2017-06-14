@@ -93,7 +93,7 @@
                               @include('irmaos/create_dependentes')
                            </div>
 
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content6 " aria-labelledby="tab_cer">
+                           <div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
                               @include('irmaos/create_cerimonias')
                            </div>
 
@@ -304,6 +304,7 @@
       $(function(){
          $(".clonar_dependente").click(function(e){
 
+            
             e.preventDefault();
 
             $(".panel_dependente").clone()
@@ -319,7 +320,7 @@
 
             // Colocar os campos clonados no lugar correto
 
-            .parent().parent().appendTo(".local_clone_dependente")
+            .parent().parent().parent().appendTo(".local_clone_dependente")
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
@@ -347,7 +348,7 @@
 
          $("body").on("click", "button.excluir_dependente", function(){ 
 
-            $(this).parent().remove(); 
+            $(this).parent().parent().parent().remove(); 
 
          });
       });     
