@@ -53,7 +53,7 @@ input[type="text"]{
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
-    border-radius: 14px;
+    border-radius: 8px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
@@ -127,11 +127,16 @@ input[type="text"]{
     color: #FFF;
 }
 
-.datas_input, .diminui_espacos{
-    padding-right: 2px;
-    padding-left: 4px;
-    font-size: 13px;
+.diminui_espacos{
+    padding-right: 2px !important;
+    padding-left: 4px !important;
+    font-size: 13px !important;
     
+}
+.datas_input{
+    padding-right: 0px!important;
+    padding-left: 6px!important;
+    font-size: 12px!important;
 }
 
 .nu_loja_input{
@@ -235,4 +240,11 @@ footer {
 
 }
 
-    
+.btn_acao{
+	border-radius: 8px;
+}    
+
+.panel_sem_margem{
+    padding-left: 1px;
+    padding-right: 1px;
+}

@@ -1,4 +1,4 @@
-<div class="x_panel modal-content" >
+<div class="x_panel modal-content panel_sem_margem" >
    <div class="clearfix"></div>
    <div class="col-md-6 ">
       <div class="clearfix"></div>
@@ -13,13 +13,13 @@
 
 
       <div class="col-md-11">
-         <div class="x_panel panel_telefone">            
+         <div class="x_panel panel_telefone panel_sem_margem ">            
 
             {{-- bloco de telefone --}}
             <div class="item form-group">
                
               {{--  TIPO DE TELEFONE  --}}
-               <div class="col-md-5" style="top: 4px;">
+               <div class="col-md-5 panel_sem_margem" style="top: 4px;">
                   <select id="membro[0][ic_telefone]"  name="membro[0][ic_telefone]"     data-cip-id="membro[0][ic_telefone]" 
                      class="form-control col-md-2 "   placeholder="Tipo de telefone"   type="text" >
 
@@ -32,11 +32,13 @@
                {{-- NUMERO DO TELEFONE  --}}
                <div class="col-md-6" style="top: 4px;">
                   <input id="membro[0][nu_telefone]"   name="membro[0][nu_telefone]"     data-cip-id="membro[0][nu_telefone]"  
-                        class="form-control input-md telefone" placeholder="(99)99999-9999"  
-                        data-inputmask="'mask' : '(99)[9]9999-9999', 'numericInput': 'false' " type="text">
+                        class="form-control input-md telefone" 
+                        placeholder="(99)99999-9999"  
+                        data-inputmask="'mask' : '(99)[9]9999-9999', 'numericInput': 'false' " 
+                        type="tel">
                </div>
 
-               <div class="col-md-11"></div>
+               
                <button value="excluir_tel" 
                   data-toggle="tooltip" 
                   title="Remover o telefone" 
@@ -68,7 +70,7 @@
 
 
       <div class="col-md-11">
-         <div class="x_panel panel_emails">            
+         <div class="x_panel panel_emails panel_sem_margem">            
 
             {{-- bloco de email --}}
             <div class="form-group">

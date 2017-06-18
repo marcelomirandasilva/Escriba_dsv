@@ -20,8 +20,8 @@
 	        	<h5><b>{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} </b> </h5> 
 	      </div>
 	      <div class="modal-footer">
-	        	<a href="#"  type="button" class="btn btn-primary botao_deletar">Sim</a>
-	 			<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+	 			<button type="button" class="btn btn-default btn_acao" data-dismiss="modal">N&atilde;o</button>
+	        	<a href="#"  type="button" class="btn btn-primary botao_deletar btn_acao">Sim</a>	 			
 	      </div>
 		
 			<form action="{{ route("lojas.destroy", ['id' => $loja->id]) }}" class="form-excluir" method="post" accept-charset="utf-8">
@@ -51,7 +51,7 @@
 						<i class="fa fa-trash"></i>
 					</button>
 
-					<a href="{{ url("lojas/$loja->id/edit") }}"
+					<a href="{{ url("/lojas/$loja->id/edit") }}"
 						class="btn btn-warning btn-md  btn btn-circulo pull-right "  
 						data-toggle="tooltip" 
 						data-placement="bottom" 
@@ -65,7 +65,7 @@
 						title="Envia para impressora">
 					</a>
 
-					<a href="{{ url("lojas/$proximo->id") }}"
+					<a href="{{ url("/lojas/$proximo->id") }}"
 						class="btn  btn btn-circulo btn-primary btn-md   pull-right "  
 						data-toggle="tooltip" 
 						data-placement="bottom" 
@@ -73,7 +73,7 @@
 						<i class="fa fa-step-forward"></i>
 					</a>
 
-					<a href="{{ url("lojas/$anterior->id") }}"
+					<a href="{{ url("/lojas/$anterior->id") }}"
 						class="btn btn-circulo btn btn-primary btn-md   pull-right "  
 						data-toggle="tooltip" 
 						data-placement="bottom" 
@@ -113,7 +113,8 @@
 							<div class="ln_solid"></div>
 							
 							<div class="col-md-1 col-md-offset-11">
-						  		<a href="{{ url('lojas') }}" 
+
+						  		<a href="{{ url('/lojas') }}" 
 						  			class="btn btn-primary" 
 						  			data-toggle="tooltip" 
 						  			title="Retorna a tela anterior">  

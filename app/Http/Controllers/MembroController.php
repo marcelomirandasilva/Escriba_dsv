@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\membro;
 use App\Models\pais;
+use App\Models\loja;
 use Illuminate\Http\Request;
 
 
@@ -63,11 +66,18 @@ class MembroController extends Controller
 
         $paises     = Pais::all()->sortBy('no_pais');        
 
+        $lojas      = Loja::all()->sortBy('no_loja');       
+
+        //$lojas      = Loja::select("*",(DB::raw('no_loja'))->orderBy('no_loja')->get();
 
 
+
+
+
+//dd($lojas);
         return view('membros.create',compact([   'estado_civil','grau','situacao',
                                                 'escolaridade','aposentado','paises',
-                                                'titulo','grau_parentesco','tipo_telefone'
+                                                'titulo','grau_parentesco','tipo_telefone','lojas'
                                             ]));
 
     }

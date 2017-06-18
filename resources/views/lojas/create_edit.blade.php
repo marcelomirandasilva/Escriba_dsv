@@ -332,36 +332,28 @@
 											value="{{$loja->email->de_email or old('de_email')}}" >
 								</div>
 
-							</div>						
-							<!- botoes -> 
-							<div class="ln_solid">
-								
-							</div>
+							</div>			
 
+							<!----------- botoes ----------> 
+							<div class="ln_solid"> </div>
 							<div class="col-md-3 col-md-offset-9">
-									<!---testa para saber se está editando ou cadastrando -->
-									@if( isset($edita))
-										<a href="{{ url("lojas/$loja->id") }}"
-									@else
-										<a href="{{ url("lojas") }}"
-									@endif
 
-						  			class="btn btn-danger" 
-						  			data-toggle="tooltip" 
-						  			title="Cancela e retorna a tela anterior">  
-						  			Cancela
-					  			</a>
 						  		<button id="send" 
-						  					type="submit" 
-						  					class="btn btn-success"
-						  					data-toggle="tooltip" 
-						  					title="Confirma a operação">  
-								  		Confirma    
-						  		</button>
-							</div>
-							
+				  					type="submit" 
+				  					class="btn btn-success btn_acao pull-right"
+				  					data-toggle="tooltip" 
+				  					title="Confirma a operação">  
+							  		Confirma    
+						  		</button>							
 
-							<!- fim botoes ->
+								<a href="{{ url()->previous() }}"
+					  				class="btn btn-danger btn_acao pull-right" 
+					  				data-toggle="tooltip" 
+					  				title="Cancela e retorna a tela anterior">  
+					  				Cancela
+				  				</a>
+							</div>
+							<!----------- fim botoes ---------->
 						</form>  
 						   
 					</div>
@@ -407,21 +399,23 @@
 		   		</div>
 		      	<div class="modal-footer">
 					<div class="col-md-11 ">
+						
+						<a href="#"  
+								type="button" 
+								class="envia_nova_potencia btn btn-success "
+			  					data-toggle="tooltip" 
+			  					title="Confirma a operação">  
+					  			Confirma    
+						</a>
+
 						<button id="fecha_modal"
 								type="button" 
 						  		data-toggle="tooltip" 
-						  		class="btn btn-danger"
+						  		class="btn btn-danger btn_acao"
 						  		title="Cancela e retorna a tela anterior"
 								data-dismiss="modal">
 								Cancela
 						</button>
-						<a href="#"  
-								type="button" 
-								class="envia_nova_potencia btn btn-success"
-			  					data-toggle="tooltip" 
-			  					title="Confirma a operação">  
-					  			Confirma    
-					</a>
 					</div>
 		      	</div>
 	    	</div>
@@ -505,3 +499,4 @@
 
 
 
+	

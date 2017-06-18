@@ -14,13 +14,13 @@
          <div class="x_panel panel_dependente"> 
             <div class="item form-group">
 
-               <label class="col-md-1 control-label" for="dependente[0][nome]">Nome</label>
+               <label class="col-md-2 control-label" for="dependente[0][nome]">Nome</label>
                <div class="col-md-7">
                   <input id="dependente[0][nome]" name="dependente[0][nome]" type="text" placeholder="Informe o nome do dependente" class="form-control input-md" >
                </div>
             </div>
             <div class="item form-group">
-               <label class="control-label col-md-1 " for="dependente[0][parentesco]">Parentesco</label>
+               <label class="control-label col-md-2 " for="dependente[0][parentesco]">Parentesco</label>
                <div class="col-md-3 ">
                   <select   name="dependente[0][parentesco]" 
                      id="dependente[0][parentesco]" 
@@ -33,9 +33,9 @@
                </div>
 
                <label class="control-label col-md-2 " for="dependente[0][nascimento]">Nascimento</label>
-               <div class="col-md-2 ">
+               <div class="col-md-2">
                   <input id="dependente[0][nascimento]" 
-                     class="form-control col-md-2 datas_input" 
+                     class="datas_input form-control col-md-2"  
                      name="dependente[0][nascimento]" 
                      placeholder="Data de Nascimento" 
                      type="date">

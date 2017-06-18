@@ -18,17 +18,16 @@
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
 
-        <!-- Awesomplete -->
-        <link href="{{ asset("css/awesomplete.css") }}" rel="stylesheet">
-
+        <!-- Automplete -->
+        <link href="{{ asset("autoComplete/auto-complete.css") }}"  rel="stylesheet" > 
+    
         <!-- magic-check-master -->
         <link href="{{ asset("css/magic-check.css") }}" rel="stylesheet">
-
 
              
         {{-- CSS Customizado do Projeto --}}
 
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link  href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
 
         @stack('stylesheets')
@@ -49,19 +48,17 @@
         </div>
 
         <!-- jQuery -->
-        <script src="{{ asset("js/jquery.min.js") }}"></script>
+        <script src="{{ asset("js/jquery.min.js") }}">                  </script>
         <!-- Bootstrap -->
-        <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+        <script src="{{ asset("js/bootstrap.min.js") }}">               </script>
         <!-- Custom Theme Scripts -->
-        <script src="{{ asset("js/gentelella.min.js") }}"></script>
-        <!-- Awesomplete -->
-        <script src="{{ asset("js/awesomplete.js") }}"></script>
-
-        
-        
-
-
+        <script src="{{ asset("js/gentelella.min.js") }}">              </script>
+        <!-- Autocomplete -->
+        <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >           </script>
+       
         @stack('scripts')
 
     </body>
 </html>
+
+

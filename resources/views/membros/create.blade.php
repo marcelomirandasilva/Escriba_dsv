@@ -31,13 +31,13 @@
 
       <div class="row">
          <div class="col-md-12">
-            <div class="x_panel"  ">
+            <div class="x_panel modal-content">
                <div class="x_title">
                   <h2>Cadastro de Irmãos</h2>
                <div class="clearfix"></div>
             </div>
             <!-- conteudo aqui-->
-            <div class="col-md-12">
+            <div class="col-md-12 ">
                <div class="x_panel">
                <div class="x_content ">
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -143,7 +143,7 @@
       {{-- Máscarasa dos campos CPF e RG --}}
       $(document).ready(function(){
 
-         //desabilita data de casamento se não for casado
+          //desabilita data de casamento se não for casado
          $("select#ic_estado_civil").change(function(){
            if($("select#ic_estado_civil>option:selected").text() == " Casado ")
            {
@@ -352,6 +352,28 @@
 
          });
       });     
+
+
+
+      new autoComplete({
+          selector: 'input[name="fk_loja_iniciacao"]',
+          minChars: 1,
+          offsetLeft: 1,
+          delay: 50,
+          source: function(term, suggest){
+               term = term.toLowerCase();
+               var choices = [];
+               @foreach($lojas as $loja)
+                  choices.push('{{$loja->no_loja}}');  
+               @endforeach
+              
+              var matches = [];
+              for (i=0; i<choices.length; i++)
+                  if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+              suggest(matches);
+          }
+      });
+     
 
 
    </script>
