@@ -25,7 +25,7 @@ class Email extends Model
     	return $this->belongsTo('App\Models\Loja', 'loja_id');
     }
 
-    public function irmao()
+    public function membro()
     {
         return $this->belongsTo('App\Models\Membro', 'membro_id');
     }

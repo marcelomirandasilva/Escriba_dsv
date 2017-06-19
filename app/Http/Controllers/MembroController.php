@@ -55,6 +55,8 @@ class MembroController extends Controller
 
         $tipo_telefone    = pegaValorEnum('telefone','ic_telefone'); 
 
+        $sexos      = pegaValorEnum('dependente','ic_sexo'); 
+
         //orderna os valores dos arrays
         sort($estado_civil);
         //sort($grau);                             
@@ -77,7 +79,8 @@ class MembroController extends Controller
 //dd($lojas);
         return view('membros.create',compact([   'estado_civil','grau','situacao',
                                                 'escolaridade','aposentado','paises',
-                                                'titulo','grau_parentesco','tipo_telefone','lojas'
+                                                'titulo','grau_parentesco','tipo_telefone','lojas',
+                                                'sexos'
                                             ]));
 
     }

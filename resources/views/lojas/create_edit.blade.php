@@ -338,20 +338,21 @@
 							<div class="ln_solid"> </div>
 							<div class="col-md-3 col-md-offset-9">
 
+								<a href="{{ url()->previous() }}"
+					  				class="btn btn-danger  pull-right" 
+					  				data-toggle="tooltip" 
+					  				title="Cancela e retorna a tela anterior">  
+					  				Cancela
+				  				</a>
+
 						  		<button id="send" 
 				  					type="submit" 
-				  					class="btn btn-success btn_acao pull-right"
+				  					class="btn btn-success  pull-right"
 				  					data-toggle="tooltip" 
 				  					title="Confirma a operação">  
 							  		Confirma    
 						  		</button>							
 
-								<a href="{{ url()->previous() }}"
-					  				class="btn btn-danger btn_acao pull-right" 
-					  				data-toggle="tooltip" 
-					  				title="Cancela e retorna a tela anterior">  
-					  				Cancela
-				  				</a>
 							</div>
 							<!----------- fim botoes ---------->
 						</form>  

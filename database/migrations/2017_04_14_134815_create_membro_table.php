@@ -58,7 +58,7 @@ class CreateMembroTable extends Migration
 
 
             $table->enum('ic_grau', [
-                                        'Profano',
+                                        'Candidato',
                                         'Aprendiz', 
                                         'Companheiro',
                                         'Mestre',

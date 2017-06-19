@@ -1,6 +1,8 @@
 <div class="x_panel modal-content" >
    <div class="clearfix"></div>
 
+   <!------------------------------------>
+
    <div class="item form-group">
       <label class="control-label col-md-1 " for="dt_iniciacao">Iniciação</label>
       <div class="col-md-2 ">
@@ -11,13 +13,11 @@
             type="date">
       </div>
 
-      <!------------------------------------>
 
       <label class="control-label col-md-2 " for="fk_loja_iniciacao">Loja Iniciação</label>
       <div class="col-md-5">
          <input id="fk_loja_iniciacao"   
             class="form-control col-md-5"
-             
             name="fk_loja_iniciacao" 
             placeholder="Loja em que o Irmão foi Iniciado" 
             type="text">
@@ -35,7 +35,6 @@
    </div>
  
 
-
    <!------------------------------------>
 
    <div class="item form-group">
@@ -50,17 +49,11 @@
 
      <label class="control-label col-md-2 " for="fk_loja_elevacao">Loja Elevação</label>
       <div class="col-md-5">
-         <select id="fk_loja_elevacao"   
+         <input id="fk_loja_elevacao"   
             class="form-control col-md-5 "
-            
             name="fk_loja_elevacao" 
             placeholder="Loja em que o Irmão foi Elevado" 
             type="text">
-            <option value="">---------------</option>  
-            @foreach($lojas as $loja)
-               <option value="{{$loja->id}}">{{$loja->no_loja}}</option>  
-            @endforeach
-         </select>
       </div>
    </div>
 
@@ -93,22 +86,47 @@
    <!------------------------------------>
    <div class="item form-group">
       <label class="control-label col-md-1 " for="dt_instalacao">Instalação</label>
-         <div class="col-md-2 ">
-            <input id="dt_instalacao"   
-               class="form-control col-md-2 datas_input" 
-               name="dt_instalacao" 
-               placeholder="Data da Instalação" 
-               type="date"
-            >
-         </div>
+      <div class="col-md-2 ">
+         <input id="dt_instalacao"   
+            class="form-control col-md-2 datas_input" 
+            name="dt_instalacao" 
+            placeholder="Data da Instalação" 
+            type="date"
+         >
+      </div>
 
-      <label class="control-label col-md-2 " for="fk_loja_instalacao">Loja Exaltação</label>
+      <label class="control-label col-md-2 " for="fk_loja_instalacao">Loja Instalação</label>
       <div class="col-md-5">
          <input id="fk_loja_instalacao"   
             class="form-control col-md-5" 
             name="fk_loja_instalacao" 
             placeholder="Loja em que o Irmão foi Instalado" 
             type="text"
+         >
+      </div>
+   </div>
+
+   <div class="x_title"></div>
+   <div class="clearfix"></div>
+
+   <div class="item form-group">
+      <label class="control-label col-md-1 " for="dt_filiacao">Filiação</label>
+      <div class="col-md-2 ">
+         <input id="dt_filiacao"   
+            class="form-control col-md-2 datas_input" 
+            name="dt_filiacao" 
+            placeholder="Data de Filiação" 
+            type="date"
+         >
+      </div>
+
+      <label class="control-label col-md-2 alinha_esquerda" for="dt_regularizacao">Regularização</label>
+      <div class="col-md-2 ">
+         <input id="dt_regularizacao"   
+            class="form-control col-md-2 datas_input" 
+            name="dt_regularizacao" 
+            placeholder="Data de Regularização" 
+            type="date"
          >
       </div>
    </div>

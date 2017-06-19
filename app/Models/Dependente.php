@@ -15,10 +15,11 @@ class Dependente extends Model
 		'no_dependente',
 		'dt_nascimento',
 		'ic_grau_parentesco',
+		'ic_sexo',
 	];
 
 
-    public function irmao()
+    public function membro()
     {
         return $this->belongsTo('App\Models\Membro', 'membro_id');
     }

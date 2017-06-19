@@ -64,7 +64,7 @@
             type="text">
       </div>
 
-      <label class="control-label col-md-1" for="no_naturalidade">Naturalidade*</label>
+      <label class="control-label alinha_esquerda col-md-1" for="no_naturalidade">Naturalidade*</label>
       <div class="col-md-3 ">
          <input  id="no_naturalidade"   
             class="form-control col-md-3" 
@@ -169,7 +169,7 @@
       </div>
 
 
-      <label class="control-label col-md-1 " for="de_profissao">Empregador</label>
+      <label class="control-label alinha_esquerda col-md-1 " for="de_profissao">Empregador</label>
       <div class="col-md-4 ">
          <input id="no_empregador"   
             class="form-control col-md-4 " 

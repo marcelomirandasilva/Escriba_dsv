@@ -14,28 +14,42 @@
          <div class="x_panel panel_dependente"> 
             <div class="item form-group">
 
-               <label class="col-md-2 control-label" for="dependente[0][nome]">Nome</label>
-               <div class="col-md-7">
-                  <input id="dependente[0][nome]" name="dependente[0][nome]" type="text" placeholder="Informe o nome do dependente" class="form-control input-md" >
+               <label class="col-md-1 control-label" for="dependente[0][nome]">Nome</label>
+               <div class="col-md-8">
+                  <input id="dependente[0][nome]" name="dependente[0][nome]" type="text" placeholder="Informe o nome do dependente" class="form-control col-md-8" >
                </div>
+
             </div>
+
             <div class="item form-group">
-               <label class="control-label col-md-2 " for="dependente[0][parentesco]">Parentesco</label>
-               <div class="col-md-3 ">
+               <label class="control-label col-md-1 " for="dependente[0][ic_sexo]">Sexo</label>
+               <div class="col-md-2 ">
+                  <select   name="dependente[0][ic_sexo]" 
+                     id="dependente[0][ic_sexo]" 
+                     class="form-control col-md-2 diminui_espacos datas_input" >
+                     <option value=""  selected style="color: #ccc;"> --- </option>
+                     @foreach($sexos as $ic_sexo)
+                        <option value="{{$ic_sexo}}"> {{$ic_sexo}} </option>    
+                     @endforeach
+                  </select>
+               </div>
+
+               <label class="control-label col-md-1 alinha_esquerda" for="dependente[0][parentesco]">Parentesco</label>
+               <div class="col-md-2">
                   <select   name="dependente[0][parentesco]" 
                      id="dependente[0][parentesco]" 
                      class="form-control col-md-2 diminui_espacos datas_input" >
                      <option value=""  selected style="color: #ccc;"> --- </option>
                      @foreach($grau_parentesco as $ic_parentesco)
-                     <option value="{{$ic_parentesco}}"> {{$ic_parentesco}} </option>    
+                        <option value="{{$ic_parentesco}}"> {{$ic_parentesco}} </option>    
                      @endforeach
                   </select>
                </div>
 
-               <label class="control-label col-md-2 " for="dependente[0][nascimento]">Nascimento</label>
+               <label class="control-label  alinha_esquerda col-md-1" for="dependente[0][nascimento]">Nascimento</label>
                <div class="col-md-2">
                   <input id="dependente[0][nascimento]" 
-                     class="datas_input form-control col-md-2"  
+                     class="form-control col-md-2 datas_input"  
                      name="dependente[0][nascimento]" 
                      placeholder="Data de Nascimento" 
                      type="date">

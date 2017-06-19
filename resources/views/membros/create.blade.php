@@ -33,7 +33,7 @@
          <div class="col-md-12">
             <div class="x_panel modal-content">
                <div class="x_title">
-                  <h2>Cadastro de Irmãos</h2>
+                  <h2>Cadastro de Membros</h2>
                <div class="clearfix"></div>
             </div>
             <!-- conteudo aqui-->
@@ -69,6 +69,11 @@
                            <li role="presentation" class="">      
                               <a href="#tab_content6" role="tab" id="tab_cer" data-toggle="tab">   Cerimonias  </a>
                            </li>
+
+                           <li role="presentation" class="">      
+                              <a href="#tab_content7" role="tab" id="tab_cer" data-toggle="tab">   Comendas  </a>
+                           </li>
+
                         </ul>
 
                         <div id="myTabContent" class="tab-content">
@@ -97,14 +102,18 @@
                               @include('membros/create_cerimonias')
                            </div>
 
+                           <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_cer">
+                              @include('membros/create_comendas')
+                           </div>
+
                         </div>
                      </form>
                      <!-- botoes --> 
                      <div class="ln_solid"></div>
                      <div class="form-group">
                         <div class="col-md-offset-8">
-                           <a href="{{ URL::previous()  }}" class="btn btn-danger">  Cancela     </a>
-                           <button id="send" type="submit" class="btn btn-success">  Confirma    </button>
+                           <a href="{{ URL::previous()  }}" class="btn btn-danger pull-right">  Cancela     </a>
+                           <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
                         </div>
                      </div>
                      <!-- fim botoes --> 
@@ -176,6 +185,67 @@
              document.getElementById("dt_emissao_titulo").disabled = false;
            }
          });
+
+         //desabilita campos de acordo com o grau
+         $("select#ic_grau").change(function(){
+           if($("input#nu_titulo_eleitor").value == "Candidato")
+           {
+               document.getElementById("ic_cim").disabled = true;
+               document.getElementById("dt_iniciacao").disabled = true;
+               document.getElementById("fk_loja_iniciacao").disabled = true;
+               document.getElementById("dt_elevacao").disabled = true;
+               document.getElementById("fk_loja_elevacao").disabled = true;
+               document.getElementById("dt_exaltacao").disabled = true;
+               document.getElementById("fk_loja_exaltacao").disabled = true;
+               document.getElementById("dt_instalacao").disabled = true;
+               document.getElementById("fk_loja_instalacao").disabled = true;
+
+               document.getElementById("dt_filiacao").disabled = true;
+               document.getElementById("dt_regularizacao").disabled = true;
+
+               document.getElementById("nu_ato_benemerito").disable = true;
+               document.getElementById("dt_benemerito").disable = true;
+               document.getElementById("nu_ato_grande_benemerito").disable = true;
+               document.getElementById("dt_grande_benemerito").disable = true;
+               document.getElementById("nu_ato_estrela_distincao").disable = true;
+               document.getElementById("dt_estrela_distincao").disable = true;
+               document.getElementById("nu_ato_cruz_perfeicao").disable = true;
+               document.getElementById("dt_cruz_perfeicao").disable = true;
+               document.getElementById("nu_ato_comenda_pedro").disable = true;
+               document.getElementById("dt_comenda_pedro").disable = true;
+
+           } elseif($("input#nu_titulo_eleitor").value == "Aprendiz") {
+               document.getElementById("ic_cim").disabled = false;
+               document.getElementById("dt_iniciacao").disabled = false;
+               document.getElementById("fk_loja_iniciacao").disabled = false;
+               document.getElementById("dt_elevacao").disabled = true;
+               document.getElementById("fk_loja_elevacao").disabled = true;
+               document.getElementById("dt_exaltacao").disabled = true;
+               document.getElementById("fk_loja_exaltacao").disabled = true;
+               document.getElementById("dt_instalacao").disabled = true;
+               document.getElementById("fk_loja_instalacao").disabled = true;
+
+               document.getElementById("dt_filiacao").disabled = false;
+               document.getElementById("dt_regularizacao").disabled = false;
+
+
+               document.getElementById("nu_ato_benemerito").disable = true;
+               document.getElementById("dt_benemerito").disable = true;
+               document.getElementById("nu_ato_grande_benemerito").disable = true;
+               document.getElementById("dt_grande_benemerito").disable = true;
+               document.getElementById("nu_ato_estrela_distincao").disable = true;
+               document.getElementById("dt_estrela_distincao").disable = true;
+               document.getElementById("nu_ato_cruz_perfeicao").disable = true;
+               document.getElementById("dt_cruz_perfeicao").disable = true;
+               document.getElementById("nu_ato_comenda_pedro").disable = true;
+               document.getElementById("dt_comenda_pedro").disable = true;
+
+
+           }
+         });
+
+
+
 
 
          {{-- coloca a mascara no numero de telefone de contato de acordo com o tipo de telefone escolhido --}}
@@ -354,27 +424,88 @@
       });     
 
 
-
+      //================================================================= AUTOCOMPLETE CERIMONIAS ===========================
       new autoComplete({
-          selector: 'input[name="fk_loja_iniciacao"]',
-          minChars: 1,
-          offsetLeft: 1,
-          delay: 50,
-          source: function(term, suggest){
-               term = term.toLowerCase();
-               var choices = [];
-               @foreach($lojas as $loja)
-                  choices.push('{{$loja->no_loja}}');  
-               @endforeach
+         selector: 'input[name="fk_loja_iniciacao"]',
+         minChars: 1,
+         offsetLeft: 1,
+         delay: 50,
+         source: function(term, suggest){
+            term = term.toLowerCase();
+            var choices = [];
+            @foreach($lojas as $loja)
+               choices.push('{{$loja->no_loja}}');  
+            @endforeach
               
-              var matches = [];
-              for (i=0; i<choices.length; i++)
-                  if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-              suggest(matches);
-          }
+            var matches = [];
+            for (i=0; i<choices.length; i++)
+               if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+                  suggest(matches);
+         }
       });
      
-
+      //--------------------------------------------------------------
+      new autoComplete({
+         selector: 'input[name="fk_loja_elevacao"]',
+         minChars: 1,
+         offsetLeft: 1,
+         delay: 50,
+         source: function(term, suggest){
+            term = term.toLowerCase();
+            var choices = [];
+            @foreach($lojas as $loja)
+               choices.push('{{$loja->no_loja}}');  
+            @endforeach
+              
+            var matches = [];
+            for (i=0; i<choices.length; i++)
+               if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+                  suggest(matches);
+         }
+      });
+     
+      //--------------------------------------------------------------
+      new autoComplete({
+         selector: 'input[name="fk_loja_exaltacao"]',
+         minChars: 1,
+         offsetLeft: 1,
+         delay: 50,
+         source: function(term, suggest){
+            term = term.toLowerCase();
+            var choices = [];
+            @foreach($lojas as $loja)
+               choices.push('{{$loja->no_loja}}');  
+            @endforeach
+              
+            var matches = [];
+            for (i=0; i<choices.length; i++)
+               if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+                  suggest(matches);
+         }
+      });
+     
+      //--------------------------------------------------------------
+      new autoComplete({
+         selector: 'input[name="fk_loja_instalacao"]',
+         minChars: 1,
+         offsetLeft: 1,
+         delay: 50,
+         source: function(term, suggest){
+            term = term.toLowerCase();
+            var choices = [];
+            @foreach($lojas as $loja)
+               choices.push('{{$loja->no_loja}}');  
+            @endforeach
+              
+            var matches = [];
+            for (i=0; i<choices.length; i++)
+               if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+                  suggest(matches);
+         }
+      });
+     
+  
+      //================================================================= AUTOCOMPLETE CERIMONIAS ===========================
 
    </script>
 @endpush

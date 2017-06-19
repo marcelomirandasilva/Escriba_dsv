@@ -28,7 +28,26 @@ class Membro extends Model
         'ic_situacao',
         'ic_escolaridade',
         'de_profissao',
-        'ic_aposentado'
+        'ic_aposentado',
+        
+        'dt_filiacao',
+        'dt_regularizacao',
+
+        'nu_ato_benemerito',
+        'dt_benemerito',
+
+        'nu_ato_grande_benemerito',
+        'dt_grande_benemerito',
+
+        'nu_ato_estrela_distincao',
+        'dt_estrela_distincao',
+
+        'nu_ato_cruz_perfeicao',
+        'dt_cruz_perfeicao',
+        
+        'nu_ato_comenda_pedro',
+        'dt_comenda_pedro',
+        
     ];
 
 
