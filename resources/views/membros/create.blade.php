@@ -47,31 +47,31 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                            
                            <li role="presentation" class="active">
-                              <a href="#tab_content1" role="tab" id="tab_pri" data-toggle="tab">   Principal   </a> 
+                              <a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab">   Principal   </a> 
                            </li>
                            
                            <li role="presentation" class="">      
-                              <a href="#tab_content2" role="tab" id="tab_doc" data-toggle="tab">   Documentos  </a>
+                              <a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab">   Documentos  </a>
                            </li>
                            
                            <li role="presentation" class="">      
-                              <a href="#tab_content3" role="tab" id="tab_end" data-toggle="tab">   Endereços   </a>
+                              <a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab">   Endereços   </a>
                            </li>
                            
                            <li role="presentation" class="">      
-                              <a href="#tab_content4" role="tab" id="tab_con" data-toggle="tab">   Contatos    </a>
+                              <a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab">   Contatos    </a>
                            </li>
                            
                            <li role="presentation" class="">      
-                              <a href="#tab_content5" role="tab" id="tab_dep" data-toggle="tab">   Dependentes </a>
+                              <a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab">   Dependentes </a>
                            </li>
                            
                            <li role="presentation" class="">      
-                              <a href="#tab_content6" role="tab" id="tab_cer" data-toggle="tab">   Cerimonias  </a>
+                              <a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab">   Cerimonias  </a>
                            </li>
 
                            <li role="presentation" class="">      
-                              <a href="#tab_content7" role="tab" id="tab_cer" data-toggle="tab">   Comendas  </a>
+                              <a href="#tab_content7" role="tab" id="tab_comendas" data-toggle="tab">   Comendas  </a>
                            </li>
 
                         </ul>
@@ -102,7 +102,7 @@
                               @include('membros/create_cerimonias')
                            </div>
 
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_cer">
+                           <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_comendas">
                               @include('membros/create_comendas')
                            </div>
 
@@ -186,13 +186,57 @@
            }
          });
 
+         // $("select#ic_grau").change(function(){ 
+
+         //       //console.log($(this).val()); 
+
+         //       //console.log($("select#ic_grau").value))
+
+         //       if($("select#ic_grau").val() == "Candidato")
+         //       {
+         //          console.log("Candidato");
+         //       };
+
+         // });
+
          //desabilita campos de acordo com o grau
-         $("select#ic_grau").change(function(){
-           if($("input#nu_titulo_eleitor").value == "Candidato")
-           {
-               document.getElementById("ic_cim").disabled = true;
-               document.getElementById("dt_iniciacao").disabled = true;
-               document.getElementById("fk_loja_iniciacao").disabled = true;
+
+
+
+
+
+         $("select#ic_grau").change(function(){ 
+            console.log("mudou");
+
+            var valor = $(this).val();
+            
+            $("#tab_cerimonias" ).show();
+            $("#tab_comendas" ).show();                  
+
+            document.getElementById("dt_filiacao").disabled = false;
+            document.getElementById("dt_regularizacao").disabled = false;
+            document.getElementById("co_cim").disabled = false;
+
+
+            document.getElementById("dt_iniciacao").disabled = false;
+            document.getElementById("fk_loja_iniciacao").disabled = false;
+            document.getElementById("dt_elevacao").disabled = false;
+            document.getElementById("fk_loja_elevacao").disabled = false;
+            document.getElementById("dt_exaltacao").disabled = false;
+            document.getElementById("fk_loja_exaltacao").disabled = false;
+            document.getElementById("dt_instalacao").disabled = false;
+            document.getElementById("fk_loja_instalacao").disabled = false;
+
+
+            if (valor == "Candidato"){
+               document.getElementById("co_cim").disabled = true;
+               $("#tab_cerimonias" ).hide();
+               $("#tab_comendas" ).hide();                  
+               
+            } else if (valor == "Aprendiz"){
+
+               $("#tab_comendas" ).hide();                  
+               
                document.getElementById("dt_elevacao").disabled = true;
                document.getElementById("fk_loja_elevacao").disabled = true;
                document.getElementById("dt_exaltacao").disabled = true;
@@ -200,51 +244,21 @@
                document.getElementById("dt_instalacao").disabled = true;
                document.getElementById("fk_loja_instalacao").disabled = true;
 
-               document.getElementById("dt_filiacao").disabled = true;
-               document.getElementById("dt_regularizacao").disabled = true;
+            } else if (valor == "Companheiro"){
 
-               document.getElementById("nu_ato_benemerito").disable = true;
-               document.getElementById("dt_benemerito").disable = true;
-               document.getElementById("nu_ato_grande_benemerito").disable = true;
-               document.getElementById("dt_grande_benemerito").disable = true;
-               document.getElementById("nu_ato_estrela_distincao").disable = true;
-               document.getElementById("dt_estrela_distincao").disable = true;
-               document.getElementById("nu_ato_cruz_perfeicao").disable = true;
-               document.getElementById("dt_cruz_perfeicao").disable = true;
-               document.getElementById("nu_ato_comenda_pedro").disable = true;
-               document.getElementById("dt_comenda_pedro").disable = true;
-
-           } elseif($("input#nu_titulo_eleitor").value == "Aprendiz") {
-               document.getElementById("ic_cim").disabled = false;
-               document.getElementById("dt_iniciacao").disabled = false;
-               document.getElementById("fk_loja_iniciacao").disabled = false;
-               document.getElementById("dt_elevacao").disabled = true;
-               document.getElementById("fk_loja_elevacao").disabled = true;
+               $("#tab_comendas" ).hide();                  
+             
                document.getElementById("dt_exaltacao").disabled = true;
                document.getElementById("fk_loja_exaltacao").disabled = true;
                document.getElementById("dt_instalacao").disabled = true;
                document.getElementById("fk_loja_instalacao").disabled = true;
 
-               document.getElementById("dt_filiacao").disabled = false;
-               document.getElementById("dt_regularizacao").disabled = false;
-
-
-               document.getElementById("nu_ato_benemerito").disable = true;
-               document.getElementById("dt_benemerito").disable = true;
-               document.getElementById("nu_ato_grande_benemerito").disable = true;
-               document.getElementById("dt_grande_benemerito").disable = true;
-               document.getElementById("nu_ato_estrela_distincao").disable = true;
-               document.getElementById("dt_estrela_distincao").disable = true;
-               document.getElementById("nu_ato_cruz_perfeicao").disable = true;
-               document.getElementById("dt_cruz_perfeicao").disable = true;
-               document.getElementById("nu_ato_comenda_pedro").disable = true;
-               document.getElementById("dt_comenda_pedro").disable = true;
-
-
-           }
+            } else if (valor == "Mestre"){
+               
+               document.getElementById("dt_instalacao").disabled = true;
+               document.getElementById("fk_loja_instalacao").disabled = true;
+            }
          });
-
-
 
 
 

@@ -15,6 +15,19 @@
          >
       </div>
 
+      <label class="control-label col-md-1 " for="ic_grau"> Grau* </label>
+      <div class="col-md-2">
+         <select name="ic_grau" 
+            id="ic_grau" 
+            class="form-control col-md-1" 
+            required="required" >
+            <option value=""  selected style="color: #ccc;"> --- </option>
+            @foreach($grau as $ic_grau)
+               <option value="{{$ic_grau}}"> {{$ic_grau}} </option>    
+            @endforeach
+         </select>
+      </div>
+      
       <label class="control-label col-md-1" for="co_cim">CIM*</label>
       <div  class="col-md-2" >
          <input  id="co_cim"   
@@ -26,18 +39,7 @@
          >
       </div>
 
-      <label class="control-label col-md-1 " for="ic_grau"> Grau* </label>
-      <div class="col-md-2">
-         <select   name="ic_grau" 
-            id="ic_grau" 
-            class="form-control col-md-1" 
-            required="required" >
-            <option value=""  selected style="color: #ccc;"> --- </option>
-            @foreach($grau as $ic_grau)
-               <option value="{{$ic_grau}}"> {{$ic_grau}} </option>    
-            @endforeach
-         </select>
-      </div>
+      
    </div>
 
    <!-- NASCIMENTO, ESTADO CIVIL, ESCOLARIDADE, PROFISSÃO ------------------------------------>
