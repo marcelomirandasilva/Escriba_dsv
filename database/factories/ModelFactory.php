@@ -161,8 +161,7 @@ $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 	$faker = Faker\Factory::create('pt_BR');
 
 	return [
-		//'pais_id'			=> 1,
-		'pais_id'			=> App\Models\Pais::all()->random()->id,
+		'no_pais'			=> $faker->country, //App\Models\Pais::all()->random()->id,
 		'sg_uf'			 	=> $faker->stateAbbr,
 		'no_municipio'	 	=> $faker->city,
 		'no_bairro'			=> $faker->cityPrefix,
