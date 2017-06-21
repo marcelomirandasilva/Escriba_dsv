@@ -33,7 +33,7 @@
          <div class="col-md-12">
             <div class="x_panel modal-content">
                <div class="x_title">
-                  <h2>Cadastro de Membros</h2>
+                  <h2> {{ $titulo }} </h2>
                <div class="clearfix"></div>
             </div>
             <!-- conteudo aqui-->

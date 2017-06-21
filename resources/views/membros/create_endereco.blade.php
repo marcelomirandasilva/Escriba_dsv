@@ -13,13 +13,17 @@
             name="pais_id" 
             placeholder="Nome do Pais" >
 
+            
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
-                  @if ( $loja->endereco->pais == $pais)
+               
+                  @if ($membro->endereco->pais == $pais)
                      <option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>
                   @else
                      <option value="{{$pais->id}}"> {{$pais->no_pais}} </option>    
                   @endif
+
+
                @endforeach
             @else
                @foreach($paises as $pais)
@@ -32,7 +36,7 @@
             @endif
          </select>
       </div> 
-
+      
       <!-- CEP-->
       <label class="col-md-1 control-label" for="nu_cep">CEP</label>
       <div class="col-md-2">
@@ -41,7 +45,7 @@
                type="text" 
                placeholder="99.999-999" 
                class="form-control input-md cep" 
-               value="{{$loja->endereco->nu_cep or old('nu_cep')}}" >
+               value="{{$membro->endereco->nu_cep or old('nu_cep')}}" >
 
       </div>
 
@@ -52,7 +56,7 @@
                name="sg_uf" 
                type="text"  
                class="form-control input-md uf"
-               value="{{$loja->endereco->sg_uf or old('sg_uf')}}" >
+               value="{{$membro->endereco->sg_uf or old('sg_uf')}}" >
       </div>
 
 
@@ -63,7 +67,7 @@
                name="no_municipio" 
                type="text" 
                class="form-control input-md" 
-               value="{{$loja->endereco->no_municipio or old('no_municipio')}}" >
+               value="{{$membro->endereco->no_municipio or old('no_municipio')}}" >
       </div>
    </div>
    <div class="item form-group">
@@ -75,7 +79,7 @@
                type="text" 
                placeholder="Centro" 
                class="form-control input-md"
-               value="{{$loja->endereco->no_bairro or old('no_bairro')}}" >
+               value="{{$membro->endereco->no_bairro or old('no_bairro')}}" >
       </div>
 
 
@@ -87,7 +91,7 @@
                type="text" 
                placeholder="Av, Rua, Travessa..." 
                class="form-control input-md"
-               value="{{$loja->endereco->no_logradouro or old('no_logradouro')}}" >
+               value="{{$membro->endereco->no_logradouro or old('no_logradouro')}}" >
       </div>
 
    </div>
@@ -101,7 +105,7 @@
                type="text" 
                placeholder="999" 
                class="form-control input-md"
-               value="{{$loja->endereco->nu_logradouro or old('nu_logradouro')}}" >
+               value="{{$membro->endereco->nu_logradouro or old('nu_logradouro')}}" >
       </div>
 
       {{-- Complemento --}}
@@ -112,7 +116,7 @@
                type="text" 
                placeholder="Ap., Fundos,..." 
                class="form-control input-md"
-               value="{{$loja->endereco->de_complemento or old('de_complemento')}}" >
+               value="{{$membro->endereco->de_complemento or old('de_complemento')}}" >
       </div>
    </div>   
 
@@ -132,14 +136,14 @@
       {{-- Logradouro, Número, Complemento --}}
       <label class="control-label col-md-1 " for="pais_id">Pais</label>
       <div class="col-md-2 ">
-         <select id="pais_id"   
+{{--          <select id="pais_id"   
             class="form-control col-md-2" 
             name="pais_id" 
             placeholder="Nome do Pais">
 
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
-                  @if ( $loja->endereco->pais == $pais)
+                  @if ( $membro->endereco->pais == $pais)
                      <option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>
                   @else
                      <option value="{{$pais->id}}"> {{$pais->no_pais}} </option>    
@@ -154,7 +158,7 @@
                   @endif
                @endforeach
             @endif
-         </select>
+         </select> --}}
       </div> 
 
       <!-- CEP-->
@@ -165,7 +169,7 @@
                type="text" 
                placeholder="99.999-999" 
                class="form-control input-md cep" 
-               value="{{$loja->endereco->nu_cep or old('nu_cep')}}" >
+               value="{{$membro->endereco->nu_cep or old('nu_cep')}}" >
 
       </div>
 
@@ -176,7 +180,7 @@
                name="sg_uf" 
                type="text"  
                class="form-control input-md uf"
-               value="{{$loja->endereco->sg_uf or old('sg_uf')}}" >
+               value="{{$membro->endereco->sg_uf or old('sg_uf')}}" >
       </div>
 
 
@@ -187,7 +191,7 @@
                name="no_municipio" 
                type="text" 
                class="form-control input-md" 
-               value="{{$loja->endereco->no_municipio or old('no_municipio')}}" >
+               value="{{$membro->endereco->no_municipio or old('no_municipio')}}" >
       </div>
    </div>
    <div class="item form-group">
@@ -199,7 +203,7 @@
                type="text" 
                placeholder="Centro" 
                class="form-control input-md"
-               value="{{$loja->endereco->no_bairro or old('no_bairro')}}" >
+               value="{{$membro->endereco->no_bairro or old('no_bairro')}}" >
       </div>
 
 
@@ -211,7 +215,7 @@
                type="text" 
                placeholder="Av, Rua, Travessa..." 
                class="form-control input-md"
-               value="{{$loja->endereco->no_logradouro or old('no_logradouro')}}" >
+               value="{{$membro->endereco->no_logradouro or old('no_logradouro')}}" >
       </div>
 
    </div>
@@ -225,7 +229,7 @@
                type="text" 
                placeholder="999" 
                class="form-control input-md"
-               value="{{$loja->endereco->nu_logradouro or old('nu_logradouro')}}" >
+               value="{{$membro->endereco->nu_logradouro or old('nu_logradouro')}}" >
       </div>
 
       {{-- Complemento --}}
@@ -236,7 +240,7 @@
                type="text" 
                placeholder="Ap., Fundos,..." 
                class="form-control input-md"
-               value="{{$loja->endereco->de_complemento or old('de_complemento')}}" >
+               value="{{$membro->endereco->de_complemento or old('de_complemento')}}" >
       </div>
    </div>   
 </div>

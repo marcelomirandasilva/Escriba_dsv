@@ -12,6 +12,7 @@
             required="required" 
             type="text"
             autofocus
+            value="{{$membro->no_membro or old('no_membro')}}" 
          >
       </div>
 

@@ -157,8 +157,7 @@ class LojaController extends Controller
      */
     public function edit($id)
     {
-        
-        //dd($id);
+
         $potencias  = Potencia::all()->sortBy('no_potencia');
         $paises     = Pais::all()->sortBy('no_pais');        
         $ritos      = pegaValorEnum('loja','ic_rito') ;
@@ -168,6 +167,9 @@ class LojaController extends Controller
         $edita = true;
 
         $titulo = "Edição da Loja: {$loja->co_titulo} {$loja->no_loja} N°{$loja->nu_loja}";
+
+        //dd($loja->endereco->pais_id);
+
 
         return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo','edita'));
 

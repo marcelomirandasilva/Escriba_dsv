@@ -21,7 +21,7 @@
             class="btn-circulo btn btn-primary btn-md   pull-right " 
             data-toggle="tooltip"  
             data-placement="bottom" 
-            title="Adiciona um Irmão">
+            title="Adiciona um Membro">
             <span class="fa fa-plus">  </span>
           </a>
           <div class="clearfix"></div>
@@ -60,7 +60,7 @@
                         <i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
                       </a>
 
-                      <a href="{{ url("membros/edit/$membro->id") }}"
+                      <a href="{{ url("membros/$membro->id/edit") }}"
                         class="btn btn-warning btn-xs action botao_lista  " 
                         data-toggle="tooltip" 
                         data-placement="bottom" 
