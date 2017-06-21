@@ -82,7 +82,7 @@
 										class="form-control "
 										type="text"
 										
-										value="{{ $loja->no_loja or old('no_loja')}}" 
+										value="{{$loja->no_loja or old('no_loja')}}" 
 										
 									>
 								</div>
@@ -102,7 +102,7 @@
 										min="0"
        								max="9999999"
        								step="1"
-										value="{{ $loja->nu_loja or old('nu_loja')}}" 
+										value="{{$loja->nu_loja or old('nu_loja')}}" 
 									>
 								</div>
 							</div>

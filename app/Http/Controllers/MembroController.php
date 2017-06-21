@@ -38,24 +38,20 @@ class MembroController extends Controller
 
     public function create()
     {
-        $estado_civil   = ['Solteiro','Casado', 'Divorciado','Viúvo','Separado','União estável'];
-        $grau           = ['Aprendiz', 'Companheiro','Mestre','M. Instalado','Candidato'];
-        $situacao       = ['Regular','Suspenso', 'Orietnte Eterno','YYYYYYYYY','ZZZZZZZZZ'];
-        $escolaridade   = ['Fundamental - Incompleto','Fundamental - Completo','Médio - Incompleto','Médio - Completo',
-                            'Superior - Incompleto','Superior - Completo','Pós-graduação - Incompleto',
-                            'Pós-graduação - Completo','Mestrado - Incompleto','Mestrado - Completo',
-                            'Doutorado - Incompleto','Doutorado - Completo'];
-
-        $aposentado     = ['Sim','Não'];
 
 
-        $grau_parentesco  = ['Avós','Bisavós','Bisneto(a)','Companheira','Enteado(a)','Esposa','Ex-esposa','Filho(a)',
-                             'Irmão(ã)','Neto(a)','Pais','Outras'];  
+        $titulo = "Cadastro de Membros";
 
+        $aposentado         = ['Sim','Não'];
 
-        $tipo_telefone    = pegaValorEnum('telefone','ic_telefone'); 
-
-        $sexos      = pegaValorEnum('dependente','ic_sexo'); 
+        $grau_parentesco    = pegaValorEnum('membro','ic_escolaridade');
+        $escolaridade       = pegaValorEnum('membro','ic_escolaridade');                                                   
+        $situacao           = pegaValorEnum('membro','ic_situacao');                                                   
+        $grau               = pegaValorEnum('membro','ic_grau');                      
+        $estado_civil       = pegaValorEnum('membro','ic_estado_civil'); 
+        $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
+        $sexos              = pegaValorEnum('dependente','ic_sexo'); 
+        $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -64,15 +60,12 @@ class MembroController extends Controller
         //sort($escolaridade);
         sort($grau_parentesco);
 
-        $titulo = "Cadastro de Membros";
-
         $paises     = Pais::all()->sortBy('no_pais');        
 
         $lojas      = Loja::all()->sortBy('no_loja');       
 
         return view('membros.create',compact([   'estado_civil','grau','situacao','escolaridade','aposentado','paises',
-                                                 'titulo','grau_parentesco','tipo_telefone','lojas','sexos'
-                                             ]));
+                                                 'titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
 
     }
 
@@ -94,24 +87,18 @@ class MembroController extends Controller
         $membro = $this->membro->find($id);
 
         $edita = true;
-        $titulo = "Edição de Membro: {$membro->no_membro} {$membro->nu_cim}";
-
-        $estado_civil       = ['Solteiro','Casado', 'Divorciado','Viúvo','Separado','União estável'];
-        $grau               = ['Aprendiz', 'Companheiro','Mestre','M. Instalado','Candidato'];
-        $situacao           = ['Regular','Suspenso', 'Orietnte Eterno','YYYYYYYYY','ZZZZZZZZZ'];
-        $escolaridade       = ['Fundamental - Incompleto','Fundamental - Completo','Médio - Incompleto','Médio - Completo',
-                            'Superior - Incompleto','Superior - Completo','Pós-graduação - Incompleto',
-                            'Pós-graduação - Completo','Mestrado - Incompleto','Mestrado - Completo',
-                            'Doutorado - Incompleto','Doutorado - Completo'];
+        $titulo = "Edição de Membro";
 
         $aposentado         = ['Sim','Não'];
 
-
-        $grau_parentesco    = ['Avós','Bisavós','Bisneto(a)','Companheira','Enteado(a)','Esposa','Ex-esposa','Filho(a)',
-                             'Irmão(ã)','Neto(a)','Pais','Outras'];  
-
+        $grau_parentesco    = pegaValorEnum('membro','ic_escolaridade');
+        $escolaridade       = pegaValorEnum('membro','ic_escolaridade');                                                   
+        $situacao           = pegaValorEnum('membro','ic_situacao');                                                   
+        $grau               = pegaValorEnum('membro','ic_grau');                      
+        $estado_civil       = pegaValorEnum('membro','ic_estado_civil'); 
         $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
         $sexos              = pegaValorEnum('dependente','ic_sexo'); 
+        $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -120,16 +107,13 @@ class MembroController extends Controller
         //sort($escolaridade);
         sort($grau_parentesco);
 
-      
         $paises     = Pais::all()->sortBy('no_pais');        
 
         $lojas      = Loja::all()->sortBy('no_loja');       
 
- 
         
         return view('membros.create',compact([ 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo',
-                                                'grau_parentesco','tipo_telefone','lojas','sexos','edita','membro'
-                                            ]));
+                                                'grau_parentesco','tipo_telefone','lojas','sexos','edita','membro']));
 
         
     }

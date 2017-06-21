@@ -52,7 +52,7 @@ class Membro extends Model
 
 
 
-    public function endereco()
+    public function enderecos()
     {
         return $this->hasMany('App\Models\Endereco');
     }

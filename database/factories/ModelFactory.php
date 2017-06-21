@@ -24,6 +24,68 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 
 	$faker = Faker\Factory::create('pt_BR');
 
+	// ESTADO CIVIL
+	$v_estado_civil = $faker->randomElement(['Solteiro','Casado','Divorciado','Viúvo','Separado','União estável']);
+
+	// DATA CASAMENTO
+	if ($v_estado_civil == 'Casado') {
+		$v_data_casamento = $faker->date('Y-m-d', '-18 years');
+	}else{
+		$v_data_casamento = null;
+	}
+
+	//GRAU
+	$v_grau = $faker->randomElement(['Candidato','Aprendiz','Companheiro','Mestre','M.Instalado']);
+	
+	$v_dt_iniciacao          = null;
+	$v_loja_id_iniciacao     = null;
+	$v_dt_elevacao           = null;
+	$v_loja_id_elevacao      = null;
+	$v_dt_exaltacao          = null;
+	$v_loja_id_exaltacao     = null;
+	$v_dt_instalacao         = null;
+	$v_loja_id_instalacao    = null;
+
+
+
+	switch ($v_grau) {
+
+    case 'Aprendiz':
+		$v_dt_iniciacao          = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_iniciacao     = $faker->numberBetween($min = 1, $max = 5);
+
+        break;
+
+    case 'Companheiro':
+        $v_dt_iniciacao          = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_iniciacao     = $faker->numberBetween($min = 1, $max = 5);
+		$v_dt_elevacao           = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_elevacao      = $faker->numberBetween($min = 1, $max = 5);
+        break;
+
+    case 'Mestre':
+        $v_dt_iniciacao          = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_iniciacao     = $faker->numberBetween($min = 1, $max = 5);
+		$v_dt_elevacao           = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_elevacao      = $faker->numberBetween($min = 1, $max = 5);
+		$v_dt_exaltacao          = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_exaltacao     = $faker->numberBetween($min = 1, $max = 5);
+        break;
+
+    case 'M.Instalado':
+	    $v_dt_iniciacao          = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_iniciacao     = $faker->numberBetween($min = 1, $max = 5);
+		$v_dt_elevacao           = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_elevacao      = $faker->numberBetween($min = 1, $max = 5);
+		$v_dt_exaltacao          = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_exaltacao     = $faker->numberBetween($min = 1, $max = 5);
+		$v_dt_instalacao         = $faker->date($format = 'Y-m-d', $max = 'now');
+		$v_loja_id_instalacao    = $faker->numberBetween($min = 1, $max = 5);
+        break;
+
+}
+
+
 	return [
 
 		'no_membro'             => $faker->name,
@@ -34,39 +96,36 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 		'nu_cpf'                => $faker->cpf(false),
 		'nu_identidade'         => $faker->rg,
 		'dt_emissao_idt'		=> $faker->date('Y-m-d', '-18 years'),
-		//'no_orgao_emissor_idt'	=> $faker->randomElement(['DETRAN', 'IFP', 'Marinha do Brasil']),
+		'no_orgao_emissor_idt'	=> $faker->randomElement(['DETRAN', 'IFP', 'Marinha do Brasil']),
 		'nu_titulo_eleitor'		=> $faker->randomNumber(9),
 		'dt_emissao_titulo'		=> $faker->date('Y-m-d', '-18 years'),
 		'nu_zona_eleitoral'		=> $faker->randomNumber(5),
 
 
-		//'ic_estado_civil'       => $faker->randomElement(['Solteiro','Casado','Divorciado','Viúvo','Separado','União estável']),
+		'ic_estado_civil'       => $v_estado_civil,
 
-		'dt_casamento'			=> $faker->date('Y-m-d', '-18 years'),
+		'dt_casamento'			=> $v_data_casamento,
 		'no_profissao'			=> $faker->jobTitle,
 		'ic_aposentado'			=> $faker->randomElement(['Não', 'Sim']),
 		'no_empregador'			=> $faker->company,
 		'no_pai'				=> $faker->name($gender = 'male'),  
 		'no_mae'				=> $faker->name($gender = 'female'),  
 
-		'ic_grau'               => $faker->randomElement(['Profano','Aprendiz','Companheiro','Mestre','M.Instalado']),
+		'ic_grau'               => $v_grau,
 
 
-//		'dt_iniciacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-//		'loja_id_iniciacao'     =>$faker->numberBetween($min = 1, $max = 5),
-//
-//		'dt_elevacao'           =>$faker->date($format = 'Y-m-d', $max = 'now'),
-//		'loja_id_elevacao'      =>$faker->numberBetween($min = 1, $max = 5),
-//
-//		'dt_exaltacao'          =>$faker->date($format = 'Y-m-d', $max = 'now'),
-//		'loja_id_exaltacao'     =>$faker->numberBetween($min = 1, $max = 5),
-//
-//		'dt_instalacao'         =>$faker->date($format = 'Y-m-d', $max = 'now'),
-//		'loja_id_instalacao'    =>$faker->numberBetween($min = 1, $max = 5),
+		'dt_iniciacao'          =>$v_dt_iniciacao,
+		'loja_id_iniciacao'     =>$v_loja_id_iniciacao,
+		'dt_elevacao'           =>$v_dt_elevacao,
+		'loja_id_elevacao'      =>$v_loja_id_elevacao,
+		'dt_exaltacao'          =>$v_dt_exaltacao,
+		'loja_id_exaltacao'     =>$v_loja_id_exaltacao,
+		'dt_instalacao'         =>$v_dt_instalacao,
+		'loja_id_instalacao'    =>$v_loja_id_instalacao,
 
 
 
-		'ic_situacao'           => $faker->randomElement(['Regular','Suspenso','XXXXXXXXX','YYYYYYYYY','ZZZZZZZZZ']),
+		'ic_situacao'           => $faker->randomElement(['Regular','Suspenso','Ativo','Oriente Eterno','Quit Placet']),
 
 		'ic_escolaridade'       => $faker->randomElement(['Fundamental - Incompleto','Fundamental - Completo',
 																			'Médio - Incompleto','Médio - Completo',
@@ -76,7 +135,7 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 																			'Doutorado - Incompleto','Doutorado - Completo'
 																		]),
 
-		'no_profissao'          => $faker->jobTitle,
+
 
 		'ic_aposentado'         => $faker->randomElement($array = array ('Não', 'Sim')),
 	];
