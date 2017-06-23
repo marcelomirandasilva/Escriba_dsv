@@ -2,124 +2,104 @@
    <div class="clearfix"></div>
 
    <div class="item form-group">
-      <label class="control-label col-md-4 alinha_esquerda" for="nu_ato_benemerito">Benemérito da Ordem - Ato nº </label>
+    
+
+      <label class="control-label col-md-2 " for="ic_condecoracao">Condecoração</label>
+      <div class="col-md-4 ">
+         <select id="ic_condecoracao"   
+            class="form-control col-md-4 " 
+            name="ic_condecoracao" 
+            type="text"
+            data-live-search="true"
+            style="width:90%;"/>
+
+            @foreach($condecoracoes as $condecoracao)
+                  <option value="{{$condecoracao}}"> {{$condecoracao}} </option>  
+            @endforeach
+         </select>
+      </div>
+
+
+      <label class="control-label col-md-1 alinha_esquerda" for="nu_ato">Ato nº </label>
       <div class="col-md-1 ">
-         <input id="nu_ato_benemerito"   
+         <input id="nu_ato"   
             class="form-control col-md-2 datas_input" 
-            name="nu_ato_benemerito" 
+            name="nu_ato" 
             placeholder="999.999" 
             data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" 
          >
       </div>
 
-      <label class="control-label col-md-1 alinha_esquerda" for="dt_benemerito">de</label>
+      <label class="control-label col-md-1 alinha_esquerda" for="dt_condecoracao">Data </label>
       <div class="col-md-2 ">
-         <input id="dt_benemerito"   
+         <input id="dt_condecoracao"   
             class="form-control col-md-2 datas_input" 
-            name="dt_benemerito" 
-            placeholder="Data de Benemérito da Ordem" 
+            name="dt_condecoracao" 
             type="date"
          >
       </div>
-   </div>
 
+
+         <div class="col-md-1 ">
+            <button type="button" onclick="add_cond()"
+               name="cad_condecoracao"
+               id="cad_condecoracao"
+               class="btn btn-default btn-circulo   glyphicon glyphicon-plus" 
+               title="Inclui essa condecoração">  
+            </button>
+         </div>
+   </div>
    
-   <div class="item form-group">
-      <label class="control-label col-md-4 alinha_esquerda" for="nu_ato_grande_benemerito">Grande Benemérito da Ordem - Ato nº </label>
-      <div class="col-md-1 ">
-         <input id="nu_ato_grande_benemerito"   
-            class="form-control col-md-2 datas_input" 
-            name="nu_ato_grande_benemerito" 
-            placeholder="999.999" 
-            data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" 
-         >
+   <div class="x_content ">
+      <div class="panel-body">
+         <table class="table table-bordered table-striped " id="tabela_condecoracoes">
+              <thead>
+                <tr>
+                  <th> Condecoração    </th>
+                  <th> Ato             </th>
+                  <th> Data            </th>
+                  <th> Ações           </th>
+                </tr>
+              </thead>
+              <tbody>
+               
+              </tbody>
+         </table>
       </div>
-
-      <label class="control-label col-md-1 alinha_esquerda" for="dt_grande_benemerito">de</label>
-      <div class="col-md-2 ">
-         <input id="dt_grande_benemerito"   
-            class="form-control col-md-2 datas_input" 
-            name="dt_grande_benemerito" 
-            type="date"
-         >
-      </div>
-   </div>
-
-
-   <div class="item form-group">
-      <label class="control-label col-md-4 alinha_esquerda" for="nu_ato_estrela_distincao">Estrela da Distinção Maçônica - Ato nº </label>
-      <div class="col-md-1 ">
-         <input id="nu_ato_estrela_distincao"   
-            class="form-control col-md-2 datas_input" 
-            name="nu_ato_estrela_distincao" 
-            placeholder="999.999" 
-            data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" 
-         >
-      </div>
-
-      <label class="control-label col-md-1 alinha_esquerda" for="dt_estrela_distincao">de</label>
-      <div class="col-md-2 ">
-         <input id="dt_estrela_distincao"   
-            class="form-control col-md-2 datas_input" 
-            name="dt_estrela_distincao" 
-            type="date"
-         >
-      </div>
-   </div>
-
-
-   <div class="item form-group">
-      <label class="control-label col-md-4 alinha_esquerda" for="nu_ato_cruz_perfeicao">Cruz da Perfeição Maçônica - Ato nº </label>
-      <div class="col-md-1 ">
-         <input id="nu_ato_cruz_perfeicao"   
-            class="form-control col-md-2 datas_input" 
-            name="nu_ato_cruz_perfeicao" 
-            placeholder="999.999" 
-            data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" 
-         >
-      </div>
-
-      <label class="control-label col-md-1 alinha_esquerda" for="dt_cruz_perfeicao">de</label>
-      <div class="col-md-2 ">
-         <input id="dt_cruz_perfeicao"   
-            class="form-control col-md-2 datas_input" 
-            name="dt_cruz_perfeicao" 
-            type="date"
-         >
-      </div>
-   </div>
-
-
-   <div class="item form-group">
-      <label class="control-label col-md-4 alinha_esquerda" for="nu_ato_comenda_pedro">Cruz Dom Pedro I - Ato nº </label>
-      <div class="col-md-1 ">
-         <input id="nu_ato_comenda_pedro"   
-            class="form-control col-md-2 datas_input" 
-            name="nu_ato_comenda_pedro" 
-            placeholder="999.999" 
-            data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" 
-         >
-      </div>
-
-      <label class="control-label col-md-1 alinha_esquerda" for="dt_comenda_pedro">de</label>
-      <div class="col-md-2 ">
-         <input id="dt_comenda_pedro"   
-            class="form-control col-md-2 datas_input" 
-            name="dt_comenda_pedro" 
-            type="date"
-         >
-      </div>
-   </div>
-
-
-
-
+   </div>      
 
 </div>
 
+@push('scripts')
+  <script type="text/javascript">
 
-</div>
+      function add_cond() {
+      
+         var newRow = $("<tr>");
+         var cols = "";
 
+         cols += '<td>';
+         
+         cols +=  document.getElementById('ic_condecoracao').value;
+         cols += '<td>';
 
+         
+         cols +=  document.getElementById('nu_ato').value;
+         cols += '<td>';
 
+         
+         cols +=  document.getElementById('dt_condecoracao').value;
+         cols += '<td>';
 
+         
+         cols += '<button onclick="RemoveTableRow(this)" type="button">Remover</button>';
+         cols += '</td>';
+
+         newRow.append(cols);
+         $("#tabela_condecoracoes").append(newRow);
+
+         return false;
+      };
+
+   </script>
+@endpush

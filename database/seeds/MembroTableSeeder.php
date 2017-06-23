@@ -25,6 +25,9 @@ class MembroTableSeeder extends Seeder
 
             // Criar 2 emails
             $membro->email()->saveMany(factory(App\Models\Email::class, 2)->make());
+
+            // Criar 4 condecorações
+            $membro->condecoracao()->saveMany(factory(App\Models\Condecoracao::class, 4)->make());
         });
     }
 }

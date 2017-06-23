@@ -229,3 +229,27 @@ $factory->define(App\Models\Dependente::class, function(Faker\Generator $faker) 
 	];
 
 });
+
+
+$factory->define(App\Models\Condecoracao::class, function(Faker\Generator $faker) {
+
+	$faker = Faker\Factory::create('pt_BR');
+
+	return [
+
+		'ic_condecoracao'	=> $faker->randomElement(['Honorário',
+                                            'Remido',
+                                            'Emérito',
+                                            'Benemérito',
+                                            'Grande Benemérito',
+                                            'Maçom Notável',
+                                            'Estrela da Distinção Maçônica',
+                                            'Cruz da Perfeição Maçônica',
+                                            'Comenda Dom Pedro I']),
+ 
+ 		'nu_ato'   			=> $faker->randomNumber(3),
+ 		'dt_condecoracao'   => $faker->date('Y-m-d'),
+
+	];
+
+});

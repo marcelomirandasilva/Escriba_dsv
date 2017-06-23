@@ -44,7 +44,6 @@ class MembroController extends Controller
 
         $aposentado         = ['Sim','Não'];
 
-        $grau_parentesco    = pegaValorEnum('membro','ic_escolaridade');
         $escolaridade       = pegaValorEnum('membro','ic_escolaridade');                                                   
         $situacao           = pegaValorEnum('membro','ic_situacao');                                                   
         $grau               = pegaValorEnum('membro','ic_grau');                      
@@ -52,6 +51,7 @@ class MembroController extends Controller
         $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
         $sexos              = pegaValorEnum('dependente','ic_sexo'); 
         $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
+        $condecoracoes      = pegaValorEnum('condecoracao','ic_condecoracao'); 
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -62,10 +62,12 @@ class MembroController extends Controller
 
         $paises     = Pais::all()->sortBy('no_pais');        
 
-        $lojas      = Loja::all()->sortBy('no_loja');       
+        $lojas      = Loja::all()->sortBy('no_loja');    
+
+        //dd($condecoracoes)   ;
 
         return view('membros.create',compact([   'estado_civil','grau','situacao','escolaridade','aposentado','paises',
-                                                 'titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
+                                                 'titulo','grau_parentesco','tipo_telefone','lojas','sexos','condecoracoes']));
 
     }
 
@@ -99,6 +101,7 @@ class MembroController extends Controller
         $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
         $sexos              = pegaValorEnum('dependente','ic_sexo'); 
         $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
+        $condecoracoes      = pegaValorEnum('condecoracao','ic_condecoracao'); 
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -113,7 +116,7 @@ class MembroController extends Controller
 
         
         return view('membros.create',compact([ 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo',
-                                                'grau_parentesco','tipo_telefone','lojas','sexos','edita','membro']));
+                                                'grau_parentesco','tipo_telefone','lojas','sexos','edita','membro','condecoracoes']));
 
         
     }

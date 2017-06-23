@@ -71,5 +71,10 @@ class Membro extends Model
     {
         return $this->hasMany('App\Models\Dependente');
     }
+
+    public function condecoracao()
+    {
+        return $this->hasMany('App\Models\Condecoracao');
+    }
     
 }

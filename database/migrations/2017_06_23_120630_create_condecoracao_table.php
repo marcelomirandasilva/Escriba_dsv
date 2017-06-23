@@ -13,10 +13,11 @@ class CreateCondecoracaoTable extends Migration
      */
     public function up()
     {
-        Schema::table('condecoracao', function (Blueprint $table) {
+        Schema::create('condecoracao', function (Blueprint $table) {
             
             $table->increments('id');
-   
+            $table->unsignedInteger('membro_id');
+            
             $table->enum('ic_condecoracao',['Honorário',
                                             'Remido',
                                             'Emérito',
@@ -29,9 +30,11 @@ class CreateCondecoracaoTable extends Migration
 
 
             $table->integer('nu_ato')                        ->nullable();
-            $table->date('dt_condecoracacao')                ->nullable();
+            $table->date('dt_condecoracao')                ->nullable();
 
             $table->timestamps();
+
+            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
         });
     }
 
