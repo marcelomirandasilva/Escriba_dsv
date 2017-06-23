@@ -3,7 +3,7 @@ use Illuminate\Database\Seeder;
 
 
 
-class MembrosTableSeeder extends Seeder
+class MembroTableSeeder extends Seeder
 {
 
     public function run()
@@ -11,11 +11,12 @@ class MembrosTableSeeder extends Seeder
 
        // factory(App\Models\Membro::class, 20)->create();
 
-        factory(App\Models\Membro::class, 200)->create()->each(function($membro)
+        factory(App\Models\Membro::class, 50)->create()->each(function($membro)
         {
           
              //Criar um endereço
-             $membro->endereco()->save(factory(App\Models\Endereco::class)->make());
+            $membro->enderecos()->save(factory(App\Models\Endereco::class)->make());
+            
             // Criar 2 telefones
             $membro->telefone()->saveMany(factory(App\Models\Telefone::class, 2)->make());
 

@@ -81,30 +81,17 @@ class CreateMembroTable extends Migration
             $table->date('dt_filiacao')                     ->nullable();
             $table->date('dt_regularizacao')                ->nullable();
 
-            $table->integer('nu_ato_benemerito')            ->nullable();
-            $table->date('dt_benemerito')                   ->nullable();
-
-            $table->integer('nu_ato_grande_benemerito')     ->nullable();
-            $table->date('dt_grande_benemerito')            ->nullable();
-
-            $table->integer('nu_ato_estrela_distincao')     ->nullable();
-            $table->date('dt_estrela_distincao')            ->nullable();
-
-            $table->integer('nu_ato_cruz_perfeicao')        ->nullable();
-            $table->date('dt_cruz_perfeicao')               ->nullable();
-
-            $table->integer('nu_ato_comenda_pedro')         ->nullable();
-            $table->date('dt_comenda_pedro')                ->nullable();
-
-
+           
             $table->binary('im_membro')                      ->nullable();
 
             $table->enum('ic_situacao', [
-                'Regular',
-                'Suspenso', 
-                'XXXXXXXXX',
-                'YYYYYYYYY',
-                'ZZZZZZZZZ'
+                'Regular Ativo',
+                'Regular Inativo', 
+                'Irregular',
+                'Licenciado',
+                'Oriente Eterno',
+                'Candidato',
+
                                         ]);
 
 

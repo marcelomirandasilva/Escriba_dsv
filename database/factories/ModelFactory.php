@@ -1,5 +1,7 @@
 <?php
 
+use App\Bibliotecas\Geral;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -33,6 +35,10 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 	}else{
 		$v_data_casamento = null;
 	}
+
+	//SITUACAO
+	//$v1 = pegaValorEnum('membro','ic_situacao');      
+	$v_situacao = array_rand(pegaValorEnum('membro','ic_situacao'),1);      
 
 	//GRAU
 	$v_grau = $faker->randomElement(['Candidato','Aprendiz','Companheiro','Mestre','M.Instalado']);
@@ -125,7 +131,7 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 
 
 
-		'ic_situacao'           => $faker->randomElement(['Regular','Suspenso','Ativo','Oriente Eterno','Quit Placet']),
+		'ic_situacao'           => $v_situacao, //$faker->randomElement(['Regular','Suspenso','Ativo','Oriente Eterno','Quit Placet']),
 
 		'ic_escolaridade'       => $faker->randomElement(['Fundamental - Incompleto','Fundamental - Completo',
 																			'Médio - Incompleto','Médio - Completo',

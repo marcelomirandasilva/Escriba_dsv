@@ -93,12 +93,10 @@ class LojaController extends Controller
         // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
 
-        // Obter o Pais
-        $pais = Pais::find($request->input('pais_id'));
+      
 
-        // Associar o país e a loja ao endereço (chaves estrangeiras)
-        $endereco->pais()->associate($pais);
-        $endereco->loja()->associate($loja);
+        // Associar loja ao endereço (chaves estrangeiras)
+         $endereco->loja()->associate($loja);
 
         // Salvar o endereço
         $endereco->save(); 
@@ -168,7 +166,7 @@ class LojaController extends Controller
 
         $titulo = "Edição da Loja: {$loja->co_titulo} {$loja->no_loja} N°{$loja->nu_loja}";
 
-        //dd($loja->endereco->pais_id);
+  
 
 
         return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo','edita'));

@@ -102,7 +102,7 @@
 						<br> Endereço: {{$loja->endereco->no_logradouro}}, {{$loja->endereco->nu_logradouro}} -
 											{{$loja->endereco->no_bairro}} - {{$loja->endereco->no_municipio}} -
 											{{$loja->endereco->de_complemento}} - {{$loja->endereco->nu_cep}} - 
-											{{$loja->endereco->sg_uf}} - {{$loja->endereco->pais->no_pais}}  
+											{{$loja->endereco->sg_uf}} - {{$loja->endereco->no_pais}}  
 						<br><br>
 
 						<div class="x_title"> </div>

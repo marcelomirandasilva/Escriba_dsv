@@ -91,7 +91,7 @@ class MembroController extends Controller
 
         $aposentado         = ['Sim','Não'];
 
-        $grau_parentesco    = pegaValorEnum('membro','ic_escolaridade');
+        
         $escolaridade       = pegaValorEnum('membro','ic_escolaridade');                                                   
         $situacao           = pegaValorEnum('membro','ic_situacao');                                                   
         $grau               = pegaValorEnum('membro','ic_grau');                      

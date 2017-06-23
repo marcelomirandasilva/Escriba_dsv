@@ -17,6 +17,7 @@ class CreateEmailTable extends Migration
             $table->increments('id');
             $table->string('email',200);
             
+            
             $table->unsignedInteger('membro_id')->nullable();
             $table->unsignedInteger('loja_id')->nullable();
             $table->unsignedInteger('dependente_id')->nullable();

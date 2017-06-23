@@ -198,28 +198,32 @@
 							</div>
 							<div class="item form-group">
 								{{-- Logradouro, Número, Complemento --}}
-								<label class="control-label col-md-1 " for="pais_id">Pais</label>
+								<label class="control-label col-md-1 " for="no_pais">Pais</label>
+								
 								<div class="col-md-2 ">
-									<select id="pais_id"   
+									<select id="no_pais"   
 										class="form-control col-md-2" 
-										name="pais_id" 
+										name="no_pais" 
 										placeholder="Nome do Pais" 
 										type="text">
 
 										@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+
 											@foreach($paises as $pais)
-												@if ( $loja->endereco->pais == $pais)
-													<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>
+
+												@if ( $loja->endereco->no_pais == $pais->no_pais)
+													<option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>
+
 												@else
-													<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>    
+													<option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>    
 												@endif
 											@endforeach
 										@else
 											@foreach($paises as $pais)
 												@if ($pais->no_pais == ('Brasil'))
-													<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
+													<option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
 												@else 
-													<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
+													<option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
 												@endif
 											@endforeach
 										@endif
@@ -338,7 +342,7 @@
 							<div class="ln_solid"> </div>
 							<div class="col-md-3 col-md-offset-9">
 
-								<a href="{{ url()->previous() }}"
+								<a href="{{ url("lojas") }}"
 					  				class="btn btn-danger  pull-right" 
 					  				data-toggle="tooltip" 
 					  				title="Cancela e retorna a tela anterior">  

@@ -10,7 +10,7 @@ class LojaTableSeeder extends Seeder
 
        
 
-        factory(App\Models\Loja::class, 200)->create()->each(function($loja)
+        factory(App\Models\Loja::class, 50)->create()->each(function($loja)
         {
           
              //Criar um endereço
