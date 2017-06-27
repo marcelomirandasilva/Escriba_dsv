@@ -92,8 +92,16 @@
          cols += '<td>';
 
          
-         cols += '<button onclick="RemoveTableRow(this)" type="button">Remover</button>';
+         cols += '<button onclick="RemoveTableRow(this)" class="btn btn-warning btn-xs action botao_lista_dados pull-right btn-danger glyphicon glyphicon-trash excluir excluir_tel" type="button"></button>';
+
+         cols += '<button onclick="RemoveTableRow(this)" class="btn btn-warning btn-xs action botao_lista_dados pull-right btn-alert glyphicon glyphicon-pencil " type="button"></button>';
+
          cols += '</td>';
+
+
+
+               
+
 
          newRow.append(cols);
          $("#tabela_condecoracoes").append(newRow);
