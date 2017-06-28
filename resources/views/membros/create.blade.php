@@ -42,8 +42,18 @@
                <div class="x_content ">
                   <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     
-                     <form id="form_loja" method="post" action="" class="form-horizontal form-label-left" >
+                    @if( isset($edita))
 
+                      <form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}" class="form-horizontal form-label-left" >
+                        {!! method_field('PUT') !!}
+
+                    @else
+                       <form id="form_membro" method="post" action="{{ route('membros.store') }}" class="form-horizontal form-label-left" >
+                    @endif
+
+
+                    
+                        {{ csrf_field() }}
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                            
                            <li role="presentation" class="active">
@@ -71,7 +81,7 @@
                            </li>
 
                            <li role="presentation" class="">      
-                              <a href="#tab_content7" role="tab" id="tab_comendas" data-toggle="tab">   Comendas  </a>
+                              <a href="#tab_content7" role="tab" id="tab_condecoracoes" data-toggle="tab">   Condecorações  </a>
                            </li>
 
                         </ul>
@@ -102,21 +112,22 @@
                               @include('membros/create_cerimonias')
                            </div>
 
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_comendas">
-                              @include('membros/create_comendas')
+                           <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_condecoracoes">
+                              @include('membros/create_condecoracoes')
                            </div>
 
                         </div>
-                     </form>
-                     <!-- botoes --> 
-                     <div class="ln_solid"></div>
-                     <div class="form-group">
-                        <div class="col-md-offset-8">
-                           <a href="{{ URL::previous()  }}" class="btn btn-danger pull-right">  Cancela     </a>
-                           <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
+                        <!-- botoes --> 
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-offset-8">
+                               <a href="{{ URL::previous()  }}" class="btn btn-danger pull-right">  Cancela     </a>
+                               <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
+                            </div>
                         </div>
-                     </div>
-                     <!-- fim botoes --> 
+                        <!-- fim botoes --> 
+                     </form>
+                     
                   </div>
                </div>
             </div>
@@ -130,7 +141,7 @@
   <!-- footer content -->
   <footer>
       <div class="pull-right">
-          Desenvolvido por Marcelo Miranda - 2017</a>
+          V0.1_2017</a>
       </div>
       <div class="clearfix"></div>
   </footer>
@@ -211,7 +222,7 @@
             var valor = $(this).val();
             
             $("#tab_cerimonias" ).show();
-            $("#tab_comendas" ).show();                  
+            $("#tab_condecoracoes" ).show();                  
 
             document.getElementById("dt_filiacao").disabled = false;
             document.getElementById("dt_regularizacao").disabled = false;
@@ -231,11 +242,11 @@
             if (valor == "Candidato"){
                document.getElementById("co_cim").disabled = true;
                $("#tab_cerimonias" ).hide();
-               $("#tab_comendas" ).hide();                  
+               $("#tab_condecoracoes" ).hide();                  
                
             } else if (valor == "Aprendiz"){
 
-               $("#tab_comendas" ).hide();                  
+               $("#tab_condecoracoes" ).hide();                  
                
                document.getElementById("dt_elevacao").disabled = true;
                document.getElementById("fk_loja_elevacao").disabled = true;
@@ -246,7 +257,7 @@
 
             } else if (valor == "Companheiro"){
 
-               $("#tab_comendas" ).hide();                  
+               $("#tab_condecoracoes" ).hide();                  
              
                document.getElementById("dt_exaltacao").disabled = true;
                document.getElementById("fk_loja_exaltacao").disabled = true;

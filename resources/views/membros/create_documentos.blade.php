@@ -9,7 +9,7 @@
          <input id="nu_cpf"  name="nu_cpf" class="form-control col-md-2 cpf" 
             data-inputmask="'mask' : '999.999.999-99', 'numericInput': 'true' " type="text" 
             placeholder="999.999.999-99"  
-            required="required" 
+           
             value="{{$membro->nu_cpf or old('nu_cpf')}}" 
          >
       </div>

@@ -33,21 +33,23 @@ class Membro extends Model
         'dt_filiacao',
         'dt_regularizacao',
 
-        'nu_ato_benemerito',
-        'dt_benemerito',
+        'Honorario',
+        'Remido',
+        'Emerito',
+        'Benemerito',
+        'G_Benemerito',
+        'EstrelaDM',
+        'CruzPM',
+        'CDP',
 
-        'nu_ato_grande_benemerito',
-        'dt_grande_benemerito',
-
-        'nu_ato_estrela_distincao',
-        'dt_estrela_distincao',
-
-        'nu_ato_cruz_perfeicao',
-        'dt_cruz_perfeicao',
-        
-        'nu_ato_comenda_pedro',
-        'dt_comenda_pedro',
-        
+        'ato_Honorario',
+        'ato_Remido',
+        'ato_Emerito',
+        'ato_Benemerito',
+        'ato_G_Benemerito',
+        'ato_EstrelaDM',
+        'ato_CruzPM',
+        'ato_CDP',
     ];
 
 

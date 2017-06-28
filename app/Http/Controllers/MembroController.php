@@ -51,7 +51,7 @@ class MembroController extends Controller
         $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
         $sexos              = pegaValorEnum('dependente','ic_sexo'); 
         $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
-        $condecoracoes      = pegaValorEnum('condecoracao','ic_condecoracao'); 
+        
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -66,15 +66,14 @@ class MembroController extends Controller
 
         //dd($condecoracoes)   ;
 
-        return view('membros.create',compact([   'estado_civil','grau','situacao','escolaridade','aposentado','paises',
-                                                 'titulo','grau_parentesco','tipo_telefone','lojas','sexos','condecoracoes']));
+        return view('membros.create',compact([   'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
 
     }
 
     public function store(Request $request)
     {
 
-
+        
         $membro = new membro();
 
         $membro = $membro->create($request->all());
@@ -101,7 +100,7 @@ class MembroController extends Controller
         $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
         $sexos              = pegaValorEnum('dependente','ic_sexo'); 
         $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
-        $condecoracoes      = pegaValorEnum('condecoracao','ic_condecoracao'); 
+        
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -115,8 +114,7 @@ class MembroController extends Controller
         $lojas      = Loja::all()->sortBy('no_loja');       
 
         
-        return view('membros.create',compact([ 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo',
-                                                'grau_parentesco','tipo_telefone','lojas','sexos','edita','membro','condecoracoes']));
+        return view('membros.create',compact([ 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos','edita','membro']));
 
         
     }

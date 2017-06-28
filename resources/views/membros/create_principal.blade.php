@@ -21,7 +21,8 @@
          <select name="ic_grau" 
             id="ic_grau" 
             class="form-control col-md-1" 
-            required="required" >
+            
+            >
             <option value=""  selected style="color: #ccc;"> --- </option>
 
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
@@ -64,7 +65,7 @@
             class="form-control col-md-2 datas_input " 
             name="dt_nascimento" 
             placeholder="Data de Nascimento" 
-            required="required" 
+            
             type="date"
             value="{{$membro->dt_nascimento or old('dt_nascimento')}}" 
          >
@@ -76,7 +77,7 @@
             class="form-control col-md-3" 
             name="no_nacionalidade" 
             placeholder="Nacionalidade" 
-            required="required" 
+            
             type="text"
             value="{{$membro->no_nacionalidade or old('no_nacionalidade')}}" >
 
@@ -88,7 +89,7 @@
             class="form-control col-md-3" 
             name="no_naturalidade" 
             placeholder="Naturalidade" 
-            required="required" 
+            
             type="text"
             value="{{$membro->no_naturalidade or old('no_naturalidade')}}" >
       </div>
@@ -102,7 +103,7 @@
             class="form-control col-md-5" 
             name="no_pai" 
             placeholder="Nome do Pai do Irmão" 
-            required="required" 
+            
             type="text"
             value="{{$membro->no_pai or old('no_pai')}}" 
          >
@@ -114,7 +115,7 @@
             class="form-control col-md-5" 
             name="no_mae" 
             placeholder="Nome da Mãe do Irmão" 
-            required="required" 
+            
             type="text"
             value="{{$membro->no_mae or old('no_mae')}}" 
          >
@@ -131,7 +132,8 @@
          <select   name="ic_estado_civil" 
             id="ic_estado_civil" 
             class="form-control col-md-2"    
-            required="required"  >
+            
+             >
             <option value=""  selected style="color: #ccc;"> --- </option>
 
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
@@ -169,7 +171,8 @@
          <select   name="ic_escolaridade" 
             id="ic_escolaridade" 
             class="form-control col-md-3" 
-            required="required" >
+            
+             >
             <option value=""  selected style="color: #ccc;"> --- </option>
 
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
@@ -199,7 +202,7 @@
             class="form-control col-md-4 " 
             name="no_profissao" 
             placeholder="Profissão do Irmão" 
-            required="required" 
+            
             type="text"
             value="{{$membro->no_profissao or old('no_profissao')}}" 
          >
@@ -240,7 +243,8 @@
          <select   name="ic_situacao"
             id="ic_situacao" 
             class="form-control col-md-2" 
-            required="required" >
+            
+            >
             <option value=""  selected style="color: #ccc;"> --- </option>
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($situacao as $ic_situacao)

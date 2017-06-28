@@ -237,18 +237,40 @@ $factory->define(App\Models\Condecoracao::class, function(Faker\Generator $faker
 
 	return [
 
-		'ic_condecoracao'	=> $faker->randomElement(['Honorário',
-                                            'Remido',
-                                            'Emérito',
-                                            'Benemérito',
-                                            'Grande Benemérito',
-                                            'Maçom Notável',
-                                            'Estrela da Distinção Maçônica',
-                                            'Cruz da Perfeição Maçônica',
-                                            'Comenda Dom Pedro I']),
- 
- 		'nu_ato'   			=> $faker->randomNumber(3),
- 		'dt_condecoracao'   => $faker->date('Y-m-d'),
+
+            'dt_honorario'=> $faker->date('Y-m-d'),
+            'dt_remido'=> $faker->date('Y-m-d'),
+            'dt_emerito'=> $faker->date('Y-m-d'),
+            'dt_benemerito'=> $faker->date('Y-m-d'),
+            'dt_g_benemerito'=> $faker->date('Y-m-d'),
+            'dt_estrela_dis_mac'=> $faker->date('Y-m-d'),
+            'dt_cruz_perf'=> $faker->date('Y-m-d'),
+            'dt_com_dom_pedro'=> $faker->date('Y-m-d'),
+            'ato_honorario'=> $faker->randomNumber(4),
+            'ato_remido'=> $faker->randomNumber(4),
+            'ato_emerito'=> $faker->randomNumber(4),
+            'ato_benemerito'=> $faker->randomNumber(4),
+            'ato_g_Benemerito'=> $faker->randomNumber(4),
+            'ato_estrela_dis_mac'=> $faker->randomNumber(4),
+            'ato_cruz_perf'=> $faker->randomNumber(4),
+            'ato_com_dom_pedro'=> $faker->randomNumber(4),
+
+		'Honorario'		=> $faker->date('Y-m-d'),
+		'Remido'		=> $faker->date('Y-m-d'),
+		'Emerito'		=> $faker->date('Y-m-d'),
+		'Benemerito'	=> $faker->date('Y-m-d'),
+		'G_Benemerito'	=> $faker->date('Y-m-d'),
+		'EstrelaDM'		=> $faker->date('Y-m-d'),
+		'CruzPM'		=> $faker->date('Y-m-d'),
+		'CDP'			=> $faker->date('Y-m-d'),
+		'ato_Honorario'		=> $faker->randomNumber(4),
+		'ato_Remido'		=> $faker->randomNumber(4),
+		'ato_Emerito'		=> $faker->randomNumber(4),
+		'ato_Benemerito'	=> $faker->randomNumber(4),
+		'ato_G_Benemerito'	=> $faker->randomNumber(4),
+		'ato_EstrelaDM'		=> $faker->randomNumber(4),
+		'ato_CruzPM'		=> $faker->randomNumber(4),
+		'ato_CDP'			=> $faker->randomNumber(4),
 
 	];
 

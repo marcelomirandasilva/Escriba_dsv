@@ -82,7 +82,7 @@
 
   <!-- footer content -->
   <footer>
-   <div class="pull-right"> Desenvolvido por Marcelo Miranda - 2017</a> </div>
+   <div class="pull-right"> V0.1_2017</a> </div>
    <div class="clearfix"></div>
   </footer>
   <!-- /footer content -->
