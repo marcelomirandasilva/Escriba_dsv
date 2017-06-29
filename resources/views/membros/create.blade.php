@@ -60,7 +60,7 @@
                               <a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab">   Principal   </a> 
                            </li>
                            
-                           <li role="presentation" class="">      
+                           <!-- <li role="presentation" class="">      
                               <a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab">   Documentos  </a>
                            </li>
                            
@@ -79,10 +79,10 @@
                            <li role="presentation" class="">      
                               <a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab">   Cerimonias  </a>
                            </li>
-
+                           
                            <li role="presentation" class="">      
                               <a href="#tab_content7" role="tab" id="tab_condecoracoes" data-toggle="tab">   Condecorações  </a>
-                           </li>
+                           </li> -->
 
                         </ul>
 

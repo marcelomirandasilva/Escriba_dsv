@@ -16,7 +16,5 @@ class DatabaseSeeder extends Seeder
         $this->call(PotenciaTableSeeder::class);
         $this->call(LojaTableSeeder::class);
         $this->call(MembroTableSeeder::class);
-
-        
     }
 }

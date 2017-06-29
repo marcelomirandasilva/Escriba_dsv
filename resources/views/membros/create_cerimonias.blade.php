@@ -15,14 +15,14 @@
       </div>
 
 
-      <label class="control-label col-md-2 " for="fk_loja_iniciacao">Loja Iniciação</label>
+      <label class="control-label col-md-2 " for="loja_id_iniciacao">Loja Iniciação</label>
       <div class="col-md-5">
-         <input id="fk_loja_iniciacao"   
+         <input id="loja_id_iniciacao"   
             class="form-control col-md-5"
-            name="fk_loja_iniciacao" 
+            name="loja_id_iniciacao" 
             placeholder="Loja em que o Irmão foi Iniciado" 
             type="text"
-            value="{{$membro->fk_loja_iniciacao or old('fk_loja_iniciacao')}}" >
+            value="{{$membro->loja_id_iniciacao or old('loja_id_iniciacao')}}" >
          
       </div>
       <div class="col-md-1 ">
@@ -50,14 +50,14 @@
             value="{{$membro->dt_elevacao or old('dt_elevacao')}}" >
       </div>
 
-     <label class="control-label col-md-2 " for="fk_loja_elevacao">Loja Elevação</label>
+     <label class="control-label col-md-2 " for="loja_id_elevacao">Loja Elevação</label>
       <div class="col-md-5">
-         <input id="fk_loja_elevacao"   
+         <input id="loja_id_elevacao"   
             class="form-control col-md-5 "
-            name="fk_loja_elevacao" 
+            name="loja_id_elevacao" 
             placeholder="Loja em que o Irmão foi Elevado" 
             type="text"
-            value="{{$membro->fk_loja_elevacao or old('fk_loja_elevacao')}}" >
+            value="{{$membro->loja_id_elevacao or old('loja_id_elevacao')}}" >
       </div>
    </div>
 
@@ -76,14 +76,14 @@
          >
       </div>
 
-      <label class="control-label col-md-2 " for="fk_loja_exaltacao">Loja Exaltação</label>
+      <label class="control-label col-md-2 " for="loja_id_exaltacao">Loja Exaltação</label>
       <div class="col-md-5">
-         <input id="fk_loja_exaltacao"   
+         <input id="loja_id_exaltacao"   
             class="form-control col-md-5" 
-            name="fk_loja_exaltacao" 
+            name="loja_id_exaltacao" 
             placeholder="Loja em que o Irmão foi Exaltado" 
             type="text"
-            value="{{$membro->fk_loja_exaltacao or old('fk_loja_exaltacao')}}" 
+            value="{{$membro->loja_id_exaltacao or old('loja_id_exaltacao')}}" 
          >
       </div>
    </div>
@@ -102,14 +102,14 @@
          >
       </div>
 
-      <label class="control-label col-md-2 " for="fk_loja_instalacao">Loja Instalação</label>
+      <label class="control-label col-md-2 " for="loja_id_instalacao">Loja Instalação</label>
       <div class="col-md-5">
-         <input id="fk_loja_instalacao"   
+         <input id="loja_id_instalacao"   
             class="form-control col-md-5" 
-            name="fk_loja_instalacao" 
+            name="loja_id_instalacao" 
             placeholder="Loja em que o Irmão foi Instalado" 
             type="text"
-            value="{{$membro->fk_loja_instalacao or old('fk_loja_instalacao')}}" 
+            value="{{$membro->loja_id_instalacao or old('loja_id_instalacao')}}" 
          >
       </div>
    </div>

@@ -11,11 +11,6 @@ class PaisTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
-
-
-        
 
 		DB::table('pais')->insert(['no_pais'   => 'Afeganistão','no_continente' => 'Ásia']);
 		DB::table('pais')->insert(['no_pais'   => 'África do Sul','no_continente' => 'África']);
@@ -214,12 +209,6 @@ class PaisTableSeeder extends Seeder
 		DB::table('pais')->insert(['no_pais'   => 'Vietname','no_continente' => 'Ásia']);
 		DB::table('pais')->insert(['no_pais'   => 'Zâmbia','no_continente' => 'África']);
 		DB::table('pais')->insert(['no_pais'   => 'Zimbábue','no_continente' => 'África']);
-
-
-
-
-
-
 
 
     }

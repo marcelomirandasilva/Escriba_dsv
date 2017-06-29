@@ -73,12 +73,19 @@ class MembroController extends Controller
     public function store(Request $request)
     {
 
+
+        //dd($request->all());
+
+
+       // Cria um novo membro
+        //$membro = new Membro($request->all());
+        $membro = new Membro($request->all());
+
+        // Salvar no banco para obter o ID
+        $membro->save();
+
         
-        $membro = new membro();
-
-        $membro = $membro->create($request->all());
-
-        Session::flash('mensagem_sucesso','membro cadastrado com sucesso');
+        //Session::flash('mensagem_sucesso','membro cadastrado com sucesso');
         return Redirect::to('membros/create');
 
     }
@@ -128,5 +135,8 @@ class MembroController extends Controller
 
     }
 }
+
+
+
 
 

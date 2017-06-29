@@ -16,7 +16,7 @@ class Loja extends Model
 	    'nu_loja',
 	    'dt_fundacao',
 	    'ic_rito',
-	    'potencia_id'
+	    'potencia_id',
 
 	];
 
@@ -43,4 +43,15 @@ class Loja extends Model
 	{
 		return $this->hasOne('App\Models\Email');
 	}
+
+	public function membro()
+	{
+		return $this->belongsTo('App\Models\Membro');
+	}
+
+	// public function cerimonia()
+	// {
+	// 	return $this->belongsTo('App\Models\Cerimonia');
+	// }
+
 }

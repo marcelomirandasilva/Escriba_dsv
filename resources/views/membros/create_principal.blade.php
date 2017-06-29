@@ -49,7 +49,7 @@
             name="co_cim" 
             placeholder="1234567" 
             required="required" 
-            data-inputmask="'mask' : '#.999.999', 'numericInput': 'true' " type="text" 
+            data-inputmask="'mask' : '9.999.999', 'numericInput': 'true' " type="text" 
             value="{{$membro->co_cim or old('co_cim')}}" 
          >
       </div>

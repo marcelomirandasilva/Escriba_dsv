@@ -2,14 +2,11 @@
 use Illuminate\Database\Seeder;
 
 
-
 class MembroTableSeeder extends Seeder
 {
 
     public function run()
     {
-
-       // factory(App\Models\Membro::class, 20)->create();
 
         factory(App\Models\Membro::class, 50)->create()->each(function($membro)
         {
@@ -28,6 +25,9 @@ class MembroTableSeeder extends Seeder
 
             // Criar 4 condecorações
             $membro->condecoracao()->saveMany(factory(App\Models\Condecoracao::class, 4)->make());
+
+            // Cria cerimonia
+            //$membro->cerimonia()->save(factory(App\Models\Cerimonia::class)->make());
         });
     }
 }

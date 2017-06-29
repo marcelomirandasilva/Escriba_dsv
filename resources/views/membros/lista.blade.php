@@ -42,7 +42,7 @@
                 @foreach($membros as $membro )
                   <tr>
                     <td> {{ $membro->no_membro  }}                                                   </td>
-                    <td  > {{ number_format($membro->co_cim,0,",",".")  }}      </td>
+                    <td> {{ number_format($membro->co_cim,0,",",".")  }}      </td>
 
                     @if( $membro->dt_nascimento <> '0000-00-00')
                       <td>{{ \Carbon\Carbon::parse( $membro->dt_nascimento)->format('d/m/Y')  }}     </td>

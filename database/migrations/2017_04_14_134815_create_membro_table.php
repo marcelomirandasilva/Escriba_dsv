@@ -17,10 +17,10 @@ class CreateMembroTable extends Migration
             $table->increments('id');
 
             $table->string('no_membro',50);
-            $table->char('co_cim',10);
+            $table->char('co_cim',10)                       ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
-            $table->string('no_naturalidade',20);
-            $table->string('no_nacionalidade',20);
+            $table->string('no_naturalidade',20)            ->nullable();
+            $table->string('no_nacionalidade',20)           ->nullable();
 
             //-----------------------------DOCUMENTOS----------------------            
             $table->char('nu_cpf',11)                       ->nullable();
@@ -63,23 +63,10 @@ class CreateMembroTable extends Migration
                                         'Companheiro',
                                         'Mestre',
                                         'M.Instalado'
-                                    ]);
+                                    ])                      ->nullable();
 
 
-            $table->date('dt_iniciacao')                    ->nullable();
-            $table->unsignedInteger('loja_id_iniciacao')    ->nullable();
 
-            $table->date('dt_elevacao')                     ->nullable();
-            $table->unsignedInteger('loja_id_elevacao')     ->nullable();
-
-            $table->date('dt_exaltacao')                    ->nullable();
-            $table->unsignedInteger('loja_id_exaltacao')    ->nullable();
-
-            $table->date('dt_instalacao')                   ->nullable();
-            $table->unsignedInteger('loja_id_instalacao')   ->nullable();
-
-            $table->date('dt_filiacao')                     ->nullable();
-            $table->date('dt_regularizacao')                ->nullable();
 
            
             $table->binary('im_membro')                      ->nullable();
@@ -92,7 +79,7 @@ class CreateMembroTable extends Migration
                 'Oriente Eterno',
                 'Candidato',
 
-                                        ]);
+                                        ])                  ->nullable();
 
 
             $table->enum('ic_escolaridade', [
@@ -114,10 +101,6 @@ class CreateMembroTable extends Migration
             
             $table->timestamps();
 
-            $table->foreign('loja_id_iniciacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('loja_id_elevacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('loja_id_exaltacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('loja_id_instalacao')->references('id')->on('loja')->onDelete('cascade');
         });
     }
 
