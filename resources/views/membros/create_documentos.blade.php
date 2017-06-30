@@ -35,7 +35,7 @@
             name="no_orgao_emissor_idt" 
             type="text" placeholder="Orgão Emissor" class="form-control input-md" 
             value="{{$membro->no_orgao_emissor_idt or old('no_orgao_emissor_idt')}}" 
-            disabled>
+         >
       </div>
 
       <!-- Data de Emissão do RG-->
@@ -45,7 +45,6 @@
             name="dt_emissao_idt" 
             type="date" class="form-control input-md global_data" 
             value="{{$membro->dt_emissao_idt or old('dt_emissao_idt')}}" 
-            disabled
          >
       </div>
 
@@ -69,16 +68,15 @@
          <input id="nu_zona_eleitoral" name="nu_zona_eleitoral" class="form-control input-md"
             data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" placeholder="999.999"  
             value="{{$membro->nu_zona_eleitoral or old('nu_zona_eleitoral')}}" 
-            disabled>
+         >
       </div>
 
 
       <label class="col-md-1 control-label" for="dt_emissao_titulo">Emissão</label>  
       <div class="col-md-2">
          <input id="dt_emissao_titulo" name="dt_emissao_titulo" 
-         type="date" class="form-control input-md global_data" 
-         value="{{$membro->dt_emissao_titulo or old('dt_emissao_titulo')}}" 
-         disabled
+            type="date" class="form-control input-md global_data" 
+            value="{{$membro->dt_emissao_titulo or old('dt_emissao_titulo')}}" 
          >
       </div>
    </div>

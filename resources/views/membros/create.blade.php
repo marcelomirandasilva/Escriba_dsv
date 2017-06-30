@@ -60,7 +60,7 @@
                               <a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab">   Principal   </a> 
                            </li>
                            
-                           <!-- <li role="presentation" class="">      
+                           <li role="presentation" class="">      
                               <a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab">   Documentos  </a>
                            </li>
                            
@@ -82,7 +82,7 @@
                            
                            <li role="presentation" class="">      
                               <a href="#tab_content7" role="tab" id="tab_condecoracoes" data-toggle="tab">   Condecorações  </a>
-                           </li> -->
+                           </li>
 
                         </ul>
 
@@ -118,10 +118,10 @@
 
                         </div>
                         <!-- botoes --> 
-                        <div class="ln_solid"></div>
+                        {{-- <div class="ln_solid"></div> --}}
                         <div class="form-group">
                             <div class="col-md-offset-8">
-                               <a href="{{ URL::previous()  }}" class="btn btn-danger pull-right">  Cancela     </a>
+                               <a href="{{ url("membros") }}" class="btn btn-danger pull-right">  Cancela     </a>
                                <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
                             </div>
                         </div>
@@ -173,29 +173,7 @@
            }
          });
 
-         //desabilita orgão emissor  edata de emissão se não tiver RG
-         $("input#nu_identidade").change(function(){
-           if($("input#nu_identidade").value == "")
-           {
-             document.getElementById("no_orgao_emissor_idt").disabled = true;
-             document.getElementById("dt_emissao_idt").disabled = true;
-           } else {
-             document.getElementById("no_orgao_emissor_idt").disabled = false;
-             document.getElementById("dt_emissao_idt").disabled = false;
-           }
-         });
-
-         //desabilita zona eleitoral e data de emissão se não tiver titulo
-         $("input#nu_titulo_eleitor").change(function(){
-           if($("input#nu_titulo_eleitor").value == "")
-           {
-             document.getElementById("nu_zona_eleitoral").disabled = true;
-             document.getElementById("dt_emissao_titulo").disabled = true;
-           } else {
-             document.getElementById("nu_zona_eleitoral").disabled = false;
-             document.getElementById("dt_emissao_titulo").disabled = false;
-           }
-         });
+        
 
          // $("select#ic_grau").change(function(){ 
 
@@ -214,8 +192,6 @@
 
 
 
-
-
          $("select#ic_grau").change(function(){ 
             console.log("mudou");
 
@@ -230,13 +206,13 @@
 
 
             document.getElementById("dt_iniciacao").disabled = false;
-            document.getElementById("fk_loja_iniciacao").disabled = false;
+            document.getElementById("loja_id_iniciacao").disabled = false;
             document.getElementById("dt_elevacao").disabled = false;
-            document.getElementById("fk_loja_elevacao").disabled = false;
+            document.getElementById("loja_id_elevacao").disabled = false;
             document.getElementById("dt_exaltacao").disabled = false;
-            document.getElementById("fk_loja_exaltacao").disabled = false;
+            document.getElementById("loja_id_exaltacao").disabled = false;
             document.getElementById("dt_instalacao").disabled = false;
-            document.getElementById("fk_loja_instalacao").disabled = false;
+            document.getElementById("loja_id_instalacao").disabled = false;
 
 
             if (valor == "Candidato"){
@@ -249,25 +225,25 @@
                $("#tab_condecoracoes" ).hide();                  
                
                document.getElementById("dt_elevacao").disabled = true;
-               document.getElementById("fk_loja_elevacao").disabled = true;
+               document.getElementById("loja_id_elevacao").disabled = true;
                document.getElementById("dt_exaltacao").disabled = true;
-               document.getElementById("fk_loja_exaltacao").disabled = true;
+               document.getElementById("loja_id_exaltacao").disabled = true;
                document.getElementById("dt_instalacao").disabled = true;
-               document.getElementById("fk_loja_instalacao").disabled = true;
+               document.getElementById("loja_id_instalacao").disabled = true;
 
             } else if (valor == "Companheiro"){
 
                $("#tab_condecoracoes" ).hide();                  
              
                document.getElementById("dt_exaltacao").disabled = true;
-               document.getElementById("fk_loja_exaltacao").disabled = true;
+               document.getElementById("loja_id_exaltacao").disabled = true;
                document.getElementById("dt_instalacao").disabled = true;
-               document.getElementById("fk_loja_instalacao").disabled = true;
+               document.getElementById("loja_id_instalacao").disabled = true;
 
             } else if (valor == "Mestre"){
                
                document.getElementById("dt_instalacao").disabled = true;
-               document.getElementById("fk_loja_instalacao").disabled = true;
+               document.getElementById("loja_id_instalacao").disabled = true;
             }
          });
 

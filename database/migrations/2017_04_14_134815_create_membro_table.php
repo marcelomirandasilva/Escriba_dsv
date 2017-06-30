@@ -17,21 +17,21 @@ class CreateMembroTable extends Migration
             $table->increments('id');
 
             $table->string('no_membro',50);
-            $table->char('co_cim',10)                       ->nullable();
+            $table->unsignedInteger('co_cim')               ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
             $table->string('no_naturalidade',20)            ->nullable();
             $table->string('no_nacionalidade',20)           ->nullable();
 
             //-----------------------------DOCUMENTOS----------------------            
-            $table->char('nu_cpf',11)                       ->nullable();
+            $table->unsignedInteger('nu_cpf')               ->nullable();
 
-            $table->string('nu_identidade',10)              ->nullable();
+            $table->unsignedInteger('nu_identidade')        ->nullable();
             $table->date('dt_emissao_idt')                  ->nullable();
             $table->string('no_orgao_emissor_idt',10)       ->nullable();
 
             $table->string('nu_titulo_eleitor',10)          ->nullable();
             $table->date('dt_emissao_titulo')               ->nullable();
-            $table->integer('nu_zona_eleitoral')            ->nullable();
+            $table->unsignedInteger('nu_zona_eleitoral')    ->nullable();
             //------------------------------------------------------------
             
 
@@ -48,7 +48,7 @@ class CreateMembroTable extends Migration
 
             //-----------------------------PROFISSIONAL----------------------            
             $table->string('no_profissao',50)               ->nullable();
-            $table->enum('ic_aposentado',['Não', 'Sim'])    ->nullable();
+            $table->boolean('ic_aposentado')                ->nullable();
             $table->string('no_empregador',50)              ->nullable();
             //----------------------------------------------------------------            
 
@@ -77,7 +77,6 @@ class CreateMembroTable extends Migration
                 'Irregular',
                 'Licenciado',
                 'Oriente Eterno',
-                'Candidato',
 
                                         ])                  ->nullable();
 

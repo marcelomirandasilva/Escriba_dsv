@@ -75,18 +75,25 @@ class MembroController extends Controller
 
 
         //dd($request->all());
+        
 
 
        // Cria um novo membro
         //$membro = new Membro($request->all());
         $membro = new Membro($request->all());
 
+
+        // Verificar se está aposentado
+
+        $membro->ic_aposentado = $request->aposentado ? 1 : 0;
+
+
         // Salvar no banco para obter o ID
         $membro->save();
 
         
         //Session::flash('mensagem_sucesso','membro cadastrado com sucesso');
-        return Redirect::to('membros/create');
+        return redirect()->back(); 
 
     }
 

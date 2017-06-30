@@ -113,7 +113,7 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 
 		'dt_casamento'			=> $v_data_casamento,
 		'no_profissao'			=> $faker->jobTitle,
-		'ic_aposentado'			=> $faker->randomElement(['Não', 'Sim']),
+		'ic_aposentado'			=> $faker->boolean,
 		'no_empregador'			=> $faker->company,
 		'no_pai'				=> $faker->name($gender = 'male'),  
 		'no_mae'				=> $faker->name($gender = 'female'),  

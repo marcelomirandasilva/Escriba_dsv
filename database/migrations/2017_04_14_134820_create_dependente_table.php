@@ -26,7 +26,7 @@ class CreateDependenteTable extends Migration
                             'Irmão(ã)','Neto(a)','Pais','Outros'
                         ]);
             $table->enum('ic_sexo',['Feminino', 'Masculino', 'Outros']);
-            $table->enum('ic_mora_junto',['Sim','Não']);
+            $table->boolean('ic_mora_junto');
             
             $table->timestamps();
             $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
