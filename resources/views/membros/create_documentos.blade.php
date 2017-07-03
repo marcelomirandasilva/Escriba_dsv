@@ -39,15 +39,15 @@
       </div>
 
       <!-- Data de Emissão do RG-->
-      <label class="col-md-1 control-label" for="dt_emissao_idt">Emissão</label>  
+      <label class="col-md-2 control-label" for="dt_emissao_idt">Data de Emissão</label>  
       <div class="col-md-2">
          <input id="dt_emissao_idt" 
             name="dt_emissao_idt" 
-            type="date" class="form-control input-md global_data" 
+            type="date" 
+            class="form-control col-md-2 datas_input" 
             value="{{$membro->dt_emissao_idt or old('dt_emissao_idt')}}" 
          >
       </div>
-
    </div>
 
 
@@ -72,10 +72,11 @@
       </div>
 
 
-      <label class="col-md-1 control-label" for="dt_emissao_titulo">Emissão</label>  
+      <label class="col-md-2 control-label" for="dt_emissao_titulo">Data de Emissão</label>  
       <div class="col-md-2">
          <input id="dt_emissao_titulo" name="dt_emissao_titulo" 
-            type="date" class="form-control input-md global_data" 
+            type="date" 
+            class="form-control col-md-2 datas_input" 
             value="{{$membro->dt_emissao_titulo or old('dt_emissao_titulo')}}" 
          >
       </div>

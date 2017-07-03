@@ -12,7 +12,15 @@
   <!-- page content -->
 
   <!-- page content -->
+  {{-- Mostrar mensagem de sucesso --}}
 
+{{--   @if(session('sucesso'))
+
+      <div class="alert alert-dourado alert-dismissible" style="margin-top: 70px;" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Parabéns!</strong> {!! session('sucesso') !!}
+      </div>
+  @endif --}}
   
    <div class="right_col" role="main">
       <!---------------------- Mostra os erros de validação ------------------------------>

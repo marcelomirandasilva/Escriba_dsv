@@ -66,7 +66,7 @@ class MembroController extends Controller
 
         //dd($condecoracoes)   ;
 
-        return view('membros.create',compact([   'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
+        return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
 
     }
 
@@ -93,7 +93,10 @@ class MembroController extends Controller
 
         
         //Session::flash('mensagem_sucesso','membro cadastrado com sucesso');
-        return redirect()->back(); 
+
+         return redirect('/membros/create')->with('sucesso', "Membro cadastrado com sucesso. Código da inscriçao : <span style='font-weight: bold; font-size: 16px'>$membro->id</span><br><a target='_blank' style=' font-weight: bold; text-transform: uppercase' href='".url("/membros")."'>Clique aqui para imprirmir o comprovante de inscrição</a>");
+
+        //return redirect()->back(); 
 
     }
 

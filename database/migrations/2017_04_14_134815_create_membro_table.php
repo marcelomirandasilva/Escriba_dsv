@@ -23,9 +23,9 @@ class CreateMembroTable extends Migration
             $table->string('no_nacionalidade',20)           ->nullable();
 
             //-----------------------------DOCUMENTOS----------------------            
-            $table->unsignedInteger('nu_cpf')               ->nullable();
+            $table->char('nu_cpf',11)                       ->nullable();
 
-            $table->unsignedInteger('nu_identidade')        ->nullable();
+            $table->string('nu_identidade',20)              ->nullable();
             $table->date('dt_emissao_idt')                  ->nullable();
             $table->string('no_orgao_emissor_idt',10)       ->nullable();
 

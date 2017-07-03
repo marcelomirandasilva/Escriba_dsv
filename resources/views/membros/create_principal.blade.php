@@ -3,6 +3,9 @@
 
    <!-- NOME, CIM  -------------------------------------------------------------------------->    
    <div class="item form-group ">
+
+
+
       <label class="control-label col-md-1" for="no_membro">Nome*</label>
       <div class="col-md-5 ">
          <input  id="no_membro"   
@@ -211,10 +214,10 @@
 
 
       <label class="control-label col-md-1 " for="ic_escolaridade"> Instrução* </label>
-      <div class="col-md-3">
+      <div class="col-md-4">
          <select   name="ic_escolaridade" 
             id="ic_escolaridade" 
-            class="form-control col-md-3" 
+            class="form-control col-md-4" 
             
              >
             <option value=""  selected style="color: #ccc;"> --- </option>
@@ -236,7 +239,7 @@
          </select>
       </div>
 
-      <label class="control-label col-md-3 " for="no_profissao">Profissão</label>
+      <label class="control-label col-md-2 " for="no_profissao">Profissão</label>
       <div class="col-md-4 ">
          <input id="no_profissao"   
             class="form-control col-md-4 " 

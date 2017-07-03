@@ -100,7 +100,7 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 		'dt_nascimento'         => $faker->date('Y-m-d', '-18 years'),
 		'no_naturalidade'		=> $faker->city,
 		'no_nacionalidade'		=> $faker->country,
-		'nu_cpf'                => $faker->cpf(false),
+		'nu_cpf'                => $faker->cpf,
 		'nu_identidade'         => $faker->rg,
 		'dt_emissao_idt'		=> $faker->date('Y-m-d', '-18 years'),
 		'no_orgao_emissor_idt'	=> $faker->randomElement(['DETRAN', 'IFP', 'Marinha do Brasil']),

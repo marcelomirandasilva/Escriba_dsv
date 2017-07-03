@@ -5,6 +5,7 @@ Auth::routes();
 Route::get ('/logout', 				'Auth\LoginController@logout');
 Route::get ('/', 					'HomeController@index');
 
+Route::get ('/perfil',        		'UserController@perfil');
 
 //Route::group(['prefix' => 'irmaos'],function(){
 //	Route::get ('/',              	'IrmaoController@index');
@@ -33,8 +34,12 @@ Route::get ('/', 					'HomeController@index');
 
 // });
 
+
+
+
 Route::post('lojas/potencia/store', 	'PotenciaController@store');
 
 Route::resource('membros', 			'MembroController');
 Route::resource('lojas', 			'LojaController');
+
 	
