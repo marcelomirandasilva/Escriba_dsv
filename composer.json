@@ -31,7 +31,8 @@
         "barryvdh/laravel-ide-helper": "^2.3",
         "fzaninotto/faker": "^1.6",
         "laravel/tinker": "^1.0",
-        "barryvdh/laravel-dompdf": "^0.8.0"
+        "barryvdh/laravel-dompdf": "^0.8.0",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

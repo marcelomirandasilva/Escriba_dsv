@@ -2,57 +2,55 @@
    <div class="clearfix"></div>
 
    <!-- NOME, CIM  -------------------------------------------------------------------------->    
-   <div class="item form-group ">
+   <div class="item form-group">
 
+      
+      <div class="row">
 
+         <div class="col-md-12">
+            <label class="control-label col-md-1" for="no_membro">Nome*</label>
+            <div class="col-md-5 ">
+               <input  id="no_membro" class="form-control col-md-5" name="no_membro" placeholder="Nome completo do Irmão" 
+                  required="required" type="text" autofocus value="{{$membro->no_membro or old('no_membro')}}" >
+            </div>
 
-      <label class="control-label col-md-1" for="no_membro">Nome*</label>
-      <div class="col-md-5 ">
-         <input  id="no_membro"   
-            class="form-control col-md-5" 
-            name="no_membro" 
-            placeholder="Nome completo do Irmão" 
-            required="required" 
-            type="text"
-            autofocus
-            value="{{$membro->no_membro or old('no_membro')}}" 
-         >
-      </div>
+            <label class="control-label col-md-1 " for="ic_grau"> Grau* </label>
+            <div class="col-md-2">
+               <select name="ic_grau" id="ic_grau" class="form-control col-md-1" >
+                  <option value=""  selected style="color: #ccc;"> --- </option>
 
-      <label class="control-label col-md-1 " for="ic_grau"> Grau* </label>
-      <div class="col-md-2">
-         <select name="ic_grau" 
-            id="ic_grau" 
-            class="form-control col-md-1" 
-            
-            >
-            <option value=""  selected style="color: #ccc;"> --- </option>
-
-            @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
-               @foreach($grau as $ic_grau)
-                  @if ( $membro->ic_grau == $ic_grau)
-                     <option value="{{$ic_grau}}" selected="selected">{{$ic_grau}}</option>
+                  @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+                     @foreach($grau as $ic_grau)
+                        @if ( $membro->ic_grau == $ic_grau)
+                           <option value="{{$ic_grau}}" selected="selected">{{$ic_grau}}</option>
+                        @else
+                           <option value="{{$ic_grau}}">{{$ic_grau}}</option>  
+                        @endif
+                     @endforeach
                   @else
-                     <option value="{{$ic_grau}}">{{$ic_grau}}</option>  
+                     @foreach($grau as $ic_grau)
+                        <option value="{{$ic_grau}}"> {{$ic_grau}} </option>    
+                     @endforeach
                   @endif
-               @endforeach
-            @else
-               @foreach($grau as $ic_grau)
-                  <option value="{{$ic_grau}}"> {{$ic_grau}} </option>    
-               @endforeach
-            @endif
 
-         </select>
+               </select>
+            </div>
+
+
+
+            <div class="col-md-2 col-xs-offset-1">
+               <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:100px; height: 100px; float: right; border-radius: 50%; margin-right: 25px; ">
+            </div>
+         </div>
       </div>
 
+     
 
-
-
-
+      
+                  
    </div>
 
 
-   
 
 
    <!-- NASCIMENTO, ESTADO CIVIL, ESCOLARIDADE, PROFISSÃO ------------------------------------>

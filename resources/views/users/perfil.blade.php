@@ -11,50 +11,56 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel modal-content">
 				<div class="x_title">
-					<h2> Listagem de Irmãos </h2>
-					<a href="{{ url('membros/create') }}" 
-						class="btn-circulo btn btn-primary btn-md   pull-right " 
-						data-toggle="tooltip"  
-						data-placement="bottom" 
-						title="Adiciona um Membro">
-						<span class="fa fa-plus">  </span>
-					</a>
+					<h2> Alteração de Usuário:  {{ Auth::user()->name }} </h2>
 					<div class="clearfix"></div>
 				</div>
-			<div class="x_content ">
-				<div class="panel-body">
+				<div class="x_content ">
+					<div class="panel-body">
+
+						
+			        <div class="col-md-2 col-md-offset-10">
+				 			<img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:150px; height: 150px; float: right; border-radius: 50%; margin-right: 25px; ">
+			            
+			            <form enctype="multipart/form-data" action="/perfil" method="POST">
+			                <input type="file" name="avatar">
+			                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+			                <input type="submit" class="pull-right btn btn-sm btn-primary">
+			            </form>
+			        </div>
+			
+									{!! BootForm::open(['url' => url('/register'), 'method' => 'post']) !!}
+
+									{!! BootForm::text('name', 'Nome', old('name'), ['placeholder' => 'Nome completo']) !!}
+
+									{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
 
 
 
-					<div class="login_wrapper">
-						 <div class="animate form ">
-							  <section class="login_content">
-								{!! BootForm::open(['url' => url('/register'), 'method' => 'post']) !!}
-								
-								<h1>Criação de Usuário </h1>
+									{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
 
-								{!! BootForm::text('name', 'Nome', old('name'), ['placeholder' => 'Nome completo']) !!}
+									{!! BootForm::password('password_confirmation', 'Confirmação de Senha', ['placeholder' => 'Confirmação']) !!}
 
-								{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email']) !!}
+									{!! BootForm::submit('Cria', ['class' => 'btn btn-default']) !!}
+
+									<div class="clearfix"></div>
+
+									<div class="separator">
+									<p class="change_link">Já possui cadastro? ?
+									<a href="{{ url('/login') }}" class="to_register"> Entre no site! </a>
+									</p>
+
+									<div class="clearfix"></div>
+									<br />
 
 
+					
+						</div>
 
-								{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
+					 		
+						
 
-								{!! BootForm::password('password_confirmation', 'Confirmação de Senha', ['placeholder' => 'Confirmação']) !!}
-							
-								{!! BootForm::submit('Cria', ['class' => 'btn btn-default']) !!}
-								
-								<div class="clearfix"></div>
-								
-								
-								{!! BootForm::close() !!}
-							  </section>
-						 </div>
+
 					</div>
-
-
-
 				</div>
 			</div>
 		</div>

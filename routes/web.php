@@ -5,7 +5,8 @@ Auth::routes();
 Route::get ('/logout', 				'Auth\LoginController@logout');
 Route::get ('/', 					'HomeController@index');
 
-Route::get ('/perfil',        		'UserController@perfil');
+Route::get ('perfil',        		'UserController@perfil');
+Route::post ('perfil',        		'UserController@update_avatar');
 
 //Route::group(['prefix' => 'irmaos'],function(){
 //	Route::get ('/',              	'IrmaoController@index');
