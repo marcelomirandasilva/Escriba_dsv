@@ -107,10 +107,10 @@
 
 {{-- @if(Auth::user()->admin == "Master") --}}
                     
-   <li><a><i class=" fa fa-user"></i>Usuários<span class="fa fa-chevron-down"></span></a>
+   <li><a><i class="fa fa-cog"></i>Configurações<span class="fa fa-chevron-down"></span></a>
        <ul class="nav child_menu">
-           <li><a href="{{ url('users/create') }}">Cadastro</a></li>
-           <li><a href="{{ url('users') }}">Lista</a></li>
+           <li><a href="{{ url('/usuarios') }}">Usuários</a></li>
+           <li><a href="{{ url('users') }}">XXXXXX</a></li>
           
        </ul>
    </li>

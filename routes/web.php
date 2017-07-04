@@ -42,5 +42,5 @@ Route::post('lojas/potencia/store', 	'PotenciaController@store');
 
 Route::resource('membros', 			'MembroController');
 Route::resource('lojas', 			'LojaController');
-
+Route::resource('usuarios', 		'UserController');
 	

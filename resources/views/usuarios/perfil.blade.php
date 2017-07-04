@@ -19,7 +19,7 @@
 
 						
 			        <div class="col-md-2 col-md-offset-10">
-				 			<img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:150px; height: 150px; float: right; border-radius: 50%; margin-right: 25px; ">
+				 			<img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:150px; position:absolute; height: 150px; float: right; border-radius: 50%; margin-right: 25px; ">
 			            
 			            <form enctype="multipart/form-data" action="/perfil" method="POST">
 			                <input type="file" name="avatar">
