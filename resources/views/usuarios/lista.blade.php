@@ -55,16 +55,18 @@
 							    <td>{{ $usuario->email }}</td>
 							    <td>{{ $usuario->acesso }}</td>
 							    <td class="actions">
-				                  	<a data-toggle="tooltip" title="Alterar" class="btn btn-cor-padrao btn-pn-circulo btn-xs" href="{{ url("users/$usuario->id/edit") }}"><i class="fa fa-pencil"></i></a>
+                    <a href=href="{{ url('users/$usuario->id/edit') }}" 
+                        class="btn btn-primary btn-xs  action botao_lista  "  
+                        data-toggle="tooltip"  
+                        data-placement="bottom" 
+                        title="Visualiza esse Usuário"> 
+                        <i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
+                    </a>
 
-									{{-- Não deixar o usuário deletar a si mesmo --}}
-	
-									@if(Auth::user()->id != $usuario->id)
-
-				                  		<a data-toggle="tooltip" title="Excluir" class="btn btn-excluir btn-cor-perigo btn-pn-circulo btn-xs"  data-id="{{$usuario->id}}" data-nome="{{ $usuario->name }}" href="#" data-toggle="modal" data-target="#modalexcluir"><i class="fa fa-times"></i></a>
-
-				                  	@endif
-				                </td>
+                    @if((Auth::user()->acesso == 'ADM')  or (Auth::user()->id == $usuario->id))
+                      <a data-toggle="tooltip" title="Alterar" class="btn btn-warning btn-xs action botao_lista" href="{{ url("users/$usuario->id/edit") }}"><i class="fa fa-pencil"></i></a>
+                    @endif
+                  </td>
 							</tr>
 
 						@endforeach

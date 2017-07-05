@@ -13,15 +13,20 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //DB::table('users')->truncate();
+
         if  (! DB::table('users')->find(1)) {
            
             DB::table('users')->insert([
-                'name'      =>  'marcelo',
-                'email'     =>  'marcelo.miranda.pp@gmail.com',
-                'password'  =>  bcrypt('teste123')
+                'name'              =>  'marcelo',
+                'email'             =>  'marcelo.miranda.pp@gmail.com',
+                'password'          =>  bcrypt('teste123'),
+                'remember_token'    =>  str_random(10),
             ]);
         }
+
+
+        factory(App\Models\User::class, 50)->create()->each(function($User){});
+        
 
     }
 }
