@@ -21,9 +21,6 @@ class CreatePresencaSessaoTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('sessao_id')->references('id')->on('sessao')->onDelete('cascade');
-            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
-            $table->foreign('cargo_id')->references('id')->on('cargo')->onDelete('cascade');
         });
     }
 

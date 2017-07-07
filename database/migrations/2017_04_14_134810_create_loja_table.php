@@ -26,13 +26,9 @@ class CreateLojaTable extends Migration
 
             $table->date('dt_fundacao');
            
-
+            // FK
             $table->integer('potencia_id')->unsigned();
-            $table->foreign('potencia_id')->references('id')->on('potencia')->onDelete('cascade');
-
-
-
-
+            
             $table->timestamps();
         });
     }

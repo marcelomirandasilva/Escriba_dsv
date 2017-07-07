@@ -19,7 +19,7 @@ class CreateVisitaTable extends Migration
             $table->unsignedInteger('visitante_id');
             $table->timestamps();
 
-            $table->foreign('visitante_id')->references('id')->on('visitante')->onDelete('cascade');
+            
         });
     }
 

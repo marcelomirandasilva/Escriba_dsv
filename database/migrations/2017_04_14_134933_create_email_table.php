@@ -25,10 +25,6 @@ class CreateEmailTable extends Migration
 
 
             $table->timestamps();
-            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
-            $table->foreign('loja_id')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('dependente_id')->references('id')->on('dependente')->onDelete('cascade');
-            $table->foreign('visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });
     }
 

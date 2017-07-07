@@ -29,7 +29,7 @@ class CreateVisitanteTable extends Migration
             $table->timestamps();
 
             
-            $table->foreign('loja_id')->references('id')->on('loja')->onDelete('cascade');
+            
         });
     }
 

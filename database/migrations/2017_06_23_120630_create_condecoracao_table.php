@@ -58,7 +58,7 @@ class CreateCondecoracaoTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
+            
         });
     }
 

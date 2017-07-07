@@ -35,14 +35,6 @@ class CreateCerimoniaTable extends Migration
 
             $table->timestamps();
 
-            
-
-
-            $table->foreign('loja_id_iniciacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('loja_id_elevacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('loja_id_exaltacao')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('loja_id_instalacao')->references('id')->on('loja')->onDelete('cascade');
-
          });
     }
 

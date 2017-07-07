@@ -34,12 +34,6 @@ class CreateEnderecoTable extends Migration
 
 
             $table->timestamps();
-
-            // CHAVES ESTRANGEIRAS
-            //$table->foreign('pais_id')->references('id')->on('pais')->onDelete('cascade');
-            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
-            $table->foreign('loja_id')->references('id')->on('loja')->onDelete('cascade');
-            $table->foreign('visitante_id')->references('id')->on('visitante')->onDelete('cascade');
         });
     }
 

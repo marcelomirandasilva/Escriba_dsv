@@ -29,7 +29,7 @@ class CreateDependenteTable extends Migration
             $table->boolean('ic_mora_junto');
             
             $table->timestamps();
-            $table->foreign('membro_id')->references('id')->on('membro')->onDelete('cascade');
+            
         });
     }
 
