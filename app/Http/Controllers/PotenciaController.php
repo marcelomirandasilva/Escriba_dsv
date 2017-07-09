@@ -45,7 +45,7 @@ class PotenciaController extends Controller
 
         //Criar uma nova potencia
         $potencia = new Potencia($request->all());
-        $potencia->no_continente = "Westeros";
+        $potencia->continente = "Westeros";
 
        // Salvar no banco para obter o ID
         $potencia->save();

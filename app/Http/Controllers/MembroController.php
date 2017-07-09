@@ -44,13 +44,13 @@ class MembroController extends Controller
 
         $aposentado         = ['Sim','Não'];
 
-        $escolaridade       = pegaValorEnum('membro','ic_escolaridade');                                                   
-        $situacao           = pegaValorEnum('membro','ic_situacao');                                                   
-        $grau               = pegaValorEnum('membro','ic_grau');                      
-        $estado_civil       = pegaValorEnum('membro','ic_estado_civil'); 
-        $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
-        $sexos              = pegaValorEnum('dependente','ic_sexo'); 
-        $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
+        $escolaridade       = pegaValorEnum('membros','ic_escolaridade');                                                   
+        $situacao           = pegaValorEnum('membros','ic_situacao');                                                   
+        $grau               = pegaValorEnum('membros','ic_grau');                      
+        $estado_civil       = pegaValorEnum('membros','ic_estado_civil'); 
+        $tipo_telefone      = pegaValorEnum('telefones','ic_telefone'); 
+        $sexos              = pegaValorEnum('dependentes','ic_sexo'); 
+        $grau_parentesco    = pegaValorEnum('dependentes','ic_grau_parentesco'); 
         
 
         //orderna os valores dos arrays
@@ -60,7 +60,7 @@ class MembroController extends Controller
         //sort($escolaridade);
         sort($grau_parentesco);
 
-        $paises     = Pais::all()->sortBy('no_pais');        
+        $paises     = Pais::all()->sortBy('nome');        
 
         $lojas      = Loja::all()->sortBy('no_loja');    
 
@@ -110,13 +110,13 @@ class MembroController extends Controller
         $aposentado         = ['Sim','Não'];
 
         
-        $escolaridade       = pegaValorEnum('membro','ic_escolaridade');                                                   
-        $situacao           = pegaValorEnum('membro','ic_situacao');                                                   
-        $grau               = pegaValorEnum('membro','ic_grau');                      
-        $estado_civil       = pegaValorEnum('membro','ic_estado_civil'); 
-        $tipo_telefone      = pegaValorEnum('telefone','ic_telefone'); 
-        $sexos              = pegaValorEnum('dependente','ic_sexo'); 
-        $grau_parentesco    = pegaValorEnum('dependente','ic_grau_parentesco'); 
+        $escolaridade       = pegaValorEnum('membros','ic_escolaridade');                                                   
+        $situacao           = pegaValorEnum('membros','ic_situacao');                                                   
+        $grau               = pegaValorEnum('membros','ic_grau');                      
+        $estado_civil       = pegaValorEnum('membros','ic_estado_civil'); 
+        $tipo_telefone      = pegaValorEnum('telefones','ic_telefone'); 
+        $sexos              = pegaValorEnum('dependentes','ic_sexo'); 
+        $grau_parentesco    = pegaValorEnum('dependentes','ic_grau_parentesco'); 
         
 
         //orderna os valores dos arrays
@@ -126,7 +126,7 @@ class MembroController extends Controller
         //sort($escolaridade);
         sort($grau_parentesco);
 
-        $paises     = Pais::all()->sortBy('no_pais');        
+        $paises     = Pais::all()->sortBy('nome');        
 
         $lojas      = Loja::all()->sortBy('no_loja');       
 

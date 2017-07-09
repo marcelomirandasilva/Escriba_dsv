@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dependente extends Model
 {
     
-	protected $table = "dependente";
+	protected $table = "dependentes";
 
 	protected $primaryKey = 'id';
 

@@ -1,4 +1,3 @@
-
 @extends('layouts.blank')
 
 @push('stylesheets')
@@ -20,7 +19,7 @@
       <div class="x_panel modal-content">
         <div class="x_title">
           <h2> Listagem de Usuários </h2>
-          <a href="{{ url('membros/create') }}" 
+          <a href="{{ url('usuarios/create') }}" 
             class="btn-circulo btn btn-primary btn-md   pull-right " 
             data-toggle="tooltip"  
             data-placement="bottom" 
@@ -33,7 +32,7 @@
 
             <div class="x_content">
                
-				<table class="table table-striped" id="dataTable">
+				<table class="table table-striped " id="tabela_usuarios">
 
 					<thead>
 						
@@ -112,7 +111,7 @@
   <script>
     $(document).ready(function(){
       $.fn.dataTable.moment( 'DD/MM/YYYY' );
-      $("#tabela-membros").DataTable({
+      $("#tabela_usuarios").DataTable({
 
         language : {
           'url' : '{{ asset('js/portugues.json') }}',
@@ -122,11 +121,7 @@
         stateSave: true,
         stateDuration: -1,
 
-        "columnDefs": 
-        [
-          { className: "text-center", "targets": [2,4] },
-          { className: "text-right",  "targets": [1] }
-        ]
+       
 
       });
     });

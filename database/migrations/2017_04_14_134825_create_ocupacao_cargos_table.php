@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePotenciaTable extends Migration
+class CreateOcupacaoCargosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreatePotenciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('potencia', function (Blueprint $table) {
+        Schema::create('ocupacao_cargos', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('membro_id');
+            $table->unsignedInteger('cargo_id');
+            $table->date('dt_posse');
+
             $table->timestamps();
-            $table->string('no_continente',20);
-            $table->string('no_potencia',60);
+
         });
     }
 
@@ -28,6 +32,6 @@ class CreatePotenciaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('potencia');
+        Schema::dropIfExists('ocupacao_cargos');
     }
 }

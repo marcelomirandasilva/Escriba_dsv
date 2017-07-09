@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePresencaSessaoTable extends Migration
+class CreateCargosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreatePresencaSessaoTable extends Migration
      */
     public function up()
     {
-        Schema::create('presenca_sessao', function (Blueprint $table) {
+        Schema::create('cargos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('sessao_id');
+            $table->string('no_cargo',20);
+            
+            //FK
             $table->unsignedInteger('membro_id');
-            $table->unsignedInteger('cargo_id');
-
+            
             $table->timestamps();
-
+            
+            
         });
     }
 
@@ -31,6 +33,6 @@ class CreatePresencaSessaoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('presenca_sessao');
+        Schema::dropIfExists('cargos');
     }
 }

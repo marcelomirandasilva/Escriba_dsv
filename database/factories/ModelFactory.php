@@ -14,13 +14,15 @@ use App\Bibliotecas\Geral;
 */
 
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-	return [
-	'name' 				=> 	$faker->name,
-	'email' 			=> 	$faker->safeEmail,
-	'password' 			=> 	bcrypt(str_random(10)),
-	'remember_token' 	=> 	str_random(10),
-	'acesso'			=>	$faker->randomElement(['ADM','SEC','TES','CHA','VM','DEF']),
 	
+	$v_acesso = array_rand(pegaValorEnum('users','acesso'),1);   
+
+	return [
+		'name' 				=> 	$faker->name,
+		'email' 			=> 	$faker->safeEmail,
+		'password' 			=> 	bcrypt(str_random(10)),
+		'remember_token' 	=> 	str_random(10),
+		'acesso'			=>	$v_acesso,
 	];
 });
 
@@ -42,7 +44,7 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 
 	//SITUACAO
 	//$v1 = pegaValorEnum('membro','ic_situacao');      
-	$v_situacao = array_rand(pegaValorEnum('membro','ic_situacao'),1);      
+	$v_situacao = array_rand(pegaValorEnum('membros','ic_situacao'),1);      
 
 	//GRAU
 	$v_grau = $faker->randomElement(['Candidato','Aprendiz','Companheiro','Mestre','M.Instalado']);

@@ -35,7 +35,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $titulo         = "Cadastro de Usuários";
+        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
+        
+        sort($tipo_acesso);
+
+        return view('usuarios.create_edit',compact(['titulo','tipo_acesso']));
     }
 
     /**

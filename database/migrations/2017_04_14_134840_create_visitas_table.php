@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOcupacaoCargoTable extends Migration
+class CreateVisitasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateOcupacaoCargoTable extends Migration
      */
     public function up()
     {
-        Schema::create('ocupacao_cargo', function (Blueprint $table) {
+        Schema::create('visitas', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->unsignedInteger('membro_id');
-            $table->unsignedInteger('cargo_id');
-            $table->date('dt_posse');
-
+            $table->date('dt_visita');
+            $table->unsignedInteger('visitante_id');
             $table->timestamps();
 
+            
         });
     }
 
@@ -32,6 +30,6 @@ class CreateOcupacaoCargoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ocupacao_cargo');
+        Schema::dropIfExists('visitas');
     }
 }

@@ -11,7 +11,7 @@ class Endereco extends Model
     /**
      * Relacionamentos
      */
-    protected $table = "endereco";
+    protected $table = "enderecos";
 
     protected $fillable =[
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCondecoracaoTable extends Migration
+class CreateCondecoracoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCondecoracaoTable extends Migration
      */
     public function up()
     {
-        Schema::create('condecoracao', function (Blueprint $table) {
+        Schema::create('condecoracoes', function (Blueprint $table) {
             
             $table->increments('id');
             $table->unsignedInteger('membro_id');
@@ -70,7 +70,7 @@ class CreateCondecoracaoTable extends Migration
     public function down()
     {
         Schema::table('condecoracao', function (Blueprint $table) {
-            Schema::dropIfExists('condecoracao');        
+            Schema::dropIfExists('condecoracoes');        
         });
     }
 }

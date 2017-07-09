@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cerimonia extends Model
 {
 	
-	protected $table = "cerimonia";
+	protected $table = "cerimonias";
 
 	protected $primaryKey = 'id';
 

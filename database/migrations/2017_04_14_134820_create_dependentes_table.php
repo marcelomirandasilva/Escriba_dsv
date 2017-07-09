@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDependenteTable extends Migration
+class CreateDependentesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDependenteTable extends Migration
      */
     public function up()
     {
-        Schema::create('dependente', function (Blueprint $table) {
+        Schema::create('dependentes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('membro_id');
             $table->string('no_dependente',100);
@@ -40,6 +40,6 @@ class CreateDependenteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dependente');
+        Schema::dropIfExists('dependentes');
     }
 }

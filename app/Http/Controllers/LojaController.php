@@ -46,9 +46,9 @@ class LojaController extends Controller
         $titulo = "Cadastro de Lojas";
 
         $potencias  = Potencia::all()->sortBy('no_potencia');
-        $paises     = Pais::all()->sortBy('no_pais');        
+        $paises     = Pais::all()->sortBy('nome');        
 
-        $ritos      =  pegaValorEnum('loja','ic_rito') ;
+        $ritos      =  pegaValorEnum('lojas','ic_rito') ;
 
         //dd($ritos);
 
@@ -157,8 +157,8 @@ class LojaController extends Controller
     {
 
         $potencias  = Potencia::all()->sortBy('no_potencia');
-        $paises     = Pais::all()->sortBy('no_pais');        
-        $ritos      = pegaValorEnum('loja','ic_rito') ;
+        $paises     = Pais::all()->sortBy('nome');        
+        $ritos      = pegaValorEnum('lojas','ic_rito') ;
 
         $loja = $this->loja->find($id);
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Telefone extends Model
 {
-    protected $table = "telefone";
+    protected $table = "telefones";
 
 	protected $primaryKey = 'id';
 
