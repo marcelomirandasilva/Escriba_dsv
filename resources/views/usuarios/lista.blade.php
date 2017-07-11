@@ -16,7 +16,7 @@
   <!-- page content -->
   <div class="right_col" role="main">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel modal-content">
+      <div class="x_panel modal-content animated fadeInUp">
         <div class="x_title">
           <h2> Listagem de Usuários </h2>
           <a href="{{ url('usuarios/create') }}" 
@@ -63,7 +63,11 @@
                     </a>
 
                     @if((Auth::user()->acesso == 'ADM')  or (Auth::user()->id == $usuario->id))
-                      <a data-toggle="tooltip" title="Alterar" class="btn btn-warning btn-xs action botao_lista" href="{{ url("users/$usuario->id/edit") }}"><i class="fa fa-pencil"></i></a>
+                      <a data-toggle="tooltip" title="Alterar" 
+                          class="btn btn-warning btn-xs action botao_lista" 
+                          href="{{ url("usuarios/$usuario->id/edit") }}">
+                        <i class="fa fa-pencil"></i>
+                      </a>
                     @endif
                   </td>
 							</tr>

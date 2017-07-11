@@ -6,18 +6,19 @@ use Illuminate\Http\Request;
 
 use App\models\User;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use Image;
 
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
+
+    // Exigir que o usuário esteja logado ao acessar esse controller
+
+  
     public function index()
     {
          // Mostrar a lista de usuários
@@ -28,30 +29,39 @@ class UserController extends Controller
         return view('usuarios.lista', compact('usuarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
+
         $titulo         = "Cadastro de Usuários";
         $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
         
         sort($tipo_acesso);
 
+        // return "entrou";
         return view('usuarios.create_edit',compact(['titulo','tipo_acesso']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $this->validate($request, [
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'admin'    => 'required',
+        ]);
+
+        $user = User::create($request->all());
+
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return redirect(url('usuarios/create'))->with('sucesso', 'Usuário cadastrado com sucesso.');
+        //return redirect('lojas.edit')->whith(['erros' => 'Falha ao editar']); 
     }
 
     /**
@@ -65,38 +75,51 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+
+        $usuario = User::find($id);
+        //$usuario = $this->users->find($id);
+
+        $edita = true;
+
+        $titulo         = "Edição de Usuários";
+        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
+        
+        sort($tipo_acesso);
+
+        return view('usuarios.create_edit',compact('usuario','titulo','tipo_acesso','edita'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        // Validar
+
+        $this->validate($request, [
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users,email,'.$id,
+            'admin'    => 'required',
+        ]);
+
+        // Obter o usuário
+
+        $usuario = User::find($id);
+
+        // Atualizar as informações
+
+        $usuario->update($request->all());
+
+        // Retornar com mensagem de sucesso
+
+        return redirect("/users/$usuario->id/edit")->with('sucesso', 'Informações do usuário atualizadas com sucesso.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $user=User::find($id);
+
+        $user->delete();
+
     }
 
 
@@ -129,5 +152,23 @@ class UserController extends Controller
 
         return view('users.perfil',array('User' => Auth::user()));
 
+    }
+
+
+    public function alterarSenha(Request $request)
+    {
+        $this->validate($request, [
+            'senhaatual'             => 'required|logado|min:6',
+            'novasenha'              => 'required|min:6',
+            'novasenha_confirmation' => 'required|min:6|same:novasenha'
+        ]);
+
+        $usuario = User::find(Auth::user()->id);
+
+        $usuario->password = Hash::make($request->novasenha);
+
+        $usuario->save();
+
+        return redirect('/mudarsenha')->with('sucesso', 'Senha alterada com sucesso.');
     }
 }

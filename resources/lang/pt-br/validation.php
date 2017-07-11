@@ -108,6 +108,11 @@ return [
     'attributes' => [
 
         'nu_logradouro' => "Número",
+        'name'          => 'Nome',
+        'email'         => 'Email',
+        'password'      => 'Senha',
+        'admin'         => 'Tipo de Usuário',
+        
 
     ],
 

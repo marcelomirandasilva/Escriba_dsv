@@ -9,8 +9,13 @@
 
 @section('conteudo')
 	<!-- page content -->
+	{{-- Mostrar os erros de validação --}}
 
+   
 	<div class="right_col" role="main">
+
+		@include('includes/mensagens')
+		
 
 		<div class=""> </div>
 		<div class="clearfix"></div>
@@ -22,13 +27,13 @@
 			<div class="x_panel modal-content">
 				
 				<div class="x_title">
-					<h2> Cadastro de Usuários</h2>
+					<h2> {{ $titulo  }} </h2>
 					<div class="clearfix"></div>
 				</div>
 
 				<div class="x_content">
 
-					<form action="{{ url("/users/") }}" method="post" class="form-horizontal" id="form-cadastro-usuario">
+					<form action="{{ url("usuarios") }}" method="post" class="form-horizontal" id="form-cadastro-usuario">
 
 						{{ csrf_field() }}
 
@@ -38,7 +43,7 @@
 							<label for="nome" class="col-sm-4 control-label">Nome</label>
 
 							<div class="col-sm-4">
-								<input value="{{ old('name') }}" name="name" type="text" class="form-control" id="nome" placeholder="Nome">
+								<input value="{{ $usuario->name or old('name') }}" name="name" type="text" class="form-control" id="nome" placeholder="Nome">
 							</div>
 						</div>
 
@@ -49,34 +54,41 @@
 		    				<label for="email" class="col-sm-4 control-label">Email</label>
 
 		    				<div class="col-sm-4">
-		     	 				<input value="{{ old('email') }}" name="email" type="email" class="form-control" id="email" placeholder="Email">
+		     	 				<input value="{{ $usuario->email or old('email') }}" name="email" type="email" class="form-control" id="email" placeholder="Email">
 		    				</div>
 
 		   				</div>
 
 		   				{{-- Campo Senha --}}
 
-						<div class="form-group">
+						@if (!isset($edita))
+							
+						
+							<div class="form-group">
 
-							<label for="senha" class="col-sm-4 control-label">Senha</label>
+								<label for="senha" class="col-sm-4 control-label">Senha</label>
 
-							<div class="col-sm-4">
-								<input name="password" type="password" class="form-control" id="senha" placeholder="Senha">
+								<div class="col-sm-4">
+									<input value="{{ $usuario->password or old('password') }} name="password" type="password" class="form-control" id="senha" placeholder="Senha">
+								</div>
 							</div>
-						</div>
 
-						{{-- Campo Nova Senha --}}
+							{{-- Campo Nova Senha --}}
 
-						<div class="form-group">
+							<div class="form-group">
 
-							<label for="confirmarsenha" class="col-sm-4 control-label">Confirmar Senha</label>
+								<label for="confirmarsenha" class="col-sm-4 control-label">Confirmar Senha</label>
 
-							<div class="col-sm-4">
-								<input name="password_confirmation" type="password" class="form-control" id="senha" placeholder="Confirmar Senha">
+								<div class="col-sm-4">
+									<input name="password_confirmation" type="password" class="form-control" id="senha" placeholder="Confirmar Senha">
 
+								</div>
 							</div>
-						</div>
 
+						@endif
+
+
+						
 						{{-- Campo de Seleçao --}}
 
 						<div class="form-group">
@@ -90,7 +102,7 @@
 									
 									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 										@foreach($tipo_acesso as $acesso)
-											@if ( $usuario->ic_acesso == $acesso)
+											@if ( $usuario->acesso == $acesso)
 												<option value="{{$acesso}}" selected="selected"> {{$acesso}} </option>
 											@else
 												<option value="{{$acesso}}"> {{$acesso}} </option>    

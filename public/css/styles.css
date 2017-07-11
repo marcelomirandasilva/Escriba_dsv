@@ -76,6 +76,28 @@ input[type="text"]{
     float: left;
 
 }
+
+.logo_grande{
+    
+    width: 85px;
+    height: 85px;
+    background-size: 85px 85px;
+    background-image: url(../images/thoth.ico);
+    position: relative;
+    bottom:  30px;
+    
+    display: inline-block;
+    line-height: 1;
+}
+
+.login_content h1 {
+    font: 400 35px Helvetica,Arial,sans-serif;
+    letter-spacing: -.05em;
+    line-height: 20px;
+    margin: 10px 0 30px;
+}
+
+
 .logo_side_bar{
     
     width: 35px;
@@ -263,3 +285,14 @@ footer {
 
 
 
+.alert_vermelho {
+    color: #fff;
+    background-color: #b12020;
+    border-color: #3D276B;
+}
+
+.alert_verde {
+    color: #fff;
+    background-color: #3d843e;
+    border-color: #c9ab6d;
+}

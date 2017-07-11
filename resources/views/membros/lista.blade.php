@@ -16,7 +16,7 @@
   <!-- page content -->
   <div class="right_col" role="main">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel modal-content">
+      <div class="x_panel modal-content animated fadeInUp">
         <div class="x_title">
           <h2> Listagem de Irmãos </h2>
           <a href="{{ url('membros/create') }}" 
