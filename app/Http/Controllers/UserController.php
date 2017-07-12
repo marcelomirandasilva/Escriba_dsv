@@ -39,7 +39,7 @@ class UserController extends Controller
         sort($tipo_acesso);
 
         // return "entrou";
-        return view('usuarios.create_edit',compact(['titulo','tipo_acesso']));
+        return view('usuarios.create',compact(['titulo','tipo_acesso']));
     }
 
     
@@ -51,12 +51,12 @@ class UserController extends Controller
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'admin'    => 'required',
+            'acesso'    => 'required',
         ]);
 
         $user = User::create($request->all());
 
-        $user->password = Hash::make($request->password);
+        $user->password = bcrypt($request->password);
 
         $user->save();
 
@@ -81,14 +81,12 @@ class UserController extends Controller
         $usuario = User::find($id);
         //$usuario = $this->users->find($id);
 
-        $edita = true;
-
         $titulo         = "Edição de Usuários";
         $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
         
         sort($tipo_acesso);
-
-        return view('usuarios.create_edit',compact('usuario','titulo','tipo_acesso','edita'));
+        //return "cheguei";
+        return view('usuarios.edit',compact('usuario','titulo','tipo_acesso'));
     }
 
     public function update(Request $request, $id)
@@ -98,20 +96,30 @@ class UserController extends Controller
         $this->validate($request, [
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users,email,'.$id,
-            'admin'    => 'required',
+            'acesso'    => 'required',
         ]);
 
         // Obter o usuário
 
         $usuario = User::find($id);
 
+
+
         // Atualizar as informações
 
-        $usuario->update($request->all());
+        $status = $usuario->update($request->all());
 
-        // Retornar com mensagem de sucesso
 
-        return redirect("/users/$usuario->id/edit")->with('sucesso', 'Informações do usuário atualizadas com sucesso.');
+        
+        
+
+        if ($status) {
+            return redirect("/usuarios/$usuario->id/edit")->with('sucesso', 'Informações do usuário atualizadas com sucesso.');
+        } else {
+            //return redirect(back); 
+            return redirect("/usuarios/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
+        }
+        
     }
 
     public function destroy($id)

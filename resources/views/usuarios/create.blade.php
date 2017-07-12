@@ -61,45 +61,29 @@
 
 		   				{{-- Campo Senha --}}
 
-						@if (!isset($edita))
-							
-						
-							<div class="form-group">
-
-								<label for="senha" class="col-sm-4 control-label">Senha</label>
-
-								<div class="col-sm-4">
-									<input value="{{ $usuario->password or old('password') }} name="password" type="password" class="form-control" id="senha" placeholder="Senha">
-								</div>
+						<div class="form-group">
+							<label for="senha" class="col-sm-4 control-label">Senha</label>
+							<div class="col-sm-4">
+								<input value="" name="password" type="password" class="form-control" id="password" placeholder="Senha">
 							</div>
+						</div>
 
-							{{-- Campo Nova Senha --}}
+						{{-- Campo Nova Senha --}}
 
-							<div class="form-group">
-
-								<label for="confirmarsenha" class="col-sm-4 control-label">Confirmar Senha</label>
-
-								<div class="col-sm-4">
-									<input name="password_confirmation" type="password" class="form-control" id="senha" placeholder="Confirmar Senha">
-
-								</div>
+						<div class="form-group">
+							<label for="confirmarsenha" class="col-sm-4 control-label">Confirmar Senha</label>
+							<div class="col-sm-4">
+								<input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirmar Senha">
 							</div>
-
-						@endif
-
+						</div>
 
 						
 						{{-- Campo de Seleçao --}}
 
 						<div class="form-group">
-
 							<label for="admin" class="col-sm-4 control-label">Tipo de Usuário</label>
-
 							<div class="col-sm-4">
-							
 								<select name="admin" class="form-control" id="tipodeususario">
-									
-									
 									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 										@foreach($tipo_acesso as $acesso)
 											@if ( $usuario->acesso == $acesso)
@@ -114,10 +98,7 @@
 											<option value="{{$acesso}}"> {{$acesso}} </option>  
 										@endforeach
 									@endif
-
-
 								</select>
-
 							</div>
 						</div>	
 						

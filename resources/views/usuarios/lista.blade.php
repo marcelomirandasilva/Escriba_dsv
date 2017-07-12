@@ -11,6 +11,34 @@
 
 @section('conteudo')
 
+  <!-- Modal -->
+  <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="modalLabel">Exclusão de Usuário</h4>
+        </div>
+        <div class="modal-body">
+            Deseja realmente excluir essa Usuário?
+            <h5><b>{{ $usuario->name }} - {{ $usuario->email }} - {{  $usuario->acesso }} </b> </h5> 
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default btn_acao" data-dismiss="modal">N&atilde;o</button>
+            <a href="#"  type="button" class="btn btn-primary botao_deletar btn_acao">Sim</a>       
+        </div>
+    
+        <form action="{{ route("usuarios.destroy", ['id' => $usuario->id]) }}" class="form-excluir" method="post" accept-charset="utf-8">
+            <input type="hidden" name="id" id="id_loja">
+            {{ method_field("DELETE") }}
+            {{ csrf_field() }}
+        </form>
+      </div>
+    </div>
+  </div> 
+  <!-- /.modal -->
+
+
 
 
   <!-- page content -->
@@ -54,15 +82,15 @@
 							    <td>{{ $usuario->email }}</td>
 							    <td>{{ $usuario->acesso }}</td>
 							    <td class="actions">
-                    <a href=href="{{ url('users/$usuario->id/edit') }}" 
-                        class="btn btn-primary btn-xs  action botao_lista  "  
-                        data-toggle="tooltip"  
-                        data-placement="bottom" 
-                        title="Visualiza esse Usuário"> 
-                        <i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
-                    </a>
+                    <button 
+                      data-target="#delete-modal"
+                      class="btn btn-circulo btn btn-danger btn-md    pull-right"  
+                      data-toggle="modal" 
+                      title="Exclui essa Loja">
+                      <i class="fa fa-trash"></i>
+                    </button>
 
-                    @if((Auth::user()->acesso == 'ADM')  or (Auth::user()->id == $usuario->id))
+                    @if((Auth::user()->acesso == 'ADMINISTRADOR')  or (Auth::user()->id == $usuario->id))
                       <a data-toggle="tooltip" title="Alterar" 
                           class="btn btn-warning btn-xs action botao_lista" 
                           href="{{ url("usuarios/$usuario->id/edit") }}">
