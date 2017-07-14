@@ -11,7 +11,7 @@
 
 @section('conteudo')
 
-  <!-- Modal -->
+  {{-- <!-- Modal -->
   <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -37,7 +37,7 @@
     </div>
   </div> 
   <!-- /.modal -->
-
+ --}}
 
 
 
@@ -82,21 +82,20 @@
 							    <td>{{ $usuario->email }}</td>
 							    <td>{{ $usuario->acesso }}</td>
 							    <td class="actions">
+                    <a data-toggle="tooltip" title="Alterar" 
+                        class="btn btn-warning btn-xs action botao_lista" 
+                        href="{{ url("usuarios/$usuario->id/edit") }}">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+
                     <button 
                       data-target="#delete-modal"
-                      class="btn btn-circulo btn btn-danger btn-md    pull-right"  
+                      class="btn  btn-xs action botao_lista btn-danger "  
                       data-toggle="modal" 
                       title="Exclui essa Loja">
                       <i class="fa fa-trash"></i>
                     </button>
 
-                    @if((Auth::user()->acesso == 'ADMINISTRADOR')  or (Auth::user()->id == $usuario->id))
-                      <a data-toggle="tooltip" title="Alterar" 
-                          class="btn btn-warning btn-xs action botao_lista" 
-                          href="{{ url("usuarios/$usuario->id/edit") }}">
-                        <i class="fa fa-pencil"></i>
-                      </a>
-                    @endif
                   </td>
 							</tr>
 

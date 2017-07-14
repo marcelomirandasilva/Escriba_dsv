@@ -26,6 +26,7 @@ class Membro extends Model
         'dt_emissao_titulo',
         'nu_zona_eleitoral',
         'ic_estado_civil',
+        'ic_escolaridade',
         'dt_casamento',
         'no_profissao',
         'ic_aposentado',

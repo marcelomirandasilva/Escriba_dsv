@@ -1,12 +1,40 @@
 <?php
 
-
 Auth::routes();
-Route::get ('/logout', 				'Auth\LoginController@logout');
-Route::get ('/', 					'HomeController@index');
+Route::get ('/logout', 					'Auth\LoginController@logout');
+Route::get ('/', 						'HomeController@index');
 
-Route::get ('perfil',        		'UserController@perfil');
-Route::post ('perfil',        		'UserController@update_avatar');
+
+// Rota para alterar o perfil do usuário atual
+Route::get ('perfil',        			'UserController@perfil');
+Route::post ('perfil',        			'UserController@update_avatar');
+
+
+// Rota para alterar a senha do usuário atual
+Route::post("alterarsenha", 			"UsersController@alterarSenha");
+
+// Rota para o ADMINISTRADOR alterar a senha de qualquer usuario
+Route::post("mudarsenha", 				"UsersController@mudarsenha");
+
+
+
+Route::post('lojas/potencia/store', 	'PotenciaController@store');
+
+//resources
+Route::resource('membros', 				'MembroController');
+Route::resource('lojas', 				'LojaController');
+Route::resource('usuarios', 			'UserController');
+	
+
+
+
+
+
+
+
+
+
+
 
 //Route::group(['prefix' => 'irmaos'],function(){
 //	Route::get ('/',              	'IrmaoController@index');
@@ -36,11 +64,3 @@ Route::post ('perfil',        		'UserController@update_avatar');
 // });
 
 
-
-
-Route::post('lojas/potencia/store', 	'PotenciaController@store');
-
-Route::resource('membros', 			'MembroController');
-Route::resource('lojas', 			'LojaController');
-Route::resource('usuarios', 		'UserController');
-	

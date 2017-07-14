@@ -82,7 +82,7 @@ class MembroController extends Controller
         //$membro = new Membro($request->all());
         $membro = new Membro($request->all());
 
-
+        
         // Verificar se está aposentado
 
         $membro->ic_aposentado = $request->aposentado ? 1 : 0;

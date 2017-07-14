@@ -3,18 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 use App\models\User;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-
 use Image;
-
+use Datatables;
+use PDF;
 
 class UserController extends Controller
 {
   
+   public function __construct(User $user)
+    {
+        // todas as rotas aqui serão antes autenticadas
+        $this->middleware('auth');
+
+        //$this->middleware('is_administrador')->except(['alterarSenha']);
+    }
 
     // Exigir que o usuário esteja logado ao acessar esse controller
 
@@ -134,14 +143,21 @@ class UserController extends Controller
 
      public function perfil(){
     
-        $logado = array('User' => Auth::user());
+     
+        $usuario = User::find(Auth::user()->id);
 
-
-        //dd($logado);
         
 
-        //return view('users.perfil',compact('titulo','logado' ) );
-        return view('usuarios.perfil',array('User' => Auth::user()));
+        $titulo         = "Alteração de Perfil";
+        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
+        
+        sort($tipo_acesso);
+        //return "cheguei";
+        //return view('usuarios.edit',compact('usuario','titulo','tipo_acesso'));
+
+        //dd($logado);
+                
+        return view('usuarios.perfil',compact('usuario','titulo','tipo_acesso'));
     }
 
 
@@ -163,6 +179,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Função para alterar a senha do usuário atual
+     */
+
     public function alterarSenha(Request $request)
     {
         $this->validate($request, [
@@ -179,4 +199,6 @@ class UserController extends Controller
 
         return redirect('/mudarsenha')->with('sucesso', 'Senha alterada com sucesso.');
     }
+
+    
 }
