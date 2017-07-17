@@ -25,7 +25,13 @@
         <link href="{{ asset("css/magic-check.css") }}" rel="stylesheet">
 
         {{-- ANIMATED --}}
-        <link href="{{ asset("css/animate.css") }}" rel="stylesheet" >
+        <link rel="stylesheet" href="{{ asset("css/animate.css") }}"  >
+
+
+        <!-- SweetAlert2 -->
+        <link rel="stylesheet" href="{{ asset("sweetalert2/dist/sweetalert2.min.css") }}">
+
+        
 
              
         {{-- CSS Customizado do Projeto --}}
@@ -51,13 +57,16 @@
         </div>
 
         <!-- jQuery -->
-        <script src="{{ asset("js/jquery.min.js") }}">                  </script>
+        <script src="{{ asset("js/jquery.min.js") }}">                          </script>
         <!-- Bootstrap -->
-        <script src="{{ asset("js/bootstrap.min.js") }}">               </script>
+        <script src="{{ asset("js/bootstrap.min.js") }}">                       </script>
         <!-- Custom Theme Scripts -->
-        <script src="{{ asset("js/gentelella.min.js") }}">              </script>
+        <script src="{{ asset("js/gentelella.min.js") }}">                      </script>
         <!-- Autocomplete -->
-        <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >           </script>
+        <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >        </script>
+        <!-- SweetAlert2 -->
+        <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
+
        
         @stack('scripts')
 

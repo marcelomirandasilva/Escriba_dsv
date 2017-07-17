@@ -14,18 +14,7 @@
 	<!-- page content -->
 	<div class="right_col" role="main">
 
-		<!---------------------- Mostra os erros de validação ------------------------------>
-
-		@if( count($errors) > 0 )
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				@foreach($errors->all() as $erro)
-					<p> {{ $erro }} </p>
-				@endforeach
-			</div>
-		@endif
-		<!------------------------------------------------------------------------------------>
-
-
+		@include('includes/mensagens')
 
 		<div class=""> </div>
 		<div class="clearfix"></div>
@@ -455,7 +444,13 @@
 	<!-- Adicionando Javascript -->
 	<script type="text/javascript" >
 
+
 		$(document).ready(function() {
+
+			@if (session('sucesso'))
+				swal('Parabéns!', '{{ session('sucesso') }}' ,'success');
+			@endif
+
 
 			$('[data-toggle="modal"][title]').tooltip();
 
@@ -484,6 +479,8 @@
 					console.log(dados);
 				});
 			});
+
+
 
 
 			{{-- Máscarasa dos campos CPF e RG --}}

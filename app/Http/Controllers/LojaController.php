@@ -34,13 +34,7 @@ class LojaController extends Controller
         return view('lojas.lista', compact('lojas'));
     }
 
- 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $titulo = "Cadastro de Lojas";
@@ -55,12 +49,7 @@ class LojaController extends Controller
         return view('lojas.create_edit',compact('potencias','paises','ritos','titulo'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
 
@@ -111,8 +100,18 @@ class LojaController extends Controller
         $email->loja()->associate($loja);
         $email->save();
 
+        //dd('Loja '.$request->co_titulo .' ' .$request->no_loja .' Nº ' .$request->nu_loja .' Cadastrada com Sucesso');
 
-        return redirect()->back(); 
+        if ($loja && $endereco && $telefone && $email) {
+            return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
+                                                        .$request->no_loja      .' Nº ' 
+                                                        .$request->nu_loja 
+                                                        .' Cadastrada com Sucesso');
+
+        } else {
+            return redirect()->back()->with(['erros' => 'Falha ao cadastrar']); 
+        }
+
     }
 
     /**
@@ -197,7 +196,7 @@ class LojaController extends Controller
 
         // $loja->endereco()->associate($request->input('pais_id'));
 
-        //$status3 = $loja->endereco->update($dadosFormulario);
+        $status3 = $loja->endereco->update($dadosFormulario);
 
         
         
@@ -206,7 +205,7 @@ class LojaController extends Controller
 
         //dd($dadosFormulario);
 
-        if ($status1 or $status2 or $status3 or $status4 or $status5) {
+        if ($status1 and $status2 and $status3 and $status4 and $status5) {
             return redirect('lojas');
         } else {
             //return redirect(back); 
