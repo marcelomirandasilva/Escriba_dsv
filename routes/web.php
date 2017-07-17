@@ -2,12 +2,12 @@
 
 Auth::routes();
 Route::get ('/logout', 					'Auth\LoginController@logout');
-Route::get ('/', 						'HomeController@index');
+Route::get ('/', 							'HomeController@index');
 
 
 // Rota para alterar o perfil do usuário atual
 Route::get ('perfil',        			'UserController@perfil');
-Route::post ('perfil',        			'UserController@update_avatar');
+Route::post ('perfil',        		'UserController@update_avatar');
 
 
 // Rota para alterar a senha do usuário atual
@@ -16,12 +16,13 @@ Route::post("alterarsenha", 			"UsersController@alterarSenha");
 // Rota para o ADMINISTRADOR alterar a senha de qualquer usuario
 Route::post("mudarsenha", 				"UsersController@mudarsenha");
 
+// teste calendario
+Route::get ('calendario',				'CalendarioController@index');
 
-
-Route::post('lojas/potencia/store', 	'PotenciaController@store');
+Route::post('lojas/potencia/store', 'PotenciaController@store');
 
 //resources
-Route::resource('membros', 				'MembroController');
+Route::resource('membros', 			'MembroController');
 Route::resource('lojas', 				'LojaController');
 Route::resource('usuarios', 			'UserController');
 	
