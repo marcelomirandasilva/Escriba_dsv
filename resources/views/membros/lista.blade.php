@@ -18,7 +18,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel modal-content animated fadeInUp">
         <div class="x_title">
-          <h2> Listagem de Irmãos </h2>
+          <h2> Listagem de Membros </h2>
           <a href="{{ url('membros/create') }}" 
             class="btn-circulo btn btn-primary btn-md   pull-right " 
             data-toggle="tooltip"  
@@ -82,12 +82,6 @@
   </div>
   <!-- /page content -->
 
-  <!-- footer content -->
-  <footer>
-   <div class="pull-right"> V0.1_2017</a> </div>
-   <div class="clearfix"></div>
-  </footer>
-  <!-- /footer content -->
 @endsection
 
 @push("scripts")

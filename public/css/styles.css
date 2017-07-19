@@ -221,12 +221,6 @@ body .container.body .right_col {
     background: #F7F7D8;
 }
 
-footer {
-    background: #fff;
-    padding: 15px 20px;
-    display: block;
-    background: #F7F7D8;
-}
 
 .btn-circulo{
   width: 30px;
@@ -295,4 +289,32 @@ footer {
     color: #fff;
     background-color: #3d843e;
     border-color: #c9ab6d;
+}
+
+
+.left_col {
+    min-height: 100%;
+    width: 230px;
+    padding: 0;
+    position: fixed;
+    display: -ms-flexbox;
+    z-index: 1;
+}
+
+.sidebar-footer {
+    bottom: 0;
+    clear: both;
+    display: block;
+    padding: 5px 0 0;
+    position: fixed;
+    width: 230px;
+    background: #2A3F54;
+    z-index: 999;
+}
+
+.footer {
+    background: #fff;
+    padding: 15px 20px;
+    display: block;
+    background: #F7F7D8;
 }

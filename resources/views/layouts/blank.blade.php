@@ -52,9 +52,12 @@
                 @include('includes/topbar')
 
                 @yield('conteudo')
-
+                
+                @include('includes.footer')
             </div>
         </div>
+
+        
 
         <!-- jQuery -->
         <script src="{{ asset("js/jquery.min.js") }}">                          </script>

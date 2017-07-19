@@ -10,6 +10,7 @@ use App\Models\Potencia;
 use App\Models\Endereco;
 use App\Models\Telefone;
 use App\Models\Email;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -70,6 +71,27 @@ class LojaController extends Controller
         // Validar dados do formulário
         $this->validar($request);
 
+        $loja_achou = DB::table('lojas')
+                     ->select(DB::raw('count(*) as count'))
+                     ->where('no_loja', '=', $request->no_loja )
+                     ->get();
+
+         //dd($loja_achou[0]);
+
+        dd($loja_achou);
+
+        dd($request->no_loja); 
+
+
+        if ($loja_achou[0] == $request->no_loja ){
+            return redirect()->back()->with(['erros' => 'Falha ao cadastrar']); 
+            dd('entrou');
+        }
+
+
+        
+
+        
 
         // Criar uma nova loja
         $loja = new Loja($request->all());
@@ -102,7 +124,7 @@ class LojaController extends Controller
 
         //dd('Loja '.$request->co_titulo .' ' .$request->no_loja .' Nº ' .$request->nu_loja .' Cadastrada com Sucesso');
 
-        if ($loja && $endereco && $telefone && $email) {
+        if ($loja and $endereco and $telefone and $email) {
             return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
                                                         .$request->no_loja      .' Nº ' 
                                                         .$request->nu_loja 
@@ -134,13 +156,6 @@ class LojaController extends Controller
             { $proximo = $this->loja->find($id+1); }
         else
             { $proximo = $this->loja->find($id); }
-        //dd($proximo);
-
-        echo '<pre>';
-
-        //dd($input);
-
-        echo '</pre>';
 
 
         return view('lojas.show',compact('loja','anterior','proximo'));
@@ -206,7 +221,10 @@ class LojaController extends Controller
         //dd($dadosFormulario);
 
         if ($status1 and $status2 and $status3 and $status4 and $status5) {
-            return redirect('lojas');
+             return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
+                                                        .$request->no_loja      .' Nº ' 
+                                                        .$request->nu_loja 
+                                                        .' Alterada com Sucesso');
         } else {
             //return redirect(back); 
             return redirect('lojas.edit', $id)->whith(['erros' => 'Falha ao editar']); 
