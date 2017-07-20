@@ -120,7 +120,7 @@
 												@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
 													<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
 												@else 
-													<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>  
+													<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>
 												@endif
 											@endforeach
 										@endif
@@ -130,14 +130,10 @@
 								  		<a 
 								  			data-target="#cad_potencia"
 						  					class="btn btn-default btn-circulo   glyphicon glyphicon-plus  " 
-	                          		data-toggle="modal" 
+	                          				data-toggle="modal" 
 								  			title="Cria uma nova Potência ">  
 							  			</a>
 									</div>
-
-
-									
-					
 								</div>
 								
 								<label class="control-label col-md-1 " for="ic_rito">Rito*</label>
@@ -194,7 +190,6 @@
 										type="text">
 
 										@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
-
 											@foreach($paises as $pais)
 
 												@if ( $loja->endereco->no_pais == $pais->no_pais)
@@ -439,7 +434,11 @@
 				swal('Parabéns!', '{{ session('sucesso') }}' ,'success');
 			@endif
 
+			@if (session('ja_existe'))
+				swal('Atenção!', '{{ session('ja_existe') }}' ,'warning');
+			@endif
 
+			
 			$('[data-toggle="modal"][title]').tooltip();
 
 			$(".envia_nova_potencia").click(function(e){ 

@@ -41,14 +41,15 @@
 		<div class=""> </div>
 		<div class="clearfix"></div>
 		<div class="row">
-
+<!-- data-target="#delete-modal" -->
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel modal-content">
 					<div class="x_title">
 						<h2> Visualização de Loja </h2>
 							
 						<button 
-							data-target="#delete-modal"
+							id="deleta"
+							
 							class="btn btn-circulo btn btn-danger btn-md    pull-right"  
 							data-toggle="modal" 
 							title="Exclui essa Loja">
@@ -151,14 +152,36 @@
 	    $(".tip-left").tooltip({ placement : 'left'});
 
 	    // Link para excluir o usuário
-
-	    $("a.botao_deletar").click(function(e){
+/*	    $("a.botao_deletar").click(function(e){
 
 	    		e.preventDefault();
 
 	    		$("form.form-excluir").submit();
 	    });
+*/
+
+	    $("#deleta").click(function(e){ 
+	    	e.preventDefault();
+			swal({
+				title: 'Deseja realmente apagar?',
+				text: "{{ $loja->co_titulo }} {{ $loja->no_loja }} - Nº {{  $loja->nu_loja }} ",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Sim, apague!',
+				cancelButtonText: 'Não, cancele!',
+				confirmButtonClass: 'btn btn-success',
+				cancelButtonClass: 'btn btn-danger',
+				buttonsStyling: false
+			}).then(function () {
+				swal({title:'Apagada!',text: 'Loja apagada!!!',type:'success',})
+				$("form.form-excluir").submit();
+			  	
+			})
+		});
 	});
+
 	</script>
 
 @endpush

@@ -71,21 +71,24 @@ class LojaController extends Controller
         // Validar dados do formulário
         $this->validar($request);
 
-        $loja_achou = DB::table('lojas')
+        $busca_loja = DB::table('lojas')
                      ->select(DB::raw('count(*) as count'))
                      ->where('no_loja', '=', $request->no_loja )
+                     ->where([
+                                ['nu_loja', '=', $request->nu_loja],
+                                ['no_loja', '=', $request->no_loja],
+                            ])
                      ->get();
 
-         //dd($loja_achou[0]);
+        //verifica se já existe uma loja com o mesmo nome e numero, porém, com o id diferente(o mesmo id significa a loja que está sendo alterada)
+        if ($busca_loja[0]->count > 0 ){
 
-        dd($loja_achou);
-
-        dd($request->no_loja); 
-
-
-        if ($loja_achou[0] == $request->no_loja ){
-            return redirect()->back()->with(['erros' => 'Falha ao cadastrar']); 
-            dd('entrou');
+            //se encontrar alguma loja na busca acima retorna erro informando
+            return redirect()->back()->withInput()->with('ja_existe', 'A '
+                                                        .$request->co_titulo    .' ' 
+                                                        .$request->no_loja      .' Nº ' 
+                                                        .$request->nu_loja 
+                                                        .' Já existe!');
         }
 
 
@@ -122,7 +125,6 @@ class LojaController extends Controller
         $email->loja()->associate($loja);
         $email->save();
 
-        //dd('Loja '.$request->co_titulo .' ' .$request->no_loja .' Nº ' .$request->nu_loja .' Cadastrada com Sucesso');
 
         if ($loja and $endereco and $telefone and $email) {
             return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
@@ -200,6 +202,28 @@ class LojaController extends Controller
         // dd($request->all());
        // Validar dados do formulário
         //$this->validar($request);
+
+        //verifica se já existe uma loja com o mesmo nome e numero, porém, com o id diferente(o mesmo id significa a loja que está sendo alterada)
+        $busca_loja = DB::table('lojas')
+                     ->select(DB::raw('count(*) as count'))
+                     ->where('no_loja', '=', $request->no_loja )
+                     ->where([
+                                ['nu_loja', '=', $request->nu_loja],
+                                ['no_loja', '=', $request->no_loja],
+                                ['id',      '<>', $id],
+                            ])
+                     ->get();
+
+        
+        //se encontrar alguma loja na busca acima retorna erro informando
+        if ($busca_loja[0]->count > 0 ){
+
+            return redirect()->back()->with('ja_existe', 'A '
+                                                        .$request->co_titulo    .' ' 
+                                                        .$request->no_loja      .' Nº ' 
+                                                        .$request->nu_loja 
+                                                        .' Já existe!');
+        }
 
         $dadosFormulario = $request->all();
 
