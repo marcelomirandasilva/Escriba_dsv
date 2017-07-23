@@ -6,29 +6,31 @@
 
    <div class="item form-group">
 
-      <label class="control-label col-md-1 " for="endereco[{{ $i }}][pais_id]">Pais</label>
+      <input type="hidden" value="Residencial" name="enderecos[0][ic_tipo_endereco" for="enderecos[0][ic_tipo_endereco]>
+
+      <label class="control-label col-md-1 " for="enderecos[0][no_pais]">Pais</label>
       <div class="col-md-2 ">
-         <select id="endereco[{{ $i }}][pais_id]"   
+         <select id="enderecos[0][no_pais]"   
             class="form-control col-md-2" 
-            name="endereco[{{ $i }}][pais_id]" 
+            name="enderecos[0][no_pais]" 
             placeholder="Nome do Pais" >
             
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
                
-                  @if ($membro->endereco->pais->id == $endereco[{{ $i }}][pais_id])
-                     <option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>
+                  @if ($membro->endereco->no_pais == $enderecos[0][no_pais])
+                     <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>
                   @else
-                     <option value="{{$pais->id}}"> {{$pais->no_pais}} </option>    
+                     <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>    
                   @endif
 
                @endforeach --}}
             @else
                @foreach($paises as $pais)
                   @if ($pais->no_pais == ('Brasil'))
-                     <option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
+                     <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
                   @else 
-                     <option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
+                     <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
                   @endif
                @endforeach
             @endif
@@ -37,85 +39,85 @@
       </div> 
       
       <!-- CEP-->
-      <label class="col-md-1 control-label" for="endereco[{{ $i }}][nu_cep]">CEP</label>
+      <label class="col-md-1 control-label" for="enderecos[0][nu_cep]">CEP</label>
       <div class="col-md-2">
-         <input id="cep" 
-               name="endereco[{{ $i }}][nu_cep]" 
+         <input id="enderecos[0][nu_cep]" 
+               name="enderecos[0][nu_cep]" 
                type="text" 
                placeholder="99.999-999" 
                class="form-control input-md cep" 
-               value="{{$membro->endereco->endereco[{{ $i }}][nu_cep] or old('endereco.0.nu_cep')}}" >
+               value="{{old('enderecos.0.nu_cep')}}" >
 
       </div>
 
       <!-- UF-->
-      <label class="col-md-1 control-label" for="endereco[{{ $i }}][sg_uf]">UF</label>
+      <label class="col-md-1 control-label" for="enderecos[0][sg_uf]">UF</label>
       <div class="col-md-1">
-         <input id="uf" 
-               name="endereco[{{ $i }}][sg_uf]" 
+         <input id="enderecos[0][sg_uf]" 
+               name="enderecos[0][sg_uf]" 
                type="text"  
                class="form-control input-md uf"
-               value="{{$membro->endereco->endereco[{{ $i }}][sg_uf] or old('endereco.0.sg_uf')}}" >
+               value="{{old('enderecos.0.sg_uf')}}" >
       </div>
 
 
       <!-- Município-->
-      <label class="col-md-1 control-label" for="endereco[{{ $i }}][no_municipio]">Município</label>
+      <label class="col-md-1 control-label" for="enderecos[0][no_municipio]">Município</label>
       <div class="col-md-3">
-         <input id="cidade" 
-               name="endereco[{{ $i }}][no_municipio]" 
+         <input id="enderecos[0][no_municipio]" 
+               name="enderecos[0][no_municipio]" 
                type="text" 
                class="form-control input-md" 
-               value="{{$membro->endereco->endereco[{{ $i }}][no_municipio] or old('endereco.0.no_municipio')}}" >
+               value="{{old('enderecos.0.no_municipio')}}" >
       </div>
    </div>
    <div class="item form-group">
       {{-- Bairro --}}
-      <label class="col-md-1 control-label" for="endereco[{{ $i }}][no_bairro]">Bairro</label>
+      <label class="col-md-1 control-label" for="enderecos[0][no_bairro]">Bairro</label>
       <div class="col-md-3">
-         <input id="bairro" 
-               name="endereco[{{ $i }}][no_bairro]" 
+         <input id="enderecos[0][no_bairro]" 
+               name="enderecos[0][no_bairro]" 
                type="text" 
                placeholder="Centro" 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[{{ $i }}][no_bairro] or old('endereco.0.no_bairro')}}" >
+               value="{{ old('enderecos.0.no_bairro')}}" >
       </div>
 
 
       <!-- Logradouro ...Av...Rua....etc-->
-      <label class="col-md-1 control-label" for="endereco[{{ $i }}][no_logradouro]">Logradouro</label>
+      <label class="col-md-1 control-label" for="enderecos[0][no_logradouro]">Logradouro</label>
       <div class="col-md-7">
-         <input id="rua" 
-               name="endereco[{{ $i }}][no_logradouro]" 
+         <input id="enderecos[0][no_logradouro]" 
+               name="enderecos[0][no_logradouro]" 
                type="text" 
                placeholder="Av, Rua, Travessa..." 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[{{ $i }}][no_logradouro] or old('endereco.0.no_logradouro')}}" >
+               value="{{ old('enderecos.0.no_logradouro')}}" >
       </div>
 
    </div>
    <div class="item form-group">
 
       <!-- Número da residência-->
-      <label class="col-md-1 control-label" for="endereco[{{ $i }}][nu_logradouro]">Numero</label>
+      <label class="col-md-1 control-label" for="enderecos[0][nu_logradouro]">Numero</label>
       <div class="col-md-2">
-         <input id="endereco[{{ $i }}][nu_logradouro]" 
-               name="endereco[{{ $i }}][nu_logradouro]" 
+         <input id="enderecos[0][nu_logradouro]" 
+               name="enderecos[0][nu_logradouro]" 
                type="text" 
                placeholder="999" 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[{{ $i }}][nu_logradouro] or old('endereco.0.nu_logradouro')}}" >
+               value="{{ old('enderecos.0.nu_logradouro')}}" >
       </div>
 
       {{-- Complemento --}}
-      <label class="col-md-2 control-label" for="de_complemento">Complemento</label>
+      <label class="col-md-2 control-label" for="enderecos[0][de_complemento]">Complemento</label>
       <div class="col-md-3">
-         <input id="de_complemento" 
-               name="de_complemento" 
+         <input id="enderecos[0][de_complemento]" 
+               name="enderecos[0][de_complemento]" 
                type="text" 
                placeholder="Ap., Fundos,..." 
                class="form-control input-md"
-               value="{{$membro->endereco->de_complemento or old('de_complemento')}}" >
+               value="{{ old('enderecos.0.de_complemento')}}" >
       </div>
    </div>   
 
@@ -128,32 +130,32 @@
    <div class="x_title">  Comercial </div>
    <div class="clearfix"></div>
 
-
    <div class="item form-group">
+      <input type="hidden" value="Comercial" name="enderecos[1][ic_tipo_endereco" for="enderecos[1][ic_tipo_endereco]>
 
-      <label class="control-label col-md-1 " for="endereco[1][pais_id]">Pais</label>
+      <label class="control-label col-md-1 " for="enderecos[1][no_pais]">Pais</label>
       <div class="col-md-2 ">
-         <select id="endereco[1][pais_id]"   
+         <select id="enderecos[1][no_pais]"   
             class="form-control col-md-2" 
-            name="endereco[1][pais_id]" 
+            name="enderecos[1][no_pais]" 
             placeholder="Nome do Pais" >
             
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
                
-                  @if ($membro->endereco->pais->id == $endereco[1][pais_id])
-                     <option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>
+                  @if ($membro->endereco->no_pais == $enderecos[1][no_pais])
+                     <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>
                   @else
-                     <option value="{{$pais->id}}"> {{$pais->no_pais}} </option>    
+                     <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>    
                   @endif
 
                @endforeach --}}
             @else
                @foreach($paises as $pais)
                   @if ($pais->no_pais == ('Brasil'))
-                     <option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
+                     <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
                   @else 
-                     <option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
+                     <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
                   @endif
                @endforeach
             @endif
@@ -162,89 +164,88 @@
       </div> 
       
       <!-- CEP-->
-      <label class="col-md-1 control-label" for="endereco[1][nu_cep]">CEP</label>
+      <label class="col-md-1 control-label" for="enderecos[1][nu_cep]">CEP</label>
       <div class="col-md-2">
-         <input id="cep" 
-               name="endereco[1][nu_cep]" 
+         <input id="enderecos[1][nu_cep]" 
+               name="enderecos[1][nu_cep]" 
                type="text" 
                placeholder="99.999-999" 
                class="form-control input-md cep" 
-               value="{{$membro->endereco->endereco[1][nu_cep] or old('endereco.1.nu_cep')}}" >
+               value="{{old('enderecos.1.nu_cep')}}" >
 
       </div>
 
       <!-- UF-->
-      <label class="col-md-1 control-label" for="endereco[1][sg_uf]">UF</label>
+      <label class="col-md-1 control-label" for="enderecos[1][sg_uf]">UF</label>
       <div class="col-md-1">
-         <input id="uf" 
-               name="endereco[1][sg_uf]" 
+         <input id="enderecos[1][sg_uf]" 
+               name="enderecos[1][sg_uf]" 
                type="text"  
                class="form-control input-md uf"
-               value="{{$membro->endereco->endereco[1][sg_uf] or old('endereco.1.sg_uf')}}" >
+               value="{{old('enderecos.1.sg_uf')}}" >
       </div>
 
 
       <!-- Município-->
-      <label class="col-md-1 control-label" for="endereco[1][no_municipio]">Município</label>
+      <label class="col-md-1 control-label" for="enderecos[1][no_municipio]">Município</label>
       <div class="col-md-3">
-         <input id="cidade" 
-               name="endereco[1][no_municipio]" 
+         <input id="enderecos[1][no_municipio]" 
+               name="enderecos[1][no_municipio]" 
                type="text" 
                class="form-control input-md" 
-               value="{{$membro->endereco->endereco[1][no_municipio] or old('endereco.1.no_municipio')}}" >
+               value="{{old('enderecos.1.no_municipio')}}" >
       </div>
    </div>
    <div class="item form-group">
       {{-- Bairro --}}
-      <label class="col-md-1 control-label" for="endereco[1][no_bairro]">Bairro</label>
+      <label class="col-md-1 control-label" for="enderecos[1][no_bairro]">Bairro</label>
       <div class="col-md-3">
-         <input id="bairro" 
-               name="endereco[1][no_bairro]" 
+         <input id="enderecos[1][no_bairro]" 
+               name="enderecos[1][no_bairro]" 
                type="text" 
                placeholder="Centro" 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[1][no_bairro] or old('endereco.1.no_bairro')}}" >
+               value="{{ old('enderecos.1.no_bairro')}}" >
       </div>
 
 
       <!-- Logradouro ...Av...Rua....etc-->
-      <label class="col-md-1 control-label" for="endereco[1][no_logradouro]">Logradouro</label>
+      <label class="col-md-1 control-label" for="enderecos[1][no_logradouro]">Logradouro</label>
       <div class="col-md-7">
-         <input id="rua" 
-               name="endereco[1][no_logradouro]" 
+         <input id="enderecos[1][no_logradouro]" 
+               name="enderecos[1][no_logradouro]" 
                type="text" 
                placeholder="Av, Rua, Travessa..." 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[1][no_logradouro] or old('endereco.1.no_logradouro')}}" >
+               value="{{ old('enderecos.1.no_logradouro')}}" >
       </div>
 
    </div>
    <div class="item form-group">
 
       <!-- Número da residência-->
-      <label class="col-md-1 control-label" for="endereco[1][nu_logradouro]">Numero</label>
+      <label class="col-md-1 control-label" for="enderecos[1][nu_logradouro]">Numero</label>
       <div class="col-md-2">
-         <input id="endereco[1][nu_logradouro]" 
-               name="endereco[1][nu_logradouro]" 
+         <input id="enderecos[1][nu_logradouro]" 
+               name="enderecos[1][nu_logradouro]" 
                type="text" 
                placeholder="999" 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[1][nu_logradouro] or old('endereco.1.nu_logradouro')}}" >
+               value="{{ old('enderecos.1.nu_logradouro')}}" >
       </div>
 
       {{-- Complemento --}}
-      <label class="col-md-2 control-label" for="endereco[1][de_complemento]">Complemento</label>
+      <label class="col-md-2 control-label" for="enderecos[1][de_complemento]">Complemento</label>
       <div class="col-md-3">
-         <input id="endereco[1][de_complemento]" 
-               name="endereco[1][de_complemento]" 
+         <input id="enderecos[1][de_complemento]" 
+               name="enderecos[1][de_complemento]" 
                type="text" 
                placeholder="Ap., Fundos,..." 
                class="form-control input-md"
-               value="{{$membro->endereco->endereco[1][de_complemento] or old('endereco.1.de_complemento')}}" >
+               value="{{ old('enderecos.1.de_complemento')}}" >
       </div>
    </div>   
-
-
+   
 
 
 

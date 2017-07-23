@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\membro;
+use App\Models\Endereco;
 use App\Models\pais;
 use App\Models\loja;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class MembroController extends Controller
     {
 
 
-        //dd($request->all());
+       //dd($request->all());
         
 
 
@@ -91,12 +92,59 @@ class MembroController extends Controller
         // Salvar no banco para obter o ID
         $membro->save();
 
-        
-        //Session::flash('mensagem_sucesso','membro cadastrado com sucesso');
+        foreach($request->enderecos as $endereco)
+        {
+            //dd($endereco);
+            // Dependentes vazios entram na conta. Para evitar problemas com isso
+            // o cadastro é feito apenas caso o dependente tenha um nome (o que por
+            // // sua vez ativa a obrigatoriedade das outras propriedades)
+            // if(isset($dependente['nome']) && $dependente['nome'] != '')
+            //     $participante->dependentes()->save(new Dependente($dependente));
+             
+             // Criar um novo endereço com as informações inseridas
+            $membro->enderecos()->save(new Endereco($endereco));
+            
+        }
 
+       
+
+     
+        // // Associar membro ao endereço (chaves estrangeiras)
+        //  $endereco->membro()->associate($membro);
+
+        // Salvar o endereço
+        //$endereco->save(); 
+
+
+
+        // // Cria um novo telefone com as informações inseridas
+        // $telefone = new Telefone($request->all());
+        // $telefone->loja()->associate($loja);
+        // $telefone->save();
+
+        // // Cria um novo email com as informações inseridas
+        // $email = new Email($request->all());
+        // $email->loja()->associate($loja);
+        // $email->save();
+
+
+/*        if ($loja and $endereco and $telefone and $email) {
+            return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
+                                                        .$request->no_loja      .' Nº ' 
+                                                        .$request->nu_loja 
+                                                        .' Cadastrada com Sucesso');
+
+        } else {
+            return redirect()->back()->with(['erros' => 'Falha ao cadastrar']); 
+        }
+*/
+
+        
+
+    
          return redirect('/membros/create')->with('sucesso', "Membro cadastrado com sucesso. Código da inscriçao : <span style='font-weight: bold; font-size: 16px'>$membro->id</span><br><a target='_blank' style=' font-weight: bold; text-transform: uppercase' href='".url("/membros")."'>Clique aqui para imprirmir o comprovante de inscrição</a>");
 
-        //return redirect()->back(); 
+      
 
     }
 

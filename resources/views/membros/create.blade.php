@@ -146,14 +146,7 @@
   <!-- /page content -->
   <!-- /page content -->
 
-  <!-- footer content -->
-  <footer>
-      <div class="pull-right">
-          V0.1_2017</a>
-      </div>
-      <div class="clearfix"></div>
-  </footer>
-  <!-- /footer content -->
+ 
 @endsection
 
 
@@ -163,7 +156,7 @@
   <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
 
   {{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
-  <script src="{{ asset("js/endereco.js") }}"></script>
+  <script src="{{ asset("js/endereco_array.js") }}"></script>
 
 
   <script type="text/javascript">
