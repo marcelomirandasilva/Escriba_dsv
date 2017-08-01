@@ -76,19 +76,23 @@
 	var zone = "05:30";
 	$('#calendar').fullCalendar({
 		header: {
-	   	left: 'prev,next today',
-	   	center: 'title',
-	   	right: 'month,agendaWeek,agendaDay'
+	   		left: 'prev,next today',
+	   		center: 'title',
+	   		right: 'month,agendaWeek,agendaDay'
 	  	},
+
 		editable: true,
 	  	droppable: true,
 
+  	 	'renderEvent',
+    	{
+      		
+	    },
+
 	  	dayClick: function() {alert('a day has been clicked!');},
-
-
-	
-
 	});
+
+
 
 
 	$(document).ready(function() {
