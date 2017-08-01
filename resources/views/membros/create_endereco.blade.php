@@ -6,11 +6,11 @@
 
    <div class="item form-group">
 
-      <input type="hidden" value="Residencial" name="enderecos[0][ic_tipo_endereco" for="enderecos[0][ic_tipo_endereco]>
+      <input type="hidden" value="Residencial" name="enderecos[0][ic_tipo_endereco]" for="enderecos[0][ic_tipo_endereco]>
 
       <label class="control-label col-md-1 " for="enderecos[0][no_pais]">Pais</label>
       <div class="col-md-2 ">
-         <select id="enderecos[0][no_pais]"   
+         <select id="no_pais0"   
             class="form-control col-md-2" 
             name="enderecos[0][no_pais]" 
             placeholder="Nome do Pais" >
@@ -41,7 +41,7 @@
       <!-- CEP-->
       <label class="col-md-1 control-label" for="enderecos[0][nu_cep]">CEP</label>
       <div class="col-md-2">
-         <input id="enderecos[0][nu_cep]" 
+         <input id="cep0" 
                name="enderecos[0][nu_cep]" 
                type="text" 
                placeholder="99.999-999" 
@@ -53,7 +53,7 @@
       <!-- UF-->
       <label class="col-md-1 control-label" for="enderecos[0][sg_uf]">UF</label>
       <div class="col-md-1">
-         <input id="enderecos[0][sg_uf]" 
+         <input id="sg_uf0" 
                name="enderecos[0][sg_uf]" 
                type="text"  
                class="form-control input-md uf"
@@ -64,7 +64,7 @@
       <!-- Município-->
       <label class="col-md-1 control-label" for="enderecos[0][no_municipio]">Município</label>
       <div class="col-md-3">
-         <input id="enderecos[0][no_municipio]" 
+         <input id="no_municipio0" 
                name="enderecos[0][no_municipio]" 
                type="text" 
                class="form-control input-md" 
@@ -75,7 +75,7 @@
       {{-- Bairro --}}
       <label class="col-md-1 control-label" for="enderecos[0][no_bairro]">Bairro</label>
       <div class="col-md-3">
-         <input id="enderecos[0][no_bairro]" 
+         <input id="no_bairro0" 
                name="enderecos[0][no_bairro]" 
                type="text" 
                placeholder="Centro" 
@@ -87,7 +87,7 @@
       <!-- Logradouro ...Av...Rua....etc-->
       <label class="col-md-1 control-label" for="enderecos[0][no_logradouro]">Logradouro</label>
       <div class="col-md-7">
-         <input id="enderecos[0][no_logradouro]" 
+         <input id="no_logradouro0" 
                name="enderecos[0][no_logradouro]" 
                type="text" 
                placeholder="Av, Rua, Travessa..." 
@@ -101,7 +101,7 @@
       <!-- Número da residência-->
       <label class="col-md-1 control-label" for="enderecos[0][nu_logradouro]">Numero</label>
       <div class="col-md-2">
-         <input id="enderecos[0][nu_logradouro]" 
+         <input id="nu_logradouro0" 
                name="enderecos[0][nu_logradouro]" 
                type="text" 
                placeholder="999" 
@@ -112,7 +112,7 @@
       {{-- Complemento --}}
       <label class="col-md-2 control-label" for="enderecos[0][de_complemento]">Complemento</label>
       <div class="col-md-3">
-         <input id="enderecos[0][de_complemento]" 
+         <input id="de_complemento0" 
                name="enderecos[0][de_complemento]" 
                type="text" 
                placeholder="Ap., Fundos,..." 
@@ -131,11 +131,11 @@
    <div class="clearfix"></div>
 
    <div class="item form-group">
-      <input type="hidden" value="Comercial" name="enderecos[1][ic_tipo_endereco" for="enderecos[1][ic_tipo_endereco]>
+      <input type="hidden" value="Comercial" name="enderecos[1][ic_tipo_endereco]" for="enderecos[1][ic_tipo_endereco]>
 
       <label class="control-label col-md-1 " for="enderecos[1][no_pais]">Pais</label>
       <div class="col-md-2 ">
-         <select id="enderecos[1][no_pais]"   
+         <select id="no_pais1"   
             class="form-control col-md-2" 
             name="enderecos[1][no_pais]" 
             placeholder="Nome do Pais" >
@@ -166,7 +166,7 @@
       <!-- CEP-->
       <label class="col-md-1 control-label" for="enderecos[1][nu_cep]">CEP</label>
       <div class="col-md-2">
-         <input id="enderecos[1][nu_cep]" 
+         <input id="cep1" 
                name="enderecos[1][nu_cep]" 
                type="text" 
                placeholder="99.999-999" 
@@ -178,7 +178,7 @@
       <!-- UF-->
       <label class="col-md-1 control-label" for="enderecos[1][sg_uf]">UF</label>
       <div class="col-md-1">
-         <input id="enderecos[1][sg_uf]" 
+         <input id="sg_uf1" 
                name="enderecos[1][sg_uf]" 
                type="text"  
                class="form-control input-md uf"
@@ -189,7 +189,7 @@
       <!-- Município-->
       <label class="col-md-1 control-label" for="enderecos[1][no_municipio]">Município</label>
       <div class="col-md-3">
-         <input id="enderecos[1][no_municipio]" 
+         <input id="no_municipio1" 
                name="enderecos[1][no_municipio]" 
                type="text" 
                class="form-control input-md" 
@@ -200,7 +200,7 @@
       {{-- Bairro --}}
       <label class="col-md-1 control-label" for="enderecos[1][no_bairro]">Bairro</label>
       <div class="col-md-3">
-         <input id="enderecos[1][no_bairro]" 
+         <input id="no_bairro1" 
                name="enderecos[1][no_bairro]" 
                type="text" 
                placeholder="Centro" 
@@ -212,7 +212,7 @@
       <!-- Logradouro ...Av...Rua....etc-->
       <label class="col-md-1 control-label" for="enderecos[1][no_logradouro]">Logradouro</label>
       <div class="col-md-7">
-         <input id="enderecos[1][no_logradouro]" 
+         <input id="no_logradouro1" 
                name="enderecos[1][no_logradouro]" 
                type="text" 
                placeholder="Av, Rua, Travessa..." 
@@ -226,7 +226,7 @@
       <!-- Número da residência-->
       <label class="col-md-1 control-label" for="enderecos[1][nu_logradouro]">Numero</label>
       <div class="col-md-2">
-         <input id="enderecos[1][nu_logradouro]" 
+         <input id="nu_logradouro1" 
                name="enderecos[1][nu_logradouro]" 
                type="text" 
                placeholder="999" 
@@ -237,7 +237,7 @@
       {{-- Complemento --}}
       <label class="col-md-2 control-label" for="enderecos[1][de_complemento]">Complemento</label>
       <div class="col-md-3">
-         <input id="enderecos[1][de_complemento]" 
+         <input id="de_complemento1" 
                name="enderecos[1][de_complemento]" 
                type="text" 
                placeholder="Ap., Fundos,..." 
@@ -245,12 +245,6 @@
                value="{{ old('enderecos.1.de_complemento')}}" >
       </div>
    </div>   
-   
-
-
-
-
-
 
 </div>
 

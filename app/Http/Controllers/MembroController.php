@@ -75,7 +75,7 @@ class MembroController extends Controller
     {
 
 
-       //dd($request->all());
+       dd($request->all());
         
 
 
