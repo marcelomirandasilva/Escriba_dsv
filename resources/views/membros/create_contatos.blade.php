@@ -20,8 +20,8 @@
                
               {{--  TIPO DE TELEFONE  --}}
                <div class="col-md-5 panel_sem_margem" style="top: 4px;">
-                  <select id="membro[0][ic_telefone]"  name="membro[0][ic_telefone]"     data-cip-id="membro[0][ic_telefone]" 
-                     class="form-control col-md-2 "   placeholder="Tipo de telefone"   type="text" >
+                  <select id="telefones[0][ic_telefone]"  name="telefones[0][ic_telefone]" data-cip-id="telefones[0][ic_telefone]" 
+                     class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
 
                      @foreach($tipo_telefone as $tipo)
                         <option value="{{$tipo}}"> {{$tipo}} </option>  
@@ -31,10 +31,11 @@
 
                {{-- NUMERO DO TELEFONE  --}}
                <div class="col-md-6" style="top: 4px;">
-                  <input id="membro[0][nu_telefone]"   name="membro[0][nu_telefone]"     data-cip-id="membro[0][nu_telefone]"  
+                  <input id="telefones[0][nu_telefone]"   name="telefones[0][nu_telefone]"     
+                        data-cip-id="telefones[0][nu_telefone]"  
                         class="form-control input-md telefone" 
-                        placeholder="(99)99999-9999"  
-                        data-inputmask="'mask' : '(99)[9]9999-9999', 'numericInput': 'false' " 
+                        placeholder="(99) 9999-9999"  
+                        {{-- data-inputmask="'mask' : '(99)9999-9999', 'numericInput': 'false' "  --}}
                         type="tel">
                </div>
 
@@ -75,7 +76,7 @@
             {{-- bloco de email --}}
             <div class="form-group">
                <div class="col-md-11" style="top: 4px;">
-                  <input id="membro[0][email]"   name="membro[0][email]"     data-cip-id="membro[0][email]"  
+                  <input id="emails[0][email]"   name="emails[0][email]"     data-cip-id="emails[0][email]"  
                         class="form-control input-md telefone" placeholder="email@servidor.com.br"  type="email" >
                </div>
 

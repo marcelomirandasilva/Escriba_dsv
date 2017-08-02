@@ -51,27 +51,27 @@ class Membro extends Model
         return $this->hasMany('App\Models\Endereco');
     }
 
-    public function telefone()
+    public function telefones()
     {
         return $this->hasMany('App\Models\Telefone');
     }
 
-    public function email()
+    public function emails()
     {
         return $this->hasMany('App\Models\Email');
     }
 
-    public function dependente()
+    public function dependentes()
     {
         return $this->hasMany('App\Models\Dependente');
     }
 
-    public function condecoracao()
+    public function condecoracoes()
     {
         return $this->hasMany('App\Models\Condecoracao');
     }
 
-    public function cerimonia()
+    public function cerimonias()
     {
         return $this->hasMany('App\Models\Cerimonia');
     }

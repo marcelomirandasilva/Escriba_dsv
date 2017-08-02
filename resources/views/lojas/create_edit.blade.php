@@ -421,7 +421,7 @@
 	<script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
 
 	{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
-  <script src="{{ asset("js/endereco.js") }}"></script>
+  	<script src="{{ asset("js/endereco.js") }}"></script>
 
 
 	<!-- Adicionando Javascript -->

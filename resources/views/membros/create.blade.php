@@ -155,14 +155,22 @@
   {{-- Script para máscara numérica. Ex.: CPF, RG --}}
   <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
   
+  
 
    <script type="text/javascript">
+
+      $(".telefones[0][nu_telefone]").inputmask("(99)9999-9999");
 
       var cont_telefone=1 
       var cont_email=1;
       var cont_dependente=1;
 
       $(document).ready(function(){
+
+
+
+
+
 
          {{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
          
@@ -192,14 +200,14 @@
             }
          });
          //==========================================================
-
          
-         //Quando o campo cep perde o foco.
+         //Quando o campo CEP RESIDENCIAL perde o foco.
          $("#cep0").blur(function() {
-            console.log("mudou");
+            
             //Nova variável "cep" somente com dígitos.
             var cep = $(this).val().replace(/\D/g, '');
 
+            console.log(cep);
             //Verifica se campo cep possui valor informado.
             if (cep != "") {
 
@@ -210,10 +218,10 @@
                if(validacep.test(cep)) {
 
                   //Preenche os campos com "..." enquanto consulta webservice.
-                  $("#rua0").val("...");
-                  $("#bairro0").val("...");
-                  $("#cidade0").val("...");
-                  $("#uf0").val("...");
+                  $("#no_logradouro0").val("...");
+                  $("#no_bairro0").val("...");
+                  $("#no_municipio0").val("...");
+                  $("#sg_uf0").val("...");
                   $("#ibge0").val("...");
 
                   //Consulta o webservice viacep.com.br/
@@ -221,10 +229,10 @@
 
                      if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#rua").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#uf").val(dados.uf);
+                        $("#no_logradouro0").val(dados.logradouro);
+                        $("#no_bairro0").val(dados.bairro);
+                        $("#no_municipio0").val(dados.localidade);
+                        $("#sg_uf0").val(dados.uf);
                         $("#ibge").val(dados.ibge);
                      } //end if.
                      else {
@@ -245,6 +253,61 @@
                limpa_formulário_cep(0);
             }
          });
+
+         //Quando o campo CEP COMERCIAL perde o foco.
+         $("#cep1").blur(function() {
+            
+            //Nova variável "cep" somente com dígitos.
+            var cep = $(this).val().replace(/\D/g, '');
+
+            console.log(cep);
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+               //Expressão regular para validar o CEP.
+               var validacep = /^[0-9]{8}$/;
+
+               //Valida o formato do CEP.
+               if(validacep.test(cep)) {
+
+                  //Preenche os campos com "..." enquanto consulta webservice.
+                  $("#no_logradouro1").val("...");
+                  $("#no_bairro1").val("...");
+                  $("#no_municipio1").val("...");
+                  $("#sg_uf1").val("...");
+                  $("#ibge1").val("...");
+
+                  //Consulta o webservice viacep.com.br/
+                  $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                     if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#no_logradouro1").val(dados.logradouro);
+                        $("#no_bairro1").val(dados.bairro);
+                        $("#no_municipio1").val(dados.localidade);
+                        $("#sg_uf1").val(dados.uf);
+                        $("#ibge").val(dados.ibge);
+                     } //end if.
+                     else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep(1);
+                        alert("CEP não encontrado.");
+                     }
+                  });
+               } //end if.
+               else {
+                  //cep é inválido.
+                  limpa_formulário_cep(1);
+                  alert("Formato de CEP inválido.");
+               }
+            } //end if.
+            else {
+               //cep sem valor, limpa formulário.
+               limpa_formulário_cep(1);
+            }
+         });
+
+
 
 
 
@@ -338,19 +401,41 @@
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
-            .find("select[name='membro[0][ic_telefone]']")
-                .attr("name", "membro["+cont_telefone+"][ic_telefone]")
-                .attr("id", "membro["+cont_telefone+"][ic_telefone]")
+            .find("select[name='telefones[0][ic_telefone]']")
+                .attr("name", "telefones["+cont_telefone+"][ic_telefone]")
+                .attr("id", "telefones["+cont_telefone+"][ic_telefone]")
                 .val("")
             
-            .parent().parent().parent().find("input[name='membro[0][nu_telefone]']")
-                .attr("name", "membro["+cont_telefone+"][nu_telefone]")
-                .attr("id", "membro["+cont_telefone+"][nu_telefone]")
-                .val("")
+            .parent().parent().parent().find("input[name='telefones[0][nu_telefone]']")
+                .attr("name", "telefones["+cont_telefone+"][nu_telefone]")
+                .attr("id", "telefones["+cont_telefone+"][nu_telefone]")
+                .val("");
             
              // Incrementar o contador de dependentes
+
+
             cont_telefone++;
          });
+         
+         $("body").on("change", ".tipo-telefone",function(){
+
+            //console.log("mudou");
+            var itemSelecionado = $(this).val();
+
+            
+
+            if(itemSelecionado == 'Celular')
+            {
+               console.log("celular");
+               $(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
+            }
+            else
+            {
+               console.log("outros");
+               $(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
+            }
+         });
+
 
          // Botão de excluir telefone
 
@@ -381,13 +466,13 @@
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
 
-            .find("select[name='membro[0][email]']")
-                .attr("name", "membro["+cont_email+"][email]")
-                .attr("id", "membro["+cont_email+"][email]")
-                .val("")
+            .find("input[name='emails[0][email]']")
+                .attr("name", "emails["+cont_email+"][email]")
+                .attr("id", "emails["+cont_email+"][email]")
+                .val("");
             
             // Incrementar o contador de dependentes
-
+            console.log(cont_email);
             cont_email++;
          });
 
