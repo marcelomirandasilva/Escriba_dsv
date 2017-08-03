@@ -77,7 +77,7 @@
             <div class="form-group">
                <div class="col-md-11" style="top: 4px;">
                   <input id="emails[0][email]"   name="emails[0][email]"     data-cip-id="emails[0][email]"  
-                        class="form-control input-md telefone" placeholder="email@servidor.com.br"  type="email" >
+                        class="form-control input-md " placeholder="email@servidor.com.br"  type="email" >
                </div>
 
                <div class="col-md-12"></div>

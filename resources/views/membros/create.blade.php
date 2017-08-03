@@ -159,7 +159,9 @@
 
    <script type="text/javascript">
 
-      $(".telefones[0][nu_telefone]").inputmask("(99)9999-9999");
+      
+
+      //$("body").find("input.telefone").inputmask('(99)9999-9999');
 
       var cont_telefone=1 
       var cont_email=1;
@@ -167,7 +169,8 @@
 
       $(document).ready(function(){
 
-
+         //$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
+         $("body").find("input.telefone").inputmask('(99)9999-9999');
 
 
 
@@ -399,7 +402,7 @@
 
             .parent().parent().appendTo(".local_clone_tel")
 
-            // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
+            // Alterar os names dos inputs para preencher o vetor de telefone corretamente
 
             .find("select[name='telefones[0][ic_telefone]']")
                 .attr("name", "telefones["+cont_telefone+"][ic_telefone]")
@@ -411,7 +414,7 @@
                 .attr("id", "telefones["+cont_telefone+"][nu_telefone]")
                 .val("");
             
-             // Incrementar o contador de dependentes
+             // Incrementar o contador de telefone
 
 
             cont_telefone++;
@@ -501,20 +504,26 @@
             .parent().parent().parent().appendTo(".local_clone_dependente")
 
             // Alterar os names dos inputs para preencher o vetor de dependentes corretamente
-            .find("input[name='dependente[0][nome]']")
-                .attr("name", "dependente["+cont_dependente+"][nome]")
-                .attr("id", "dependente["+cont_dependente+"][nome]")
+            .find("input.nome-dependente")
+                .attr("name", "dependentes["+cont_dependente+"][no_dependente]")
+                .attr("id", "dependentes["+cont_dependente+"][no_dependente]")
+                .val("")
+                .parent().parent().parent()
+
+            .find("select.sexo-dependente")
+                .attr("name", "dependentes["+cont_dependente+"][ic_sexo]")
+                .attr("id", "dependentes["+cont_dependente+"][ic_sexo]")
                 .val("")
 
-            .find("select[name='dependente[0][parentesco]']")
-                .attr("name", "dependente["+cont_dependente+"][parentesco]")
-                .attr("id", "dependente["+cont_dependente+"][parentesco]")
+            .parent().parent().find("select.parentesco-dependente")
+                .attr("name", "dependentes["+cont_dependente+"][ic_grau_parantesco]")
+                .attr("id", "dependentes["+cont_dependente+"][ic_grau_parantesco]")
                 .val("")
 
-            .find("input[name='dependente[0][nascimento]']")
-                .attr("name", "dependente["+cont_dependente+"][nascimento]")
-                .attr("id", "dependente["+cont_dependente+"][nascimento]")
-                .val("")
+            .parent().parent().find("input.nascimento-dependente")
+                .attr("name", "dependentes["+cont_dependente+"][dt_nascimento]")
+                .attr("id", "dependentes["+cont_dependente+"][dt_nascimento]")
+                .val("");
             
             // Incrementar o contador de dependentes
             cont_dependente++;

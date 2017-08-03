@@ -10,6 +10,7 @@ use App\Models\pais;
 use App\Models\loja;
 use App\Models\Telefone;
 use App\Models\Email;
+use App\Models\Dependente;
 
 use Illuminate\Http\Request;
 
@@ -105,19 +106,21 @@ class MembroController extends Controller
             // Criar um novo telefone com as informações inseridas
             $membro->telefones()->save(new Telefone($telefone));
         }
-       
+
+        foreach($request->emails as $email)
+        {
+            // Criar um novo email com as informações inseridas
+            $membro->emails()->save(new Email($email));
+        }
+
+       foreach($request->dependentes as $dependente)
+        {
+            // Criar um novo dependente com as informações inseridas
+            $membro->dependentes()->save(new Dependente($dependente));
+        }
      
 
-
-        // // Cria um novo telefone com as informações inseridas
-        // $telefone = new Telefone($request->all());
-        // $telefone->loja()->associate($loja);
-        // $telefone->save();
-
-        // // Cria um novo email com as informações inseridas
-        // $email = new Email($request->all());
-        // $email->loja()->associate($loja);
-        // $email->save();
+        //dd($request->all());
 
 
 /*        if ($loja and $endereco and $telefone and $email) {
