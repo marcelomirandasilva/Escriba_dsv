@@ -145,8 +145,20 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 																			'Mestrado - Incompleto','Mestrado - Completo',
 																			'Doutorado - Incompleto','Doutorado - Completo'
 																		]),
+
 		'ic_aposentado'         => $faker->randomElement($array = array ('Não', 'Sim')),
+
+		'dt_iniciacao'          => $faker->date('Y-m-d'),
+		'loja_id_iniciacao'     => $faker->numberBetween($min = 1, $max = 5),
+		'dt_elevacao'           => $faker->date('Y-m-d'),
+		'loja_id_elevacao'      => $faker->numberBetween($min = 1, $max = 5),
+		'dt_exaltacao'          => $faker->date('Y-m-d'),
+		'loja_id_exaltacao'     => $faker->numberBetween($min = 1, $max = 5),
+		'dt_instalacao'         => $faker->date('Y-m-d'),
+		'loja_id_instalacao'    => $faker->numberBetween($min = 1, $max = 5),
+
 	];
+
 });
 
 
@@ -260,24 +272,4 @@ $factory->define(App\Models\Condecoracao::class, function(Faker\Generator $faker
 
 
 	];
-
-});	
-
-
-$factory->define(App\Models\Cerimonia::class, function(Faker\Generator $faker) {
-
-	$faker = Faker\Factory::create('pt_BR');
-
-	return [
-
-	    'dt_iniciacao'          => $faker->date('Y-m-d'),
-		'loja_id_iniciacao'     => $faker->numberBetween($min = 1, $max = 5),
-		'dt_elevacao'           => $faker->date('Y-m-d'),
-		'loja_id_elevacao'      => $faker->numberBetween($min = 1, $max = 5),
-		'dt_exaltacao'          => $faker->date('Y-m-d'),
-		'loja_id_exaltacao'     => $faker->numberBetween($min = 1, $max = 5),
-		'dt_instalacao'         => $faker->date('Y-m-d'),
-		'loja_id_instalacao'    => $faker->numberBetween($min = 1, $max = 5),
-	];	
-
 });

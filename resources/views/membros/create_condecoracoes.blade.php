@@ -11,7 +11,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_remido" 
             type="date"
-            value="{{$membro->dt_remido or old('dt_remido')}}" >
+            value="{{$condecoracao->dt_remido or old('dt_remido')}}" >
 
       </div>
 
@@ -22,7 +22,7 @@
             class="form-control col-md-2"
             name="ato_remido" 
             type="text"
-            value="{{$membro->ato_remido or old('ato_remido')}}" >
+            value="{{$condecoracao->ato_remido or old('ato_remido')}}" >
          
       </div>
    </div>
@@ -39,7 +39,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_emerito" 
             type="date"
-            value="{{$membro->dt_emerito or old('dt_emerito')}}" >
+            value="{{$condecoracao->dt_emerito or old('dt_emerito')}}" >
       </div>
 
 
@@ -49,7 +49,7 @@
             class="form-control col-md-2"
             name="ato_emerito" 
             type="text"
-            value="{{$membro->ato_emerito or old('ato_emerito')}}" >
+            value="{{$condecoracao->ato_emerito or old('ato_emerito')}}" >
          
       </div>
    </div>
@@ -63,7 +63,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_benemerito" 
             type="date"
-            value="{{$membro->dt_benemerito or old('dt_benemerito')}}" >
+            value="{{$condecoracao->dt_benemerito or old('dt_benemerito')}}" >
       </div>
 
 
@@ -73,7 +73,7 @@
             class="form-control col-md-2"
             name="ato_benemerito" 
             type="text"
-            value="{{$membro->ato_benemerito or old('ato_benemerito')}}" >
+            value="{{$condecoracao->ato_benemerito or old('ato_benemerito')}}" >
          
       </div>
    </div>
@@ -87,7 +87,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_g_benemerito" 
             type="date"
-            value="{{$membro->dt_g_benemerito or old('dt_g_benemerito')}}" >
+            value="{{$condecoracao->dt_g_benemerito or old('dt_g_benemerito')}}" >
       </div>
 
 
@@ -97,7 +97,7 @@
             class="form-control col-md-2"
             name="ato_g_Benemerito" 
             type="text"
-            value="{{$membro->ato_g_Benemerito or old('ato_g_Benemerito')}}" >
+            value="{{$condecoracao->ato_g_Benemerito or old('ato_g_Benemerito')}}" >
          
       </div>
    </div>
@@ -111,7 +111,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_estrela_dis_mac" 
             type="date"
-            value="{{$membro->dt_estrela_dis_mac or old('dt_estrela_dis_mac')}}" >
+            value="{{$condecoracao->dt_estrela_dis_mac or old('dt_estrela_dis_mac')}}" >
       </div>
 
 
@@ -121,7 +121,7 @@
             class="form-control col-md-2"
             name="ato_estrela_dis_mac" 
             type="text"
-            value="{{$membro->ato_estrela_dis_mac or old('ato_estrela_dis_mac')}}" >
+            value="{{$condecoracao->ato_estrela_dis_mac or old('ato_estrela_dis_mac')}}" >
          
       </div>
    </div>
@@ -135,7 +135,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_cruz_perf" 
             type="date"
-            value="{{$membro->dt_cruz_perf or old('dt_cruz_perf')}}" >
+            value="{{$condecoracao->dt_cruz_perf or old('dt_cruz_perf')}}" >
       </div>
 
 
@@ -145,7 +145,7 @@
             class="form-control col-md-2"
             name="ato_cruz_perf" 
             type="text"
-            value="{{$membro->ato_cruz_perf or old('ato_cruz_perf')}}" >
+            value="{{$condecoracao->ato_cruz_perf or old('ato_cruz_perf')}}" >
          
       </div>
    </div>
@@ -159,7 +159,7 @@
             class="form-control col-md-2 datas_input" 
             name="dt_com_dom_pedro" 
             type="date"
-            value="{{$membro->dt_com_dom_pedro or old('dt_com_dom_pedro')}}" >
+            value="{{$condecoracao->dt_com_dom_pedro or old('dt_com_dom_pedro')}}" >
       </div>
 
 
@@ -169,7 +169,7 @@
             class="form-control col-md-2"
             name="ato_com_dom_pedro" 
             type="text"
-            value="{{$membro->ato_com_dom_pedro or old('ato_com_dom_pedro')}}" >
+            value="{{$condecoracao->ato_com_dom_pedro or old('ato_com_dom_pedro')}}" >
          
       </div>
    </div>
