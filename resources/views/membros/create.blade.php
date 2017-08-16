@@ -33,6 +33,15 @@
          </div>
       @endif
       <!------------------------------------------------------------------------------------>
+ 
+{{--     @if(session('sucesso'))
+         <div class="alert alert-dourado alert-dismissible" style="margin-top: 70px;" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <strong>Parabéns!</strong> {!! session('sucesso') !!}
+        </div>
+     @endif
+ --}}
+
 
       
       <div class="clearfix"></div>
@@ -157,7 +166,17 @@
   
   
 
-   <script type="text/javascript">
+    <script type="text/javascript">
+
+
+      @if (session('sucesso'))
+        swal({
+          title:  'Parabéns',
+          text:   ' {!! session('sucesso') !!}',
+          type:   'success'
+        });
+      @endif
+      
 
       
 

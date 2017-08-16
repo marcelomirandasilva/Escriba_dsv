@@ -17,6 +17,8 @@ class CreateCerimoniasTable extends Migration
 
             $table->increments('id');
 
+            $table->unsignedInteger('membro_id');
+
             $table->date('dt_iniciacao')                    ->nullable();
             $table->unsignedInteger('loja_id_iniciacao')    ->nullable();
 

@@ -73,6 +73,7 @@ class CreateFk extends Migration
 
 
         Schema::table('cerimonias', function($table){
+            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
             $table->foreign('loja_id_iniciacao')->references('id')->on('lojas')->onDelete('cascade');
             $table->foreign('loja_id_elevacao')->references('id')->on('lojas')->onDelete('cascade');
             $table->foreign('loja_id_exaltacao')->references('id')->on('lojas')->onDelete('cascade');
@@ -80,7 +81,7 @@ class CreateFk extends Migration
 
         });
 
-
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -91,7 +92,9 @@ class CreateFk extends Migration
     public function down()
     {
     
-        Schema::table('lojas', function($table){
+        Schema::disableForeignKeyConstraints();
+        
+        /*Schema::table('lojas', function($table){
 
             $table->dropForeign('lojas_potencia_id_foreign');   
         });
@@ -156,6 +159,6 @@ class CreateFk extends Migration
         });
 
 
-
+*/
     }
 }

@@ -20,7 +20,7 @@
                
               {{--  TIPO DE TELEFONE  --}}
                <div class="col-md-5 panel_sem_margem" style="top: 4px;">
-                  <select id="telefones[0][ic_telefone]"  name="telefones[0][ic_telefone]" data-cip-id="telefones[0][ic_telefone]" 
+                  <select id="telefones[0][ic_telefone]"  name="telefones[0][ic_telefone]"  
                      class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
 
                      @foreach($tipo_telefone as $tipo)
@@ -32,7 +32,7 @@
                {{-- NUMERO DO TELEFONE  --}}
                <div class="col-md-6" style="top: 4px;">
                   <input id="telefones[0][nu_telefone]"   name="telefones[0][nu_telefone]"     
-                        data-cip-id="telefones[0][nu_telefone]"  
+                        
                         class="form-control input-md telefone" 
                         placeholder="(99) 9999-9999"  
                         {{-- data-inputmask="'mask' : '(99)9999-9999', 'numericInput': 'false' "  --}}

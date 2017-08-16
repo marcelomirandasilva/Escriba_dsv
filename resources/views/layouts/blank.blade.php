@@ -31,6 +31,10 @@
         <!-- SweetAlert2 -->
         <link rel="stylesheet" href="{{ asset("sweetalert2/dist/sweetalert2.min.css") }}">
 
+        <!-- Select2 -->
+     {{--    <link rel="stylesheet" href="{{ asset("select2/css/select2.css") }}">
+        <link rel="stylesheet" href="{{ asset("select2/css/select2-bootstrap.css") }}>
+ --}}
         
 
              
@@ -69,8 +73,9 @@
         <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >        </script>
         <!-- SweetAlert2 -->
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
-
-       
+        <!-- Select2 -->
+{{--         <script src="{{ asset("select2/js/select2.full.min.js") }}">            </script>
+ --}}       
         @stack('scripts')
 
     </body>

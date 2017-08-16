@@ -12,7 +12,8 @@ class Telefone extends Model
 
 	protected $fillable =[
    			'nu_telefone',
-            'loja_id',
+            'ic_telefone',
+            //'loja_id',
 	];
 
 	public function loja()

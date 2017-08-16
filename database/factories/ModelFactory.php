@@ -102,11 +102,11 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 		'no_membro'             => $faker->name,
 		'co_cim'                => $faker->numberBetween($min = 11111, $max = 9999999),
 		'dt_nascimento'         => $faker->date('Y-m-d', '-18 years'),
-		'no_naturalidade'		=> $faker->city,
+		'no_naturalidade'			=> $faker->city,
 		'no_nacionalidade'		=> $faker->country,
 		'nu_cpf'                => $faker->cpf,
 		'nu_identidade'         => $faker->rg,
-		'dt_emissao_idt'		=> $faker->date('Y-m-d', '-18 years'),
+		'dt_emissao_idt'			=> $faker->date('Y-m-d', '-18 years'),
 		'no_orgao_emissor_idt'	=> $faker->randomElement(['DETRAN', 'IFP', 'Marinha do Brasil']),
 		'nu_titulo_eleitor'		=> $faker->randomNumber(9),
 		'dt_emissao_titulo'		=> $faker->date('Y-m-d', '-18 years'),
@@ -115,12 +115,12 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 
 		'ic_estado_civil'       => $v_estado_civil,
 
-		'dt_casamento'			=> $v_data_casamento,
-		'no_profissao'			=> $faker->jobTitle,
+		'dt_casamento'				=> $v_data_casamento,
+		'no_profissao'				=> $faker->jobTitle,
 		'ic_aposentado'			=> $faker->boolean,
 		'no_empregador'			=> $faker->company,
-		'no_pai'				=> $faker->name($gender = 'male'),  
-		'no_mae'				=> $faker->name($gender = 'female'),  
+		'no_pai'						=> $faker->name($gender = 'male'),  
+		'no_mae'						=> $faker->name($gender = 'female'),  
 
 		'ic_grau'               => $v_grau,
 

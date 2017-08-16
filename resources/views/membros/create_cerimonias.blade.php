@@ -14,20 +14,8 @@
             value="{{$membro->dt_iniciacao or old('dt_iniciacao')}}" >
       </div>
 
-
-     {{--  <label class="control-label col-md-2" for="loja_id_iniciacao">Loja Iniciação</label>
-      <div class="col-md-5">
-         <input id="loja_id_iniciacao"   
-            class="form-control col-md-5"
-            name="loja_id_iniciacao" 
-            placeholder="Loja em que o Irmão foi Iniciado" 
-            type="text"
-            value="{{$membro->loja_id_iniciacao or old('loja_id_iniciacao')}}" >
-      </div> --}}
-
       <label class="control-label col-md-2" for="loja_id_iniciacao">Loja Iniciação</label>
       <div class="col-md-5">
-
          <select   
             name="loja_id_iniciacao" id="loja_id_iniciacao" class="form-control col-md-5">
             <option value=""  selected style="color: #ccc;"> --- </option>
@@ -35,22 +23,17 @@
                <option value="{{$loja->id}}"> {{$loja->no_loja}} - Nº {{$loja->nu_loja}} </option>    
             @endforeach
          </select>
-
-
       </div>
 
-      
-
-
-
+     
       <div class="col-md-1 ">
-          <a href="{{ url('lojas/create') }}" 
+         <a href="{{ url('lojas/create') }}" 
               class="btn-circulo btn btn-primary btn-md   pull-right " 
               data-toggle="tooltip"  
               data-placement="bottom" 
               title="Adiciona uma Loja">
               <span class="fa fa-plus">  </span>
-           </a>
+         </a>
       </div>
    </div>
  
@@ -70,12 +53,13 @@
 
      <label class="control-label col-md-2 " for="loja_id_elevacao">Loja Elevação</label>
       <div class="col-md-5">
-         <input id="loja_id_elevacao"   
-            class="form-control col-md-5 "
-            name="loja_id_elevacao" 
-            placeholder="Loja em que o Irmão foi Elevado" 
-            type="text"
-            value="{{$membro->loja_id_elevacao or old('loja_id_elevacao')}}" >
+         <select 
+            name="loja_id_elevacao" id="loja_id_elevacao"  class="form-control col-md-5">
+            <option value=""  selected style="color: #ccc;"> --- </option>
+            @foreach($lojas as $loja)
+               <option value="{{$loja->id}}"> {{$loja->no_loja}} - Nº {{$loja->nu_loja}} </option>    
+            @endforeach
+         </select>
       </div>
    </div>
 
@@ -96,13 +80,13 @@
 
       <label class="control-label col-md-2 " for="loja_id_exaltacao">Loja Exaltação</label>
       <div class="col-md-5">
-         <input id="loja_id_exaltacao"   
-            class="form-control col-md-5" 
-            name="loja_id_exaltacao" 
-            placeholder="Loja em que o Irmão foi Exaltado" 
-            type="text"
-            value="{{$membro->loja_id_exaltacao or old('loja_id_exaltacao')}}" 
-         >
+         <select 
+            name="loja_id_exaltacao" id="loja_id_exaltacao"  class="form-control col-md-5">
+            <option value=""  selected style="color: #ccc;"> --- </option>
+            @foreach($lojas as $loja)
+               <option value="{{$loja->id}}"> {{$loja->no_loja}} - Nº {{$loja->nu_loja}} </option>    
+            @endforeach
+         </select>
       </div>
    </div>
 
@@ -122,13 +106,13 @@
 
       <label class="control-label col-md-2 " for="loja_id_instalacao">Loja Instalação</label>
       <div class="col-md-5">
-         <input id="loja_id_instalacao"   
-            class="form-control col-md-5" 
-            name="loja_id_instalacao" 
-            placeholder="Loja em que o Irmão foi Instalado" 
-            type="text"
-            value="{{$membro->loja_id_instalacao or old('loja_id_instalacao')}}" 
-         >
+         <select 
+            name="loja_id_instalacao" id="loja_id_instalacao"  class="form-control col-md-5">
+            <option value=""  selected style="color: #ccc;"> --- </option>
+            @foreach($lojas as $loja)
+               <option value="{{$loja->id}}"> {{$loja->no_loja}} - Nº {{$loja->nu_loja}} </option>    
+            @endforeach
+         </select>
       </div>
    </div>
 

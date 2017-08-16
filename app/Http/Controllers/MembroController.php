@@ -11,6 +11,8 @@ use App\Models\loja;
 use App\Models\Telefone;
 use App\Models\Email;
 use App\Models\Dependente;
+use App\Models\Condecoracao;
+use App\Models\Cerimonia;
 
 use Illuminate\Http\Request;
 
@@ -101,8 +103,12 @@ class MembroController extends Controller
             $membro->enderecos()->save(new Endereco($endereco));
         }
 
+        //dd($request->telefones);
+        
+        
         foreach($request->telefones as $telefone)
         {
+                        
             // Criar um novo telefone com as informações inseridas
             $membro->telefones()->save(new Telefone($telefone));
         }
@@ -120,27 +126,28 @@ class MembroController extends Controller
         }
      
 
-        //dd($request->all());
 
+/*         $cerimonia = new Cerimonia($request->all());
 
-/*        if ($loja and $endereco and $telefone and $email) {
-            return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
-                                                        .$request->no_loja      .' Nº ' 
-                                                        .$request->nu_loja 
-                                                        .' Cadastrada com Sucesso');
-
-        } else {
-            return redirect()->back()->with(['erros' => 'Falha ao cadastrar']); 
-        }
+         dd($cerimonia);
 */
-
         
 
-    
-         return redirect('/membros/create')->with('sucesso', "Membro cadastrado com sucesso. Código da inscriçao : <span style='font-weight: bold; font-size: 16px'>$membro->id</span><br><a target='_blank' style=' font-weight: bold; text-transform: uppercase' href='".url("/membros")."'>Clique aqui para imprirmir o comprovante de inscrição</a>");
+        $membro->cerimoria()->save(new Cerimonia($request->all()));
 
-      
+           
 
+
+        if ($membro /*and $cerimonia*/) {
+            return redirect('/membros/create')->with('sucesso', ' O membro '
+                                                        .strtoupper($request->no_membro)    .' CIM Nº ' 
+                                                        .$request->nu_cim
+                                                        .' foi cadastrado com sucesso'
+                                                    );
+
+        } else {
+            return redirect('/membros/create')->with(['erros' => 'Falha ao cadastrar']); 
+        }
     }
 
     public function edit($id)
