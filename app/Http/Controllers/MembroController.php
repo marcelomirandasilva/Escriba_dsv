@@ -81,7 +81,7 @@ class MembroController extends Controller
     {
 
 
-       //dd($request->all());
+       dd($request->all());
         
 
 
@@ -125,6 +125,13 @@ class MembroController extends Controller
             $membro->dependentes()->save(new Dependente($dependente));
         }
      
+       foreach($request->condecoracoes as $condecoracao)
+        {
+            // Criar um novo dependente com as informações inseridas
+            $membro->condecoracoes()->save(new Condecoracao($condecoracao));
+        }
+     
+
 
 /*
          $cerimonia = new Cerimonia($request->all());
@@ -154,6 +161,7 @@ class MembroController extends Controller
 
 
         if ($membro /*and $cerimonia*/) {
+
             return redirect('/membros/create')->with('sucesso', ' O membro '
                                                         .strtoupper($request->no_membro)    .' CIM Nº ' 
                                                         .$request->nu_cim
