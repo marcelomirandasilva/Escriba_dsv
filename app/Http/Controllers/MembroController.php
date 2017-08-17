@@ -126,15 +126,30 @@ class MembroController extends Controller
         }
      
 
-
-/*         $cerimonia = new Cerimonia($request->all());
+/*
+         $cerimonia = new Cerimonia($request->all());
 
          dd($cerimonia);
 */
         
 
-        $membro->cerimoria()->save(new Cerimonia($request->all()));
+         $cerimonia = new Cerimonia($request->all());
 
+         $cerimonia->membro()->associate($membro);
+         //dd($cerimonia);
+         $cerimonia->save();
+
+/*
+
+
+        $email = new Email($request->all());
+        $email->loja()->associate($loja);
+        $email->save();
+
+
+
+        $membro->cerimoria()->save(new Cerimonia($request->all()));
+*/
            
 
 

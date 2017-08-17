@@ -13,6 +13,9 @@ class Cerimonia extends Model
 
 	protected $fillable =[
 
+
+        'membro_id',
+        
 	    'dt_iniciacao',
         'loja_id_iniciacao',
 
@@ -28,10 +31,6 @@ class Cerimonia extends Model
         'dt_filiacao',
         'dt_regularizacao',
 
-        'loja_id_iniciacao',
-        'loja_id_elevacao',
-        'loja_id_exaltacao',
-        'loja_id_instalacao',
 
 		
 	];
@@ -42,9 +41,10 @@ class Cerimonia extends Model
         return $this->belongsTo('App\Models\Membro', 'membro_id');
     }
 
-    // public function lojas()
-    // {
-    //     return $this->hasMany('App\Models\Loja');
-    // }
+
+    public function lojas()
+    {
+        return $this->hasMany('App\Models\Loja');
+    }
 
 }
