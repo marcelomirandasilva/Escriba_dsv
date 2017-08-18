@@ -45,8 +45,6 @@ class MembroController extends Controller
 
     public function create()
     {
-
-
         $titulo = "Cadastro de Membros";
 
         $aposentado         = ['Sim','Não'];
@@ -62,16 +60,12 @@ class MembroController extends Controller
 
         //orderna os valores dos arrays
         sort($estado_civil);
-        //sort($grau);                             
         sort($situacao);
-        //sort($escolaridade);
         sort($grau_parentesco);
 
         $paises     = Pais::all()->sortBy('nome');        
-
         $lojas      = Loja::all()->sortBy('no_loja');    
 
-        //dd($condecoracoes)   ;
 
         return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
 
@@ -175,12 +169,16 @@ class MembroController extends Controller
     {
         $membro = $this->membro->find($id);
 
+        $enderecos = $membro->enderecos;
+
+        dd($enderecos->all());
+
         $edita = true;
         $titulo = "Edição de Membro";
 
+
         $aposentado         = ['Sim','Não'];
 
-        
         $escolaridade       = pegaValorEnum('membros','ic_escolaridade');                                                   
         $situacao           = pegaValorEnum('membros','ic_situacao');                                                   
         $grau               = pegaValorEnum('membros','ic_grau');                      
@@ -192,18 +190,14 @@ class MembroController extends Controller
 
         //orderna os valores dos arrays
         sort($estado_civil);
-        //sort($grau);                             
         sort($situacao);
-        //sort($escolaridade);
         sort($grau_parentesco);
 
         $paises     = Pais::all()->sortBy('nome');        
+        $lojas      = Loja::all()->sortBy('no_loja');    
 
-        $lojas      = Loja::all()->sortBy('no_loja');       
 
-        
-        return view('membros.create',compact([ 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos','edita','membro']));
-
+        return view('membros.create',compact(['membro','edita','enderecos', 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
         
     }
 

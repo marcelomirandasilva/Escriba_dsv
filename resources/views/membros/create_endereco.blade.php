@@ -15,26 +15,31 @@
             name="enderecos[0][no_pais]" 
             placeholder="Nome do Pais" >
             
+            
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($paises as $pais)
-               
-                  @if ($membro->endereco->no_pais == $enderecos[0][no_pais])
-                     <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>
-                  @else
-                     <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>    
-                  @endif
+                  
+                  @if ($pais->no_pais == $enderecos[0]->no_pais )
 
-               @endforeach --}}
+                     <option value="{{ $pais->no_pais }}" selected="selected"> {{ $pais->no_pais }} </option>
+
+                  @else
+
+                     <option value="{{ $pais->no_pais }}"> {{ $pais->no_pais }} </option>
+
+                  @endif
+            
+               @endforeach
             @else
-               @foreach($paises as $pais)
+              @foreach($paises as $pais)
                   @if ($pais->no_pais == ('Brasil'))
                      <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
                   @else 
                      <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
                   @endif
                @endforeach
-            @endif
-
+             @endif
+          
          </select>
       </div> 
       
@@ -140,17 +145,6 @@
             name="enderecos[1][no_pais]" 
             placeholder="Nome do Pais" >
             
-            @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
-               @foreach($paises as $pais)
-               
-                  @if ($membro->endereco->no_pais == $enderecos[1][no_pais])
-                     <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>
-                  @else
-                     <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>    
-                  @endif
-
-               @endforeach --}}
-            @else
                @foreach($paises as $pais)
                   @if ($pais->no_pais == ('Brasil'))
                      <option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
@@ -158,8 +152,7 @@
                      <option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
                   @endif
                @endforeach
-            @endif
-
+       
          </select>
       </div> 
       

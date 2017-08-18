@@ -11,8 +11,9 @@ class MembroTableSeeder extends Seeder
         factory(App\Models\Membro::class, 50)->create()->each(function($membro)
         {
           
+            $i = true;
              //Criar um endereço
-            $membro->enderecos()->save(factory(App\Models\Endereco::class)->make());
+            $membro->enderecos()->saveMany(factory(App\Models\Endereco::class, 2)->make());
             
             // Criar 2 telefones
             $membro->telefones()->saveMany(factory(App\Models\Telefone::class, 2)->make());

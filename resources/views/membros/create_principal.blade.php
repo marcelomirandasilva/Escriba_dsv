@@ -232,13 +232,5 @@
             >
          </label>
       </div>
-
-
-
-   </div>
-
-
-   <div class="item form-group">
-      
    </div>
 </div>

@@ -33,16 +33,6 @@
          </div>
       @endif
       <!------------------------------------------------------------------------------------>
- 
-{{--     @if(session('sucesso'))
-         <div class="alert alert-dourado alert-dismissible" style="margin-top: 70px;" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <strong>Parabéns!</strong> {!! session('sucesso') !!}
-        </div>
-     @endif
- --}}
-
-
       
       <div class="clearfix"></div>
 
@@ -51,100 +41,97 @@
             <div class="x_panel modal-content">
                <div class="x_title">
                   <h2> {{ $titulo }} </h2>
-               <div class="clearfix"></div>
-            </div>
-            <!-- conteudo aqui-->
-            <div class="col-md-12 ">
-               <div class="x_panel">
-               <div class="x_content ">
-                  <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                    
-                    @if( isset($edita))
+                  <div class="clearfix"></div>
+               </div>
+               <!-- conteudo aqui-->
+               <div class="col-md-12 ">
+                  <div class="x_panel">
+                     <div class="x_content ">
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                          
+                           @if( isset($edita))
 
-                      <form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}" class="form-horizontal form-label-left" >
-                        {!! method_field('PUT') !!}
+                              <form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}" class="form-horizontal form-label-left" >
+                                 {!! method_field('PUT') !!}
 
-                    @else
-                       <form id="form_membro" method="post" action="{{ route('membros.store') }}" class="form-horizontal form-label-left" >
-                    @endif
+                           @else
+                              <form id="form_membro" method="post" action="{{ route('membros.store') }}" class="form-horizontal form-label-left" >
+                           @endif
 
+                              {{ csrf_field() }}
+                              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                 
+                                 <li role="presentation" class="active">
+                                    <a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab">   Principal   </a> 
+                                 </li>
+                                 
+                                 <li role="presentation" class="">      
+                                    <a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab">   Documentos  </a>
+                                 </li>
+                                 
+                                 <li role="presentation" class="">      
+                                    <a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab">   Endereços   </a>
+                                 </li>
+                                 
+                                 <li role="presentation" class="">      
+                                    <a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab">   Contatos    </a>
+                                 </li>
+                                 
+                                 <li role="presentation" class="">      
+                                    <a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab">   Dependentes </a>
+                                 </li>
+                                 
+                                 <li role="presentation" class="">      
+                                    <a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab">   Cerimonias  </a>
+                                 </li>
+                                 
+                                 <li role="presentation" class="">      
+                                    <a href="#tab_content7" role="tab" id="tab_condecoracoes" data-toggle="tab">   Condecorações  </a>
+                                 </li>
+                              </ul>
 
-                    
-                        {{ csrf_field() }}
-                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                              <div id="myTabContent" class="tab-content">
+                                 <div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
+                                    @include('membros/create_principal')
+                                 </div>
+
+                                 <div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
+                                    @include('membros/create_documentos')
+                                 </div>
+
+                                 <div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
+                                    @include('membros/create_endereco')
+                                 </div>
+
+                                 <div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
+                                    @include('membros/create_contatos')
+                                 </div>
+
+                                 <div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
+                                    @include('membros/create_dependentes')
+                                 </div>
+
+                                 <div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
+                                    @include('membros/create_cerimonias')
+                                 </div>
+
+                                 <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_condecoracoes">
+                                    @include('membros/create_condecoracoes')
+                                 </div>
+                              </div>
                            
-                           <li role="presentation" class="active">
-                              <a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab">   Principal   </a> 
-                           </li>
-                           
-                           <li role="presentation" class="">      
-                              <a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab">   Documentos  </a>
-                           </li>
-                           
-                           <li role="presentation" class="">      
-                              <a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab">   Endereços   </a>
-                           </li>
-                           
-                           <li role="presentation" class="">      
-                              <a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab">   Contatos    </a>
-                           </li>
-                           
-                           <li role="presentation" class="">      
-                              <a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab">   Dependentes </a>
-                           </li>
-                           
-                           <li role="presentation" class="">      
-                              <a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab">   Cerimonias  </a>
-                           </li>
-                           
-                           <li role="presentation" class="">      
-                              <a href="#tab_content7" role="tab" id="tab_condecoracoes" data-toggle="tab">   Condecorações  </a>
-                           </li>
-
-                        </ul>
-
-                        <div id="myTabContent" class="tab-content">
-
-                           <div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
-                              @include('membros/create_principal')
-                           </div>
-
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
-                              @include('membros/create_documentos')
-                           </div>
-
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-                              @include('membros/create_endereco')
-                           </div>
-
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
-                              @include('membros/create_contatos')
-                           </div>
-
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-                              @include('membros/create_dependentes')
-                           </div>
-
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
-                              @include('membros/create_cerimonias')
-                           </div>
-
-                           <div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_condecoracoes">
-                              @include('membros/create_condecoracoes')
-                           </div>
-
-                        </div>
-                        <!-- botoes --> 
-                        {{-- <div class="ln_solid"></div> --}}
-                        <div class="form-group">
-                            <div class="col-md-offset-8">
-                               <a href="{{ url("membros") }}" class="btn btn-danger pull-right">  Cancela     </a>
-                               <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
-                            </div>
-                        </div>
-                        <!-- fim botoes --> 
-                     </form>
-                     
+                              <!-- botoes --> 
+                              {{-- <div class="ln_solid"></div> --}}
+                              <div class="form-group">
+                                 <div class="col-md-offset-8">
+                                    <a href="{{ url("membros") }}" class="btn btn-danger pull-right">  Cancela     </a>
+                                    <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
+                                 </div>
+                              </div>
+                              <!-- fim botoes --> 
+                           </form>
+                        </div> 
+                     </div>
                   </div>
                </div>
             </div>
@@ -152,10 +139,6 @@
       </div>
    </div>
 
-  <!-- /page content -->
-  <!-- /page content -->
-
- 
 @endsection
 
 

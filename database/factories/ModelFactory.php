@@ -169,19 +169,43 @@ $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 
 	$faker = Faker\Factory::create('pt_BR');
 
-	return [
-		'no_pais'			=> $faker->country, //App\Models\Pais::all()->random()->id,
-		'sg_uf'			 	=> $faker->stateAbbr,
-		'no_municipio'	 	=> $faker->city,
-		'no_bairro'			=> $faker->cityPrefix,
 
-		'no_logradouro'   => $faker->streetName,
-		'nu_logradouro'   => $faker->randomNumber(3),
-		'de_complemento'  => $faker->secondaryAddress,
-		'nu_cep'          => $faker->randomNumber(5)."-".$faker->randomNumber(3),
-		//'ic_tipo_endereco'=> $faker->randomElement(['Residencial','Comercial','Loja']),
+	if(rand(0,1))
+	{
+		return [
+			'no_pais'			=> $faker->country, //App\Models\Pais::all()->random()->id,
+			'sg_uf'			 	=> $faker->stateAbbr,
+			'no_municipio'	 	=> $faker->city,
+			'no_bairro'			=> $faker->cityPrefix,
 
-	];
+			'no_logradouro'   => $faker->streetName,
+			'nu_logradouro'   => $faker->randomNumber(3),
+			'de_complemento'  => $faker->secondaryAddress,
+			'nu_cep'          => $faker->randomNumber(5)."-".$faker->randomNumber(3),
+			'ic_tipo_endereco'=> 'Comercial',
+			
+		];	
+	}	else	{
+		return [
+
+			'no_pais'			=> $faker->country, //App\Models\Pais::all()->random()->id,
+			'sg_uf'			 	=> $faker->stateAbbr,
+			'no_municipio'	 	=> $faker->city,
+			'no_bairro'			=> $faker->cityPrefix,
+
+			'no_logradouro'   => $faker->streetName,
+			'nu_logradouro'   => $faker->randomNumber(3),
+			'de_complemento'  => $faker->secondaryAddress,
+			'nu_cep'          => $faker->randomNumber(5)."-".$faker->randomNumber(3),
+			'ic_tipo_endereco'=> 'Residencial',
+			
+		];
+	}
+
+
+
+
+
 
 });
 
