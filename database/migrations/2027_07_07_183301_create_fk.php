@@ -74,11 +74,8 @@ class CreateFk extends Migration
 
 
         Schema::table('cerimonias', function($table){
-            $table->foreign('membro_id')            ->references('id')->on('membros')->onDelete('cascade');
-            $table->foreign('loja_id_iniciacao')    ->references('id')->on('lojas')->onDelete('set null');
-            $table->foreign('loja_id_elevacao')     ->references('id')->on('lojas')->onDelete('set null');
-            $table->foreign('loja_id_exaltacao')    ->references('id')->on('lojas')->onDelete('set null');
-            $table->foreign('loja_id_instalacao')   ->references('id')->on('lojas')->onDelete('set null');
+            $table->foreign('membro_id')    ->references('id')->on('membros')->onDelete('cascade');
+            $table->foreign('loja_id')      ->references('id')->on('lojas')->onDelete('set null');
         });
 
         Schema::enableForeignKeyConstraints();

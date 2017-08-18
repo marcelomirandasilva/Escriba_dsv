@@ -71,9 +71,9 @@ class Membro extends Model
         return $this->hasMany('App\Models\Condecoracao');
     }
 
-    public function cerimonia()
+    public function cerimonias()
     {
-        return $this->hasOne('App\Models\Cerimonia');
+        return $this->hasMany('App\Models\Cerimonia');
     }
 
     

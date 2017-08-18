@@ -80,12 +80,9 @@ class MembroController extends Controller
     public function store(Request $request)
     {
 
-
-       dd($request->all());
+        //dd($request->all());
         
-
-
-       // Cria um novo membro
+        // Cria um novo membro
         //$membro = new Membro($request->all());
         $membro = new Membro($request->all());
 
@@ -103,7 +100,7 @@ class MembroController extends Controller
             $membro->enderecos()->save(new Endereco($endereco));
         }
 
-        //dd($request->telefones);
+        
         
         
         foreach($request->telefones as $telefone)
@@ -125,38 +122,39 @@ class MembroController extends Controller
             $membro->dependentes()->save(new Dependente($dependente));
         }
      
-       foreach($request->condecoracoes as $condecoracao)
+
+        //deleta as cerimonias para serem inseridas as quem vem do formulário
+        $cerimonias = cerimonia::where("membro_id", $membro->id);
+        $cerimonias->delete();
+        // Cria um novo cerimonia com as informações inseridas
+        foreach($request->cerimonias as $cerimonia)
         {
-            // Criar um novo dependente com as informações inseridas
-            $membro->condecoracoes()->save(new Condecoracao($condecoracao));
+            //testa se o cerimonia foi preenchido no formulario
+            //ser for, cadastra, senão, passa para a próxima
+            if( $cerimonia['dt_cerimonia'] )
+            {
+                // Criar nova cerimonia com as informações inseridas
+                $membro->cerimonias()->save(new cerimonia($cerimonia));    
+            }
         }
-     
 
 
-/*
-         $cerimonia = new Cerimonia($request->all());
-
-         dd($cerimonia);
-*/
-        
-
-         $cerimonia = new Cerimonia($request->all());
-
-         $cerimonia->membro()->associate($membro);
-         //dd($cerimonia);
-         $cerimonia->save();
-
-/*
-
-
-        $email = new Email($request->all());
-        $email->loja()->associate($loja);
-        $email->save();
+        //deleta as condecoracaos para serem inseridas as quem vem do formulário
+        $condecoracoes = Condecoracao::where("membro_id", $membro->id);
+        $condecoracoes->delete();
+        // Cria um novo condecoracao com as informações inseridas
+        foreach($request->condecoracoes as $condecoracao)
+        {
+            //testa se o condecoracao foi preenchido no formulario
+            //ser for, cadastra, senão, passa para a próxima
+            if( $condecoracao['dt_condecoracao'] )
+            {
+                // Criar nova condecoracao com as informações inseridas
+                $membro->condecoracoes()->save(new Condecoracao($condecoracao));    
+            }
+        }
 
 
-
-        $membro->cerimoria()->save(new Cerimonia($request->all()));
-*/
            
 
 

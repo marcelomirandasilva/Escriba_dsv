@@ -15,24 +15,10 @@ class Cerimonia extends Model
 
 
         'membro_id',
-        
-	    'dt_iniciacao',
-        'loja_id_iniciacao',
+        'loja_id',
+        'dt_cerimonia',
+        'ic_cerimonia'
 
-        'dt_elevacao',
-        'loja_id_elevacao',
-
-        'dt_exaltacao',
-        'loja_id_exaltacao',
-
-        'dt_instalacao',
-        'loja_id_instalacao',
-
-        'dt_filiacao',
-        'dt_regularizacao',
-
-
-		
 	];
 
 
@@ -42,9 +28,9 @@ class Cerimonia extends Model
     }
 
 
-    public function lojas()
+    public function loja()
     {
-        return $this->hasMany('App\Models\Loja');
+        return $this->hasOne('App\Models\Loja');
     }
 
 }

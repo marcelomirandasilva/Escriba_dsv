@@ -49,9 +49,9 @@ class Loja extends Model
 		return $this->belongsTo('App\Models\Membro');
 	}
 
-	// public function cerimonia()
-	// {
-	// 	return $this->belongsTo('App\Models\Cerimonia');
-	// }
+	public function cerimonia()
+	{
+		return $this->belongsTo('App\Models\Cerimonia');
+	}
 
 }

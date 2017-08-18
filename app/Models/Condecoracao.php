@@ -13,23 +13,11 @@ class Condecoracao extends Model
 
 	protected $fillable =[
 
-            'dt_honorario',
-            'dt_remido',
-            'dt_emerito',
-            'dt_benemerito',
-            'dt_g_benemerito',
-            'dt_estrela_dis_mac',
-            'dt_cruz_perf',
-            'dt_com_dom_pedro',
-            'ato_honorario',
-            'ato_remido',
-            'ato_emerito',
-            'ato_benemerito',
-            'ato_g_Benemerito',
-            'ato_estrela_dis_mac',
-            'ato_cruz_perf',
-            'ato_com_dom_pedro',
-		
+        'membro_id',
+        'ic_condecoracao',
+        'nu_ato',
+        'dt_condecoracao'
+	
 	];
 
 

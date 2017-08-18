@@ -16,23 +16,23 @@ class CreateCerimoniasTable extends Migration
         Schema::create('cerimonias', function (Blueprint $table) {
 
             $table->increments('id');
-
             $table->unsignedInteger('membro_id');
+            $table->unsignedInteger('loja_id')              ->nullable();
 
-            $table->date('dt_iniciacao')                    ->nullable();
-            $table->unsignedInteger('loja_id_iniciacao')    ->nullable();
+            $table->date('dt_cerimonia')                    ->nullable();
 
-            $table->date('dt_elevacao')                     ->nullable();
-            $table->unsignedInteger('loja_id_elevacao')     ->nullable();
+            $table->enum('ic_cerimonia',
+                            [   
+                                'Iniciação',
+                                'Elevação',
+                                'Exaltação',
+                                'Instalação',
+                                'Filiação',
+                                'Regularização' 
+                            ]
+                        );
 
-            $table->date('dt_exaltacao')                    ->nullable();
-            $table->unsignedInteger('loja_id_exaltacao')    ->nullable();
 
-            $table->date('dt_instalacao')                   ->nullable();
-            $table->unsignedInteger('loja_id_instalacao')   ->nullable();
-
-            $table->date('dt_filiacao')                     ->nullable();
-            $table->date('dt_regularizacao')                ->nullable();       
 
 
             $table->timestamps();

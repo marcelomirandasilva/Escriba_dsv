@@ -26,8 +26,9 @@ class MembroTableSeeder extends Seeder
             // Criar 4 condecorações
             $membro->condecoracoes()->saveMany(factory(App\Models\Condecoracao::class, 4)->make());
 
-            // Cria cerimonia
-            //$membro->cerimonia()->save(factory(App\Models\Cerimonia::class)->make());
+            //Cria cerimonias
+            $membro->cerimonias()->saveMany(factory(App\Models\Cerimonia::class, rand(1, 6))->make());
         });
     }
 }
+
