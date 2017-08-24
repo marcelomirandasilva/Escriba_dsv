@@ -12,24 +12,26 @@
         <title>Escriba online</title>
 
         <!-- Bootstrap -->
-        <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("css/bootstrap.min.css") }}"                   rel="stylesheet">
         <!-- Font Awesome -->
-        <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("css/font-awesome.min.css") }}"                rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("css/gentelella.min.css") }}"                  rel="stylesheet">
 
         <!-- Automplete -->
-        <link href="{{ asset("autoComplete/auto-complete.css") }}"  rel="stylesheet" > 
+        <link href="{{ asset("autoComplete/auto-complete.css") }}"          rel="stylesheet" > 
     
         <!-- magic-check-master -->
-        <link href="{{ asset("css/magic-check.css") }}" rel="stylesheet">
+        <link href="{{ asset("css/magic-check.css") }}"                     rel="stylesheet">
 
         {{-- ANIMATED --}}
-        <link rel="stylesheet" href="{{ asset("css/animate.css") }}"  >
-
+        <link href="{{ asset("css/animate.css") }}"                         rel="stylesheet">
 
         <!-- SweetAlert2 -->
-        <link rel="stylesheet" href="{{ asset("sweetalert2/dist/sweetalert2.min.css") }}">
+        <link href="{{ asset("sweetalert2/dist/sweetalert2.min.css") }}"    rel="stylesheet" >
+
+        <!-- jasny (avatar) -->
+        <link href="{{ asset("jasny/css/jasny-bootstrap.min.css") }}"       rel="stylesheet" media="screen">
 
         <!-- Select2 -->
      {{--    <link rel="stylesheet" href="{{ asset("select2/css/select2.css") }}">
@@ -73,6 +75,8 @@
         <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >        </script>
         <!-- SweetAlert2 -->
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
+        {{-- JASNY --}}
+        <script src="{{ asset("jasny/js/jasny-bootstrap.min.js") }}">           </script>
         <!-- Select2 -->
 {{--         <script src="{{ asset("select2/js/select2.full.min.js") }}">            </script>
  --}}       

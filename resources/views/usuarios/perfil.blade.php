@@ -43,7 +43,7 @@
 
 						{{-- Campo de Seleçao --}}
 
-						<div class="form-group">
+{{-- 						<div class="form-group">
 							<label for="acesso" class="col-sm-4 control-label">Tipo de Usuário</label>
 							<div class="col-sm-4">
 								<select name="acesso" class="form-control" id="acesso">
@@ -57,7 +57,7 @@
 								</select>
 							</div>
 						</div>	
-						
+ --}}						
 						<!----------- botoes ----------> 
 						<div class="ln_solid"> </div>
 						<div class="col-md-3 col-md-offset-9">

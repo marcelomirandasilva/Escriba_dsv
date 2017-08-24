@@ -17,6 +17,7 @@ class CreateMembrosTable extends Migration
             $table->increments('id');
 
             $table->string('no_membro',50);
+            $table->mediumText('foto')                      ->nullable();
             $table->unsignedInteger('co_cim')               ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
             $table->string('no_naturalidade',20)            ->nullable();
