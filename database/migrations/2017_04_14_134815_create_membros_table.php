@@ -23,6 +23,8 @@ class CreateMembrosTable extends Migration
             $table->string('no_naturalidade',20)            ->nullable();
             $table->string('no_nacionalidade',20)           ->nullable();
 
+            $table->string('no_proponente',50)              ->nullable();
+
             //-----------------------------DOCUMENTOS----------------------            
             $table->char('nu_cpf',11)                       ->nullable();
 

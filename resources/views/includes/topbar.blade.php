@@ -11,7 +11,7 @@
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         {{-- <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}"> --}}
                         {{-- <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="Avatar of {{ Auth::user()->name }}"> --}}
-                        <img src="{{ Auth::user()->avatar }}" alt="Avatar of {{ Auth::user()->name }}">
+                        {{-- <img src="{{ Auth::user()->avatar }}" alt="Avatar of {{ Auth::user()->name }}"> --}}
                         
                         {{ Auth::user()->name }}
                         <span class=" fa fa-angle-down"></span>

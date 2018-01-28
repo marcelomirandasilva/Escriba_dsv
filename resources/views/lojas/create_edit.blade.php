@@ -45,17 +45,16 @@
 					</div>
 					<div class="x_content">
 							
-						@if( isset($loja))
+@if( isset($loja))
 
-							<form id="form_loja" method="post" action="{{ url("lojas/$loja->id") }}" class="form-horizontal form-label-left" >
+						<form id="form_loja" method="post" action="{{ url("lojas/$loja->id") }}" class="form-horizontal form-label-left" >
 								{!! method_field('PUT') !!}
 
-						@else
-							<form id="form_loja" method="post" action="{{ route('lojas.store') }}" class="form-horizontal form-label-left" >
-						@endif
+@else
+						<form id="form_loja" method="post" action="{{ route('lojas.store') }}" class="form-horizontal form-label-left" >
+@endif
 
-						
-							
+												
 							{{ csrf_field() }}
 
 							<div class="item form-group">

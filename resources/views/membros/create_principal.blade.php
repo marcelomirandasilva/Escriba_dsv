@@ -232,5 +232,22 @@
             >
          </label>
       </div>
+
+       <div class="item form-group">
+      <label class="control-label alinha_esquerda col-md-1 " for="no_proponente">Proponente</label>
+      <div class="col-md-5 ">
+         <input id="no_proponente"   
+            class="form-control col-md-5 " 
+            name="no_proponente" 
+            placeholder="Nome do proponente" 
+            type="text"
+            value="{{$membro->no_proponente or old('no_proponente')}}" 
+         >
+      </div>
    </div>
+
+   </div>
+
+   
+
 </div>

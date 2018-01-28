@@ -31,7 +31,11 @@
         <link href="{{ asset("sweetalert2/dist/sweetalert2.min.css") }}"    rel="stylesheet" >
 
         <!-- jasny (avatar) -->
-        <link href="{{ asset("jasny/css/jasny-bootstrap.min.css") }}"       rel="stylesheet" media="screen">
+        {{-- <link href="{{ asset("jasny/css/jasny-bootstrap.min.css") }}"       rel="stylesheet" media="screen"> --}}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        
+
 
         <!-- Select2 -->
      {{--    <link rel="stylesheet" href="{{ asset("select2/css/select2.css") }}">
@@ -76,10 +80,9 @@
         <!-- SweetAlert2 -->
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
         {{-- JASNY --}}
-        <script src="{{ asset("jasny/js/jasny-bootstrap.min.js") }}">           </script>
-        <!-- Select2 -->
-{{--         <script src="{{ asset("select2/js/select2.full.min.js") }}">            </script>
- --}}       
+        {{-- <script src="{{ asset("jasny/js/jasny-bootstrap.min.js") }}">           </script> --}}
+        
+            
         @stack('scripts')
 
     </body>
