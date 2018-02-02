@@ -18,7 +18,7 @@ class Membro extends Model
         'dt_nascimento',
         'no_naturalidade',
         'no_nacionalidade',
-        'proponente',
+        'no_proponente',
         'nu_cpf',
         'nu_identidade',
         'dt_emissao_idt',

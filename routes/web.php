@@ -11,10 +11,10 @@ Route::post ('perfil',        		'UserController@update_avatar');
 
 
 // Rota para alterar a senha do usuário atual
-Route::post("alterarsenha", 			"UsersController@alterarSenha");
+Route::post("alterarsenha", 			"UserController@alterarSenha");
 
 // Rota para o ADMINISTRADOR alterar a senha de qualquer usuario
-Route::post("mudarsenha", 				"UsersController@mudarsenha");
+Route::post("mudarsenha", 				"UserController@mudarsenha");
 
 // teste calendario
 Route::get ('calendario',				'CalendarioController@index');

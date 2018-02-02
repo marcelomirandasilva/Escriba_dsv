@@ -50,10 +50,8 @@
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
                           
                            @if( isset($edita))
-
                               <form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}" class="form-horizontal form-label-left" >
                                  {!! method_field('PUT') !!}
-
                            @else
                               <form id="form_membro" method="post" action="{{ route('membros.store') }}" class="form-horizontal form-label-left" >
                            @endif
@@ -124,7 +122,7 @@
                               {{-- <div class="ln_solid"></div> --}}
                               <div class="form-group">
                                  <div class="col-md-offset-8">
-                                    <a href="{{ url("membros") }}" class="btn btn-danger pull-right">  Cancela     </a>
+                                    <a href="{{ url("membros") }}"  class="btn btn-danger  pull-right">  Cancela     </a>
                                     <button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
                                  </div>
                               </div>
@@ -144,13 +142,10 @@
 
 @push('scripts')
 
-  {{-- Script para máscara numérica. Ex.: CPF, RG --}}
-  <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
-  
-  
-
-    <script type="text/javascript">
-
+   {{-- Script para máscara numérica. Ex.: CPF, RG --}}
+   <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
+   
+   <script type="text/javascript">
 
       @if (session('sucesso'))
         swal({
@@ -159,9 +154,7 @@
           type:   'success'
         });
       @endif
-      
 
-      
 
       //$("body").find("input.telefone").inputmask('(99)9999-9999');
 
@@ -173,8 +166,6 @@
 
          //$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
          $("body").find("input.telefone").inputmask('(99)9999-9999');
-
-
 
 
          {{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
@@ -312,12 +303,6 @@
             }
          });
 
-
-
-
-
-
-
          //desabilita data de casamento se não for casado
          $("select#ic_estado_civil").change(function(){
            if($("select#ic_estado_civil>option:selected").text() == " Casado ")
@@ -327,7 +312,6 @@
              document.getElementById("dt_casamento").disabled = true;
            }
          });
-
 
          //desabilita campos de acordo com o grau
          $("select#ic_grau").change(function(){ 
@@ -392,20 +376,16 @@
             $(".panel_telefone").clone()
 
             // Adicionar a classe clone e remover a classe panel_telefones
-
             .addClass("telefone_clonado x_panel")
             .removeClass("panel_telefone")
 
             // Mostrar o botão excluir
-
             .find("button.excluir_tel").css("display","block")
 
             // Colocar os campos clonados no lugar correto
-
             .parent().parent().appendTo(".local_clone_tel")
 
             // Alterar os names dos inputs para preencher o vetor de telefone corretamente
-
             .find("select[name='telefones[0][ic_telefone]']")
                 .attr("name", "telefones["+cont_telefone+"][ic_telefone]")
                 .attr("id", "telefones["+cont_telefone+"][ic_telefone]")
@@ -416,9 +396,7 @@
                 .attr("id", "telefones["+cont_telefone+"][nu_telefone]")
                 .val("");
             
-             // Incrementar o contador de telefone
-
-
+            // Incrementar o contador de telefone
             cont_telefone++;
          });
          
@@ -426,8 +404,6 @@
 
             //console.log("mudou");
             var itemSelecionado = $(this).val();
-
-            
 
             if(itemSelecionado == 'Celular')
             {

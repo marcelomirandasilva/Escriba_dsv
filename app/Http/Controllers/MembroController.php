@@ -87,7 +87,7 @@ class MembroController extends Controller
 
         // Salvar no banco para obter o ID
         $membro->save();
-
+ 
         foreach($request->enderecos as $endereco)
         {
             // Criar um novo endereço com as informações inseridas
@@ -171,7 +171,7 @@ class MembroController extends Controller
 
         $enderecos = $membro->enderecos;
 
-        dd($enderecos->all());
+        //dd($enderecos->all());
 
         $edita = true;
         $titulo = "Edição de Membro";

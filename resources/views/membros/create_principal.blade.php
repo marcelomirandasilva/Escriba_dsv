@@ -74,7 +74,7 @@
 
       <label class="control-label col-md-1 " for="ic_grau"> Situação </label>
       <div class="col-md-2">
-         <select   name="ic_situacao" id="ic_situacao" class="form-control col-md-2">
+         <select   name="ic_situacao" id="ic_situacao" class="form-control col-md-2" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
             <option value=""  selected style="color: #ccc;"> --- </option>
             @if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
                @foreach($situacao as $ic_situacao)
@@ -233,7 +233,7 @@
          </label>
       </div>
 
-       <div class="item form-group">
+      <div class="item form-group">
       <label class="control-label alinha_esquerda col-md-1 " for="no_proponente">Proponente</label>
       <div class="col-md-5 ">
          <input id="no_proponente"   
