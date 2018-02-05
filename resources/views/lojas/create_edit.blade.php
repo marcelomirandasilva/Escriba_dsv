@@ -149,7 +149,7 @@
 								  		<a 
 								  			data-target="#cad_potencia"
 						  					class="btn btn-default btn-circulo   glyphicon glyphicon-plus  " 
-	                          				data-toggle="modal" 
+											data-toggle="modal" 
 								  			title="Cria uma nova Potência ">  
 							  			</a>
 									</div>

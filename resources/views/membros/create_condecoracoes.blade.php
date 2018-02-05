@@ -10,7 +10,9 @@
       <input type="hidden" name="condecoracoes[0][ic_condecoracao]" value="Remido">
       <label class="control-label col-md-3 " for="dt_remido">Remido</label>
       <div class="col-md-2 ">
-         <input id="dt_condecoracao0" name="condecoracoes[0][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input id="dt_condecoracao0" name="condecoracoes[0][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            
+            type="date" min="1500-01-01" max="2050-01-01"
                value="{{$dt_condecoracao0 or old('condecoracoes.0.dt_condecoracao')}}" >
       </div>
 
@@ -31,7 +33,8 @@
       <input type="hidden" name="condecoracoes[1][ic_condecoracao]" value="Emérito">
       <label class="control-label col-md-3 " for="dt_emerito">Emérito</label>
       <div class="col-md-2 ">
-         <input id="dt_condecoracao1" name="condecoracoes[1][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input id="dt_condecoracao1" name="condecoracoes[1][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            type="date" min="1500-01-01" max="2050-01-01"
                value="{{$dt_condecoracao1 or old('condecoracoes.1.dt_condecoracao')}}" >
       </div>
 
@@ -48,7 +51,8 @@
       <input type="hidden" name="condecoracoes[2][ic_condecoracao]" value="Benemérito">
       <label class="control-label col-md-3 " for="dt_benemerito">Benemérito</label>
       <div class="col-md-2 ">
-         <input   id="dt_condecoracao2" name="condecoracoes[2][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input   id="dt_condecoracao2" name="condecoracoes[2][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            type="date" min="1500-01-01" max="2050-01-01"
                   value="{{$dt_condecoracao2 or old('condecoracoes.2.dt_condecoracao')}}" >
       </div>
 
@@ -66,7 +70,8 @@
    <input type="hidden" name="condecoracoes[3][ic_condecoracao]" value="Grande Benemérito">
       <label class="control-label col-md-3 " for="dt_g_benemerito">Grande Benemérito</label>
       <div class="col-md-2 ">
-         <input   id="dt_condecoracao3" name="condecoracoes[3][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input   id="dt_condecoracao3" name="condecoracoes[3][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            type="date" min="1500-01-01" max="2050-01-01"
                   value="{{$dt_condecoracao3 or old('condecoracoes.3.dt_condecoracao')}}" >
       </div>
 
@@ -83,7 +88,8 @@
       <input type="hidden" name="condecoracoes[4][ic_condecoracao]" value="Estrela da Distinção Maçônica">
       <label class="control-label col-md-3 " for="dt_estrela_dis_mac">Estrela da Distinção Maçônica</label>
       <div class="col-md-2 ">
-         <input   id="dt_condecoracao4" name="condecoracoes[4][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input   id="dt_condecoracao4" name="condecoracoes[4][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            type="date" min="1500-01-01" max="2050-01-01"
                   value="{{$dt_condecoracao4 or old('condecoracoes.4.dt_condecoracao')}}" >
       </div>
 
@@ -101,7 +107,8 @@
       <input type="hidden" name="condecoracoes[5][ic_condecoracao]" value="Cruz da Perfeição Macônica">
       <label class="control-label col-md-3 " for="dt_cruz_perf">Cruz da Perfeição Macônica</label>
       <div class="col-md-2 ">
-         <input   id="dt_condecoracao5" name="condecoracoes[5][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input   id="dt_condecoracao5" name="condecoracoes[5][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            type="date" min="1500-01-01" max="2050-01-01"
                   value="{{$dt_condecoracao5 or old('condecoracoes.5.dt_condecoracao')}}" >
       </div>
 
@@ -119,7 +126,8 @@
       <input type="hidden" name="condecoracoes[6][ic_condecoracao]" value="Comenda Dom Pedro I">
       <label class="control-label col-md-3 " for="dt_com_dom_pedro">Comenda Dom Pedro I</label>
       <div class="col-md-2 ">
-         <input   id="dt_condecoracao6" name="condecoracoes[6][dt_condecoracao]" class="form-control col-md-2 datas_input"  type="date" 
+         <input   id="dt_condecoracao6" name="condecoracoes[6][dt_condecoracao]" class="form-control col-md-2 datas_input" 
+            type="date" min="1500-01-01" max="2050-01-01"
                   value="{{$dt_condecoracao6 or old('condecoracoes.6.dt_condecoracao')}}" >
       </div>
 

@@ -23,9 +23,8 @@
       <label class="col-md-1 control-label" for="rg">RG</label>
       <div class="col-md-2">
          <input id="nu_identidade" name="nu_identidade" class="form-control input-md rg"
-            data-inputmask="'mask' : '99.999.999-9', 'numericInput': 'true' " type="text" placeholder="99.999.999-9"  
-            value="{{$membro->nu_identidade or old('nu_identidade')}}" 
-         >
+            placeholder="999.999.999-99"  
+            value="{{$membro->nu_identidade or old('nu_identidade')}}" >
       </div>
 
       <!-- Orgão Emissor do RG-->
@@ -43,7 +42,7 @@
       <div class="col-md-2">
          <input id="dt_emissao_idt" 
             name="dt_emissao_idt" 
-            type="date" 
+            type="date" min="1500-01-01" max="2050-01-01"
             class="form-control col-md-2 datas_input" 
             value="{{$membro->dt_emissao_idt or old('dt_emissao_idt')}}" 
          >
@@ -75,7 +74,7 @@
       <label class="col-md-2 control-label" for="dt_emissao_titulo">Data de Emissão</label>  
       <div class="col-md-2">
          <input id="dt_emissao_titulo" name="dt_emissao_titulo" 
-            type="date" 
+            type="date" min="1500-01-01" max="2050-01-01"
             class="form-control col-md-2 datas_input" 
             value="{{$membro->dt_emissao_titulo or old('dt_emissao_titulo')}}" 
          >

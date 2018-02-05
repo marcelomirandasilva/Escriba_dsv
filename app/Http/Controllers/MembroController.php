@@ -75,15 +75,16 @@ class MembroController extends Controller
     {
 
         //dd($request->all());
+
+        // Validar dados do formulário
+        $this->validar($request);
         
         // Cria um novo membro
         //$membro = new Membro($request->all());
         $membro = new Membro($request->all());
-
         
         // Verificar se está aposentado
         $membro->ic_aposentado = $request->aposentado ? 1 : 0;
-
 
         // Salvar no banco para obter o ID
         $membro->save();
@@ -93,13 +94,9 @@ class MembroController extends Controller
             // Criar um novo endereço com as informações inseridas
             $membro->enderecos()->save(new Endereco($endereco));
         }
-
-        
-        
-        
+       
         foreach($request->telefones as $telefone)
         {
-                        
             // Criar um novo telefone com as informações inseridas
             $membro->telefones()->save(new Telefone($telefone));
         }
@@ -110,13 +107,12 @@ class MembroController extends Controller
             $membro->emails()->save(new Email($email));
         }
 
-       foreach($request->dependentes as $dependente)
+        foreach($request->dependentes as $dependente)
         {
             // Criar um novo dependente com as informações inseridas
             $membro->dependentes()->save(new Dependente($dependente));
         }
      
-
         //deleta as cerimonias para serem inseridas as quem vem do formulário
         $cerimonias = cerimonia::where("membro_id", $membro->id);
         $cerimonias->delete();
@@ -131,7 +127,6 @@ class MembroController extends Controller
                 $membro->cerimonias()->save(new cerimonia($cerimonia));    
             }
         }
-
 
         //deleta as condecoracaos para serem inseridas as quem vem do formulário
         $condecoracoes = Condecoracao::where("membro_id", $membro->id);
@@ -148,18 +143,13 @@ class MembroController extends Controller
             }
         }
 
-
-           
-
-
         if ($membro /*and $cerimonia*/) {
 
             return redirect('/membros/create')->with('sucesso', ' O membro '
                                                         .strtoupper($request->no_membro)    .' CIM Nº ' 
-                                                        .$request->nu_cim
+                                                        .$request->co_cim
                                                         .' foi cadastrado com sucesso'
                                                     );
-
         } else {
             return redirect('/membros/create')->with(['erros' => 'Falha ao cadastrar']); 
         }
@@ -209,6 +199,47 @@ class MembroController extends Controller
     {
 
     }
+
+     /**
+     * Formatar a data para o padrão americano
+     */
+
+    protected function inverterData($data)
+    {
+        return implode("-", array_reverse(explode("/", $data)));
+    }
+
+
+    protected function validar($request)
+    {
+        // Validar
+        
+        $this->validate($request, [
+            'no_membro'         => 'required|min:3|max:50',
+            'co_cim'            => 'required|max:11',
+
+            'dt_nascimento'     => 'date',
+            'dt_casamento'      => 'date',
+            'dt_emissao_idt'    => 'date',
+            'dt_emissao_titulo' => 'date',
+            'dt_cerimonia0'     => 'date',
+            'dt_cerimonia1'     => 'date',
+            'dt_cerimonia2'     => 'date',
+            'dt_cerimonia3'     => 'date',
+            'dt_cerimonia4'     => 'date',
+            'dt_cerimonia5'     => 'date',
+            'dt_condecoracao0'  => 'date',
+            'dt_condecoracao1'  => 'date',
+            'dt_condecoracao2'  => 'date',
+            'dt_condecoracao3'  => 'date',
+            'dt_condecoracao4'  => 'date',
+            'dt_condecoracao5'  => 'date',
+
+            // Dependentes
+            'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
+        ]);
+    }
+
 }
 
 

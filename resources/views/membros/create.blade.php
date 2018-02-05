@@ -141,10 +141,6 @@
 
 
 @push('scripts')
-
-   {{-- Script para máscara numérica. Ex.: CPF, RG --}}
-   <script src="{{ asset("js/jquery.inputmask.bundle.min.js") }}"></script>
-   
    <script type="text/javascript">
 
       @if (session('sucesso'))

@@ -50,7 +50,7 @@
                   <input name="dependentes[0][dt_nascimento]" id="dependentes[0][dt_nascimento]" 
                      class="form-control col-md-2 datas_input nascimento-dependente"  
                      placeholder="Data de Nascimento" 
-                     type="date">
+                     type="date" min="1500-01-01" max="2050-01-01">
                </div>
 
                <div class="col-md-3">

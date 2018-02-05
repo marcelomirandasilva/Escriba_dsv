@@ -79,9 +79,15 @@
         <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >        </script>
         <!-- SweetAlert2 -->
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
-        {{-- JASNY --}}
-        {{-- <script src="{{ asset("jasny/js/jasny-bootstrap.min.js") }}">           </script> --}}
         
+
+        <script src="{{ asset("inputmask/inputmask.js") }}">                    </script>
+        <script src="{{ asset("inputmask/inputmask.extensions.js") }}">         </script>
+        <script src="{{ asset("inputmask/inputmask.numeric.extensions.js") }}"> </script>
+        <script src="{{ asset("inputmask/inputmask.date.extensions.js") }}">    </script>
+        <script src="{{ asset("inputmask/inputmask.phone.extensions.js") }}">   </script>
+        <script src="{{ asset("inputmask/jquery.inputmask.js") }}">             </script>
+        <script src="{{ asset("inputmask/phone.js") }}">            </script>
             
         @stack('scripts')
 
