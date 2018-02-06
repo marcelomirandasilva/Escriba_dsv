@@ -236,7 +236,7 @@ class MembroController extends Controller
             'dt_condecoracao5'  => 'date',
 
             // Dependentes
-            'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
+            //'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
         ]);
     }
 
