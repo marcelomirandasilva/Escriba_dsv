@@ -17,8 +17,6 @@ class CreateCargosTable extends Migration
             $table->increments('id');
             $table->string('no_cargo',20);
             
-            //FK
-            $table->unsignedInteger('membro_id');
             
             $table->timestamps();
             

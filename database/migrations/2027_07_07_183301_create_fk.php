@@ -26,10 +26,16 @@ class CreateFk extends Migration
 
         Schema::table('cargos', function($table){
 
-            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
+            //$table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
             //$table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
         });
 
+        Schema::table('ocupacao_cargos', function($table){
+
+            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
+        });
+        
 
         Schema::table('presenca_sessoes', function($table){
             $table->foreign('sessao_id')->references('id')->on('sessoes')->onDelete('cascade');

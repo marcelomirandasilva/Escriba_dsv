@@ -318,3 +318,14 @@ body .container.body .right_col {
     display: block;
     background: #F7F7D8;
 }
+
+.tab_membro {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.telefone {
+    color: #b12020;
+    text-align: start;
+    direction: initial;
+}

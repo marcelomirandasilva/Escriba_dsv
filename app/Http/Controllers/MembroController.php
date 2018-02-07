@@ -97,12 +97,16 @@ class MembroController extends Controller
        
         foreach($request->telefones as $telefone)
         {
+            //dd($request->telefones);
             // Criar um novo telefone com as informações inseridas
             $membro->telefones()->save(new Telefone($telefone));
         }
 
+        //dd($request->all());
         foreach($request->emails as $email)
         {
+            
+            //dd($request->emails);
             // Criar um novo email com as informações inseridas
             $membro->emails()->save(new Email($email));
         }
@@ -159,8 +163,12 @@ class MembroController extends Controller
     {
         $membro = $this->membro->find($id);
 
-        $enderecos = $membro->enderecos;
+        $enderecos  = $membro->enderecos;
+        $telefones  = $membro->telefones;
+        $emails     = $membro->emails;
 
+        
+        //dd($membro->emails[0]->email);
         //dd($enderecos->all());
 
         $edita = true;
@@ -187,7 +195,7 @@ class MembroController extends Controller
         $lojas      = Loja::all()->sortBy('no_loja');    
 
 
-        return view('membros.create',compact(['membro','edita','enderecos', 'estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
+        return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','grau_parentesco','tipo_telefone','lojas','sexos']));
         
     }
 

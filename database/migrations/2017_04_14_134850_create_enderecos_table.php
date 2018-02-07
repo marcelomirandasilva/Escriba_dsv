@@ -22,8 +22,8 @@ class CreateEnderecosTable extends Migration
             $table->string('no_bairro',20);
             $table->string('no_logradouro',100);
             $table->integer('nu_logradouro');
-            $table->string('de_complemento',20);
-            $table->char('nu_cep',10);
+            $table->string('de_complemento',20)     ->nullable();
+            $table->char('nu_cep',10)               ->nullable();
             
             $table->enum('ic_tipo_endereco', ['Residencial','Comercial','Loja']);
 

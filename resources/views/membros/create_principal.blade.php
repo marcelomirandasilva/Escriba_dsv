@@ -183,15 +183,15 @@
 
 			@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 				@foreach($escolaridade as $ic_escolaridade)
-				@if ( $membro->ic_escolaridade == $ic_escolaridade)
-					<option value="{{$ic_escolaridade}}" selected="selected">{{$ic_escolaridade}}</option>
-				@else
-					<option value="{{$ic_escolaridade}}">{{$ic_escolaridade}}</option>  
-				@endif
+					@if ( $membro->ic_escolaridade == $ic_escolaridade)
+						<option value="{{$ic_escolaridade}}" selected="selected">{{$ic_escolaridade}}</option>
+					@else
+						<option value="{{$ic_escolaridade}}">{{$ic_escolaridade}}</option>  
+					@endif
 				@endforeach
 			@else
 				@foreach($escolaridade as $ic_escolaridade)
-				<option value="{{$ic_escolaridade}}"> {{$ic_escolaridade}} </option>    
+					<option value="{{$ic_escolaridade}}"> {{$ic_escolaridade}} </option>    
 				@endforeach
 			@endif
 			
