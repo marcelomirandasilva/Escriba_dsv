@@ -98,7 +98,11 @@
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-												@include('membros/create_dependentes')
+												@if (isset($edita)) 
+													@include('membros/edit_dependentes')
+												@else
+													@include('membros/create_dependentes')
+												@endif
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
@@ -463,12 +467,19 @@
 				//=================================== clone DEPENDENTE====================================================
 
 				$(".clonar_dependente").click(function(e){
+					//conta quantos paineis existem na tela
+					let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
+					qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
+					qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
+
+					cont_dependente = qtd_painel+1;
+
 					e.preventDefault();
-					$(".panel_dependente").clone()
+					$(".clone_dependente").clone()
 
 					// Adicionar a classe clone e remover a classe 
 					.addClass("dependente_clonado x_panel")
-					.removeClass("panel_dependente")
+					.removeClass("clone_dependente")
 
 					// Mostrar o botão excluir
 					.find("button.excluir_dependente").css("display","block")
