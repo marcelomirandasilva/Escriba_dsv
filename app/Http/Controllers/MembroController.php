@@ -74,7 +74,10 @@ class MembroController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
+        //if($request->has('image')) {
+
+        //str_pad($input, 10, "-=", STR_PAD_LEFT);
+        dd($request->all());
 
         // Validar dados do formulário
         $this->validar($request);

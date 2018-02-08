@@ -30,7 +30,7 @@
 					</div>
 					<!-- conteudo aqui-->
 					<div class="col-md-12 ">
-						<div class="x_panel">
+						<div class="x_panel ">
 							<div class="x_content ">
 								<div class="" role="tabpanel" data-example-id="togglable-tabs">
 									@if( isset($edita))
@@ -159,8 +159,20 @@
 
 		$(document).ready(function(){
 
-				//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
-				$("body").find("input.telefone").inputmask('(99)9999-9999');
+
+			//$("body").find("input.telefone").inputmask('(99)9999-9999');
+
+			var SPMaskBehavior = function (val) {
+				return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+			},
+			spOptions = {
+				onKeyPress: function(val, e, field, options) {
+					field.mask(SPMaskBehavior.apply({}, arguments), options);
+				}
+			};
+
+			$('.telefone').mask(SPMaskBehavior, spOptions);
+
 
 
 				{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
@@ -611,6 +623,7 @@
 					document.getElementById('uf').disabled = true;
 				}
 		}
+
 	</script>
 @endpush
 

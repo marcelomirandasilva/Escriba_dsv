@@ -80,6 +80,7 @@
         <!-- SweetAlert2 -->
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
         
+        <script src="{{ asset("jQuery-Mask-Plugin/jquery.mask.js") }}">         </script>
 
         <script src="{{ asset("inputmask/inputmask.js") }}">                    </script>
         <script src="{{ asset("inputmask/inputmask.extensions.js") }}">         </script>
@@ -87,7 +88,7 @@
         <script src="{{ asset("inputmask/inputmask.date.extensions.js") }}">    </script>
         <script src="{{ asset("inputmask/inputmask.phone.extensions.js") }}">   </script>
         <script src="{{ asset("inputmask/jquery.inputmask.js") }}">             </script>
-        <script src="{{ asset("inputmask/phone.js") }}">            </script>
+        <script src="{{ asset("inputmask/phone.js") }}">                         </script>
             
         @stack('scripts')
 

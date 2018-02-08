@@ -260,8 +260,14 @@ body .container.body .right_col {
     margin-bottom: 0px;
     padding-top: 6px;
     padding-bottom: 5px;
-
 }
+
+.panel_dependente{
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
 
 .btn_acao{
 	border-radius: 8px;
