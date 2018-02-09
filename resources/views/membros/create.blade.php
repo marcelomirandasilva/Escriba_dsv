@@ -500,8 +500,8 @@
 							.val("")
 
 					.parent().parent().find("select.parentesco-dependente")
-							.attr("name", "dependentes["+cont_dependente+"][ic_grau_parantesco]")
-							.attr("id", "dependentes["+cont_dependente+"][ic_grau_parantesco]")
+							.attr("name", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
+							.attr("id", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
 							.val("")
 
 					.parent().parent().find("input.nascimento-dependente")
@@ -602,6 +602,34 @@
 				}
 		});
 
+		//=======================	MODAL CAD LOJA ========================
+		$('[data-toggle="modal"][title]').tooltip();
+
+		$(".envia_nova_potencia").click(function(e){ 
+
+			var potencia = $("input#no_potencia").val();
+			var token = $("[name='_token']").val();
+
+			$.post("/lojas/potencia/store", { no_potencia : potencia, _token : token }, function(dados){
+
+				if(dados.id)
+				{
+					
+					//$("<option value='dados.id' selected='selected'> dados.no_potencia </option>").appendTo("potencia_id");
+
+					$('#potencia_id').append('<option value="' + dados.id + '" selected="selected">' + dados.no_potencia + '</option>'); 
+
+					//console.log("Gravou a potência");
+					//console.log(dados.id);
+
+						$('.fecha_modal').trigger('click');
+						
+				}
+			
+			}).fail(function(dados){
+				console.log(dados);
+			});
+		});
 
 		//=======================FUNÇOES===================================
 		function limpa_formulário_cep(id) {

@@ -11,7 +11,7 @@
 
 
       <div class="col-md-12">
-         <div class="x_panel panel_dependente"> 
+         <div class="x_panel clone_dependente"> 
             <div class="item form-group">
 
                <label class="col-md-1 control-label" for="dependente[0][no_dependente]">Nome</label>
@@ -38,7 +38,7 @@
                   <select   name="dependentes[0][ic_grau_parentesco]" id="dependentes[0][ic_grau_parentesco]" 
                      class="form-control col-md-2 diminui_espacos datas_input parentesco-dependente" >
                      <option value=""  selected style="color: #ccc;"> --- </option>
-                     @foreach($grau_parentesco as $ic_parentesco)
+                     @foreach($parentescos as $ic_parentesco)
                         <option value="{{$ic_parentesco}}"> {{$ic_parentesco}} </option>    
                      @endforeach
                   </select>

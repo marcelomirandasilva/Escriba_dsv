@@ -95,11 +95,16 @@ class MembroController extends Controller
             $membro->enderecos()->save(new Endereco($endereco));
         }
        
+        
         foreach($request->telefones as $telefone)
         {
             //dd($request->telefones);
-            // Criar um novo telefone com as informações inseridas
-            $membro->telefones()->save(new Telefone($telefone));
+            //se o telefone não estiver vazio no request, adiciona
+            if($telefone['nu_telefone'] =! "")
+            {
+                // Criar um novo telefone com as informações inseridas
+                $membro->telefones()->save(new Telefone($telefone));
+            }
         }
 
         //dd($request->all());
@@ -266,10 +271,17 @@ class MembroController extends Controller
         $membro->telefones()->delete();
 
         // Criar novos telefones com as informações enviadas
-        foreach($request->telefones as $telefone)
+        //se o telefone não estiver vazio no request, adiciona
+        //        dd($request->telefone);
+        //dd($request->telefone['nu_telefone'] );
+
+        if($request->telefone['nu_telefone'] != null)
         {
-            $membro->telefones()->save(new Telefone($telefone));
+            // Criar um novo telefone com as informações inseridas
+            $novo_telefone = new Telefone();
+            $membro->telefones()->save($novo_telefone);
         }
+        //dd($a);
 
         /* ==================================================================================== */
         /* EMAIL */
@@ -277,11 +289,17 @@ class MembroController extends Controller
         //apaga todos os emails do membro
         $membro->emails()->delete();
 
+        
+        
         // Criar novos emails com as informações enviadas
         foreach($request->emails as $email)
         {
-            $membro->emails()->save(new Email($email));
+            if($email['email'] != null)
+            {
+                $membro->emails()->save(new Email($email));
+            }
         }
+
 
 
         /* ==================================================================================== */
@@ -307,22 +325,19 @@ class MembroController extends Controller
         if(isset($request->dependentes))
         {
             //se o nome do dependente for diferente de NULL
-            if($request->dependentes[0]['no_dependente'] != null)
+            if( ! Isset($request->dependentes[0])  ||  $request->dependentes[0]['no_dependente'] != null)
             {
-                $a = array();
                 $b = 0;
-                
                 foreach($request->dependentes as $dependente)
                 {
-                    $a[$b] = $dependente;
-
-                    $membro->dependentes()->save(new Dependente($dependente));
+                    $novo_dependente = new Dependente($dependente);
+                    $membro->dependentes()->save($novo_dependente);
                     $b++;
                 }
             }
         }
-        //dd($a);
-        
+
+
         //deleta as cerimonias para serem inseridas as quem vem do formulário
         $cerimonias = cerimonia::where("membro_id", $membro->id);
         $cerimonias->delete();

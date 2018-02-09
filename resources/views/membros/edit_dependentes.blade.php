@@ -41,7 +41,7 @@
 							<select   name="dependentes[0][ic_grau_parentesco]" 
 								class="form-control col-md-2 diminui_espacos datas_input parentesco-dependente" >
 								<option value=""  selected style="color: #ccc;"> --- </option>
-								@foreach($grau_parentesco as $ic_grau_parentesco)
+								@foreach($parentescos as $ic_grau_parentesco)
 										<option value="{{$ic_grau_parentesco}}"> {{$ic_grau_parentesco}} </option>    
 								@endforeach
 							</select>

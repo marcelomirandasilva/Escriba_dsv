@@ -16,6 +16,7 @@ class Dependente extends Model
 		'dt_nascimento',
 		'ic_grau_parentesco',
 		'ic_sexo',
+		'ic_mora_junto',
 	];
 
 
