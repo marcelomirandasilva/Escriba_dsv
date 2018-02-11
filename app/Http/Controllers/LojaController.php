@@ -54,7 +54,7 @@ class LojaController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());                          //pega todos
+        dd($request->all());                          //pega todos
         //dd($request->only(['no_loja','nu_loja']));    //pega somente os selecionados
         //dd($request->except(['nu_pais']));            //não pega os selecionados
         //dd($request->input(['nu_pais']));             //pega um campo
@@ -177,6 +177,7 @@ class LojaController extends Controller
         $ritos      = pegaValorEnum('lojas','ic_rito') ;
 
         $loja = $this->loja->find($id);
+        //dd($loja);
 
         $edita = true;
 
@@ -307,6 +308,76 @@ class LojaController extends Controller
             'de_complemento'=> 'min:3|max:20',
         ]);
     }
+
+
+    /* ========================================AJAX====================================== */
+
+    function nova_ajax(Request $request)
+    {
+
+        $request->merge([
+            'co_titulo'         => strtoupper($request->co_titulo),
+        ]);
+
+        // Validar dados do formulário
+        $this->validate($request, [
+            'co_titulo'     => 'required|min:3|max:10',
+            'no_loja'       => 'required|min:3|max:50',
+            'nu_loja'       => 'required|numeric',
+            'potencia_id'   => 'required',
+        ]);
+
+        $busca_loja = DB::table('lojas')
+                     ->select(DB::raw('count(*) as count'))
+                     ->where('no_loja', '=', $request->no_loja )
+                     ->where([
+                                ['nu_loja', '=', $request->nu_loja],
+                                ['no_loja', '=', $request->no_loja],
+                            ])
+                     ->get();
+
+        //verifica se já existe uma loja com o mesmo nome e numero, porém, com o id diferente(o mesmo id significa a loja que está sendo alterada)
+        if ($busca_loja[0]->count > 0 ){
+
+            //se encontrar alguma loja na busca acima retorna erro informando
+             return 'A '.$request->co_titulo    .' ' 
+                        .$request->no_loja      .' Nº ' 
+                        .$request->nu_loja 
+                        .' Já existe!';
+        }
+
+        // Criar uma nova loja
+        $loja = new Loja($request->all());
+
+        // Salvar no banco para obter o ID
+        $loja->save();
+
+         // Criar um novo endereço com as informações inseridas
+        $endereco = new Endereco($request->all());
+    
+
+        // Associar loja ao endereço (chaves estrangeiras)
+         $endereco->loja()->associate($loja);
+
+        // Salvar o endereço
+        $endereco->save(); 
+
+        // Cria um novo telefone com as informações inseridas
+        $telefone = new Telefone($request->all());
+        $telefone->loja()->associate($loja);
+        $telefone->save();
+
+        // Cria um novo email com as informações inseridas
+        $email = new Email($request->all());
+        $email->loja()->associate($loja);
+        $email->save();
+
+
+        return  $loja;
+
+    }
+
+
 
 
 }

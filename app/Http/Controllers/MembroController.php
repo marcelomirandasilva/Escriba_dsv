@@ -13,6 +13,7 @@ use App\Models\Email;
 use App\Models\Dependente;
 use App\Models\Condecoracao;
 use App\Models\Cerimonia;
+use App\Models\Potencia;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
@@ -56,6 +57,9 @@ class MembroController extends Controller
         $tipo_telefone      = pegaValorEnum('telefones','ic_telefone'); 
         $sexos              = pegaValorEnum('dependentes','ic_sexo'); 
         $parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
+
+        $potencias          = Potencia::all()->sortBy('no_potencia');
+        $ritos              = pegaValorEnum('lojas','ic_rito') ;
         
 
         //orderna os valores dos arrays
@@ -67,7 +71,7 @@ class MembroController extends Controller
         $lojas      = Loja::all()->sortBy('no_loja');    
 
 
-        return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos']));
+        return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos']));
 
     }
 

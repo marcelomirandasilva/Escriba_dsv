@@ -37,7 +37,7 @@ class PotenciaController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
+         dd($request->all());
         //Validar dados do formulário
         $this->validate($request, [
             'no_potencia' => 'required'
@@ -98,4 +98,6 @@ class PotenciaController extends Controller
     {
         //
     }
+
+    
 }

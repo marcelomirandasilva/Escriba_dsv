@@ -25,6 +25,8 @@ class CreateMembrosTable extends Migration
 
             $table->string('no_proponente',50)              ->nullable();
 
+            $table->text('anotacoes')                      ->nullable();
+
             //-----------------------------DOCUMENTOS----------------------            
             $table->char('nu_cpf',11)                       ->nullable();
 

@@ -76,7 +76,7 @@
 											</li>
 											
 											<li role="presentation" class="">      
-												<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Observações  </a>
+												<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
 											</li>
 										</ul>
 
@@ -118,7 +118,7 @@
 											</div>
 							
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
-												@include('membros/create_observacoes')
+												@include('membros/create_anotacoes')
 											</div>
 										</div>
 										
@@ -602,27 +602,45 @@
 				}
 		});
 
-		//=======================	MODAL CAD LOJA ========================
+		//=======================	MODAL CADASTRO DE LOJA DENTRO DO CADASTRO DE MEMBROS =======================
 		$('[data-toggle="modal"][title]').tooltip();
 
-		$(".envia_nova_potencia").click(function(e){ 
+		$(".envia_nova_loja").click(function(e){ 
 
-			var potencia = $("input#no_potencia").val();
-			var token = $("[name='_token']").val();
+			var titulo 		= $("input#co_titulo").val();
+			var loja 		= $("input#no_loja").val();
+			var numero 		= $("input#nu_loja").val();
+			var potencia 	= $("select#potencia_id").val();
+			var rito 		= $("select#ic_rito").val();
+			var pais 		= "Brasil";
+			var token 		= $("[name='_token']").val();
 
-			$.post("/lojas/potencia/store", { no_potencia : potencia, _token : token }, function(dados){
+			$.post("/lojas/nova_ajax", { 			co_titulo	: titulo,
+												no_loja 		: loja,
+												nu_loja		: numero,
+												potencia_id : potencia,
+												ic_rito	 	: rito,
+												no_pais	 	: pais,
+											 	_token 		: token }, function(dados){
+
+		 		//console.log(dados.id , dados.no_potencia);
 
 				if(dados.id)
 				{
 					
 					//$("<option value='dados.id' selected='selected'> dados.no_potencia </option>").appendTo("potencia_id");
 
-					$('#potencia_id').append('<option value="' + dados.id + '" selected="selected">' + dados.no_potencia + '</option>'); 
+					$('#loja_id0').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>'); 
+					$('#loja_id1').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>'); 
+					$('#loja_id2').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');
+					$('#loja_id3').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');  
+
+
 
 					//console.log("Gravou a potência");
 					//console.log(dados.id);
 
-						$('.fecha_modal').trigger('click');
+						$('.fecha_modal_cad_loja').trigger('click');
 						
 				}
 			

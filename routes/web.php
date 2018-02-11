@@ -21,6 +21,9 @@ Route::get ('calendario',				'CalendarioController@index');
 
 Route::post('lojas/potencia/store', 'PotenciaController@store');
 
+Route::post('lojas/nova_ajax', 		'LojaController@nova_ajax');
+
+
 //resources
 Route::resource('membros', 			'MembroController');
 Route::resource('lojas', 				'LojaController');
