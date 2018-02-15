@@ -78,7 +78,7 @@ class MembroController extends Controller
     public function store(Request $request)
     {
 
-       //dd($request->all());
+       dd($request->all());
 
         // Validar dados do formulário
         $this->validar($request);

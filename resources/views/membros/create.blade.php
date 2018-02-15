@@ -319,19 +319,22 @@
 					$("#tab_cerimonias" ).show();
 					$("#tab_condecoracoes" ).show();                  
 
-					document.getElementById("dt_filiacao").disabled = false;
-					document.getElementById("dt_regularizacao").disabled = false;
-					document.getElementById("co_cim").disabled = false;
+					document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
+					document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
+					document.getElementById("co_cim").disabled 			= false;
 
 
-					document.getElementById("dt_iniciacao").disabled = false;
-					document.getElementById("loja_id_iniciacao").disabled = false;
-					document.getElementById("dt_elevacao").disabled = false;
-					document.getElementById("loja_id_elevacao").disabled = false;
-					document.getElementById("dt_exaltacao").disabled = false;
-					document.getElementById("loja_id_exaltacao").disabled = false;
-					document.getElementById("dt_instalacao").disabled = false;
-					document.getElementById("loja_id_instalacao").disabled = false;
+					document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
+					document.getElementById("loja_id0").disabled 		= false;
+
+					document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
+					document.getElementById("loja_id1").disabled 		= false;
+
+					document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
+					document.getElementById("loja_id2").disabled 		= false;
+
+					document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
+					document.getElementById("loja_id3").disabled 		= false;
 
 
 					if (valor == "Candidato"){
@@ -343,26 +346,26 @@
 
 							$("#tab_condecoracoes" ).hide();                  
 							
-							document.getElementById("dt_elevacao").disabled = true;
-							document.getElementById("loja_id_elevacao").disabled = true;
-							document.getElementById("dt_exaltacao").disabled = true;
-							document.getElementById("loja_id_exaltacao").disabled = true;
-							document.getElementById("dt_instalacao").disabled = true;
-							document.getElementById("loja_id_instalacao").disabled = true;
+							document.getElementById("dt_cerimonia1").disabled 	= true;
+							document.getElementById("loja_id1").disabled		 	= true;
+							document.getElementById("dt_cerimonia2").disabled 	= true;
+							document.getElementById("loja_id2").disabled 		= true;
+							document.getElementById("dt_cerimonia3").disabled 	= true;
+							document.getElementById("loja_id3").disabled 		= true;
 
 					} else if (valor == "Companheiro"){
 
 							$("#tab_condecoracoes" ).hide();                  
 						
-							document.getElementById("dt_exaltacao").disabled = true;
-							document.getElementById("loja_id_exaltacao").disabled = true;
-							document.getElementById("dt_instalacao").disabled = true;
-							document.getElementById("loja_id_instalacao").disabled = true;
+							document.getElementById("dt_cerimonia2").disabled 	= true;
+							document.getElementById("loja_id2").disabled 		= true;
+							document.getElementById("dt_cerimonia3").disabled 	= true;
+							document.getElementById("loja_id3").disabled 		= true;
 
 					} else if (valor == "Mestre"){
 							
-							document.getElementById("dt_instalacao").disabled = true;
-							document.getElementById("loja_id_instalacao").disabled = true;
+							document.getElementById("dt_cerimonia3").disabled 	= true;
+							document.getElementById("loja_id3").disabled 		= true;
 					}
 				});
 
@@ -606,6 +609,7 @@
 		$('[data-toggle="modal"][title]').tooltip();
 
 		$(".envia_nova_loja").click(function(e){ 
+			e.preventDefault();
 
 			var titulo 		= $("input#co_titulo").val();
 			var loja 		= $("input#no_loja").val();
