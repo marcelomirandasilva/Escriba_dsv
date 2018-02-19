@@ -135,12 +135,21 @@
 	<div class="modal fade" id="cad_loja" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-							<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="modalLabel">Cadastro de Loja</h4>
+				
+				<div class="alert alert-danger" style="display: none" role="alert">
+					This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
 				</div>
+
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+						</ul>
+					</div>
+				@endif
+
 
 				<div class="modal-body">
 

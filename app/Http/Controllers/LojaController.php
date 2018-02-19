@@ -54,20 +54,25 @@ class LojaController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());                          //pega todos
-        //dd($request->only(['no_loja','nu_loja']));    //pega somente os selecionados
-        //dd($request->except(['nu_pais']));            //não pega os selecionados
-        //dd($request->input(['nu_pais']));             //pega um campo
+        if(trim($request->co_titulo) == null)
+        {
+            $request->merge([
+                'co_titulo' => "ARLS"
+            ]);
+
+        }else{
+            $request->merge([
+                'co_titulo'  => strtoupper($request->co_titulo),
+            ]);
+        };
 
         $request->merge([
             'dt_fundacao'       => $this->inverterData($request->input('dt_fundacao')),
             'ic_tipo_endereco'  => 'Loja',
-            'co_titulo'         => strtoupper($request->co_titulo),
             'sg_uf'             => strtoupper($request->sg_uf),
         ]);
 
 
-        //dd($request->all());
         // Validar dados do formulário
         $this->validar($request);
 
@@ -314,18 +319,30 @@ class LojaController extends Controller
 
     function nova_ajax(Request $request)
     {
+        if( trim($request->co_titulo) == "")
+        {
+            $request->merge([
+                'co_titulo' => "ARLS"
+            ]);
+        }else{
+            $request->merge([
+                'co_titulo'  => strtoupper($request->co_titulo),
+            ]);
+        };
 
-        $request->merge([
-            'co_titulo'         => strtoupper($request->co_titulo),
-        ]);
+        
 
         // Validar dados do formulário
-        $this->validate($request, [
+        $validacao = $this->validate($request, [
             'co_titulo'     => 'required|min:3|max:10',
             'no_loja'       => 'required|min:3|max:50',
             'nu_loja'       => 'required|numeric',
             'potencia_id'   => 'required',
         ]);
+
+        // if ($validacao->fails()) {
+        //     return response()->json($validator->messages(), 200);
+        // } 
 
         $busca_loja = DB::table('lojas')
                      ->select(DB::raw('count(*) as count'))

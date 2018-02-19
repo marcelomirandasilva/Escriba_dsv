@@ -176,6 +176,8 @@ class MembroController extends Controller
         $telefones      = $membro->telefones;
         $emails         = $membro->emails;
         $dependentes    = $membro->dependentes;
+        $potencias          = Potencia::all()->sortBy('no_potencia');
+        $ritos              = pegaValorEnum('lojas','ic_rito') ;
 
         // if(! isset($dependentes[0]))
         // {
@@ -212,7 +214,7 @@ class MembroController extends Controller
         $lojas      = Loja::all()->sortBy('no_loja');    
 
 
-        return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos']));
+        return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos']));
         
     }
 

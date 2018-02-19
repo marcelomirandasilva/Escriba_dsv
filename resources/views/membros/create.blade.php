@@ -631,25 +631,20 @@
 
 				if(dados.id)
 				{
-					
-					//$("<option value='dados.id' selected='selected'> dados.no_potencia </option>").appendTo("potencia_id");
-
 					$('#loja_id0').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>'); 
 					$('#loja_id1').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>'); 
 					$('#loja_id2').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');
 					$('#loja_id3').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');  
 
-
-
-					//console.log("Gravou a potência");
-					//console.log(dados.id);
-
-						$('.fecha_modal_cad_loja').trigger('click');
-						
+					$('#fecha_modal_cad_loja').trigger("click");
 				}
 			
 			}).fail(function(dados){
 				console.log(dados);
+
+				//$('.alert').html(dados.responseJSON[0][0]);
+				//$('.alert').show()
+
 			});
 		});
 
