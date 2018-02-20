@@ -112,7 +112,9 @@ return [
         'email'         => 'Email',
         'password'      => 'Senha',
         'admin'         => 'Tipo de Usuário',
-        
+        'no_loja'       => 'Nome da loja',
+        'nu_loja'       => 'Número da loja',
+        'co_titulo'     => 'Título da Loja',
 
     ],
 

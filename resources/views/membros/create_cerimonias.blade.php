@@ -140,17 +140,6 @@
 					This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
 				</div>
 
-				@if ($errors->any())
-					<div class="alert alert-danger">
-						<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-						</ul>
-					</div>
-				@endif
-
-
 				<div class="modal-body">
 
 					<form id="form_modal_" method="post" action="#" class="form-horizontal form-label-left" >

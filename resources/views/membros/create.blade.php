@@ -608,6 +608,12 @@
 		//=======================	MODAL CADASTRO DE LOJA DENTRO DO CADASTRO DE MEMBROS =======================
 		$('[data-toggle="modal"][title]').tooltip();
 
+
+		$("#fecha_modal_cad_loja").click(function(e){ 
+			$('.alert').html("");
+			$('.alert').hide();
+		});
+
 		$(".envia_nova_loja").click(function(e){ 
 			e.preventDefault();
 
@@ -636,14 +642,40 @@
 					$('#loja_id2').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');
 					$('#loja_id3').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');  
 
+					$('.alert').html("");
+					$('.alert').hide();
 					$('#fecha_modal_cad_loja').trigger("click");
+				} else {
+					console.log(dados);
+					$('.alert').html('A ' + titulo + ' ' + loja + ' Nº ' + numero + ' já existe!!!');
+					$('.alert').show()
 				}
 			
-			}).fail(function(dados){
-				console.log(dados);
 
-				//$('.alert').html(dados.responseJSON[0][0]);
-				//$('.alert').show()
+			}).fail(function(dados){
+
+				console.log(dados.responseJSON);
+					
+				let mensagem;
+
+				if(dados.responseJSON['no_loja'] )
+				{
+					mensagem = dados.responseJSON['no_loja']
+				}
+
+				if(dados.responseJSON['nu_loja'] )
+				{
+					mensagem = mensagem + '<br> ' + dados.responseJSON['nu_loja']
+				}
+				
+				if(dados.responseJSON['co_titulo'] )
+				{
+					mensagem = mensagem + '<br> ' + dados.responseJSON['co_titulo']
+				}
+
+				$('.alert').html(mensagem);
+
+				$('.alert').show()
 
 			});
 		});
