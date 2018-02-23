@@ -8,6 +8,7 @@ use App\Models\membro;
 use App\Models\Endereco;
 use App\Models\pais;
 use App\Models\loja;
+use App\Models\cargo;
 use App\Models\Telefone;
 use App\Models\Email;
 use App\Models\Dependente;
@@ -60,6 +61,9 @@ class MembroController extends Controller
 
         $potencias          = Potencia::all()->sortBy('no_potencia');
         $ritos              = pegaValorEnum('lojas','ic_rito') ;
+
+        $cargos             = Cargo::all()->sortBy('no_cargo');
+        $cargos_ocupados    =[];
         
 
         //orderna os valores dos arrays
@@ -71,7 +75,7 @@ class MembroController extends Controller
         $lojas      = Loja::all()->sortBy('no_loja');    
 
 
-        return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos']));
+        return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 
     }
 

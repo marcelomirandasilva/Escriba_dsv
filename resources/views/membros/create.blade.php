@@ -145,6 +145,22 @@
 
 
 @push('scripts')
+	<!-- Datatables -->
+  	<script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}"                  type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"            type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}"         type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"       type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}"              type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}"              type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}"              type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}" type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"       type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}"   type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"     type="text/javascript"></script>
+  	<script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
+  	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
+  	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
+
 	<script type="text/javascript">
 		@if (session('sucesso'))
 			swal({
@@ -163,365 +179,415 @@
 
 		$(document).ready(function(){
 
-				//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
-				$("body").find("input.telefone").inputmask('(99)9999-9999');
+			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 
-
-				{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
+			$("#tabela_cargos").DataTable({
+				language : {
+									'url' : '{{ asset('js/portugues.json') }}',
+									"decimal": ",",
+									"thousands": "."
+								},
+				stateSave: false,
+				stateDuration: -1,
 				
-				//Se o pais for diferente de BRASIL, desabilita o cep e UF
-				$("#no_pais0").change(function(){
-					if($("#no_pais0>option:selected").text() == " Brasil ")
-					{
-							console.log("brasil");
-							$("#cep0, #sg_uf0").removeAttr('disabled');
-					}
-					else
-					{
-							$("#cep0, #sg_uf0").attr('disabled', 'disabled');
-					}
-				});
-
-				$("#no_pais1").change(function(){
-					console.log("mudou");
-					
-					if($("#no_pais1>option:selected").text() == " Brasil ")
-					{
-							$("#cep1, #sg_uf1").removeAttr('disabled');
-					}
-					else
-					{
-							$("#cep1, #sg_uf1").attr('disabled', 'disabled');
-					}
-				});
-				//==========================================================
-				
-				//Quando o campo CEP RESIDENCIAL perde o foco.
-				$("#cep0").blur(function() {
-					
-					//Nova variável "cep" somente com dígitos.
-					var cep = $(this).val().replace(/\D/g, '');
-
-					console.log(cep);
-					//Verifica se campo cep possui valor informado.
-					if (cep != "") {
-
-							//Expressão regular para validar o CEP.
-							var validacep = /^[0-9]{8}$/;
-
-							//Valida o formato do CEP.
-							if(validacep.test(cep)) {
-
-								//Preenche os campos com "..." enquanto consulta webservice.
-								$("#no_logradouro0").val("...");
-								$("#no_bairro0").val("...");
-								$("#no_municipio0").val("...");
-								$("#sg_uf0").val("...");
-								$("#ibge0").val("...");
-
-								//Consulta o webservice viacep.com.br/
-								$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
-										if (!("erro" in dados)) {
-											//Atualiza os campos com os valores da consulta.
-											$("#no_logradouro0").val(dados.logradouro);
-											$("#no_bairro0").val(dados.bairro);
-											$("#no_municipio0").val(dados.localidade);
-											$("#sg_uf0").val(dados.uf);
-											$("#ibge").val(dados.ibge);
-										} //end if.
-										else {
-											//CEP pesquisado não foi encontrado.
-											limpa_formulário_cep(0);
-											alert("CEP não encontrado.");
-										}
-								});
-							} //end if.
-							else {
-								//cep é inválido.
-								limpa_formulário_cep(0);
-								alert("Formato de CEP inválido.");
+				buttons: {
+					buttons: [
+							{
+								text: 'Alert',
+								action: function ( e, dt, node, config ) {
+									alert( 'Activated!' );
+									this.disable(); // disable button
+								}
 							}
-					} //end if.
-					else {
-							//cep sem valor, limpa formulário.
-							limpa_formulário_cep(0);
-					}
-				});
-
-				//Quando o campo CEP COMERCIAL perde o foco.
-				$("#cep1").blur(function() {
-					
-					//Nova variável "cep" somente com dígitos.
-					var cep = $(this).val().replace(/\D/g, '');
-
-					console.log(cep);
-					//Verifica se campo cep possui valor informado.
-					if (cep != "") {
-
-							//Expressão regular para validar o CEP.
-							var validacep = /^[0-9]{8}$/;
-
-							//Valida o formato do CEP.
-							if(validacep.test(cep)) {
-
-								//Preenche os campos com "..." enquanto consulta webservice.
-								$("#no_logradouro1").val("...");
-								$("#no_bairro1").val("...");
-								$("#no_municipio1").val("...");
-								$("#sg_uf1").val("...");
-								$("#ibge1").val("...");
-
-								//Consulta o webservice viacep.com.br/
-								$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
-										if (!("erro" in dados)) {
-											//Atualiza os campos com os valores da consulta.
-											$("#no_logradouro1").val(dados.logradouro);
-											$("#no_bairro1").val(dados.bairro);
-											$("#no_municipio1").val(dados.localidade);
-											$("#sg_uf1").val(dados.uf);
-											$("#ibge").val(dados.ibge);
-										} //end if.
-										else {
-											//CEP pesquisado não foi encontrado.
-											limpa_formulário_cep(1);
-											alert("CEP não encontrado.");
-										}
-								});
-							} //end if.
-							else {
-								//cep é inválido.
-								limpa_formulário_cep(1);
-								alert("Formato de CEP inválido.");
-							}
-					} //end if.
-					else {
-							//cep sem valor, limpa formulário.
-							limpa_formulário_cep(1);
-					}
-				});
-
-				//desabilita data de casamento se não for casado
-				$("select#ic_estado_civil").change(function(){
-					if($("select#ic_estado_civil>option:selected").text() == " Casado ")
-					{
-						document.getElementById("dt_casamento").disabled = false;
-					} else {
-						document.getElementById("dt_casamento").disabled = true;
-					}
-				});
-
-				//desabilita campos de acordo com o grau
-				$("select#ic_grau").change(function(){ 
-					var valor = $(this).val();
-					
-					$("#tab_cerimonias" ).show();
-					$("#tab_condecoracoes" ).show();                  
-
-					document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
-					document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
-					document.getElementById("co_cim").disabled 			= false;
+					]
+				}
+	
+        	});
 
 
-					document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
-					document.getElementById("loja_id0").disabled 		= false;
+			var t = $('#tabela_cargos').DataTable();
 
-					document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
-					document.getElementById("loja_id1").disabled 		= false;
-
-					document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
-					document.getElementById("loja_id2").disabled 		= false;
-
-					document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
-					document.getElementById("loja_id3").disabled 		= false;
-
-
-					if (valor == "Candidato"){
-							document.getElementById("co_cim").disabled = true;
-							$("#tab_cerimonias" ).hide();
-							$("#tab_condecoracoes" ).hide();                  
-							
-					} else if (valor == "Aprendiz"){
-
-							$("#tab_condecoracoes" ).hide();                  
-							
-							document.getElementById("dt_cerimonia1").disabled 	= true;
-							document.getElementById("loja_id1").disabled		 	= true;
-							document.getElementById("dt_cerimonia2").disabled 	= true;
-							document.getElementById("loja_id2").disabled 		= true;
-							document.getElementById("dt_cerimonia3").disabled 	= true;
-							document.getElementById("loja_id3").disabled 		= true;
-
-					} else if (valor == "Companheiro"){
-
-							$("#tab_condecoracoes" ).hide();                  
-						
-							document.getElementById("dt_cerimonia2").disabled 	= true;
-							document.getElementById("loja_id2").disabled 		= true;
-							document.getElementById("dt_cerimonia3").disabled 	= true;
-							document.getElementById("loja_id3").disabled 		= true;
-
-					} else if (valor == "Mestre"){
-							
-							document.getElementById("dt_cerimonia3").disabled 	= true;
-							document.getElementById("loja_id3").disabled 		= true;
-					}
-				});
-
-
-				// Clonar div panel_telefones
-				$(".clonar_tel").click(function(e){
-
-					e.preventDefault();
-
-					$(".panel_telefone").clone()
-
-					// Adicionar a classe clone e remover a classe panel_telefones
-					.addClass("telefone_clonado x_panel")
-					.removeClass("panel_telefone")
-
-					// Mostrar o botão excluir
-					.find("button.excluir_tel").css("display","block")
-
-					// Colocar os campos clonados no lugar correto
-					.parent().parent().appendTo(".local_clone_tel")
-
-					// Alterar os names dos inputs para preencher o vetor de telefone corretamente
-					.find("select[name='telefones[0][ic_telefone]']")
-							.attr("name", "telefones["+cont_telefone+"][ic_telefone]")
-							.attr("id", "telefones["+cont_telefone+"][ic_telefone]")
-							.val("")
-					
-					.parent().parent().parent().find("input[name='telefones[0][nu_telefone]']")
-							.attr("name", "telefones["+cont_telefone+"][nu_telefone]")
-							.attr("id", "telefones["+cont_telefone+"][nu_telefone]")
-							.val("");
-					
-					// Incrementar o contador de telefone
-					cont_telefone++;
-				});
-				
-				$("body").on("change", ".tipo-telefone",function(){
-
-					//console.log("mudou");
-					var itemSelecionado = $(this).val();
-
-					if(itemSelecionado == 'Celular')
-					{
-							console.log("celular");
-							$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
-					}
-					else
-					{
-							console.log("outros");
-							$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
-					}
-				});
-
-
-				// Botão de excluir telefone
-
-				$("body").on("click", "button.excluir_tel", function(){ 
-					$(this).parent().parent().remove(); 
-				});
-
-				//=================================== clone email====================================================
-				// Clonar div clonar_email
-				$(".clonar_email").click(function(e){
-
-					e.preventDefault();
-
-					$(".panel_emails").clone()
-
-					// Adicionar a classe clone e remover a classe 
-
-					.addClass("email_clonado x_panel")
-					.removeClass("panel_emails")
-
-					// Mostrar o botão excluir
-
-					.find("button.excluir_email").css("display","block")
-
-					// Colocar os campos clonados no lugar correto
-
-					.parent().parent().appendTo(".local_clone_email")
-
-					// Alterar os names dos inputs para preencher o vetor de dependentes corretamente
-
-					.find("input[name='emails[0][email]']")
-							.attr("name", "emails["+cont_email+"][email]")
-							.attr("id", "emails["+cont_email+"][email]")
-							.val("");
-					
-					// Incrementar o contador de dependentes
-					console.log(cont_email);
-					cont_email++;
-				});
-
-				// Botão de excluir telefone
-
-				$("body").on("click", "button.excluir_email", function(){ 
-
-					$(this).parent().parent().remove(); 
-
-				});
 		
-				//=================================== clone DEPENDENTE====================================================
+			$('#cad_cargo').on( 'click', function () {
+				t.row.add( [
+						$("#no_cargo :selected").text(),
+						$("#dt_inicio").val(),
+						$("#dt_termino").val(),
+						$("#dt_termino").val()
+				] ).draw( true );
+		
+			} );
 
-				$(".clonar_dependente").click(function(e){
-					//conta quantos paineis existem na tela
-					let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
-					qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
-					qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
+			
+			
+        	
 
-					cont_dependente = qtd_painel+1;
 
-					e.preventDefault();
-					$(".clone_dependente").clone()
 
-					// Adicionar a classe clone e remover a classe 
-					.addClass("dependente_clonado x_panel")
-					.removeClass("clone_dependente")
 
-					// Mostrar o botão excluir
-					.find("button.excluir_dependente").css("display","block")
 
-					// Colocar os campos clonados no lugar correto
-					.parent().parent().parent().appendTo(".local_clone_dependente")
+			// Automatically add a first row of data
+			//$('#cad_cargo').click();
 
-					// Alterar os names dos inputs para preencher o vetor de dependentes corretamente
-					.find("input.nome-dependente")
-							.attr("name", "dependentes["+cont_dependente+"][no_dependente]")
-							.attr("id", "dependentes["+cont_dependente+"][no_dependente]")
-							.val("")
-							.parent().parent().parent()
+			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
+			$("body").find("input.telefone").inputmask('(99)9999-9999');
 
-					.find("select.sexo-dependente")
-							.attr("name", "dependentes["+cont_dependente+"][ic_sexo]")
-							.attr("id", "dependentes["+cont_dependente+"][ic_sexo]")
-							.val("")
 
-					.parent().parent().find("select.parentesco-dependente")
-							.attr("name", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
-							.attr("id", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
-							.val("")
+			{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
+			
+			//Se o pais for diferente de BRASIL, desabilita o cep e UF
+			$("#no_pais0").change(function(){
+				if($("#no_pais0>option:selected").text() == " Brasil ")
+				{
+						console.log("brasil");
+						$("#cep0, #sg_uf0").removeAttr('disabled');
+				}
+				else
+				{
+						$("#cep0, #sg_uf0").attr('disabled', 'disabled');
+				}
+			});
 
-					.parent().parent().find("input.nascimento-dependente")
-							.attr("name", "dependentes["+cont_dependente+"][dt_nascimento]")
-							.attr("id", "dependentes["+cont_dependente+"][dt_nascimento]")
-							.val("");
+			$("#no_pais1").change(function(){
+				console.log("mudou");
+				
+				if($("#no_pais1>option:selected").text() == " Brasil ")
+				{
+						$("#cep1, #sg_uf1").removeAttr('disabled');
+				}
+				else
+				{
+						$("#cep1, #sg_uf1").attr('disabled', 'disabled');
+				}
+			});
+			//==========================================================
+			
+			//Quando o campo CEP RESIDENCIAL perde o foco.
+			$("#cep0").blur(function() {
+				
+				//Nova variável "cep" somente com dígitos.
+				var cep = $(this).val().replace(/\D/g, '');
+
+				console.log(cep);
+				//Verifica se campo cep possui valor informado.
+				if (cep != "") {
+
+						//Expressão regular para validar o CEP.
+						var validacep = /^[0-9]{8}$/;
+
+						//Valida o formato do CEP.
+						if(validacep.test(cep)) {
+
+							//Preenche os campos com "..." enquanto consulta webservice.
+							$("#no_logradouro0").val("...");
+							$("#no_bairro0").val("...");
+							$("#no_municipio0").val("...");
+							$("#sg_uf0").val("...");
+							$("#ibge0").val("...");
+
+							//Consulta o webservice viacep.com.br/
+							$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+									if (!("erro" in dados)) {
+										//Atualiza os campos com os valores da consulta.
+										$("#no_logradouro0").val(dados.logradouro);
+										$("#no_bairro0").val(dados.bairro);
+										$("#no_municipio0").val(dados.localidade);
+										$("#sg_uf0").val(dados.uf);
+										$("#ibge").val(dados.ibge);
+									} //end if.
+									else {
+										//CEP pesquisado não foi encontrado.
+										limpa_formulário_cep(0);
+										alert("CEP não encontrado.");
+									}
+							});
+						} //end if.
+						else {
+							//cep é inválido.
+							limpa_formulário_cep(0);
+							alert("Formato de CEP inválido.");
+						}
+				} //end if.
+				else {
+						//cep sem valor, limpa formulário.
+						limpa_formulário_cep(0);
+				}
+			});
+
+			//Quando o campo CEP COMERCIAL perde o foco.
+			$("#cep1").blur(function() {
+				
+				//Nova variável "cep" somente com dígitos.
+				var cep = $(this).val().replace(/\D/g, '');
+
+				console.log(cep);
+				//Verifica se campo cep possui valor informado.
+				if (cep != "") {
+
+						//Expressão regular para validar o CEP.
+						var validacep = /^[0-9]{8}$/;
+
+						//Valida o formato do CEP.
+						if(validacep.test(cep)) {
+
+							//Preenche os campos com "..." enquanto consulta webservice.
+							$("#no_logradouro1").val("...");
+							$("#no_bairro1").val("...");
+							$("#no_municipio1").val("...");
+							$("#sg_uf1").val("...");
+							$("#ibge1").val("...");
+
+							//Consulta o webservice viacep.com.br/
+							$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+									if (!("erro" in dados)) {
+										//Atualiza os campos com os valores da consulta.
+										$("#no_logradouro1").val(dados.logradouro);
+										$("#no_bairro1").val(dados.bairro);
+										$("#no_municipio1").val(dados.localidade);
+										$("#sg_uf1").val(dados.uf);
+										$("#ibge").val(dados.ibge);
+									} //end if.
+									else {
+										//CEP pesquisado não foi encontrado.
+										limpa_formulário_cep(1);
+										alert("CEP não encontrado.");
+									}
+							});
+						} //end if.
+						else {
+							//cep é inválido.
+							limpa_formulário_cep(1);
+							alert("Formato de CEP inválido.");
+						}
+				} //end if.
+				else {
+						//cep sem valor, limpa formulário.
+						limpa_formulário_cep(1);
+				}
+			});
+
+			//desabilita data de casamento se não for casado
+			$("select#ic_estado_civil").change(function(){
+				if($("select#ic_estado_civil>option:selected").text() == " Casado ")
+				{
+					document.getElementById("dt_casamento").disabled = false;
+				} else {
+					document.getElementById("dt_casamento").disabled = true;
+				}
+			});
+
+			//desabilita campos de acordo com o grau
+			$("select#ic_grau").change(function(){ 
+				var valor = $(this).val();
+				
+				$("#tab_cerimonias" ).show();
+				$("#tab_condecoracoes" ).show();                  
+
+				document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
+				document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
+				document.getElementById("co_cim").disabled 			= false;
+
+
+				document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
+				document.getElementById("loja_id0").disabled 		= false;
+
+				document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
+				document.getElementById("loja_id1").disabled 		= false;
+
+				document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
+				document.getElementById("loja_id2").disabled 		= false;
+
+				document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
+				document.getElementById("loja_id3").disabled 		= false;
+
+
+				if (valor == "Candidato"){
+						document.getElementById("co_cim").disabled = true;
+						$("#tab_cerimonias" ).hide();
+						$("#tab_condecoracoes" ).hide();                  
+						
+				} else if (valor == "Aprendiz"){
+
+						$("#tab_condecoracoes" ).hide();                  
+						
+						document.getElementById("dt_cerimonia1").disabled 	= true;
+						document.getElementById("loja_id1").disabled		 	= true;
+						document.getElementById("dt_cerimonia2").disabled 	= true;
+						document.getElementById("loja_id2").disabled 		= true;
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+				} else if (valor == "Companheiro"){
+
+						$("#tab_condecoracoes" ).hide();                  
 					
-					// Incrementar o contador de dependentes
-					cont_dependente++;
-				});
+						document.getElementById("dt_cerimonia2").disabled 	= true;
+						document.getElementById("loja_id2").disabled 		= true;
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
 
-				// Botão de excluir telefone
+				} else if (valor == "Mestre"){
+						
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+				}
+			});
 
-				$("body").on("click", "button.excluir_dependente", function(){ 
 
-					$(this).parent().parent().parent().remove(); 
-				});
+			// Clonar div panel_telefones
+			$(".clonar_tel").click(function(e){
+
+				e.preventDefault();
+
+				$(".panel_telefone").clone()
+
+				// Adicionar a classe clone e remover a classe panel_telefones
+				.addClass("telefone_clonado x_panel")
+				.removeClass("panel_telefone")
+
+				// Mostrar o botão excluir
+				.find("button.excluir_tel").css("display","block")
+
+				// Colocar os campos clonados no lugar correto
+				.parent().parent().appendTo(".local_clone_tel")
+
+				// Alterar os names dos inputs para preencher o vetor de telefone corretamente
+				.find("select[name='telefones[0][ic_telefone]']")
+						.attr("name", "telefones["+cont_telefone+"][ic_telefone]")
+						.attr("id", "telefones["+cont_telefone+"][ic_telefone]")
+						.val("")
+				
+				.parent().parent().parent().find("input[name='telefones[0][nu_telefone]']")
+						.attr("name", "telefones["+cont_telefone+"][nu_telefone]")
+						.attr("id", "telefones["+cont_telefone+"][nu_telefone]")
+						.val("");
+				
+				// Incrementar o contador de telefone
+				cont_telefone++;
+			});
+			
+			$("body").on("change", ".tipo-telefone",function(){
+
+				//console.log("mudou");
+				var itemSelecionado = $(this).val();
+
+				if(itemSelecionado == 'Celular')
+				{
+						console.log("celular");
+						$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
+				}
+				else
+				{
+						console.log("outros");
+						$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
+				}
+			});
+
+
+			// Botão de excluir telefone
+
+			$("body").on("click", "button.excluir_tel", function(){ 
+				$(this).parent().parent().remove(); 
+			});
+
+			//=================================== clone email====================================================
+			// Clonar div clonar_email
+			$(".clonar_email").click(function(e){
+
+				e.preventDefault();
+
+				$(".panel_emails").clone()
+
+				// Adicionar a classe clone e remover a classe 
+
+				.addClass("email_clonado x_panel")
+				.removeClass("panel_emails")
+
+				// Mostrar o botão excluir
+
+				.find("button.excluir_email").css("display","block")
+
+				// Colocar os campos clonados no lugar correto
+
+				.parent().parent().appendTo(".local_clone_email")
+
+				// Alterar os names dos inputs para preencher o vetor de dependentes corretamente
+
+				.find("input[name='emails[0][email]']")
+						.attr("name", "emails["+cont_email+"][email]")
+						.attr("id", "emails["+cont_email+"][email]")
+						.val("");
+				
+				// Incrementar o contador de dependentes
+				console.log(cont_email);
+				cont_email++;
+			});
+
+			// Botão de excluir telefone
+
+			$("body").on("click", "button.excluir_email", function(){ 
+
+				$(this).parent().parent().remove(); 
+
+			});
+	
+			//=================================== clone DEPENDENTE====================================================
+
+			$(".clonar_dependente").click(function(e){
+				//conta quantos paineis existem na tela
+				let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
+				qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
+				qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
+
+				cont_dependente = qtd_painel+1;
+
+				e.preventDefault();
+				$(".clone_dependente").clone()
+
+				// Adicionar a classe clone e remover a classe 
+				.addClass("dependente_clonado x_panel")
+				.removeClass("clone_dependente")
+
+				// Mostrar o botão excluir
+				.find("button.excluir_dependente").css("display","block")
+
+				// Colocar os campos clonados no lugar correto
+				.parent().parent().parent().appendTo(".local_clone_dependente")
+
+				// Alterar os names dos inputs para preencher o vetor de dependentes corretamente
+				.find("input.nome-dependente")
+						.attr("name", "dependentes["+cont_dependente+"][no_dependente]")
+						.attr("id", "dependentes["+cont_dependente+"][no_dependente]")
+						.val("")
+						.parent().parent().parent()
+
+				.find("select.sexo-dependente")
+						.attr("name", "dependentes["+cont_dependente+"][ic_sexo]")
+						.attr("id", "dependentes["+cont_dependente+"][ic_sexo]")
+						.val("")
+
+				.parent().parent().find("select.parentesco-dependente")
+						.attr("name", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
+						.attr("id", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
+						.val("")
+
+				.parent().parent().find("input.nascimento-dependente")
+						.attr("name", "dependentes["+cont_dependente+"][dt_nascimento]")
+						.attr("id", "dependentes["+cont_dependente+"][dt_nascimento]")
+						.val("");
+				
+				// Incrementar o contador de dependentes
+				cont_dependente++;
+			});
+
+			// Botão de excluir telefone
+
+			$("body").on("click", "button.excluir_dependente", function(){ 
+
+				$(this).parent().parent().parent().remove(); 
+			});
 		});     
 
 
@@ -679,6 +745,11 @@
 
 			});
 		});
+
+		//===============================================================================================================
+
+
+
 
 		//=======================FUNÇOES===================================
 		function limpa_formulário_cep(id) {
