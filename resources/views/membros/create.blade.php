@@ -21,7 +21,7 @@
 			
 		<div class="clearfix"></div>
 
-		<div class="row">
+		<div class="row caixa">
 			<div class="col-md-12">
 				<div class="x_panel modal-content">
 					<div class="x_title">
@@ -170,14 +170,31 @@
 			});
 		@endif
 
-
-		//$("body").find("input.telefone").inputmask('(99)9999-9999');
-
 		var cont_telefone=1 
 		var cont_email=1;
 		var cont_dependente=1;
 
 		$(document).ready(function(){
+
+			if( $('#send').on( 'click', function () {
+				console.log("clicou");
+				//testa se o cargo está vazio
+				if ( $("#no_membro").val() === "")
+				{
+					$("#tab_principal").click();
+					$("#no_membro").focus();
+					$("#no_membro").notify("O Nome do Membro deve ser informado",{className: "error",autoHideDelay: 5000});
+				}else if ( $("#ic_grau :selected").text() === " --- ")
+				{
+					$("#tab_principal").click();
+					$("#ic_grau").focus();
+					$("#ic_grau").notify("O Grau do Membro deve ser informado",{className: "error",autoHideDelay: 5000});
+				};
+
+			}));
+
+
+
 
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 
@@ -205,21 +222,61 @@
         	});
 
 
-			var t = $('#tabela_cargos').DataTable();
-
-		
+			//adiciona cargos na tabela
+			var cargos_na_tabela = [];
 			$('#cad_cargo').on( 'click', function () {
-				t.row.add( [
-						$("#no_cargo :selected").text(),
-						$("#dt_inicio").val(),
-						$("#dt_termino").val(),
-						$("#dt_termino").val()
-				] ).draw( true );
-		
+				var t = $('#tabela_cargos').DataTable();
+				var cargo_selecionado = $("#no_cargo :selected").text();
+				var dt_ini = $("#dt_inicio").val();
+				var dt_fim = $("#dt_termino").val();
+
+
+				//testa se o cargo está vazio
+				if (cargo_selecionado == " --- ")
+				{
+					console.log('dentro do if ' +cargo_selecionado);
+
+					//$(".no_cargo").notify("O cargo deve ser informado","error");
+
+					$(".no_cargo").notify("O cargo deve ser informado",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+
+				}else{
+			
+					cargos_na_tabela.push([{cargo_selecionado, dt_ini, dt_fim}]);
+
+					t.row.add( [
+							$("#no_cargo :selected").text(),
+							$("#dt_inicio").val(),
+							$("#dt_termino").val(),
+							`<button class="btn btn-warning btn-xs action btn_tb_cargo_remove " 
+												data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
+												<i class="glyphicon glyphicon-remove"></i>
+							</button>`
+					] ).draw( true );
+				};
 			} );
 
 			
+			//remove cargos da tabela
+			var cargos_na_tabela = [];
+			$('#btn_tb_cargo_remove').on( 'click', function () {
+
+				var t = $('#tabela_cargos').DataTable();
+				var cargo_selecionado = $("#no_cargo :selected").text();
+				var dt_ini = $("#dt_inicio").val();
+				var dt_fim = $("#dt_termino").val();
+
+				t.row( '.selected' ).remove().draw();
+				
 			
+					//cargos_na_tabela.push([{cargo_selecionado, dt_ini, dt_fim}]);
+
+				
+				
+			} )
         	
 
 

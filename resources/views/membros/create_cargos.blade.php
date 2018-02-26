@@ -7,7 +7,7 @@
 	<div class="item form-group">
 		<label class="control-label col-md-1 " for="no_cargo"> Cargo </label>
 		<div class="col-md-4">
-		   <select   name="no_cargo" id="no_cargo" class="form-control col-md-4" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
+		   <select   name="no_cargo" id="no_cargo" class="form-control col-md-4 no_cargo" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
 				<option value=""  selected style="color: #ccc;"> --- </option>
 				@foreach($cargos as $cargo)
 					<option value="{{$cargo->id}}"> {{$cargo->no_cargo}} </option>    

@@ -79,6 +79,9 @@
         <script src="{{ asset("autoComplete/auto-complete.min.js") }}" >        </script>
         <!-- SweetAlert2 -->
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
+
+        <!-- notify -->
+        <script src="{{ asset("js/notify.min.js") }}">                          </script>
         
 
         <script src="{{ asset("inputmask/inputmask.js") }}">                    </script>
