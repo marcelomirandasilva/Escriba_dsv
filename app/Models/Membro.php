@@ -35,13 +35,9 @@ class Membro extends Model
         'no_pai',
         'no_mae',
         'ic_grau',
-
-     
-
         'im_membro',
         'ic_situacao',
-
-
+        'de_anotacao'
 
     ];
 

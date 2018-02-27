@@ -16,16 +16,18 @@
 		</div>
 
 		<label class="control-label col-md-1 " for="dt_inicio">Inicio</label>
-		<div class="col-md-2">
-		   <input id="dt_inicio" class="form-control col-md-2 datas_input"  type="date" min="1500-01-01" max="2050-01-01"
-			name="dt_inicio" placeholder="Inicio do cargo"  
+		<div class="col-md-1">
+		   <input id="dt_inicio" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
+			name="dt_inicio"   
+			data-inputmask="'mask' : '9999', 'numericInput': 'true' " 
 			value="{{$membro->cargo->dt_inicio or old('dt_inicio')}}" >
 		</div>
 
 		<label class="control-label col-md-1 " for="dt_termino">Término</label>
-		<div class="col-md-2">
-		   <input id="dt_termino" class="form-control col-md-2 datas_input"  type="date" min="1500-01-01" max="2050-01-01"
-			name="dt_termino" placeholder="Inicio do cargo"  
+		<div class="col-md-1">
+		   <input id="dt_termino" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
+			name="dt_termino"   
+			data-inputmask="'mask' : '9999', 'numericInput': 'true' " 
 			value="{{$membro->cargo->dt_termino or old('dt_termino')}}" >
 		</div>
 	

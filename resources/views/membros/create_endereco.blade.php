@@ -33,7 +33,7 @@
 		<!-- CEP-->
 		<label class="col-md-1 control-label" for="enderecos[0][nu_cep]">CEP</label>
 		<div class="col-md-2">
-			<input id="cep1" name="enderecos[0][nu_cep]" type="text" placeholder="99.999-999" class="form-control input-md cep" 
+			<input id="cep0" name="enderecos[0][nu_cep]" type="text" placeholder="99.999-999" class="form-control input-md cep" 
 				value="{{ $enderecos[0]->nu_cep or old('enderecos.0.nu_cep')}}" >
 
 		</div>

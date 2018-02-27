@@ -17,7 +17,7 @@ class CreateMembrosTable extends Migration
             $table->increments('id');
 
             $table->string('no_membro',50);
-            $table->mediumText('foto')                      ->nullable();
+            $table->mediumText('im_membro')                 ->nullable();
             $table->string('co_cim',15)                     ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
             $table->string('no_naturalidade',20)            ->nullable();
@@ -25,7 +25,7 @@ class CreateMembrosTable extends Migration
 
             $table->string('no_proponente',50)              ->nullable();
 
-            $table->text('anotacoes')                      ->nullable();
+            $table->text('de_anotacao')                      ->nullable();
 
             //-----------------------------DOCUMENTOS----------------------            
             $table->char('nu_cpf',11)                       ->nullable();
