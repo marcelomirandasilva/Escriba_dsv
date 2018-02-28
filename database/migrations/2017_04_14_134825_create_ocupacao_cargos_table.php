@@ -18,8 +18,8 @@ class CreateOcupacaoCargosTable extends Migration
 
             $table->unsignedInteger('membro_id');
             $table->unsignedInteger('cargo_id');
-            $table->smallint('aa_inicio')->nullable();
-            $table->smallint('aa_termino')->nullable();
+            $table->smallinteger('aa_inicio')->nullable();
+            $table->smallinteger('aa_termino')->nullable();
 
             $table->timestamps();
 

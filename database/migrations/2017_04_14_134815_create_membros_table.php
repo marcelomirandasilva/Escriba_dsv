@@ -74,7 +74,7 @@ class CreateMembrosTable extends Migration
 
 
            
-            $table->binary('im_membro')                      ->nullable();
+            
 
             $table->enum('ic_situacao', [
                 'Regular Ativo',
