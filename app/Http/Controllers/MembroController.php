@@ -15,6 +15,7 @@ use App\Models\Dependente;
 use App\Models\Condecoracao;
 use App\Models\Cerimonia;
 use App\Models\Potencia;
+use App\Models\Ocupacao_cargo;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
@@ -82,7 +83,7 @@ class MembroController extends Controller
     public function store(Request $request)
     {
 
-//       dd($request->all());
+       //dd($request->all());
 
         // Validar dados do formulário
         $this->validar($request);
@@ -129,6 +130,7 @@ class MembroController extends Controller
             // Criar um novo dependente com as informações inseridas
             $membro->dependentes()->save(new Dependente($dependente));
         }
+
      
         //deleta as cerimonias para serem inseridas as quem vem do formulário
         $cerimonias = cerimonia::where("membro_id", $membro->id);
@@ -160,6 +162,8 @@ class MembroController extends Controller
             }
         }
 
+        
+
         if ($membro /*and $cerimonia*/) {
 
             return redirect('/membros/create')->with('sucesso', ' O membro '
@@ -176,12 +180,13 @@ class MembroController extends Controller
     {
         $membro = $this->membro->find($id);
 
-        $enderecos      = $membro->enderecos;
-        $telefones      = $membro->telefones;
-        $emails         = $membro->emails;
-        $dependentes    = $membro->dependentes;
+        $enderecos          = $membro->enderecos;
+        $telefones          = $membro->telefones;
+        $emails             = $membro->emails;
+        $dependentes        = $membro->dependentes;
         $potencias          = Potencia::all()->sortBy('no_potencia');
         $ritos              = pegaValorEnum('lojas','ic_rito') ;
+        $cargos             = Cargo::all()->sortBy('no_cargo');
 
         // if(! isset($dependentes[0]))
         // {
@@ -207,7 +212,7 @@ class MembroController extends Controller
         $tipo_telefone      = pegaValorEnum('telefones','ic_telefone'); 
         $sexos              = pegaValorEnum('dependentes','ic_sexo'); 
         $parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
-        
+        $cargos_ocupados    = [];        
 
         //orderna os valores dos arrays
         sort($estado_civil);
@@ -218,7 +223,7 @@ class MembroController extends Controller
         $lojas      = Loja::all()->sortBy('no_loja');    
 
 
-        return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos']));
+        return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
         
     }
 
@@ -229,7 +234,7 @@ class MembroController extends Controller
     public function update(Request $request, $id)
     {
         
-        //dd($request->all());
+        //dd($request->de_anotacao);
 
         $this->validate($request, [
             'no_membro'         => 'required|min:3|max:50',
@@ -260,8 +265,7 @@ class MembroController extends Controller
             'dependentes.*.dt_nascimento'  => 'date',
         ]);
         
-        //dd($request->all());
-        
+       
         // Busca o membro;
         $membro = Membro::find($id);
 
@@ -270,10 +274,10 @@ class MembroController extends Controller
 
         // atualiza o status de aposentadoria
         $membro->ic_aposentado = $request->aposentado ? 1 : 0;
-
+        
         // Salvar no banco para obter o ID
         $membro->save();
-
+        
         /* ==================================================================================== */
         /* TELEFONE */
         /* ==================================================================================== */

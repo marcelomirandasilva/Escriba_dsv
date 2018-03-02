@@ -73,5 +73,10 @@ class Membro extends Model
         return $this->hasMany('App\Models\Cerimonia');
     }
 
+    public function ocupacao_cargos()
+    {
+        return $this->hasMany('App\Models\Ocupacao_cargo');
+    }
+
     
 }

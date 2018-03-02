@@ -252,6 +252,7 @@
   	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 
 	<script type="text/javascript">
+		var t = "";
 		@if (session('sucesso'))
 			swal({
 				title:  'Parabéns',
@@ -320,56 +321,52 @@
 			//adiciona cargos na tabela
 			var cargos_na_tabela = [];
 			$('#cad_cargo').on( 'click', function () {
-				var t = $('#tabela_cargos').DataTable();
-				var cargo_selecionado = $("#no_cargo :selected").text();
+				t = $('#tabela_cargos').DataTable();
+				var cargo_selecionado = $("#no_cargo :selected").val();
 				var dt_ini = $("#dt_inicio").val();
 				var dt_fim = $("#dt_termino").val();
 
 
 				//testa se o cargo está vazio
-				if (cargo_selecionado == " --- ")
+				if (cargo_selecionado == "")
 				{
-					console.log('dentro do if ' +cargo_selecionado);
-
-					//$(".no_cargo").notify("O cargo deve ser informado","error");
-
 					$(".no_cargo").notify("O cargo deve ser informado",{
 						className: "error",
 						autoHideDelay: 5000
 					});
-
 				}else{
-			
-					cargos_na_tabela.push([{cargo_selecionado, dt_ini, dt_fim}]);
+
+					let cargos_em_string = JSON.stringify({
+						cargo_id: cargo_selecionado,
+						dt_ini, 
+						dt_fim
+					});
+
+					$("#form_membro").append("<input type='hidden' name='cargos[]' value='"+cargos_em_string+"'>");
 
 					t.row.add( [
 							$("#no_cargo :selected").text(),
 							$("#dt_inicio").val(),
 							$("#dt_termino").val(),
-							`<button class="btn btn-warning btn-xs action btn_tb_cargo_remove " 
+							`<a name="btn_tb_cargo_remove" class="btn btn-warning btn-xs action  " 
 												data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
 												<i class="glyphicon glyphicon-remove"></i>
-							</button>`
+							</a>`
 					] ).draw( true );
 				};
 			} );
-
 			
 			//remove cargos da tabela
 			var cargos_na_tabela = [];
-			$('#btn_tb_cargo_remove').on( 'click', function () {
-
+			$('.btn_tb_cargo_remove').on( 'click', function () {
+				concole.log("clicou botão remover");
 				var t = $('#tabela_cargos').DataTable();
 				var cargo_selecionado = $("#no_cargo :selected").text();
 				var dt_ini = $("#dt_inicio").val();
 				var dt_fim = $("#dt_termino").val();
 
 				t.row( '.selected' ).remove().draw();
-				
-			
 					//cargos_na_tabela.push([{cargo_selecionado, dt_ini, dt_fim}]);
-
-				
 				
 			} )
         	

@@ -14,4 +14,9 @@ class Ocupacao_cargo extends Model
 	    'aa_inicio',
 	    'aa_termino',
 	];
+
+	public function membro()
+    {
+        return $this->belongsTo('App\Models\Membro', 'membro_id');
+    }
 }
