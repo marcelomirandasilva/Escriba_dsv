@@ -11,6 +11,7 @@ class Ocupacao_cargo extends Model
 	protected $primaryKey = 'id';
 
 	protected $fillable =[
+		'cargo_id',
 	    'aa_inicio',
 	    'aa_termino',
 	];

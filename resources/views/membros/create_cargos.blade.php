@@ -15,20 +15,20 @@
 		   </select>
 		</div>
 
-		<label class="control-label col-md-1 " for="dt_inicio">Inicio</label>
+		<label class="control-label col-md-1 " for="aa_inicio">Inicio</label>
 		<div class="col-md-1">
-		   <input id="dt_inicio" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
-			name="dt_inicio"   
+		   <input id="aa_inicio" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
+			name="aa_inicio"   
 			data-inputmask="'mask' : '9999', 'numericInput': 'true' " 
-			value="{{$membro->cargo->dt_inicio or old('dt_inicio')}}" >
+			value="{{$membro->cargo->aa_inicio or old('aa_inicio')}}" >
 		</div>
 
-		<label class="control-label col-md-1 " for="dt_termino">Término</label>
+		<label class="control-label col-md-1 " for="aa_termino">Término</label>
 		<div class="col-md-1">
-		   <input id="dt_termino" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
-			name="dt_termino"   
+		   <input id="aa_termino" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
+			name="aa_termino"   
 			data-inputmask="'mask' : '9999', 'numericInput': 'true' " 
-			value="{{$membro->cargo->dt_termino or old('dt_termino')}}" >
+			value="{{$membro->cargo->aa_termino or old('aa_termino')}}" >
 		</div>
 	
 		<div class="col-md-1 ">
@@ -68,14 +68,14 @@
 							<td> 444 </td>
 							{{--  <td> {{ $cargo->no_cargo  }}  </td>
 
-							@if( $cargo->dt_inicio <> '0000-00-00')
-								<td>{{ \Carbon\Carbon::parse( $cargos->dt_inicio)->format('d/m/Y')  }}     </td>
+							@if( $cargo->aa_inicio <> '0000-00-00')
+								<td>{{ \Carbon\Carbon::parse( $cargos->aa_inicio)->format('d/m/Y')  }}     </td>
 							@else
 								<td> -------------- </td>
 							@endif
 
-							@if( $cargo->dt_termino <> '0000-00-00')
-								<td>{{ \Carbon\Carbon::parse( $cargos->dt_termino)->format('d/m/Y')  }}     </td>
+							@if( $cargo->aa_termino <> '0000-00-00')
+								<td>{{ \Carbon\Carbon::parse( $cargos->aa_termino)->format('d/m/Y')  }}     </td>
 							@else
 								<td> -------------- </td>
 							@endif

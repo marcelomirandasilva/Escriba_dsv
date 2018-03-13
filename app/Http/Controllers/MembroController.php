@@ -83,7 +83,7 @@ class MembroController extends Controller
     public function store(Request $request)
     {
 
-       //dd($request->all());
+
 
         // Validar dados do formulário
         $this->validar($request);
@@ -234,7 +234,7 @@ class MembroController extends Controller
     public function update(Request $request, $id)
     {
         
-        //dd($request->de_anotacao);
+        //dd($request->all());
 
         $this->validate($request, [
             'no_membro'         => 'required|min:3|max:50',
@@ -380,6 +380,30 @@ class MembroController extends Controller
                 // Criar nova condecoracao com as informações inseridas
                 $membro->condecoracoes()->save(new Condecoracao($condecoracao));    
             }
+        }
+
+        /* ==================================================================================== */
+        /* OCUPAÇÂO DE CARGOS */
+        /* ==================================================================================== */
+        //apaga todas as ocupações de cargos do membro
+        $membro->ocupacao_cargos()->delete();
+
+        // Criar novas ocupacao_cargos com as informações enviadas
+        //dd($request->ocupacao_cargos[0]);
+        foreach($request->ocupacao_cargos as $ocupacao)
+        {
+            $explodindo = json_decode( $ocupacao, true);
+           //dd($a['cargo_id']);
+           
+            $nova_ocupacao = new Ocupacao_cargo(
+                [
+                    'cargo_id'      => $explodindo['cargo_id'],
+                    'aa_inicio'     => $explodindo['aa_inicio'],
+                    'aa_termino'    => $explodindo['aa_termino']
+                ]
+            );
+
+            $membro->ocupacao_cargos()->save($nova_ocupacao);
         }
 
         if ($membro /*and $cerimonia*/) {
