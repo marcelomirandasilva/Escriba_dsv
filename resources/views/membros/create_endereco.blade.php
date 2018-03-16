@@ -3,10 +3,9 @@
    <div class="x_title">  Residencial </div>
    <div class="clearfix"></div>
 
-
    <div class="item form-group">
 		<input type="hidden" value="Residencial" name="enderecos[0][ic_tipo_endereco]" for="enderecos[0][ic_tipo_endereco]">
-
+		
 		<label class="control-label col-md-1 " for="enderecos[0][no_pais]">Pais</label>
 		<div class="col-md-2 ">
 			<select id="no_pais0" class="form-control col-md-2" name="enderecos[0][no_pais]" placeholder="Nome do Pais" >
@@ -19,12 +18,12 @@
 						@endif
 					@endforeach
 				@else
-				@foreach($paises as $pais)
-					@if ($pais->no_pais == ('Brasil'))
-						<option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
-					@else 
-						<option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
-					@endif
+					@foreach($paises as $pais)
+						@if ($pais->no_pais == ('Brasil'))
+							<option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
+						@else 
+							<option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
+						@endif
 					@endforeach
 				@endif
 			</select>

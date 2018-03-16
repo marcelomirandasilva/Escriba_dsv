@@ -90,7 +90,7 @@
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-												@include('membros/create_endereco')
+												//@include('membros/create_endereco')
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
@@ -110,7 +110,11 @@
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
-												@include('membros/create_cargos')
+												@if (isset($edita)) 
+													@include('membros/edit_cargos')
+												@else
+													@include('membros/create_cargos')
+												@endif
 											</div>
 							
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
@@ -300,8 +304,13 @@
 									"decimal": ",",
 									"thousands": "."
 								},
-				stateSave: false,
+				
 				stateDuration: -1,
+				deferRender: true,
+				compact: true,
+				
+				paginate: false,
+				
 				
 				buttons: {
 					buttons: [
@@ -326,6 +335,8 @@
 				var aa_inicio = $("#aa_inicio").val();
 				var aa_termino = $("#aa_termino").val();
 
+				var aa_i = $("#aa_inicio").val();
+				var aa_t = $("#aa_termino").val();
 
 				//testa se o cargo está vazio
 				if (cargo_selecionado == "")
@@ -336,13 +347,28 @@
 					});
 				}else{
 
+
+
+
+					//$("#form_membro").append("<input type='hidden' name='cargos_membros[]' value='"+cargos_em_string+"'>");
+
 					let cargos_em_string = JSON.stringify({
 						cargo_id: cargo_selecionado,
 						aa_inicio, 
-						aa_termino
-					});
+						aa_termino});
 
-					$("#form_membro").append("<input type='hidden' name='ocupacao_cargos[]' value='"+cargos_em_string+"'>");
+					
+						
+
+//					let vcargos = ({
+//						"cargo_id" 		: cargo_selecionado,
+//						"aa_inicio" 	: aa_i,
+//						"aa_termino" 	: aa_t
+//					});
+
+			
+
+					$("#form_membro").append("<input type='hidden' name='cargos_membros[]' value='"+cargos_em_string+"'>");
 
 					t.row.add( [
 							$("#no_cargo :selected").text(),
@@ -737,6 +763,12 @@
 
 				$(this).parent().parent().parent().remove(); 
 			});
+
+			$("#form_membro").submit(function(e){
+				//e.preventDefault();
+				console.log("Enviou o form", $(this).serializeArray())
+			})
+
 		});     
 
 

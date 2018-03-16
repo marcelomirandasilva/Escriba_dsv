@@ -60,7 +60,40 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+					@foreach($membro->cargos as $cargo )
+						<tr>
+							<td> {{$cargo->no_cargo}} </td>
+							<td> {{$cargo->pivot->aa_inicio}} </td>
+							<td> {{$cargo->pivot->aa_termino}} </td>
+							<td> 444 </td>
+							{{--  <td> {{ $cargo->no_cargo  }}  </td>
+
+							@if( $cargo->aa_inicio <> '0000-00-00')
+								<td>{{ \Carbon\Carbon::parse( $cargos->aa_inicio)->format('d/m/Y')  }}     </td>
+							@else
+								<td> -------------- </td>
+							@endif
+
+							@if( $cargo->aa_termino <> '0000-00-00')
+								<td>{{ \Carbon\Carbon::parse( $cargos->aa_termino)->format('d/m/Y')  }}     </td>
+							@else
+								<td> -------------- </td>
+							@endif
+								
+							
+							<td>
+								<a href="{{ url("membros/$membro->id") }}" class="btn btn-primary btn-xs  action botao_lista  "  
+									data-toggle="tooltip" data-placement="bottom" title="Visualiza esse Irmão"> 
+									<i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
+								</a>
+									
+								<a href="{{ url("membros/$membro->id/edit") }}" class="btn btn-warning btn-xs action botao_lista  " 
+									data-toggle="tooltip" data-placement="bottom" title="Edita esse Irmão">  
+									<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
+								</a>
+							</td>  --}}
+						</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>

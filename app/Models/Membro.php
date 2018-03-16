@@ -73,10 +73,10 @@ class Membro extends Model
         return $this->hasMany('App\Models\Cerimonia');
     }
 
-    public function ocupacao_cargos()
+    public function cargos()
     {
-        return $this->hasMany('App\Models\Ocupacao_cargo');
+        return $this->belongsToMany('App\Models\Cargo', 'cargos_membros')->withPivot('aa_inicio','aa_termino')->withTimestamps();
     }
-
+   
     
 }

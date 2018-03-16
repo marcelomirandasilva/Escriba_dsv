@@ -30,7 +30,7 @@ class CreateFk extends Migration
             //$table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
         });
 
-        Schema::table('ocupacao_cargos', function($table){
+        Schema::table('cargos_membros', function($table){
 
             $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
             $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');

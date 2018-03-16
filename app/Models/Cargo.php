@@ -17,6 +17,9 @@ class Cargo extends Model
 
 	];
 
-
+	public function membros()
+	{
+		return $this->belongsToMany('App\Models\Membros', 'cargos_membros')->withPivot('aa_inicio','aa_termino')->withTimestamps();
+	}
 
 }
