@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 
-use App\Models\membro;
+use App\Models\Membro;
 use App\Models\Endereco;
-use App\Models\pais;
-use App\Models\loja;
-use App\Models\cargo;
+use App\Models\Pais;
+use App\Models\Loja;
+use App\Models\Cargo;
 use App\Models\Telefone;
 use App\Models\Email;
 use App\Models\Dependente;
@@ -39,7 +39,7 @@ class MembroController extends Controller
 
 		$membros = $this->membro->all();
 
-		return view('membros\lista', compact('membros'));
+		return view('membros/lista', compact('membros'));
 
 	}
 
@@ -90,8 +90,13 @@ class MembroController extends Controller
 
 		}
 		
-		//dd($request->all());
-		
+		/*if($request->ic_grau == "Candidato")
+        {
+            $request->merge([
+                'co_cim' => "0000000"
+            ]);
+        };
+		*/
 
 		// Validar dados do formulário
 		$this->validar($request);

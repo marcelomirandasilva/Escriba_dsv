@@ -273,8 +273,18 @@
 
 			if( $('#send').on( 'click', function (e) {
 				//e.preventDefault();
-				console.log("clicou");
+				console.log($("#ic_grau :selected").text());
 				//testa se o cargo está vazio
+
+				console.log("entrou candiato");
+
+				if ( $("#ic_grau :selected").text() === "Candidato")
+				{
+					$("#co_cim").val('0000000');
+					console.log("entrou candiato");
+				}
+
+
 				if ( $("#no_membro").val() === "")
 				{
 					$("#tab_principal").click();
