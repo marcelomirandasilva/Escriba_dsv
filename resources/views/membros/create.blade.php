@@ -90,7 +90,7 @@
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-												//@include('membros/create_endereco')
+												@include('membros/create_endereco')
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
@@ -582,6 +582,7 @@
 						document.getElementById("co_cim").disabled = true;
 						$("#tab_cerimonias" ).hide();
 						$("#tab_condecoracoes" ).hide();                  
+						document.getElementById("co_cim").disabled = true;
 						
 				} else if (valor == "Aprendiz"){
 
@@ -594,6 +595,8 @@
 						document.getElementById("dt_cerimonia3").disabled 	= true;
 						document.getElementById("loja_id3").disabled 		= true;
 
+						document.getElementById("co_cim").disabled 			= false;
+
 				} else if (valor == "Companheiro"){
 
 						$("#tab_condecoracoes" ).hide();                  
@@ -603,10 +606,14 @@
 						document.getElementById("dt_cerimonia3").disabled 	= true;
 						document.getElementById("loja_id3").disabled 		= true;
 
+						document.getElementById("co_cim").disabled 			= false;
+
 				} else if (valor == "Mestre"){
 						
 						document.getElementById("dt_cerimonia3").disabled 	= true;
 						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
 				}
 			});
 

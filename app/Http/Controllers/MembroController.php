@@ -81,7 +81,14 @@ class MembroController extends Controller
 	
 	public function store(Request $request)
 	{
-		
+		//se for candidaro, coloca zeros no CIM
+		if(trim($request->ic_grau) == "Candidato")
+		{
+			$request->merge([
+					'co_cim' => "0.000.000"
+			]);
+
+		}
 		
 		//dd($request->all());
 		
@@ -199,8 +206,7 @@ class MembroController extends Controller
 		$potencias          = Potencia::all()->sortBy('no_potencia');
 		$ritos              = pegaValorEnum('lojas','ic_rito') ;
 		$cargos             = Cargo::all()->sortBy('no_cargo');
-
-
+		
 		$edita = true;
 		$titulo = "Edição de Membro";
 
@@ -224,7 +230,6 @@ class MembroController extends Controller
 		$paises     = Pais::all()->sortBy('nome');
 		$lojas      = Loja::all()->sortBy('no_loja');
 
-		dd($enderecos);
 		
 		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
