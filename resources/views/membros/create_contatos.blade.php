@@ -9,46 +9,42 @@
 
 				{{-- bloco de telefone --}}
 				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[0][nu_telefone]"> Residencial </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[0][nu_telefone]"   name="telefones[0][nu_telefone]" class="form-control input-md telefone " 
-							placeholder="(99) 999999-9999" type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[0]->nu_telefone or old('telefones[0][nu_telefone]')}}">
-
-						<input name="telefones[0][ic_telefone]" type="hidden" value="Residencial">
+					<div class="row">
+						<div class="col-md-6" style="top: 4px;">
+							<label class="control-label col-md-3" for="telefones[0][nu_telefone]"> Residencial </label>
+							<input id="telefones[0][nu_telefone]"   name="telefones[0][nu_telefone]" class="form-control input-md telefone " 
+								placeholder="(99) 999999-9999" type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
+								value="{{$membro->telefones[0]->nu_telefone or old('telefones[0][nu_telefone]')}}">
+							<input name="telefones[0][ic_telefone]" type="hidden" value="Residencial">
+						</div>
+						<div class="col-md-6" style="top: 4px;">
+							<label class="control-label col-md-3" for="telefones[1][nu_telefone]"> Celular </label>
+							<input id="telefones[1][nu_telefone]"   name="telefones[1][nu_telefone]" class="form-control input-md telefone" 
+								placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
+								value="{{$membro->telefones[1]->nu_telefone or old('telefones[1][nu_telefone]')}}">
+								<input name="telefones[1][ic_telefone]" type="hidden" value="Celular">
+						</div>
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[1][nu_telefone]"> Celular </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[1][nu_telefone]"   name="telefones[1][nu_telefone]" class="form-control input-md telefone" 
-							placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[1]->nu_telefone or old('telefones[1][nu_telefone]')}}">
+					<div class="row">
+						<div class="col-md-6" style="top: 4px;">
+								<label class="control-label col-md-3" for="telefones[2][nu_telefone]"> Comercial </label>
+							<input id="telefones[2][nu_telefone]"   name="telefones[2][nu_telefone]" class="form-control input-md telefone" 
+								placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
+								value="{{$membro->telefones[2]->nu_telefone or old('telefones[2][nu_telefone]')}}">
 
-							<input name="telefones[1][ic_telefone]" type="hidden" value="Celular">
-					</div>
-				</div>
+								<input name="telefones[2][ic_telefone]" type="hidden" value="Comercial">
+						</div>
+						<div class="col-md-6" style="top: 4px;">
+								<label class="control-label col-md-3" for="telefones[3][nu_telefone]"> Recado </label>
+							<input id="telefones[3][nu_telefone]"   name="telefones[3][nu_telefone]" class="form-control input-md telefone" 
+								placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
+								value="{{$membro->telefones[3]->nu_telefone or old('telefones[3][nu_telefone]')}}">
 
-				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[2][nu_telefone]"> Comercial </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[2][nu_telefone]"   name="telefones[2][nu_telefone]" class="form-control input-md telefone" 
-							placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[2]->nu_telefone or old('telefones[2][nu_telefone]')}}">
-
-							<input name="telefones[2][ic_telefone]" type="hidden" value="Comercial">
-					</div>
-				</div>
-
-				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[3][nu_telefone]"> Recado </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[3][nu_telefone]"   name="telefones[3][nu_telefone]" class="form-control input-md telefone" 
-							placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[3]->nu_telefone or old('telefones[3][nu_telefone]')}}">
-
-							<input name="telefones[3][ic_telefone]" type="hidden" value="Recado">
+								<input name="telefones[3][ic_telefone]" type="hidden" value="Recado">
+						</div>
 					</div>
 				</div>
 				{{-- FIM bloco de telefone --}}

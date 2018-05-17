@@ -101,6 +101,8 @@ class MembroController extends Controller
 		// Validar dados do formulário
 		$this->validar($request);
 		
+		dd($request);
+		
 		// Cria um novo membro
 		//$membro = new Membro($request->all());
 		$membro = new Membro($request->all());
@@ -111,6 +113,12 @@ class MembroController extends Controller
 		// Salvar no banco para obter o ID
 		$membro->save();
 
+		foreach($request->enderecos as $endereco)
+		{
+			// Criar um novo endereço com as informações inseridas
+			$membro->enderecos()->save(new Endereco($endereco));
+		}
+		
 		//cria os cargos
 		if(isset($request->cargos_membros))
 		{
@@ -122,12 +130,6 @@ class MembroController extends Controller
 		}
 			
 
-		foreach($request->enderecos as $endereco)
-		{
-			// Criar um novo endereço com as informações inseridas
-			$membro->enderecos()->save(new Endereco($endereco));
-		}
-		
 		
 		foreach($request->telefones as $telefone)
 		{

@@ -34,10 +34,10 @@
 							<div class="x_content ">
 								<div class="" role="tabpanel" data-example-id="togglable-tabs">
 									@if( isset($edita))
-										<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}" class="form-horizontal form-label-left" >
+										<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
 												{!! method_field('PUT') !!}
 									@else
-										<form id="form_membro" method="post" action="{{ route('membros.store') }}" class="form-horizontal form-label-left" >
+										<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
 									@endif
 
 										{{ csrf_field() }}
@@ -156,7 +156,7 @@
 
 				<div class="modal-body">
 
-					<form id="form_modal_" method="post" action="#" class="form-horizontal form-label-left" >
+					<form id="form_modal_" method="post" action="#"  >
 
 						{{ csrf_field() }}
 
@@ -268,9 +268,11 @@
 		var cont_telefone=1 
 		var cont_email=1;
 		var cont_dependente=1;
-
+		let contador_linhas_tabela = 0;
+		
 		$(document).ready(function(){
-
+			$.fn.dataTable.moment( 'DD/MM/YYYY' );
+			
 			if( $('#send').on( 'click', function (e) {
 				//e.preventDefault();
 				console.log($("#ic_grau :selected").text());
@@ -283,7 +285,6 @@
 					$("#co_cim").val('0000000');
 					console.log("entrou candiato");
 				}
-
 
 				if ( $("#no_membro").val() === "")
 				{
@@ -303,39 +304,20 @@
 				
 			}));
 
-
-
-
-			$.fn.dataTable.moment( 'DD/MM/YYYY' );
-
+			//configura a tabela de cargos
 			$("#tabela_cargos").DataTable({
 				language : {
 									'url' : '{{ asset('js/portugues.json') }}',
 									"decimal": ",",
 									"thousands": "."
 								},
-				
 				stateDuration: -1,
 				deferRender: true,
 				compact: true,
-				
 				paginate: false,
-				
-				
-				buttons: {
-					buttons: [
-							{
-								text: 'Alert',
-								action: function ( e, dt, node, config ) {
-									alert( 'Activated!' );
-									this.disable(); // disable button
-								}
-							}
-					]
-				}
-	
+				searching: false,
+				orderFixed: [ 1, 'asc' ],
         	});
-
 
 			//adiciona cargos na tabela
 			var cargos_na_tabela = [];
@@ -344,81 +326,75 @@
 				var cargo_selecionado = $("#no_cargo :selected").val();
 				var aa_inicio = $("#aa_inicio").val();
 				var aa_termino = $("#aa_termino").val();
-
 				var aa_i = $("#aa_inicio").val();
 				var aa_t = $("#aa_termino").val();
 
-				//testa se o cargo está vazio
-				if (cargo_selecionado == "")
-				{
+				if (cargo_selecionado == ""){
+					//testa se o cargo está vazio
 					$(".no_cargo").notify("O cargo deve ser informado",{
 						className: "error",
 						autoHideDelay: 5000
 					});
+				}else if (aa_inicio < 1900 ){
+					//testa se as datas são maiores que 1900
+					$("#aa_inicio").notify("Data incorreta",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else if (aa_termino < 1900 ){
+					//testa se as datas são maiores que 1900
+					$("#aa_termino").notify("Data incorreta",{
+						className: "error",
+						autoHideDelay: 5000
+					});
 				}else{
-
-
-
-
-					//$("#form_membro").append("<input type='hidden' name='cargos_membros[]' value='"+cargos_em_string+"'>");
-
-					let cargos_em_string = JSON.stringify({
-						cargo_id: cargo_selecionado,
-						aa_inicio, 
-						aa_termino});
-
-					
-						
-
-//					let vcargos = ({
-//						"cargo_id" 		: cargo_selecionado,
-//						"aa_inicio" 	: aa_i,
-//						"aa_termino" 	: aa_t
-//					});
-
-			
-
-					$("#form_membro").append("<input type='hidden' name='cargos_membros[]' value='"+cargos_em_string+"'>");
-
 					t.row.add( [
-							$("#no_cargo :selected").text(),
-							$("#aa_inicio").val(),
-							$("#aa_termino").val(),
-							`<a name="btn_tb_cargo_remove" class="btn btn-warning btn-xs action  " 
-												data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
-												<i class="glyphicon glyphicon-remove"></i>
-							</a>`
+						$("#no_cargo :selected").text(),
+						$("#aa_inicio").val(),
+						$("#aa_termino").val(),
+						`<a class="btn btn-warning btn-xs action btn_tb_cargo_remove" data-id="${contador_linhas_tabela}" 
+											data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
+											<i class="glyphicon glyphicon-remove"></i>
+						</a>`
 					] ).draw( true );
+
+					contador_linhas_tabela++;
 				};
 			} );
 			
 			//remove cargos da tabela
-			var cargos_na_tabela = [];
-			$('.btn_tb_cargo_remove').on( 'click', function () {
-				concole.log("clicou botão remover");
-				var t = $('#tabela_cargos').DataTable();
-				var cargo_selecionado = $("#no_cargo :selected").text();
-				var aa_inicio = $("#aa_inicio").val();
-				var aa_termino = $("#aa_termino").val();
+			$('#tabela_cargos').on('click', '.btn_tb_cargo_remove', function () {
+				t.row( $(this).parents('tr') )
+					.remove()
+					.draw();		
+			} );
 
-				t.row( '.selected' ).remove().draw();
-					//cargos_na_tabela.push([{cargo_selecionado, aa_inicio, aa_termino}]);
-				
-			} )
-        	
+			$("#form_membro").submit(function(){
 
+				// Remover os cargos pré-existentes
+				$("#form_membro .cargos_membros").remove();
 
+				// Iterar por todas as linhas da tabela
+				for(i=0; i<t.data().length; i++){
+	
+					let linha = t.data()[i];
 
+					// Stringificar os campos
+					let cargos_em_string = JSON.stringify({
+						cargo_id: linha[0],
+						aa_inicio: linha[1], 
+						aa_termino: linha[2]});
 
+					// Adicionar o novo cargo no formulário
+					$("#form_membro").append("<input type='hidden' class='cargos_membros' name='cargos_membros[]' value='"+cargos_em_string+"'>");
+				}
+			});
 
-			// Automatically add a first row of data
-			//$('#cad_cargo').click();
 
 			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
 			$("body").find("input.telefone").inputmask('(99)9999-9999');
 
-
-			{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
+			//Atualiza os campos do endereço de acordo com o cep digitado
 			
 			//Se o pais for diferente de BRASIL, desabilita o cep e UF
 			$("#no_pais0").change(function(){
@@ -426,9 +402,7 @@
 				{
 						console.log("brasil");
 						$("#cep0, #sg_uf0").removeAttr('disabled');
-				}
-				else
-				{
+				}else{
 						$("#cep0, #sg_uf0").attr('disabled', 'disabled');
 				}
 			});
@@ -438,11 +412,9 @@
 				
 				if($("#no_pais1>option:selected").text() == " Brasil ")
 				{
-						$("#cep1, #sg_uf1").removeAttr('disabled');
-				}
-				else
-				{
-						$("#cep1, #sg_uf1").attr('disabled', 'disabled');
+					$("#cep1, #sg_uf1").removeAttr('disabled');
+				}else{
+					$("#cep1, #sg_uf1").attr('disabled', 'disabled');
 				}
 			});
 			//==========================================================
