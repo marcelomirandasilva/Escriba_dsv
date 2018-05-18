@@ -254,25 +254,36 @@
   	<script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
   	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
   	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
-
+	  
 	<script type="text/javascript">
 		var t = "";
 		@if (session('sucesso'))
-			swal({
-				title:  'Parabéns',
-				text:   ' {!! session('sucesso') !!}',
-				type:   'success'
-			});
+		swal({
+			title:  'Parabéns',
+			text:   ' {!! session('sucesso') !!}',
+			type:   'success'
+		});
 		@endif
-
+		
+		
 		var cont_telefone=1 
 		var cont_email=1;
 		var cont_dependente=1;
 		let contador_linhas_tabela = 0;
 		
 		$(document).ready(function(){
-			$.fn.dataTable.moment( 'DD/MM/YYYY' );
+			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
+			$("body").find("input.telefone").inputmask('(99)9999-9999');
 			
+			$.fn.dataTable.moment( 'DD/MM/YYYY' );
+
+			
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            PRINCIPAL                    =================================
+			//========================================================================================================
+			//========================================================================================================		
+
 			if( $('#send').on( 'click', function (e) {
 				//e.preventDefault();
 				console.log($("#ic_grau :selected").text());
@@ -303,6 +314,87 @@
 				};
 				
 			}));
+
+			//desabilita data de casamento se não for casado
+			$("select#ic_estado_civil").change(function(){
+				if($("select#ic_estado_civil>option:selected").text() == " Casado ")
+				{
+					document.getElementById("dt_casamento").disabled = false;
+				} else {
+					document.getElementById("dt_casamento").disabled = true;
+				}
+			});
+
+			//desabilita campos de acordo com o grau
+			$("select#ic_grau").change(function(){ 
+				var valor = $(this).val();
+				
+				$("#tab_cerimonias" ).show();
+				$("#tab_condecoracoes" ).show();                  
+
+				document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
+				document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
+				document.getElementById("co_cim").disabled 			= false;
+
+
+				document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
+				document.getElementById("loja_id0").disabled 		= false;
+
+				document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
+				document.getElementById("loja_id1").disabled 		= false;
+
+				document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
+				document.getElementById("loja_id2").disabled 		= false;
+
+				document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
+				document.getElementById("loja_id3").disabled 		= false;
+
+
+				if (valor == "Candidato"){
+						document.getElementById("co_cim").disabled = true;
+						$("#tab_cerimonias" ).hide();
+						$("#tab_condecoracoes" ).hide();                  
+						document.getElementById("co_cim").disabled = true;
+						
+				} else if (valor == "Aprendiz"){
+
+						$("#tab_condecoracoes" ).hide();                  
+						
+						document.getElementById("dt_cerimonia1").disabled 	= true;
+						document.getElementById("loja_id1").disabled		 	= true;
+						document.getElementById("dt_cerimonia2").disabled 	= true;
+						document.getElementById("loja_id2").disabled 		= true;
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
+
+				} else if (valor == "Companheiro"){
+
+						$("#tab_condecoracoes" ).hide();                  
+					
+						document.getElementById("dt_cerimonia2").disabled 	= true;
+						document.getElementById("loja_id2").disabled 		= true;
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
+
+				} else if (valor == "Mestre"){
+						
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
+				}
+			});
+
+
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            CARGOS                       =================================
+			//========================================================================================================
+			//========================================================================================================
 
 			//configura a tabela de cargos
 			$("#tabela_cargos").DataTable({
@@ -390,9 +482,12 @@
 				}
 			});
 
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            ENDEREÇO                     =================================
+			//========================================================================================================
+			//========================================================================================================			
 
-			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
-			$("body").find("input.telefone").inputmask('(99)9999-9999');
 
 			//Atualiza os campos do endereço de acordo com o cep digitado
 			
@@ -525,80 +620,13 @@
 				}
 			});
 
-			//desabilita data de casamento se não for casado
-			$("select#ic_estado_civil").change(function(){
-				if($("select#ic_estado_civil>option:selected").text() == " Casado ")
-				{
-					document.getElementById("dt_casamento").disabled = false;
-				} else {
-					document.getElementById("dt_casamento").disabled = true;
-				}
-			});
-
-			//desabilita campos de acordo com o grau
-			$("select#ic_grau").change(function(){ 
-				var valor = $(this).val();
-				
-				$("#tab_cerimonias" ).show();
-				$("#tab_condecoracoes" ).show();                  
-
-				document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
-				document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
-				document.getElementById("co_cim").disabled 			= false;
-
-
-				document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
-				document.getElementById("loja_id0").disabled 		= false;
-
-				document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
-				document.getElementById("loja_id1").disabled 		= false;
-
-				document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
-				document.getElementById("loja_id2").disabled 		= false;
-
-				document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
-				document.getElementById("loja_id3").disabled 		= false;
-
-
-				if (valor == "Candidato"){
-						document.getElementById("co_cim").disabled = true;
-						$("#tab_cerimonias" ).hide();
-						$("#tab_condecoracoes" ).hide();                  
-						document.getElementById("co_cim").disabled = true;
-						
-				} else if (valor == "Aprendiz"){
-
-						$("#tab_condecoracoes" ).hide();                  
-						
-						document.getElementById("dt_cerimonia1").disabled 	= true;
-						document.getElementById("loja_id1").disabled		 	= true;
-						document.getElementById("dt_cerimonia2").disabled 	= true;
-						document.getElementById("loja_id2").disabled 		= true;
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
-
-						document.getElementById("co_cim").disabled 			= false;
-
-				} else if (valor == "Companheiro"){
-
-						$("#tab_condecoracoes" ).hide();                  
-					
-						document.getElementById("dt_cerimonia2").disabled 	= true;
-						document.getElementById("loja_id2").disabled 		= true;
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
-
-						document.getElementById("co_cim").disabled 			= false;
-
-				} else if (valor == "Mestre"){
-						
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
-
-						document.getElementById("co_cim").disabled 			= false;
-				}
-			});
-
+			
+			
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            CONTATOS                     =================================
+			//========================================================================================================
+			//========================================================================================================		
 
 			// Clonar div panel_telefones
 			$(".clonar_tel").click(function(e){
@@ -633,19 +661,20 @@
 			});
 			
 			$("body").on("change", ".tipo-telefone",function(){
-
 				//console.log("mudou");
 				var itemSelecionado = $(this).val();
+				var nomeSelecionado = this.attributes["data-cod"].value;
+
+
+				console.log(nomeSelecionado);
 
 				if(itemSelecionado == 'Celular')
 				{
-						console.log("celular");
-						$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
-				}
-				else
-				{
-						console.log("outros");
-						$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
+					console.log("celular");
+					$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
+				}else{
+					console.log("outros");
+					$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
 				}
 			});
 
@@ -697,6 +726,13 @@
 
 			});
 	
+			
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            DEPENDENTE                   =================================
+			//========================================================================================================
+			//========================================================================================================		
+
 			//=================================== clone DEPENDENTE====================================================
 
 			$(".clonar_dependente").click(function(e){
@@ -760,6 +796,7 @@
 
 		});     
 
+		
 
 		//=========== AUTOCOMPLETE CERIMONIAS ===========================
 		new autoComplete({

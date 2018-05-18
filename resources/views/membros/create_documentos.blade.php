@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-md-2">
 				<label class="col-md-1 control-label" for="rg">RG</label>
-				<input id="nu_identidade" name="nu_identidade" class="form-control input-md rg"
+				<input id="nu_identidade" name="nu_identidade" class="form-control input-md {{--  rg  --}}"
 					placeholder="999.999.999-99"  
 					value="{{$membro->nu_identidade or old('nu_identidade')}}" >
 			</div>

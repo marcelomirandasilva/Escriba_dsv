@@ -64,7 +64,7 @@ class MembroController extends Controller
 
 		$cargos             = Cargo::all()->sortBy('no_cargo');
 		$cargos_ocupados    =[];
-		
+				
 		
 		//orderna os valores dos arrays
 		sort($estado_civil);
@@ -101,8 +101,8 @@ class MembroController extends Controller
 		// Validar dados do formulário
 		$this->validar($request);
 		
-		dd($request);
-		
+		//dd($request->all());
+
 		// Cria um novo membro
 		//$membro = new Membro($request->all());
 		$membro = new Membro($request->all());
@@ -130,14 +130,18 @@ class MembroController extends Controller
 		}
 			
 
+		//dd($request->all());
 		
 		foreach($request->telefones as $telefone)
 		{
+			$novo_telefone = new Telefone($telefone);
+
 			//se o telefone não estiver vazio no request, adiciona
-			if($telefone['nu_telefone'] =! "")
+			if( trim( $telefone['nu_telefone'] ) != "")
 			{
-					// Criar um novo telefone com as informações inseridas
-					$membro->telefones()->save(new Telefone($telefone));
+				// Criar um novo telefone com as informações inseridas
+				$membro->telefones()->save($novo_telefone);
+
 			}
 		}
 
@@ -205,6 +209,7 @@ class MembroController extends Controller
 		$membro = $this->membro->find($id);
 
 		//dd($membro->cargos->pivot->aa_inicio);
+		//dd($membro->telefones[0]->nu_telefone);
 
 		$enderecos          = $membro->enderecos;
 		$telefones          = $membro->telefones;
@@ -237,6 +242,7 @@ class MembroController extends Controller
 		$paises     = Pais::all()->sortBy('nome');
 		$lojas      = Loja::all()->sortBy('no_loja');
 
+		//dd($telefones[0]['nu_telefone']);
 		
 		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
