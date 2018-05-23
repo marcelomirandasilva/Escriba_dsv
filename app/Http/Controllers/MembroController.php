@@ -89,19 +89,11 @@ class MembroController extends Controller
 			]);
 
 		}
-		
-		/*if($request->ic_grau == "Candidato")
-        {
-            $request->merge([
-                'co_cim' => "0000000"
-            ]);
-        };
-		*/
 
 		// Validar dados do formulário
 		$this->validar($request);
 		
-		//dd($request->all());
+		dd($request->all());
 
 		// Cria um novo membro
 		//$membro = new Membro($request->all());

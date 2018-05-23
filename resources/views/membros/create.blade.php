@@ -736,14 +736,15 @@
 			//=================================== clone DEPENDENTE====================================================
 
 			$(".clonar_dependente").click(function(e){
+				e.preventDefault();
+				
 				//conta quantos paineis existem na tela
 				let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
 				qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
-				qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
+				//qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
 
 				cont_dependente = qtd_painel+1;
 
-				e.preventDefault();
 				$(".clone_dependente").clone()
 
 				// Adicionar a classe clone e remover a classe 
@@ -782,12 +783,31 @@
 				cont_dependente++;
 			});
 
-			// Botão de excluir telefone
+			// Botão de excluir dependente
+			$("body").on("click", "button.excluir_dependente", function(e){ 
+				var self = this;
+				 e.preventDefault();
 
-			$("body").on("click", "button.excluir_dependente", function(){ 
+            swal({
+					title: "Atenção!",
+					text: "Você realmente deseja excluir o(a) dependente ?",
+					type: "warning",
+					showCancelButton: true,
 
-				$(this).parent().parent().parent().remove(); 
-			});
+					confirmButtonClass: "btn-cor-perigo modal-content",
+					confirmButtonText: "Sim, exclua!",
+					cancelButtonClass: "btn-cor-padrao modal-content",
+					cancelButtonText: "Cancelar",
+					confirmButtonClass: 'btn-cor-perigo modal-content',
+				 }).then(result => {
+					if (result.value) {
+						$(self).parent().parent().parent().addClass('animated fadeOut').fadeOut(985).queue(function() { $(self).parent().parent().parent().remove(); })
+						
+						
+						
+					}
+				})
+ 			});
 
 			$("#form_membro").submit(function(e){
 				//e.preventDefault();

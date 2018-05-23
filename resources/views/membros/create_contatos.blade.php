@@ -10,46 +10,46 @@
 				{{-- bloco de telefone --}}
 				<div class="item form-group">
 					@for ($i = 0; $i < 6; $i++)
-						
-						{{--  TIPO DE TELEFONE  --}}
-						<div class="col-md-5 panel_sem_margem" style="top: 4px;">
-							<select id="telefones[{{ $i }}][ic_telefone]"  name="telefones[{{ $i }}][ic_telefone]"  
-								data-cod="{{ $i }}"
-								class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
+						<div class="row" style="padding-top: 1px; padding-bottom: 1px;">
+							{{--  TIPO DE TELEFONE  --}}
+							<div class="col-md-5" style="top: 4px;">
+								<select id="telefones[{{ $i }}][ic_telefone]"  name="telefones[{{ $i }}][ic_telefone]"  
+									data-cod="{{ $i }}"
+									class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
+									<option value=""  selected style="color: #ccc;"> --- </option>
 
-								@if (isset($edita)) 
-									@if(isset($membro->telefones[$i]['ic_telefone']))
+									@if (isset($edita)) 
+										@if(isset($membro->telefones[$i]['ic_telefone']))
+											@foreach($tipo_telefone as $tipo)
+												@if ( $membro->telefones[$i]['ic_telefone'] == $tipo)
+													<option value="{{$tipo}}" selected="selected">{{$tipo}}</option>
+												@else
+													<option value="{{$tipo}}">{{$tipo}}</option>  
+												@endif
+											@endforeach
+										@endif
+									@else
 										@foreach($tipo_telefone as $tipo)
-											@if ( $membro->telefones[$i]['ic_telefone'] == $tipo)
-												<option value="{{$tipo}}" selected="selected">{{$tipo}}</option>
-											@else
-												<option value="{{$tipo}}">{{$tipo}}</option>  
-											@endif
+											<option value="{{$tipo}}"> {{$tipo}} </option>  
 										@endforeach
 									@endif
-								@else
-									@foreach($tipo_telefone as $tipo)
-										<option value="{{$tipo}}"> {{$tipo}} </option>  
-									@endforeach
-								@endif
 
 
-							</select>
-						</div>
-					
-						{{-- NUMERO DO TELEFONE  --}}
-						<div class="col-md-6" style="top: 4px;">
-							<input id="telefones[{{ $i }}][nu_telefone]"   name="telefones[{{ $i }}][nu_telefone]"     
-								class="form-control input-md telefone" placeholder="(99) 9999-9999" type="tel" 
-								@if (isset($edita))
-									value="{{  $telefones[$i]['nu_telefone'] or null  }}" 
-								@else
-									value="{{  old('telefones[$i][nu_telefone]')  }}" 
-								@endif
-							>
-						</div>
+								</select>
+							</div>
 						
+							{{-- NUMERO DO TELEFONE  --}}
+							<div class="col-md-6" style="top: 4px;">
+								<input id="telefones[{{ $i }}][nu_telefone]"   name="telefones[{{ $i }}][nu_telefone]"     
+									class="form-control input-md telefone" placeholder="(99) 9999-9999" type="tel" 
+									@if (isset($edita))
+										value="{{  $telefones[$i]['nu_telefone'] or null  }}" 
+									@else
+										value="{{  old('telefones[$i][nu_telefone]')  }}" 
+									@endif
+								>
+							</div>
+						</div>	
 					@endfor
 			</div>
 			{{-- FIM bloco de telefone --}}
