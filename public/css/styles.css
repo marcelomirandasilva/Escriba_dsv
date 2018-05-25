@@ -333,3 +333,90 @@ body .container.body .right_col {
     text-align: start;
     direction: initial;
 }
+
+
+.btn-entrar {
+	float:none !important; 
+	margin-left: 0px !important;
+}
+
+.btn-circulo {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571428;
+    border-radius: 15px;
+    border-width: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+.btn-pn-circulo {
+    width: 19px;
+    height: 19px;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 10px;
+    line-height: 1,3;
+    border-radius: 11px;
+    border-width: 0;
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+.btn-lg-circulo {
+    width: 40px;
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 22px;
+    line-height: 1.06;
+    border-radius: 20px;
+    border-width: 0;
+    box-shadow: 2px 7px 15px rgba(0,0,0,.5);
+}
+
+.btn-cor-padrao {
+    background-image: linear-gradient(to bottom, #8241f9, #4e277b);
+    border: none;
+    color: #fff !important;
+}
+
+.btn-cor-padrao:active {
+    background-image: linear-gradient(to top, #8241f9, #7038cd);
+}
+
+.btn-cor-padrao-hover:hover {
+    background-image: linear-gradient(to bottom, #8241f9, #4e277b);
+    border-color: #150a27 ;
+    color: #fff !important;
+}
+
+.btn-cor-padrao-hover:active {
+    background-image: linear-gradient(to top, #8241f9, #7038cd);
+}
+
+.btn-cor-perigo {
+    background-image: linear-gradient(to bottom, #f54a44, #a3190f);
+    border: none;
+    color: #fff !important;
+}
+
+.btn-cor-perigo:active {
+    background-image: linear-gradient(to top, #f75a36, #db200f);
+}
+
+.btn-cor-neutra {
+    background-image: linear-gradient(to bottom, #6b6b6b, #bdb9bd);
+    border-color: #9e1000;
+    color: #fff !important;
+}
+
+.btn-cor-neutra:active {
+    background-image: linear-gradient(to top, #949294, #cccccc);
+}
+
+.cor-padrao {
+    background-image: linear-gradient(to bottom, #8241f9, #4e277b);
+    color: #3D276B;
+}
+

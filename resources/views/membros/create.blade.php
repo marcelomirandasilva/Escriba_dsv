@@ -3,13 +3,13 @@
 @push('stylesheets')
 	<!-- Example -->
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+
 
 @endpush
 
 @section('conteudo')
 	<div class="right_col" role="main">
-		<!---------------------- Mostra os erros de validação ------------------------------>
+		{{--  <!---------------------- Mostra os erros de validação ------------------------------>  --}}
 		@if( count($errors) > 0 )
 				<div class="alert alert-danger alert-dismissible" role="alert">
 					@foreach($errors->all() as $erro)
@@ -17,133 +17,72 @@
 					@endforeach
 				</div>
 		@endif
-		<!------------------------------------------------------------------------------------>
-			
+		{{--  <!------------------------------------------------------------------------------------>  --}}
+		
 		<div class="clearfix"></div>
 
-		<div class="row caixa">
-			<div class="col-md-12">
-				<div class="x_panel modal-content">
-					<div class="x_title">
-						<h2> {{ $titulo }} </h2>
-						<div class="clearfix"></div>
-					</div>
-					<!-- conteudo aqui-->
-					<div class="col-md-12 ">
-						<div class="x_panel">
-							<div class="x_content ">
-								<div class="" role="tabpanel" data-example-id="togglable-tabs">
-									@if( isset($edita))
-										<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
-												{!! method_field('PUT') !!}
-									@else
-										<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
-									@endif
+		<div class="x_panel modal-content ">
 
-										{{ csrf_field() }}
-										<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
-												
-											<li role="presentation" class="active">
-												<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_membro">   Principal   </a> 
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab" class="tab_membro">   Documentos  </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab" class="tab_membro">   Endereços   </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab" class="tab_membro">   Contatos    </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab" class="tab_membro">   Dependentes </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab" class="tab_membro">   Cerimonias  </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content7" role="tab" id="tab_cargos" data-toggle="tab" class="tab_membro">   Cargos  </a>
-											</li>
+			<div class="row caixa">
+				<div class="x_title">
+					<h2> {{ $titulo }} </h2>
+					<div class="clearfix"></div>
+				</div>
+				
+				{{--  conteudo aqui  --}}
+				@if( isset($edita))
+					<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
+							{!! method_field('PUT') !!}
+				@else
+					<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
+				@endif
+				
+				<div class="x_content ">
 
-											<li role="presentation" class="">      
-																		<a href="#tab_content8" role="tab" id="tab_condecoracoes" data-toggle="tab" class="tab_membro">   Condecorações  </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
-											</li>
-										</ul>
-
-										<div id="myTabContent" class="tab-content">
-											<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
-												@include('membros/create_principal')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
-												@include('membros/create_documentos')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-												@include('membros/create_endereco')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
-												@include('membros/create_contatos')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-												@if (isset($edita)) 
-													@include('membros/edit_dependentes')
-												@else
-													@include('membros/create_dependentes')
-												@endif
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
-												@include('membros/create_cerimonias')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
-												@if (isset($edita)) 
-													@include('membros/edit_cargos')
-												@else
-													@include('membros/create_cargos')
-												@endif
-											</div>
+					{{ csrf_field() }}
+					@include('membros/create_principal')
+					
+					@include('membros/create_documentos')
+					
+					@include('membros/create_endereco')
+					
+					@include('membros/create_contatos')
+			
+					@if (isset($edita)) 
+						@include('membros/edit_dependentes')
+					@else
+						@include('membros/create_dependentes')
+					@endif
+					
+					@include('membros/create_cerimonias')
+					
+					@if (isset($edita)) 
+						@include('membros/edit_cargos')
+					@else
+						@include('membros/create_cargos')
+					@endif
+					
+					@include('membros/create_condecoracoes')
+					
+					@include('membros/create_anotacoes')
 							
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
-												@include('membros/create_condecoracoes')
-											</div>
-							
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
-												@include('membros/create_anotacoes')
-											</div>
-										</div>
-										
-										<!-- botoes --> 
-										{{-- <div class="ln_solid"></div> --}}
-										<div class="form-group">
-											<div class="col-md-offset-8">
-												<a href="{{ url("membros") }}"  class="btn btn-danger  pull-right">  Cancela     </a>
-												<button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
-											</div>
-										</div>
-										<!-- fim botoes --> 
-									</form>
-								</div> 
-							</div>
-						</div>
+				</div>
+
+				{{--  botoes  --}}
+				<div class="ln_solid"></div> 
+				<div class="form-group">
+					<div class="col-md-offset-8">
+						<a href="{{ url("membros") }}"  class="btn btn-danger  pull-right">  Cancela     </a>
+						<button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
 					</div>
 				</div>
-			</div>
+				{{--  fim botoes --}}
+
+			</form>
 		</div>
 	</div>
+</div>
+
 
 	<!-- Modal ---------------------------------------------------------------------------------------------->
 	<div class="modal fade" id="cad_loja" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
@@ -737,19 +676,19 @@
 
 			$(".clonar_dependente").click(function(e){
 				e.preventDefault();
-				
+
 				//conta quantos paineis existem na tela
 				let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
-				qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
+				//qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
 				//qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
 
 				cont_dependente = qtd_painel+1;
 
-				$(".clone_dependente").clone()
+				$(".painel_dependente").clone()
 
 				// Adicionar a classe clone e remover a classe 
 				.addClass("dependente_clonado x_panel")
-				.removeClass("clone_dependente")
+				.removeClass("painel_dependente hide")
 
 				// Mostrar o botão excluir
 				.find("button.excluir_dependente").css("display","block")

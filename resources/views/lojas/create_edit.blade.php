@@ -3,7 +3,6 @@
 @push('stylesheets')
 	<!-- Example -->
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
 @endpush
 

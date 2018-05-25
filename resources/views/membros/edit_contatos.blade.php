@@ -1,19 +1,23 @@
-<div class="x_panel modal-content panel_sem_margem" >
-   <div class="clearfix"></div>
-   <div class="col-md-6 ">
+<div class="x_panel modal-content"  id="contatos">
+   <div class="x_title">
+		<h2> Contatos </h2>
+
+		<ul class="nav navbar-right panel_toolbox">
+			<li>
+				<a class="collapse-link" data-toggle="tooltip" title="Reduzir / Expandir"><i class="fa btn btn-pn-circulo btn-cor-padrao fa-chevron-down"></i></a>
+			<li>
+		</ul>
 		<div class="clearfix"></div>
-		<div class="x_title" style="margin-bottom: 15px;"> Telefone <div class="clearfix"></div> </div>
+	</div>
 
-		<button  name="submit" value="clonar_tel" data-toggle="tooltip" title="Adiciona um telefone"
-			class="btn-circulo btn btn-primary btn-md pull-right  clonar_tel ">
-			<span class="fa fa-plus">  </span>
-		</button>   
+	<div class="x_content" style="display: none">
 
-		<div class="col-md-11">
-			
+		<div class="x_title" style="margin-bottom: 15px;"> Telefone  </div>
+		<div class="clearfix"></div> 
+
 			@foreach ($membro->telefones as $key =>  $telefone )
 
-				<div class="x_panel panel_telefone1 panel_sem_margem ">            
+				<div class="x_panel panel_telefone1 ">            
 					{{-- bloco de telefone --}}
 					<div class="item form-group">
 					{{--  TIPO DE TELEFONE  --}}
@@ -113,6 +117,7 @@
 		</div>
    </div>
 </div>
+
 
 
 
