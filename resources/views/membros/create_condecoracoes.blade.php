@@ -11,7 +11,7 @@
 		<div class="clearfix"></div>
 	</div>
 	
-	<div class="x_content" style="display: none">
+	<div class="x_content" {{-- style="display: none --}}">
 
 		<div class="item form-group">
 			<div class="row">

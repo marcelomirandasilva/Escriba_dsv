@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "animate.css": "^3.5.2",
-    "sweetalert2": "^7.20.7"
+    "sweetalert2": "^7.20.7",
+    "vue": "^2.5.16",
+    "vue-resource": "^1.5.1"
   }
 }

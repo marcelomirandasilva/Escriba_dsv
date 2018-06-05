@@ -18,7 +18,7 @@
 		<div class="clearfix"></div>
 	</div>
 	
-	<div class="x_content" style="display: none">
+	<div class="x_content" {{-- style="display: none" --}}>
 
 		<div class="col-md-12"  >
 

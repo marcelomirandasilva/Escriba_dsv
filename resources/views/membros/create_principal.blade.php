@@ -16,7 +16,7 @@
 				<div class="col-md-5 ">
 					<label class="control-label col-md-1" for="no_membro">Nome*</label>
 					<input  id="no_membro" class="form-control col-md-5" name="no_membro" placeholder="Nome completo do Irmão" 
-					required="required" type="text" autofocus value="{{$membro->no_membro or old('no_membro')}}" >
+					required="required" type="text" autofocus value="{{$membro->no_membro or old('no_membro')}}" autocomplete="new-password" >
 				</div>
 
 				<div class="col-md-2">
@@ -98,13 +98,13 @@
 				<div class="col-md-5 ">
 					<label class="control-label col-md-12" for="no_pai">Pai</label>
 					<input  id="no_pai" class="form-control col-md-5" name="no_pai" placeholder="Nome do Pai do Irmão" type="text" 
-					value="{{$membro->no_pai or old('no_pai')}}" >
+					value="{{$membro->no_pai or old('no_pai')}}" autocomplete="new-password">
 				</div>
 
 				<div class="col-md-5 ">
 					<label class="control-label col-md-1" for="no_pai">Mãe</label>
 					<input  id="no_mae" class="form-control col-md-5" name="no_mae" placeholder="Nome da Mãe do Irmão" type="text"
-					value="{{$membro->no_mae or old('no_mae')}}" >
+					value="{{$membro->no_mae or old('no_mae')}}" autocomplete="new-password">
 				</div>
 			</div>
 		</div>

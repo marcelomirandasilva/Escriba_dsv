@@ -31,10 +31,10 @@
 				
 				{{--  conteudo aqui  --}}
 				@if( isset($edita))
-					<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
+					<form id="form_membro" method="post" autocomplete="off" action="{{ url("membros/$membro->id") }}"  >
 							{!! method_field('PUT') !!}
 				@else
-					<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
+					<form id="form_membro" method="post" autocomplete="off" action="{{ route('membros.store') }}"  >
 				@endif
 				
 				<div class="x_content ">
@@ -211,6 +211,9 @@
 		let contador_linhas_tabela = 0;
 		
 		$(document).ready(function(){
+
+			//$("input").attr("autocomplete", "new-password"); 
+
 			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
 			$("body").find("input.telefone").inputmask('(99)9999-9999');
 			

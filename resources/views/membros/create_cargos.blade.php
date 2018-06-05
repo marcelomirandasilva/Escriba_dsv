@@ -10,7 +10,7 @@
 		<div class="clearfix"></div>
 	</div>
 	
-	<div class="x_content" style="display: none">
+	<div class="x_content" {{-- style="display: none --}}">
 
 		<div class="item form-group">
 			<label class="control-label col-md-1 " for="no_cargo"> Cargo </label>

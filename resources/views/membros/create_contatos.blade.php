@@ -10,7 +10,7 @@
 		<div class="clearfix"></div>
 	</div>
 
-	<div class="x_content" style="display: none">
+	<div class="x_content" >
 		<div class="col-md-6">
 			<div class="x_title" style="margin-bottom: 15px;"> Telefone  </div>
 			<div class="clearfix"></div> 
@@ -54,7 +54,7 @@
 								@else
 									value="{{  old('telefones[$i][nu_telefone]')  }}" 
 								@endif
-							>
+							autocomplete="new-password" >
 						</div>
 					</div>	
 				@endfor
@@ -75,8 +75,13 @@
 					<div class="form-group">
 						@for ($j = 0; $j < 6; $j++)					
 							<div class="col-md-11" style="top: 4px;">
-								<input id="emails[0][email]"   name="emails[0][email]"     data-cip-id="emails[0][email]"  
-										class="form-control input-md " placeholder="email@servidor.com.br"  type="email" >
+								<input id="emails[{{$j}}][email]"   
+								class="form-control input-md" 
+										name="emails[{{$j}}][email]"     
+										data-cip-id="emails[{{$j}}][email]"  
+										placeholder="email@servidor.com.br"  
+										type="email" 
+										autocomplete="new-password">
 							</div>
 						@endfor
 
