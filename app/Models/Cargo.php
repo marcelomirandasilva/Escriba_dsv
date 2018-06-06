@@ -13,7 +13,8 @@ class Cargo extends Model
 
 	protected $fillable =[
 
-     'no_cargo',
+		'id',
+     	'no_cargo',
 
 	];
 

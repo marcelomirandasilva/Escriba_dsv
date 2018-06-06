@@ -1,13 +1,7 @@
 <div class="x_panel modal-content"  id="dependentes">
-   <div class="x_title">
-		<h2> Depedentes </h2>
-
-		<ul class="nav navbar-right panel_toolbox">
-			<li>
-				<a class="collapse-link" data-toggle="tooltip" title="Reduzir / Expandir">
-					<i class="fa btn btn-pn-circulo btn-cor-padrao fa-chevron-down"></i>
-				</a>
-			<li>
+ 	<div class="x_content" {{-- style="display: none" --}}>
+		 <ul class="nav navbar-right panel_toolbox">
+			
 			<li>
 				<a  name="submit" value="clonar_dependente" data-toggle="tooltip"title="Adiciona um dependente">
 					<i class="fa fa-plus btn btn-pn-circulo btn-cor-padrao  clonar_dependente"></i>
@@ -16,12 +10,8 @@
 
 		</ul>
 		<div class="clearfix"></div>
-	</div>
-	
-	<div class="x_content" {{-- style="display: none" --}}>
 
 		<div class="col-md-12"  >
-
 
 			<div class="col-md-12">
 				<div class="painel_dependente hide"> 

@@ -92,45 +92,33 @@ class MembroController extends Controller
 
 		// Validar dados do formulário
 		$this->validar($request);
-		
+
 		//dd($request->all());
 
 		// Cria um novo membro
-		//$membro = new Membro($request->all());
 		$membro = new Membro($request->all());
-		
+	
 		// Verificar se está aposentado
 		$membro->ic_aposentado = $request->aposentado ? 1 : 0;
 
 		// Salvar no banco para obter o ID
 		$membro->save();
 
+		/* ======== ENDEREÇO ==========*/
 		foreach($request->enderecos as $endereco)
 		{
 			// Criar um novo endereço com as informações inseridas
 			$membro->enderecos()->save(new Endereco($endereco));
 		}
-		
-		//cria os cargos
-		if(isset($request->cargos_membros))
-		{
-			foreach($request->cargos_membros as $key => $cargo)
-			{
-				$cg = json_decode($cargo) ;
-				$membro->cargos()->attach($cg->cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
-			}
-		}
-			
 
-		//dd($request->all());
-		
+
+		/* ======== TELEFONE ==========*/
 		foreach($request->telefones as $telefone)
 		{
-			$novo_telefone = new Telefone($telefone);
-
 			//se o telefone não estiver vazio no request, adiciona
 			if( trim( $telefone['nu_telefone'] ) != "")
 			{
+				$novo_telefone = new Telefone($telefone);
 				// Criar um novo telefone com as informações inseridas
 				$membro->telefones()->save($novo_telefone);
 
@@ -138,19 +126,30 @@ class MembroController extends Controller
 		}
 
 		
+		/* ======== EMAIL ==========*/
 		foreach($request->emails as $email)
 		{
-			// Criar um novo email com as informações inseridas
-			$membro->emails()->save(new Email($email));
+			//se o email não estiver vazio no request, adiciona
+			if( trim($email['email']) != "")
+			{
+				$novo_email = new Email($email);
+				// Criar um novo email com as informações inseridas
+				$membro->emails()->save($novo_email);
+			}
 		}
 
+		/* ======== DEPENDENTES ==========*/
 		foreach($request->dependentes as $dependente)
 		{
-			// Criar um novo dependente com as informações inseridas
-			$membro->dependentes()->save(new Dependente($dependente));
+			//se o email não estiver vazio no request, adiciona
+			if( trim($dependente['no_dependente']) != "")
+			{
+				// Criar um novo dependente com as informações inseridas
+				$membro->dependentes()->save(new Dependente($dependente));
+			}
 		}
 
-	
+		/* ======== CERIMONIAS ==========*/
 		//deleta as cerimonias para serem inseridas as quem vem do formulário
 		$cerimonias = cerimonia::where("membro_id", $membro->id);
 		$cerimonias->delete();
@@ -167,6 +166,22 @@ class MembroController extends Controller
 			}
 		}
 
+		/* ======== CARGOS ==========*/
+		if(isset($request->cargos_membros))
+		{
+			foreach($request->cargos_membros as $key => $cargo)
+			{
+				$cg = json_decode($cargo);
+				
+				$acha_cargo = DB::table('cargos')->where('no_cargo', trim($cg->no_cargo))->get();
+				
+				//dd($acha_cargo[0]->id);
+
+				$membro->cargos()->attach($acha_cargo[0]->id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
+			}	
+		}	
+
+		/* ======== CONDECORAÇÕES ==========*/
 		//deleta as condecoracaos para serem inseridas as quem vem do formulário
 		$condecoracoes = Condecoracao::where("membro_id", $membro->id);
 		$condecoracoes->delete();
@@ -182,10 +197,8 @@ class MembroController extends Controller
 			}
 		}
 
-		
 
 		if ($membro) {
-
 			return redirect('/membros/create')->with('sucesso', ' O membro '
 																		.strtoupper($request->no_membro)    .' CIM Nº ' 
 																		.$request->co_cim
@@ -202,6 +215,7 @@ class MembroController extends Controller
 
 		//dd($membro->cargos->pivot->aa_inicio);
 		//dd($membro->telefones[0]->nu_telefone);
+		//dd($membro->telefones);
 
 		$enderecos          = $membro->enderecos;
 		$telefones          = $membro->telefones;
@@ -400,26 +414,24 @@ class MembroController extends Controller
 		/* OCUPAÇÂO DE CARGOS */
 		/* ==================================================================================== */
 		//apaga todas as ocupações de cargos do membro
-		$membro->ocupacao_cargos()->delete();
+		$membro->cargos()->detach();
 
 		// Criar novas ocupacao_cargos com as informações enviadas
-		//dd($request->ocupacao_cargos[0]);
-		foreach($request->ocupacao_cargos as $ocupacao)
+		if(isset($request->cargos_membros))
 		{
-			$explodindo = json_decode( $ocupacao, true);
-			//dd($a['cargo_id']);
-			
-			$nova_ocupacao = new Ocupacao_cargo(
-					[
-						'cargo_id'      => $explodindo['cargo_id'],
-						'aa_inicio'     => $explodindo['aa_inicio'],
-						'aa_termino'    => $explodindo['aa_termino']
-					]
-			);
+			foreach($request->cargos_membros as $key => $cargo)
+			{
+				$cg = json_decode($cargo);
+				
+				$acha_cargo = DB::table('cargos')->where('no_cargo', trim($cg->no_cargo))->get();
+				
+				//dd($acha_cargo[0]->id);
 
-			$membro->ocupacao_cargos()->save($nova_ocupacao);
+				$membro->cargos()->attach($acha_cargo[0]->id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
+			}	
 		}
-
+		
+		
 		if ($membro /*and $cerimonia*/) {
 
 			return redirect('/membros')->with('sucesso', ' O membro '

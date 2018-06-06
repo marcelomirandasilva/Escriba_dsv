@@ -1,15 +1,5 @@
 <div class="x_panel modal-content"  id="contatos">
-   <div class="x_title">
-		<h2> Contatos </h2>
-
-		<ul class="nav navbar-right panel_toolbox">
-			<li>
-				<a class="collapse-link" data-toggle="tooltip" title="Reduzir / Expandir"><i class="fa btn btn-pn-circulo btn-cor-padrao fa-chevron-down"></i></a>
-			<li>
-		</ul>
-		<div class="clearfix"></div>
-	</div>
-
+  
 	<div class="x_content" >
 		<div class="col-md-6">
 			<div class="x_title" style="margin-bottom: 15px;"> Telefone  </div>
@@ -35,6 +25,7 @@
 											@endif
 										@endforeach
 									@endif
+
 								@else
 									@foreach($tipo_telefone as $tipo)
 										<option value="{{$tipo}}"> {{$tipo}} </option>  
@@ -76,12 +67,13 @@
 						@for ($j = 0; $j < 6; $j++)					
 							<div class="col-md-11" style="top: 4px;">
 								<input id="emails[{{$j}}][email]"   
-								class="form-control input-md" 
-										name="emails[{{$j}}][email]"     
-										data-cip-id="emails[{{$j}}][email]"  
-										placeholder="email@servidor.com.br"  
-										type="email" 
-										autocomplete="new-password">
+									class="form-control input-md" name="emails[{{$j}}][email]" data-cip-id="emails[{{$j}}][email]" placeholder="email@servidor.com.br" type="email" autocomplete="new-password"
+									@if (isset($edita))
+										value="{{  $emails[$j]['email'] or null  }}" 
+									@else
+										value="{{  old('emails[$j][email]')  }}" 
+									@endif
+								>
 							</div>
 						@endfor
 

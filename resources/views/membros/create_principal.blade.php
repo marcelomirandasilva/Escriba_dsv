@@ -1,14 +1,4 @@
 <div class="x_panel modal-content"  id="principal">
-   <div class="x_title">
-		<h2> Principal </h2>
-
-		<ul class="nav navbar-right panel_toolbox">
-			<li>
-				<a class="collapse-link" data-toggle="tooltip" title="Reduzir / Expandir"><i class="fa btn btn-pn-circulo btn-cor-padrao fa-chevron-down"></i></a>
-			<li>
-		</ul>
-		<div class="clearfix"></div>
-	</div>
 	<div class="x_content">
 		<div class="item form-group">
 		

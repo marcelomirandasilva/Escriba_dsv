@@ -40,31 +40,90 @@
 				<div class="x_content ">
 
 					{{ csrf_field() }}
-					@include('membros/create_principal')
-					
-					@include('membros/create_documentos')
-					
-					@include('membros/create_endereco')
-					
-					@include('membros/create_contatos')
-			
-					@if (isset($edita)) 
-						@include('membros/edit_dependentes')
-					@else
-						@include('membros/create_dependentes')
-					@endif
-					
-					@include('membros/create_cerimonias')
-					
-					@if (isset($edita)) 
-						@include('membros/edit_cargos')
-					@else
-						@include('membros/create_cargos')
-					@endif
-					
-					@include('membros/create_condecoracoes')
-					
-					@include('membros/create_anotacoes')
+					<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
+												
+						<li role="presentation" class="active">
+							<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_membro">   Principal   </a> 
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab" class="tab_membro">   Documentos  </a>
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab" class="tab_membro">   Endereços   </a>
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab" class="tab_membro">   Contatos    </a>
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab" class="tab_membro">   Dependentes </a>
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab" class="tab_membro">   Cerimonias  </a>
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content7" role="tab" id="tab_cargos" data-toggle="tab" class="tab_membro">   Cargos  </a>
+						</li>
+
+						<li role="presentation" class="">      
+													<a href="#tab_content8" role="tab" id="tab_condecoracoes" data-toggle="tab" class="tab_membro">   Condecorações  </a>
+						</li>
+						
+						<li role="presentation" class="">      
+							<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
+						</li>
+					</ul>
+
+					<div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
+							@include('membros/create_principal')
+						</div>
+
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
+							@include('membros/create_documentos')
+						</div>
+
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
+							@include('membros/create_endereco')
+						</div>
+
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
+							@include('membros/create_contatos')
+						</div>
+
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
+							@if (isset($edita)) 
+								@include('membros/edit_dependentes')
+							@else
+								@include('membros/create_dependentes')
+							@endif
+						</div>
+
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
+							@include('membros/create_cerimonias')
+						</div>
+
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
+							@if (isset($edita)) 
+								@include('membros/edit_cargos')
+							@else
+								@include('membros/create_cargos')
+							@endif
+						</div>
+		
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
+							@include('membros/create_condecoracoes')
+						</div>
+		
+						<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
+							@include('membros/create_anotacoes')
+						</div>
+					</div>
 							
 				</div>
 
@@ -209,6 +268,8 @@
 		var cont_email=1;
 		var cont_dependente=1;
 		let contador_linhas_tabela = 0;
+		//conta quantos paineis existem na tela
+		let 	qtd_painel = 0;
 		
 		$(document).ready(function(){
 
@@ -415,7 +476,8 @@
 
 					// Stringificar os campos
 					let cargos_em_string = JSON.stringify({
-						cargo_id: linha[0],
+						//cargo_id: linha[0],
+						no_cargo: linha[0],
 						aa_inicio: linha[1], 
 						aa_termino: linha[2]});
 
@@ -679,9 +741,6 @@
 
 			$(".clonar_dependente").click(function(e){
 				e.preventDefault();
-
-				//conta quantos paineis existem na tela
-				let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
 				//qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
 				//qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
 
@@ -722,7 +781,7 @@
 						.val("");
 				
 				// Incrementar o contador de dependentes
-				cont_dependente++;
+				qtd_painel++;
 			});
 
 			// Botão de excluir dependente
