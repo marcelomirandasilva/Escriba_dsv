@@ -65,7 +65,18 @@
 							<td> {{$cargo->no_cargo}} </td>
 							<td> {{$cargo->pivot->aa_inicio}} </td>
 							<td> {{$cargo->pivot->aa_termino}} </td>
-							<td> 444 </td>
+							<td> 
+								<a class="btn btn-danger  btn-xs action btn_tb_cargo_remove botao_acao" data-id={{$loop->index}} 
+											data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
+											<i class="glyphicon glyphicon-remove"></i>
+								</a>
+
+								{{--  <a class="btn btn-warning  btn-xs action btn_tb_cargo_edita botao_acao" data-id={{$loop->index}} 
+											data-toggle="tooltip" data-placement="bottom" title="Edita esse Cargo">  
+											<i class="glyphicon glyphicon-pencil"></i>
+								</a>  --}}
+								
+							</td>
 							{{--  <td> {{ $cargo->no_cargo  }}  </td>
 
 							@if( $cargo->aa_inicio <> '0000-00-00')

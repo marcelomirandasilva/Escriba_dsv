@@ -32,10 +32,45 @@
 					<label class="control-label col-md-1" for="co_cim">CIM*</label>
 					<input   id="co_cim" class="form-control col-md-2 cim" placeholder="999.999" required="required" min="1" max="9999999" name="co_cim"  data-inputmask=" 'alias':'numeric','radixpoint':',','groupSeparator': '.','autoGroup':true " style="text-align: right;" value="{{$membro->co_cim or old('co_cim')}}" >
 				</div>
-
+{{--  
 				<div class="col-md-1 col-md-offset-1">
-					<img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:120px; position:absolute; height: 150px; float: right; border-radius: 50%; margin-right: 25px; "> 
+					<img src="/uploads/im_membros/{{ Auth::user()->im_membro }}" 
+					style="width:120px; position:absolute; height: 150px; float: right; border-radius: 50%; margin-right: 25px; "> 
 				</div>
+  --}}
+
+				<div class="fileinput fileinput-new text-center foto col-md-3" data-provides="fileinput">
+
+					<div class="fileinput-new thumbnail img-circle">
+						@if($membro->im_membro)
+							<img src="{{ $membro->im_membro }}"/>
+						@else
+							<img src=" {{ asset ('images/default.jpg') }} " alt="...">
+						@endif
+					</div>
+					
+					<input name="im_membro" type="text" value="" style="display:none;" />
+					<div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
+					
+					<div>
+						<span class="btn btn-round btn-dourado btn-file botoes-acao">
+							<span class="fileinput-new botoes-acao">		
+								<i class="fa fa-times"></i>	ADICIONAR 	
+							</span>
+							<span class="fileinput-exists botoes-acao ">	
+								<i class="fa fa-times"></i>	ALTERAR		
+							</span>
+							<input name="im_membro1" type="file" value=" {{ $membro->im_membro  }} "/>
+							
+						</span>
+						<br/>
+						<span class="btn btn-danger btn-round fileinput-exists botoes-acao" data-dismiss="fileinput">
+							<i class="fa fa-times"></i> REMOVER 
+						</span>
+					</div>
+
+				</div>
+
 			</div>
 		</div>
 			

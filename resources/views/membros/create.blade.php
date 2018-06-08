@@ -93,7 +93,11 @@
 						</div>
 
 						<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
-							@include('membros/create_contatos')
+							@if (isset($edita)) 
+								@include('membros/create_contatos')
+							@else
+								@include('membros/create_contatos')
+							@endif
 						</div>
 
 						<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
@@ -447,7 +451,7 @@
 						$("#no_cargo :selected").text(),
 						$("#aa_inicio").val(),
 						$("#aa_termino").val(),
-						`<a class="btn btn-warning btn-xs action btn_tb_cargo_remove" data-id="${contador_linhas_tabela}" 
+						`<a class="btn btn-danger  btn-xs action btn_tb_cargo_remove botao_acao"  data-id="${contador_linhas_tabela}" 
 											data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
 											<i class="glyphicon glyphicon-remove"></i>
 						</a>`
@@ -459,10 +463,42 @@
 			
 			//remove cargos da tabela
 			$('#tabela_cargos').on('click', '.btn_tb_cargo_remove', function () {
-				t.row( $(this).parents('tr') )
+				console.log("btn_tb_cargo_remove");
+				$('#tabela_cargos').DataTable().row( $(this).parents('tr') )
 					.remove()
 					.draw();		
 			} );
+
+			//edita cargos da tabela
+			$('#tabela_cargos').on('click', '.btn_tb_cargo_edita', function () {
+
+				tabela = $('#tabela_cargos').DataTable();
+				
+				var cargo_tabela  =  tabela.cell($(this).parents('tr'),0).data();
+				var inicio_tabela =  tabela.cell($(this).parents('tr'),1).data();
+				var termino_tabela 	=  tabela.cell($(this).parents('tr'),2).data();
+				
+				console.log(cargo_tabela);
+
+				var dropdownlistbox = document.getElementById("no_cargo")
+				for(var x=0;x < dropdownlistbox.length -1 ; x++)
+				{
+					if(cargo_tabela == dropdownlistbox.options[x].text)
+					{
+						dropdownlistbox.selectedIndex = x;
+					}
+				}
+
+				document.getElementById("aa_inicio").value 	= inicio_tabela;
+				document.getElementById("aa_termino").value 	= termino_tabela;
+
+				
+				$('#tabela_cargos').DataTable().row( $(this).parents('tr') )
+					.remove()
+					.draw();		
+			} );
+			
+
 
 			$("#form_membro").submit(function(){
 

@@ -31,11 +31,7 @@
         <link href="{{ asset("sweetalert2/dist/sweetalert2.min.css") }}"    rel="stylesheet" >
 
         <!-- jasny (avatar) -->
-        {{-- <link href="{{ asset("jasny/css/jasny-bootstrap.min.css") }}"       rel="stylesheet" media="screen"> --}}
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        
-
+        <link href="{{ asset("jasny/css/jasny-bootstrap.min.css") }}"       rel="stylesheet" media="screen"> 
 
         <!-- Select2 -->
      {{--    <link rel="stylesheet" href="{{ asset("select2/css/select2.css") }}">
@@ -90,7 +86,9 @@
         <script src="{{ asset("inputmask/inputmask.date.extensions.js") }}">    </script>
         <script src="{{ asset("inputmask/inputmask.phone.extensions.js") }}">   </script>
         <script src="{{ asset("inputmask/jquery.inputmask.js") }}">             </script>
-        <script src="{{ asset("inputmask/phone.js") }}">            </script>
+        <script src="{{ asset("inputmask/phone.js") }}">                        </script>
+
+        <script src="{{ asset("js/jasny-bootstrap.min.js") }}">                          </script>
             
         @stack('scripts')
 

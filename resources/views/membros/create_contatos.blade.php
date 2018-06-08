@@ -14,23 +14,25 @@
 								data-cod="{{ $i }}"
 								class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
 								<option value=""  selected style="color: #ccc;"> --- </option>
-
-								@if (isset($edita)) 
-									@if(isset($membro->telefones[$i]['ic_telefone']))
-										@foreach($tipo_telefone as $tipo)
+								
+								@foreach($tipo_telefone as $tipo)
+									
+									@if (isset($edita))
+										@if(isset($membro->telefones[$i]['ic_telefone']))
 											@if ( $membro->telefones[$i]['ic_telefone'] == $tipo)
 												<option value="{{$tipo}}" selected="selected">{{$tipo}}</option>
 											@else
 												<option value="{{$tipo}}">{{$tipo}}</option>  
 											@endif
-										@endforeach
+										@else
+											<option value="{{$tipo}}"> {{$tipo}} </option>
+										@endif
+									@else
+										<option value="{{$tipo}}"> {{$tipo}} </option>  
 									@endif
 
-								@else
-									@foreach($tipo_telefone as $tipo)
-										<option value="{{$tipo}}"> {{$tipo}} </option>  
-									@endforeach
-								@endif
+								@endforeach
+
 
 
 							</select>

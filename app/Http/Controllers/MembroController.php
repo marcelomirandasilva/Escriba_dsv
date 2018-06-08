@@ -314,16 +314,17 @@ class MembroController extends Controller
 
 		// Criar novos telefones com as informações enviadas
 		//se o telefone não estiver vazio no request, adiciona
-		//        dd($request->telefone);
-		//dd($request->telefone['nu_telefone'] );
-
-		if($request->telefone['nu_telefone'] != null)
+		//dd($request->telefones);
+		
+		foreach($request->telefones as $telefone)
 		{
-			// Criar um novo telefone com as informações inseridas
-			$novo_telefone = new Telefone();
-			$membro->telefones()->save($novo_telefone);
+			//dd($telefone);
+			if($telefone['nu_telefone'] != null)
+			{
+				$membro->telefones()->save(new Telefone($telefone));
+			}
 		}
-		//dd($a);
+
 
 		/* ==================================================================================== */
 		/* EMAIL */
@@ -361,21 +362,20 @@ class MembroController extends Controller
 		/* ==================================================================================== */
 		//apaga todos os dependentes do membro
 		$membro->dependentes()->delete();
-		//dd($request->all());
 
 		// Criar novos dependentes com as informações enviadas
 		if(isset($request->dependentes))
 		{
-			//se o nome do dependente for diferente de NULL
-			if( ! Isset($request->dependentes[0])  ||  $request->dependentes[0]['no_dependente'] != null)
+			$b = 0;
+			foreach($request->dependentes as $dependente)
 			{
-					$b = 0;
-					foreach($request->dependentes as $dependente)
-					{
-						$novo_dependente = new Dependente($dependente);
-						$membro->dependentes()->save($novo_dependente);
-						$b++;
-					}
+				//se o dependente não estiver vazio no request, adiciona
+				if( trim($dependente['no_dependente'])  != "" )
+				{
+					$novo_dependente = new Dependente($dependente);
+					$membro->dependentes()->save($novo_dependente);
+					$b++;
+				}
 			}
 		}
 
