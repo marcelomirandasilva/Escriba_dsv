@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 
-use App\Models\membro;
+use App\Models\Membro;
 use App\Models\Endereco;
-use App\Models\pais;
-use App\Models\loja;
-use App\Models\cargo;
+use App\Models\Pais;
+use App\Models\Loja;
+use App\Models\Cargo;
 use App\Models\Telefone;
 use App\Models\Email;
 use App\Models\Dependente;
@@ -39,7 +39,7 @@ class MembroController extends Controller
 
 		$membros = $this->membro->all();
 
-		return view('membros\lista', compact('membros'));
+		return view('membros/lista', compact('membros'));
 
 	}
 
@@ -64,7 +64,7 @@ class MembroController extends Controller
 
 		$cargos             = Cargo::all()->sortBy('no_cargo');
 		$cargos_ocupados    =[];
-		
+				
 		
 		//orderna os valores dos arrays
 		sort($estado_civil);
@@ -81,14 +81,20 @@ class MembroController extends Controller
 	
 	public function store(Request $request)
 	{
-		
-		
-		//dd($request->all());
-		
+		//se for candidaro, coloca zeros no CIM
+		if(trim($request->ic_grau) == "Candidato")
+		{
+			$request->merge([
+					'co_cim' => "0.000.000"
+			]);
+
+		}
 
 		// Validar dados do formulário
 		$this->validar($request);
 		
+		dd($request->all());
+
 		// Cria um novo membro
 		//$membro = new Membro($request->all());
 		$membro = new Membro($request->all());
@@ -99,6 +105,12 @@ class MembroController extends Controller
 		// Salvar no banco para obter o ID
 		$membro->save();
 
+		foreach($request->enderecos as $endereco)
+		{
+			// Criar um novo endereço com as informações inseridas
+			$membro->enderecos()->save(new Endereco($endereco));
+		}
+		
 		//cria os cargos
 		if(isset($request->cargos_membros))
 		{
@@ -110,20 +122,18 @@ class MembroController extends Controller
 		}
 			
 
-		foreach($request->enderecos as $endereco)
-		{
-			// Criar um novo endereço com as informações inseridas
-			$membro->enderecos()->save(new Endereco($endereco));
-		}
-		
+		//dd($request->all());
 		
 		foreach($request->telefones as $telefone)
 		{
+			$novo_telefone = new Telefone($telefone);
+
 			//se o telefone não estiver vazio no request, adiciona
-			if($telefone['nu_telefone'] =! "")
+			if( trim( $telefone['nu_telefone'] ) != "")
 			{
-					// Criar um novo telefone com as informações inseridas
-					$membro->telefones()->save(new Telefone($telefone));
+				// Criar um novo telefone com as informações inseridas
+				$membro->telefones()->save($novo_telefone);
+
 			}
 		}
 
@@ -191,6 +201,7 @@ class MembroController extends Controller
 		$membro = $this->membro->find($id);
 
 		//dd($membro->cargos->pivot->aa_inicio);
+		//dd($membro->telefones[0]->nu_telefone);
 
 		$enderecos          = $membro->enderecos;
 		$telefones          = $membro->telefones;
@@ -199,8 +210,7 @@ class MembroController extends Controller
 		$potencias          = Potencia::all()->sortBy('no_potencia');
 		$ritos              = pegaValorEnum('lojas','ic_rito') ;
 		$cargos             = Cargo::all()->sortBy('no_cargo');
-
-
+		
 		$edita = true;
 		$titulo = "Edição de Membro";
 
@@ -225,6 +235,7 @@ class MembroController extends Controller
 		$lojas      = Loja::all()->sortBy('no_loja');
 
 		//dd($enderecos);
+		//dd($telefones[0]['nu_telefone']);
 		
 		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		

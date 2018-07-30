@@ -34,10 +34,10 @@
 							<div class="x_content ">
 								<div class="" role="tabpanel" data-example-id="togglable-tabs">
 									@if( isset($edita))
-										<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}" class="form-horizontal form-label-left" >
+										<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
 												{!! method_field('PUT') !!}
 									@else
-										<form id="form_membro" method="post" action="{{ route('membros.store') }}" class="form-horizontal form-label-left" >
+										<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
 									@endif
 
 										{{ csrf_field() }}
@@ -90,7 +90,7 @@
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-												//@include('membros/create_endereco')
+												@include('membros/create_endereco')
 											</div>
 
 											<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
@@ -156,7 +156,7 @@
 
 				<div class="modal-body">
 
-					<form id="form_modal_" method="post" action="#" class="form-horizontal form-label-left" >
+					<form id="form_modal_" method="post" action="#"  >
 
 						{{ csrf_field() }}
 
@@ -254,27 +254,49 @@
   	<script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
   	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
   	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
-
+	  
 	<script type="text/javascript">
 		var t = "";
 		@if (session('sucesso'))
-			swal({
-				title:  'Parabéns',
-				text:   ' {!! session('sucesso') !!}',
-				type:   'success'
-			});
+		swal({
+			title:  'Parabéns',
+			text:   ' {!! session('sucesso') !!}',
+			type:   'success'
+		});
 		@endif
-
+		
+		
 		var cont_telefone=1 
 		var cont_email=1;
 		var cont_dependente=1;
-
+		let contador_linhas_tabela = 0;
+		
 		$(document).ready(function(){
+			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
+			$("body").find("input.telefone").inputmask('(99)9999-9999');
+			
+			$.fn.dataTable.moment( 'DD/MM/YYYY' );
+
+			
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            PRINCIPAL                    =================================
+			//========================================================================================================
+			//========================================================================================================		
 
 			if( $('#send').on( 'click', function (e) {
 				//e.preventDefault();
-				console.log("clicou");
+				console.log($("#ic_grau :selected").text());
 				//testa se o cargo está vazio
+
+				console.log("entrou candiato");
+
+				if ( $("#ic_grau :selected").text() === "Candidato")
+				{
+					$("#co_cim").val('0000000');
+					console.log("entrou candiato");
+				}
+
 				if ( $("#no_membro").val() === "")
 				{
 					$("#tab_principal").click();
@@ -293,39 +315,101 @@
 				
 			}));
 
+			//desabilita data de casamento se não for casado
+			$("select#ic_estado_civil").change(function(){
+				if($("select#ic_estado_civil>option:selected").text() == " Casado ")
+				{
+					document.getElementById("dt_casamento").disabled = false;
+				} else {
+					document.getElementById("dt_casamento").disabled = true;
+				}
+			});
+
+			//desabilita campos de acordo com o grau
+			$("select#ic_grau").change(function(){ 
+				var valor = $(this).val();
+				
+				$("#tab_cerimonias" ).show();
+				$("#tab_condecoracoes" ).show();                  
+
+				document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
+				document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
+				document.getElementById("co_cim").disabled 			= false;
 
 
+				document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
+				document.getElementById("loja_id0").disabled 		= false;
 
-			$.fn.dataTable.moment( 'DD/MM/YYYY' );
+				document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
+				document.getElementById("loja_id1").disabled 		= false;
 
+				document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
+				document.getElementById("loja_id2").disabled 		= false;
+
+				document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
+				document.getElementById("loja_id3").disabled 		= false;
+
+
+				if (valor == "Candidato"){
+						document.getElementById("co_cim").disabled = true;
+						$("#tab_cerimonias" ).hide();
+						$("#tab_condecoracoes" ).hide();                  
+						document.getElementById("co_cim").disabled = true;
+						
+				} else if (valor == "Aprendiz"){
+
+						$("#tab_condecoracoes" ).hide();                  
+						
+						document.getElementById("dt_cerimonia1").disabled 	= true;
+						document.getElementById("loja_id1").disabled		 	= true;
+						document.getElementById("dt_cerimonia2").disabled 	= true;
+						document.getElementById("loja_id2").disabled 		= true;
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
+
+				} else if (valor == "Companheiro"){
+
+						$("#tab_condecoracoes" ).hide();                  
+					
+						document.getElementById("dt_cerimonia2").disabled 	= true;
+						document.getElementById("loja_id2").disabled 		= true;
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
+
+				} else if (valor == "Mestre"){
+						
+						document.getElementById("dt_cerimonia3").disabled 	= true;
+						document.getElementById("loja_id3").disabled 		= true;
+
+						document.getElementById("co_cim").disabled 			= false;
+				}
+			});
+
+
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            CARGOS                       =================================
+			//========================================================================================================
+			//========================================================================================================
+
+			//configura a tabela de cargos
 			$("#tabela_cargos").DataTable({
 				language : {
 									'url' : '{{ asset('js/portugues.json') }}',
 									"decimal": ",",
 									"thousands": "."
 								},
-				
 				stateDuration: -1,
 				deferRender: true,
 				compact: true,
-				
 				paginate: false,
-				
-				
-				buttons: {
-					buttons: [
-							{
-								text: 'Alert',
-								action: function ( e, dt, node, config ) {
-									alert( 'Activated!' );
-									this.disable(); // disable button
-								}
-							}
-					]
-				}
-	
+				searching: false,
+				orderFixed: [ 1, 'asc' ],
         	});
-
 
 			//adiciona cargos na tabela
 			var cargos_na_tabela = [];
@@ -334,81 +418,78 @@
 				var cargo_selecionado = $("#no_cargo :selected").val();
 				var aa_inicio = $("#aa_inicio").val();
 				var aa_termino = $("#aa_termino").val();
-
 				var aa_i = $("#aa_inicio").val();
 				var aa_t = $("#aa_termino").val();
 
-				//testa se o cargo está vazio
-				if (cargo_selecionado == "")
-				{
+				if (cargo_selecionado == ""){
+					//testa se o cargo está vazio
 					$(".no_cargo").notify("O cargo deve ser informado",{
 						className: "error",
 						autoHideDelay: 5000
 					});
+				}else if (aa_inicio < 1900 ){
+					//testa se as datas são maiores que 1900
+					$("#aa_inicio").notify("Data incorreta",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else if (aa_termino < 1900 ){
+					//testa se as datas são maiores que 1900
+					$("#aa_termino").notify("Data incorreta",{
+						className: "error",
+						autoHideDelay: 5000
+					});
 				}else{
-
-
-
-
-					//$("#form_membro").append("<input type='hidden' name='cargos_membros[]' value='"+cargos_em_string+"'>");
-
-					let cargos_em_string = JSON.stringify({
-						cargo_id: cargo_selecionado,
-						aa_inicio, 
-						aa_termino});
-
-					
-						
-
-//					let vcargos = ({
-//						"cargo_id" 		: cargo_selecionado,
-//						"aa_inicio" 	: aa_i,
-//						"aa_termino" 	: aa_t
-//					});
-
-			
-
-					$("#form_membro").append("<input type='hidden' name='cargos_membros[]' value='"+cargos_em_string+"'>");
-
 					t.row.add( [
-							$("#no_cargo :selected").text(),
-							$("#aa_inicio").val(),
-							$("#aa_termino").val(),
-							`<a name="btn_tb_cargo_remove" class="btn btn-warning btn-xs action  " 
-												data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
-												<i class="glyphicon glyphicon-remove"></i>
-							</a>`
+						$("#no_cargo :selected").text(),
+						$("#aa_inicio").val(),
+						$("#aa_termino").val(),
+						`<a class="btn btn-warning btn-xs action btn_tb_cargo_remove" data-id="${contador_linhas_tabela}" 
+											data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
+											<i class="glyphicon glyphicon-remove"></i>
+						</a>`
 					] ).draw( true );
+
+					contador_linhas_tabela++;
 				};
 			} );
 			
 			//remove cargos da tabela
-			var cargos_na_tabela = [];
-			$('.btn_tb_cargo_remove').on( 'click', function () {
-				concole.log("clicou botão remover");
-				var t = $('#tabela_cargos').DataTable();
-				var cargo_selecionado = $("#no_cargo :selected").text();
-				var aa_inicio = $("#aa_inicio").val();
-				var aa_termino = $("#aa_termino").val();
+			$('#tabela_cargos').on('click', '.btn_tb_cargo_remove', function () {
+				t.row( $(this).parents('tr') )
+					.remove()
+					.draw();		
+			} );
 
-				t.row( '.selected' ).remove().draw();
-					//cargos_na_tabela.push([{cargo_selecionado, aa_inicio, aa_termino}]);
-				
-			} )
-        	
+			$("#form_membro").submit(function(){
+
+				// Remover os cargos pré-existentes
+				$("#form_membro .cargos_membros").remove();
+
+				// Iterar por todas as linhas da tabela
+				for(i=0; i<t.data().length; i++){
+	
+					let linha = t.data()[i];
+
+					// Stringificar os campos
+					let cargos_em_string = JSON.stringify({
+						cargo_id: linha[0],
+						aa_inicio: linha[1], 
+						aa_termino: linha[2]});
+
+					// Adicionar o novo cargo no formulário
+					$("#form_membro").append("<input type='hidden' class='cargos_membros' name='cargos_membros[]' value='"+cargos_em_string+"'>");
+				}
+			});
+
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            ENDEREÇO                     =================================
+			//========================================================================================================
+			//========================================================================================================			
 
 
-
-
-
-			// Automatically add a first row of data
-			//$('#cad_cargo').click();
-
-			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
-			$("body").find("input.telefone").inputmask('(99)9999-9999');
-
-
-			{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
+			//Atualiza os campos do endereço de acordo com o cep digitado
 			
 			//Se o pais for diferente de BRASIL, desabilita o cep e UF
 			$("#no_pais0").change(function(){
@@ -416,9 +497,7 @@
 				{
 						console.log("brasil");
 						$("#cep0, #sg_uf0").removeAttr('disabled');
-				}
-				else
-				{
+				}else{
 						$("#cep0, #sg_uf0").attr('disabled', 'disabled');
 				}
 			});
@@ -428,11 +507,9 @@
 				
 				if($("#no_pais1>option:selected").text() == " Brasil ")
 				{
-						$("#cep1, #sg_uf1").removeAttr('disabled');
-				}
-				else
-				{
-						$("#cep1, #sg_uf1").attr('disabled', 'disabled');
+					$("#cep1, #sg_uf1").removeAttr('disabled');
+				}else{
+					$("#cep1, #sg_uf1").attr('disabled', 'disabled');
 				}
 			});
 			//==========================================================
@@ -543,73 +620,13 @@
 				}
 			});
 
-			//desabilita data de casamento se não for casado
-			$("select#ic_estado_civil").change(function(){
-				if($("select#ic_estado_civil>option:selected").text() == " Casado ")
-				{
-					document.getElementById("dt_casamento").disabled = false;
-				} else {
-					document.getElementById("dt_casamento").disabled = true;
-				}
-			});
-
-			//desabilita campos de acordo com o grau
-			$("select#ic_grau").change(function(){ 
-				var valor = $(this).val();
-				
-				$("#tab_cerimonias" ).show();
-				$("#tab_condecoracoes" ).show();                  
-
-				document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
-				document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
-				document.getElementById("co_cim").disabled 			= false;
-
-
-				document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
-				document.getElementById("loja_id0").disabled 		= false;
-
-				document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
-				document.getElementById("loja_id1").disabled 		= false;
-
-				document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
-				document.getElementById("loja_id2").disabled 		= false;
-
-				document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
-				document.getElementById("loja_id3").disabled 		= false;
-
-
-				if (valor == "Candidato"){
-						document.getElementById("co_cim").disabled = true;
-						$("#tab_cerimonias" ).hide();
-						$("#tab_condecoracoes" ).hide();                  
-						
-				} else if (valor == "Aprendiz"){
-
-						$("#tab_condecoracoes" ).hide();                  
-						
-						document.getElementById("dt_cerimonia1").disabled 	= true;
-						document.getElementById("loja_id1").disabled		 	= true;
-						document.getElementById("dt_cerimonia2").disabled 	= true;
-						document.getElementById("loja_id2").disabled 		= true;
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
-
-				} else if (valor == "Companheiro"){
-
-						$("#tab_condecoracoes" ).hide();                  
-					
-						document.getElementById("dt_cerimonia2").disabled 	= true;
-						document.getElementById("loja_id2").disabled 		= true;
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
-
-				} else if (valor == "Mestre"){
-						
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
-				}
-			});
-
+			
+			
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            CONTATOS                     =================================
+			//========================================================================================================
+			//========================================================================================================		
 
 			// Clonar div panel_telefones
 			$(".clonar_tel").click(function(e){
@@ -644,19 +661,20 @@
 			});
 			
 			$("body").on("change", ".tipo-telefone",function(){
-
 				//console.log("mudou");
 				var itemSelecionado = $(this).val();
+				var nomeSelecionado = this.attributes["data-cod"].value;
+
+
+				console.log(nomeSelecionado);
 
 				if(itemSelecionado == 'Celular')
 				{
-						console.log("celular");
-						$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
-				}
-				else
-				{
-						console.log("outros");
-						$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
+					console.log("celular");
+					$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
+				}else{
+					console.log("outros");
+					$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
 				}
 			});
 
@@ -708,17 +726,25 @@
 
 			});
 	
+			
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            DEPENDENTE                   =================================
+			//========================================================================================================
+			//========================================================================================================		
+
 			//=================================== clone DEPENDENTE====================================================
 
 			$(".clonar_dependente").click(function(e){
+				e.preventDefault();
+				
 				//conta quantos paineis existem na tela
 				let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
 				qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
-				qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
+				//qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
 
 				cont_dependente = qtd_painel+1;
 
-				e.preventDefault();
 				$(".clone_dependente").clone()
 
 				// Adicionar a classe clone e remover a classe 
@@ -757,12 +783,31 @@
 				cont_dependente++;
 			});
 
-			// Botão de excluir telefone
+			// Botão de excluir dependente
+			$("body").on("click", "button.excluir_dependente", function(e){ 
+				var self = this;
+				 e.preventDefault();
 
-			$("body").on("click", "button.excluir_dependente", function(){ 
+            swal({
+					title: "Atenção!",
+					text: "Você realmente deseja excluir o(a) dependente ?",
+					type: "warning",
+					showCancelButton: true,
 
-				$(this).parent().parent().parent().remove(); 
-			});
+					confirmButtonClass: "btn-cor-perigo modal-content",
+					confirmButtonText: "Sim, exclua!",
+					cancelButtonClass: "btn-cor-padrao modal-content",
+					cancelButtonText: "Cancelar",
+					confirmButtonClass: 'btn-cor-perigo modal-content',
+				 }).then(result => {
+					if (result.value) {
+						$(self).parent().parent().parent().addClass('animated fadeOut').fadeOut(985).queue(function() { $(self).parent().parent().parent().remove(); })
+						
+						
+						
+					}
+				})
+ 			});
 
 			$("#form_membro").submit(function(e){
 				//e.preventDefault();
@@ -771,6 +816,7 @@
 
 		});     
 
+		
 
 		//=========== AUTOCOMPLETE CERIMONIAS ===========================
 		new autoComplete({

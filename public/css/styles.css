@@ -247,11 +247,10 @@ body .container.body .right_col {
     padding-right: 45px !important;
 }
 
-.panel_telefones, .clone_telefones  {
-
+.panel_telefone, .clone_telefone, .telefone_clonado, .panel_emails, .email_clonado   {
     top: 3px;
-    padding-top: 5px;
-    padding-bottom: 3px;
+    padding-top: 0px;
+    padding-bottom: 5px;
     margin-bottom: 3px;
 }
 

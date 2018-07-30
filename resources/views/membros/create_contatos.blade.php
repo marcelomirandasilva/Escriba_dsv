@@ -1,112 +1,83 @@
 <div class="x_panel modal-content panel_sem_margem" >
    <div class="clearfix"></div>
    <div class="col-md-6 ">
-		<div class="clearfix"></div>
-		<div class="x_title" style="margin-bottom: 15px;"> Telefones <div class="clearfix"></div> </div>
+      <div class="clearfix"></div>
+      <div class="x_title" style="margin-bottom: 15px;"> Telefones <div class="clearfix"></div> </div>
 
-		<div class="col-md-12">
-			<div class="x_panel panel_telefone panel_sem_margem ">            
+      <div class="col-md-11">
+         <div class="x_panel panel_telefone panel_sem_margem ">            
 
 				{{-- bloco de telefone --}}
 				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[0][nu_telefone]"> Residencial </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[0][nu_telefone]"   name="telefones[0][nu_telefone]" class="form-control input-md telefone " 
-							placeholder="(99) 999999-9999" type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[0]->nu_telefone or old('telefones[0][nu_telefone]')}}">
+					@for ($i = 0; $i < 6; $i++)
+						<div class="row" style="padding-top: 1px; padding-bottom: 1px;">
+							{{--  TIPO DE TELEFONE  --}}
+							<div class="col-md-5" style="top: 4px;">
+								<select id="telefones[{{ $i }}][ic_telefone]"  name="telefones[{{ $i }}][ic_telefone]"  
+									data-cod="{{ $i }}"
+									class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
+									<option value=""  selected style="color: #ccc;"> --- </option>
 
-						<input name="telefones[0][ic_telefone]" type="hidden" value="Residencial">
-					</div>
-				</div>
+									@if (isset($edita)) 
+										@if(isset($membro->telefones[$i]['ic_telefone']))
+											@foreach($tipo_telefone as $tipo)
+												@if ( $membro->telefones[$i]['ic_telefone'] == $tipo)
+													<option value="{{$tipo}}" selected="selected">{{$tipo}}</option>
+												@else
+													<option value="{{$tipo}}">{{$tipo}}</option>  
+												@endif
+											@endforeach
+										@endif
+									@else
+										@foreach($tipo_telefone as $tipo)
+											<option value="{{$tipo}}"> {{$tipo}} </option>  
+										@endforeach
+									@endif
 
-				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[1][nu_telefone]"> Celular </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[1][nu_telefone]"   name="telefones[1][nu_telefone]" class="form-control input-md telefone" 
-							placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[1]->nu_telefone or old('telefones[1][nu_telefone]')}}">
 
-							<input name="telefones[1][ic_telefone]" type="hidden" value="Celular">
-					</div>
-				</div>
-
-				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[2][nu_telefone]"> Comercial </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[2][nu_telefone]"   name="telefones[2][nu_telefone]" class="form-control input-md telefone" 
-							placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[2]->nu_telefone or old('telefones[2][nu_telefone]')}}">
-
-							<input name="telefones[2][ic_telefone]" type="hidden" value="Comercial">
-					</div>
-				</div>
-
-				<div class="item form-group">
-					<label class="control-label col-md-3" for="telefones[3][nu_telefone]"> Recado </label>
-					<div class="col-md-6" style="top: 4px;">
-						<input id="telefones[3][nu_telefone]"   name="telefones[3][nu_telefone]" class="form-control input-md telefone" 
-							placeholder="(99) 999999-9999"  type="text" data-inputmask="'mask' : '(99) 99999-9999'" 
-							value="{{$membro->telefones[3]->nu_telefone or old('telefones[3][nu_telefone]')}}">
-
-							<input name="telefones[3][ic_telefone]" type="hidden" value="Recado">
-					</div>
-				</div>
-				{{-- FIM bloco de telefone --}}
+								</select>
+							</div>
+						
+							{{-- NUMERO DO TELEFONE  --}}
+							<div class="col-md-6" style="top: 4px;">
+								<input id="telefones[{{ $i }}][nu_telefone]"   name="telefones[{{ $i }}][nu_telefone]"     
+									class="form-control input-md telefone" placeholder="(99) 9999-9999" type="tel" 
+									@if (isset($edita))
+										value="{{  $telefones[$i]['nu_telefone'] or null  }}" 
+									@else
+										value="{{  old('telefones[$i][nu_telefone]')  }}" 
+									@endif
+								>
+							</div>
+						</div>	
+					@endfor
 			</div>
-
-		</div>
-	</div>
-
-   {{-- ==============================================================EMAIL ============================================ --}}
-
-   <div class="col-md-6 ">
-		<div class="clearfix"></div>
-		<div class="x_title" style="margin-bottom: 15px;"> Email <div class="clearfix"></div> </div>
-
-		<div class="col-md-12">
-			<div class="x_panel panel_emails panel_sem_margem">            
-				{{-- bloco de email --}}
-				<div class="form-group">
-					<div class="col-md-11" style="top: 4px;">
-						<input name="emails[0][email]" class="form-control input-md" placeholder="email@servidor.com.br"  type="email"  value="{{ $membro->emails[0]->email or old('emails[0][email]')}}">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-11" style="top: 4px;">
-						<input name="emails[1][email]" class="form-control input-md" placeholder="email@servidor.com.br"  type="email"  value="{{ $membro->emails[1]->email or old('emails[1][email]')}}">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-11" style="top: 4px;">
-						<input name="emails[2][email]" class="form-control input-md" placeholder="email@servidor.com.br"  type="email"  value="{{ $membro->emails[2]->email or old('emails[2][email]')}}">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-11" style="top: 4px;">
-						<input name="emails[3][email]" class="form-control input-md" placeholder="email@servidor.com.br"  type="email"  value="{{ $membro->emails[3]->email or old('emails[3][email]')}}">
-					</div>
-				</div>
-				{{-- FIM bloco de email --}}
-			</div>
+			{{-- FIM bloco de telefone --}}
+         </div>
 		</div>
    </div>
-</div>
+   	{{-- ==============================================================EMAIL ============================================ --}}
 
+   <div class="col-md-6 "  >
+      <div class="clearfix"></div>
+      <div class="x_title" style="margin-bottom: 15px;"> Emails <div class="clearfix"></div> </div>
 
+      <div class="col-md-11">
+         <div class="x_panel panel_emails panel_sem_margem">            
+            {{-- bloco de email --}}
+            <div class="form-group">
+					@for ($j = 0; $j < 6; $j++)					
+						<div class="col-md-11" style="top: 4px;">
+							<input id="emails[0][email]"   name="emails[0][email]"     data-cip-id="emails[0][email]"  
+									class="form-control input-md " placeholder="email@servidor.com.br"  type="email" >
+						</div>
+					@endfor
 
+            </div>
+            {{-- FIM bloco de email --}}
+         </div>
 
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
+   </div>
+</div>		

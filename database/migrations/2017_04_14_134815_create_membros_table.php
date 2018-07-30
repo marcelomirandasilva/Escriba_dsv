@@ -28,7 +28,7 @@ class CreateMembrosTable extends Migration
             $table->text('de_anotacao')                      ->nullable();
 
             //-----------------------------DOCUMENTOS----------------------            
-            $table->char('nu_cpf',11)                       ->nullable();
+            $table->char('nu_cpf',14)                       ->nullable();
 
             $table->string('nu_identidade',20)              ->nullable();
             $table->date('dt_emissao_idt')                  ->nullable();
