@@ -224,7 +224,7 @@ class MembroController extends Controller
 		$paises     = Pais::all()->sortBy('nome');
 		$lojas      = Loja::all()->sortBy('no_loja');
 
-		dd($enderecos);
+		//dd($enderecos);
 		
 		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
