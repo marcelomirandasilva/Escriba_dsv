@@ -37,7 +37,9 @@ class RegisterController extends Controller
 	 */
 	public function __construct()
 	{
-		$this->middleware('guest');
+		//$this->middleware('guest');
+		$this->middleware('auth');
+		
 	}
 	
 	/**
@@ -49,9 +51,10 @@ class RegisterController extends Controller
 	protected function validator(array $data)
 	{
 		return Validator::make($data, [
-			'name' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:users',
-			'password' => 'required|min:6|confirmed',
+			'name' 		=> 'required|max:255',
+			'email' 		=> 'required|email|max:255|unique:users',
+			'password' 	=> 'required|min:6|confirmed',
+			//'cim' 		=> 'required|string|max:15|unique:users',
 		]);
 	}
 	
@@ -67,6 +70,7 @@ class RegisterController extends Controller
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
+			//'cim' 		=> $data['cim'],
 		]);
 	}
 }

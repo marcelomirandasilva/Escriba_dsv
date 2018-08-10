@@ -30,12 +30,13 @@ class UserController extends Controller
   
     public function index()
     {
-         // Mostrar a lista de usuários
+        // Mostrar a lista de usuários
 
+        $usuario_logado     = User::find(Auth::user()->id);
         
         $usuarios = User::all();
 
-        return view('usuarios.lista', compact('usuarios'));
+        return view('usuarios.lista', compact('usuarios','usuario_logado'));
     }
 
     
@@ -200,5 +201,21 @@ class UserController extends Controller
         return redirect('/mudarsenha')->with('sucesso', 'Senha alterada com sucesso.');
     }
 
+    public function MudaStatus(Request $request)
+    {
+      // busca o usuario
+        $usuario = User::find($request->id);        
+
+        $status_antigo = $usuario->status;    
+
+        $usuario->status = $request->status;
+
+        //salva o usuario
+        $usuario->save();
+
+
+        return json_encode($status_antigo);     
+     
+   }
     
 }

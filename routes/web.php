@@ -23,6 +23,9 @@ Route::post('lojas/potencia/store', 'PotenciaController@store');
 
 Route::post('lojas/nova_ajax', 		'LojaController@nova_ajax');
 
+//caminho para alterar o status do usuario ATIVO/INATIVO
+Route::post('/mudastatus',				'UserController@MudaStatus');
+
 
 //resources
 Route::resource('membros', 			'MembroController');

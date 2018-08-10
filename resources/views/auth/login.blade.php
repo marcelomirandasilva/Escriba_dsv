@@ -40,7 +40,7 @@
 				
 				<div class="animated rotateIn">
 
-					{!! BootForm::email('email', 'Email / Usuário', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
+					{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
 				
 					{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
 					

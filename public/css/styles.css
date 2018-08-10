@@ -222,6 +222,12 @@ input[type="text"]{
     height: 22px;
 }
 
+.botao_acao{
+  padding: 3px 5px !important;
+  font-size: 8px !important;
+}
+
+
 body .container.body .right_col {
     background: #F7F7D8;
 }

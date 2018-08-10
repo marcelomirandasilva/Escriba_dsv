@@ -37,18 +37,18 @@
                         <li>
                            <a>Sessões<span class="fa fa-chevron-down"></span></a>
                            <ul class="nav child_menu">
-                           <li class="sub_menu">
-                              <a href="{{ url('/calendario') }}">Calendário</a>
-                           </li>
-                           <li>
-                              <a href="#">Sessões</a>
-                           </li>
-                           <li>
-                              <a href="#">Atas</a>
-                           </li>
-                        </ul>
-                     </li>
-                  <li>
+                               <li class="sub_menu">
+                              	<a href="{{ url('/calendario') }}">Calendário</a>
+                           	</li>
+										<li>
+											<a href="#">Sessões</a>
+										</li>
+										<li>
+											<a href="#">Atas</a>
+										</li>
+                        	</ul>
+                     	</li>
+                  	<li>
                      <li><a href="{{ url('/lojas') }}">Lojas</a></li>
                   </li>
                </ul>
@@ -108,16 +108,15 @@
 {{-- @if(Auth::user()->admin == "Master") --}}
                     
    <li><a><i class="fa fa-cog"></i>Configurações<span class="fa fa-chevron-down"></span></a>
-       <ul class="nav child_menu">
-          @if((Auth::user()->acesso == 'ADMINISTRADOR'))
+		<ul class="nav child_menu">
+			@if((Auth::user()->acesso == 'ADMINISTRADOR'))
             <li><a href="{{ url('/usuarios') }}">Usuários</a></li>
-          @endif
-
-          <li><a href="{{ url('senha') }}">Alerar Senha</a></li>
-          <li><a href="{{ url('perfil') }}">Alerar Perfil</a></li>
+			@endif
+			<li><a href="{{ url('senha') }}">Alerar Senha</a></li>
+			<li><a href="{{ url('perfil') }}">Alerar Perfil</a></li>
           
-       </ul>
-   </li>
+		</ul>
+	</li>
 
 
 {{-- @endif --}}
