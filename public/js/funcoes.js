@@ -671,19 +671,29 @@ funcoes = {
 		});
 	},
 
+	notifica: function (cor, comentario) {
+		$.notify({
+			message: comentario,
+		}, {
+				type: cor,
+				timer: 3000
+			});
+	},
 
-	showSwal1: function (tipo, texto1) {
-		if (tipo == 'basico') {
+
+	notifica: function (tipo, texto1) {
+		if (tipo == 'success') {
 			swal({
+				type: 'success',
 				title: texto1,
-				buttonsStyling: false,
+				buttonsStyling: true,
 				confirmButtonClass: 'btn btn-roxo'
 			});
 		} else if (tipo == 'info') {
 			swal({
 				type: 'info',
 				title: texto1,
-				buttonsStyling: false,
+				buttonsStyling: true,
 				confirmButtonClass: "btn btn-info"
 			});
 		} else if (tipo == 'aviso') {
@@ -691,7 +701,7 @@ funcoes = {
 				type: 'warning',
 				title: texto1,
 				input: 'text',
-				buttonsStyling: false,
+				buttonsStyling: true,
 				showCancelButton: true,
 				cancelButtonClass: 'btn btn-roxo',
 				cancelButtonText: 'Cancelar',

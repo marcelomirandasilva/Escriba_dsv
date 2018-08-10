@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Membro;
 use App\Models\Endereco;
 use App\Models\Pais;
+use App\Models\User;
 use App\Models\Loja;
 use App\Models\Cargo;
 use App\Models\Telefone;
@@ -33,13 +35,15 @@ class MembroController extends Controller
 
 	public function index()
 	{
-		//$membros = membro::get();
-		//return view('membros/lista', ['membros' => $membros]);
+      $usuario_logado     = User::find(Auth::user()->id);
 
 
-		$membros = $this->membro->all();
 
-		return view('membros/lista', compact('membros'));
+		$membros = Membro::with(['user','telefones'])->get();
+
+		//dd($usuario_logado->acesso);
+
+		return view('membros/lista', compact('membros','usuario_logado'));
 
 	}
 

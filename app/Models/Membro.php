@@ -77,6 +77,11 @@ class Membro extends Model
     {
         return $this->belongsToMany('App\Models\Cargo', 'cargos_membros')->withPivot('aa_inicio','aa_termino')->withTimestamps();
     }
-   
+
+    public function user()
+    {
+    	return $this->hasOne('App\Models\User');
+    }
+
     
 }

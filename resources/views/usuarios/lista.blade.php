@@ -21,7 +21,7 @@
 						class="btn-circulo btn btn-primary btn-md   pull-right " 
 						data-toggle="tooltip"  
 						data-placement="bottom" 
-						title="Adiciona um Membro">
+						title="Adiciona um Usuário">
 						<span class="fa fa-plus">  </span>
 					</a>
 					<div class="clearfix"></div>
@@ -47,6 +47,7 @@
 										<td>{{ $usuario->acesso }}</td>
 										<td class="actions">
 											@if($usuario_logado->acesso == 'ADMINISTRADOR')
+
 												@if($usuario->status == 'Ativo')
 													<button  
 														class="btn_desativa btn btn-danger btn-xs action  pull-right  botao_acao" 
@@ -91,17 +92,18 @@
 												<button 
 													class="btn_email_senha btn btn-info btn-xs action  pull-right  botao_acao" 
 													data-toggle="tooltip" 
-													data-funcionario = {{ $usuario->id }}
+													data-usuario = {{ $usuario->id }}
 													data-placement="bottom" 
 													title="Envia NOVA senha por email ao usuario">  
 													<i class="glyphicon glyphicon-envelope "></i>
 												</button>
+
 												<a href="{{ url("/usuario/$usuario->id/edit") }}"
 													class="btn btn-warning btn-xs action  pull-right botao_acao " 
 													data-toggle="tooltip" 
 													data-placement="bottom" 
-													title="Edita essa usuario">  
-													<i class="glyphicon glyphicon-pencil "></i>
+													title="Associa esse Usuário a um Membro">  
+													<i class="glyphicon glyphicon-link "></i>
 												</a>
 										
 											@endif
@@ -172,19 +174,20 @@
 					cancelButtonColor: '#d33',
 					confirmButtonText: 'Sim',
 					cancelButtonText: 'Não',
-				}).then(function () {
-					//chama a rota para desativar o usuario
-					$.post('/mudastatus',{
-						_token: 	'{{ csrf_token() }}',
-						id: 		id_usuario,
-						status: 	'Inativo'
-					},function(data){
-						btn.css('display', 'none').siblings('button.btn_ativa').css('display', 'block');
-						funcoes.notificationRight("top", "right", "success", "O funcionário foi Desativado");
-						//console.log(data)
-					})
+				}).then((result) => {
+					if (result.value) {
+						$.post('/mudastatus',{
+							_token: 	'{{ csrf_token() }}',
+							id: 		id_usuario,
+							status: 	'Inativo'
+						},function(data){
+							btn.css('display', 'none').siblings('button.btn_ativa').css('display', 'block');
 
-				});
+							funcoes.notifica("success", "O funcionário foi Desativado");
+							//console.log(data)
+						})
+					}
+				})
 			});
 
 			$("table#tabela_usuarios").on("click", ".btn_ativa",function(){
@@ -200,49 +203,49 @@
 					cancelButtonColor: '#d33',
 					confirmButtonText: 'Sim',
 					cancelButtonText: 'Não',
-				}).then(function () {
-					//chama a rota para desativar o usuario
-					$.post('/mudastatus',{
-						_token: 	'{{ csrf_token() }}',
-						id: 		id_usuario,
-						status: 	'Ativo'
-					},function(data){
-						btn.css('display', 'none').siblings('button.btn_desativa').css('display', 'block');
-						funcoes.notificationRight("top", "right", "success", "O funcionário foi Ativado");
-						//console.log(data)
-					})
+				}).then((result) => {
+					if (result.value) {
+						$.post('/mudastatus',{
+							_token: 	'{{ csrf_token() }}',
+							id: 		id_usuario,
+							status: 	'Ativo'
+						},function(data){
+							btn.css('display', 'none').siblings('button.btn_desativa').css('display', 'block');
 
-				});
+							funcoes.notifica("success", "O funcionário foi Ativado");
+							//console.log(data)
+						})
+					}
+				})
 			});
 
 			$(".btn_email_senha").click(function(){
 				let id_usuario = $(this).data('usuario');
 
-				//console.log("botao btn_email_senha -> ", id_usuario );
+				console.log("botao btn_email_senha -> ", id_usuario );
 
 				swal({
-					title: 'Confirma a REINICIALIZAÇÃO da senha do funcionário?',
+					title: 'Confirma a REINICIALIZAÇÃO da senha do Usuário?',
 					type: 'question',
 					showCancelButton: true,
 					confirmButtonColor: '#3085d6',
 					cancelButtonColor: '#d33',
 					confirmButtonText: 'Sim',
 					cancelButtonText: 'Não',
-				}).then(function () {
-				
-					//chama a rota para zerar a senha e enviar email ao funcionário
+				}).then((result) => {
+					if (result.value) {
+						//chama a rota para zerar a senha e enviar email ao funcionário
+						$.post('/zerarsenhausuario',{
+								_token: 	'{{ csrf_token() }}',
+								id: 		id_usuario
+						},function(data){
+							//mostrando o retorno do post
+							funcoes.notifica("success", "Email com nova senha enviado para o funcionário");
+							console.log(data)
+						})
+					}
+				})
 
-					$.post('/zerarsenhausuario',{
-							_token: 	'{{ csrf_token() }}',
-							id: 		id_usuario
-							//id: 		id_usuario
-					},function(data){
-						//mostrando o retorno do post
-						funcoes.notificationRight("top", "right", "success", "Email com nova senha enviado para o funcionário");
-						//console.log(data)
-					})
-
-				});
 			});
 
 

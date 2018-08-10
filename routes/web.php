@@ -26,6 +26,13 @@ Route::post('lojas/nova_ajax', 		'LojaController@nova_ajax');
 //caminho para alterar o status do usuario ATIVO/INATIVO
 Route::post('/mudastatus',				'UserController@MudaStatus');
 
+//========================================================================================
+// 										EMAIL
+//========================================================================================
+//caminho para envio de emails
+Route::post('/senhausuario',			'EmailController@EnviarSenhaUsuario');
+Route::post('/zerarsenhausuario',	'EmailController@ZerarSenhaUsuario');
+
 
 //resources
 Route::resource('membros', 			'MembroController');
