@@ -24,6 +24,7 @@
         <!-- magic-check-master -->
         <link href="{{ asset("css/magic-check.css") }}"                     rel="stylesheet">
 
+
         {{-- ANIMATED --}}
         <link href="{{ asset("css/animate.css") }}"                         rel="stylesheet">
 

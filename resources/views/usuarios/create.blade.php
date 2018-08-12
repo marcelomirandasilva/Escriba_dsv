@@ -93,15 +93,48 @@
 											@endif
 										@endforeach
 									@else
-										<option value=""> ---- </option>  
 										@foreach($tipo_acesso as $acesso)
-											<option value="{{$acesso}}"> {{$acesso}} </option>  
+											@if ( $acesso == "PADRÃO")
+												<option value="{{$acesso}}" selected="selected"> {{$acesso}} </option>
+											@else
+												<option value="{{$acesso}}"> {{$acesso}} </option>    
+											@endif
 										@endforeach
 									@endif
 								</select>
 							</div>
 						</div>	
-						
+									
+						<div class="form-group">
+							<label class="col-sm-4 control-label"> 
+								Associar a Membro 
+							</label>
+							<input  class="col-sm-4" type="checkbox" id="associa"  name="associa" 
+								style="height: 25px;width:25px;margin-left: 13px;" checked>
+
+								<div class="col-sm-2 control-label" > 
+									<input type="radio" id="contactChoice1" name="radio_associa" value="existente" checked>
+									<label for="contactChoice1">Existente &nbsp;&nbsp;&nbsp;</label>
+									
+									<input type="radio" id="contactChoice2" name="radio_associa" value="novo" >
+									<label for="contactChoice2">Novo </label>
+								</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-4 control-label"></div>
+							<div class="col-sm-4">
+
+								<select name="membro" class="form-control" id="membro">
+									<option value=""> ---- </option>  
+									@foreach($membros as $membro)
+											<option value="{{$membro->id}}"> {{$membro->no_membro}} -  {{$membro->co_cim}}  </option>  
+									@endforeach
+								</select>
+							</div>
+						</div>
+
+
 						<!----------- botoes ----------> 
 						<div class="ln_solid"> </div>
 						<div class="col-md-3 col-md-offset-9">
@@ -132,8 +165,16 @@
 
 @endsection
 
+@push('scripts')
+	<script type="text/javascript" >
+		
+		$(document).ready(function() {
+			
+			
+			
+		});
 
-
-
+	</script>
+@endpush
 
 

@@ -52,14 +52,14 @@
 										  
 										<td> {{ $membro->ic_situacao  }}                                                 </td>
 										<td>
-											<a href="{{ url("membros/$membro->id") }}" class="btn btn-primary btn-xs  action botao_lista  "  
-												data-toggle="tooltip" data-placement="bottom" title="Visualiza esse Irmão"> 
-												<i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
+											<a href="{{ url("membros/$membro->id") }}" class="btn btn-primary btn-xs  action botao_acao  "  
+												data-toggle="tooltip" data-placement="bottom" title="Visualiza esse Membro"> 
+												<i class="glyphicon glyphicon-eye-open "></i>
 											</a>
 												
-											<a href="{{ url("membros/$membro->id/edit") }}" class="btn btn-warning btn-xs action botao_lista  " 
-												data-toggle="tooltip" data-placement="bottom" title="Edita esse Irmão">  
-												<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
+											<a href="{{ url("membros/$membro->id/edit") }}" class="btn btn-warning btn-xs action botao_acao  " 
+												data-toggle="tooltip" data-placement="bottom" title="Edita esse Membro">  
+												<i class="glyphicon glyphicon-pencil "></i>
 											</a>
 										</td>
 									</tr>

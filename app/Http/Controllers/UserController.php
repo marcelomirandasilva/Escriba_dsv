@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 use App\models\User;
+use App\models\Membro;
 
 use Image;
 use Datatables;
@@ -48,8 +49,11 @@ class UserController extends Controller
         
         sort($tipo_acesso);
 
+        $membros = Membro::with(['user'])->get();
+
+        //dd($membros);
         // return "entrou";
-        return view('usuarios.create',compact(['titulo','tipo_acesso']));
+        return view('usuarios.create',compact(['titulo','tipo_acesso', 'membros']));
     }
 
     
