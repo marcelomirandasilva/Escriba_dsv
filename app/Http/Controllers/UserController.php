@@ -49,7 +49,7 @@ class UserController extends Controller
         
         sort($tipo_acesso);
 
-        $membros = Membro::with(['user'])->get();
+        $membros = Membro::with(['user']) ->orderBy('no_membro')->get();
 
         //dd($membros);
         // return "entrou";
@@ -59,7 +59,7 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-        //dd($request->all());
+       
 
         $this->validate($request, [
             'name'     => 'required|max:255',
@@ -68,14 +68,29 @@ class UserController extends Controller
             'acesso'    => 'required',
         ]);
 
-        $user = User::create($request->all());
-
+        //inicia a transação no banco
+        DB::beginTransaction();
+        
+        //dd($request->all());
+        
+        $user = new User($request->all());
         $user->password = bcrypt($request->password);
-
+ 
         $user->save();
 
-        return redirect(url('usuarios/create'))->with('sucesso', 'Usuário cadastrado com sucesso.');
-        //return redirect('lojas.edit')->whith(['erros' => 'Falha ao editar']); 
+
+
+        if(  $user ) {
+            //Sucesso!
+            DB::commit();
+            return redirect(url('usuarios/create'))->with('sucesso', 'Usuário cadastrado com sucesso.');
+        } else {
+            //Fail, desfaz as alterações no banco de dados
+            DB::rollBack();
+            return redirect(url('usuarios/create'))->with(['erros' => 'Falha no cadastrado.']);
+            
+        }
+
     }
 
     /**

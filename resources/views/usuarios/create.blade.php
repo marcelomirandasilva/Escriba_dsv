@@ -10,7 +10,6 @@
 @section('conteudo')
 	<!-- page content -->
 	{{-- Mostrar os erros de validação --}}
-
    
 	<div class="right_col" role="main">
 
@@ -83,7 +82,7 @@
 						<div class="form-group">
 							<label for="admin" class="col-sm-4 control-label">Tipo de Usuário</label>
 							<div class="col-sm-4">
-								<select name="admin" class="form-control" id="tipodeususario">
+								<select name="acesso" class="form-control" id="tipodeususario">
 									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 										@foreach($tipo_acesso as $acesso)
 											@if ( $usuario->acesso == $acesso)
@@ -110,22 +109,15 @@
 								Associar a Membro 
 							</label>
 							<input  class="col-sm-4" type="checkbox" id="associa"  name="associa" 
-								style="height: 25px;width:25px;margin-left: 13px;" checked>
-
-								<div class="col-sm-2 control-label" > 
-									<input type="radio" id="contactChoice1" name="radio_associa" value="existente" checked>
-									<label for="contactChoice1">Existente &nbsp;&nbsp;&nbsp;</label>
-									
-									<input type="radio" id="contactChoice2" name="radio_associa" value="novo" >
-									<label for="contactChoice2">Novo </label>
-								</div>
+								style="height: 25px;width:25px;margin-left: 13px;" value="true">
 						</div>
 
 						<div class="form-group">
-							<div class="col-sm-4 control-label"></div>
+							<label class="col-sm-4 control-label"> 
+								Membro Associado
+							</label>
 							<div class="col-sm-4">
-
-								<select name="membro" class="form-control" id="membro">
+								<select name="membro_id" class="form-control" id="membro" disabled>
 									<option value=""> ---- </option>  
 									@foreach($membros as $membro)
 											<option value="{{$membro->id}}"> {{$membro->no_membro}} -  {{$membro->co_cim}}  </option>  
@@ -134,6 +126,7 @@
 							</div>
 						</div>
 
+							
 
 						<!----------- botoes ----------> 
 						<div class="ln_solid"> </div>
@@ -167,10 +160,26 @@
 
 @push('scripts')
 	<script type="text/javascript" >
+		@if (session('sucesso'))
+			swal({
+				title:  'Parabéns',
+				text:   ' {!! session('sucesso') !!}',
+				type:   'success'
+			});
+		@endif
+
+		$(function(){
+
+			//testa se o checkbox associa esta marcado 
+			const chk_associa = document.getElementById('associa')
+			chk_associa.addEventListener('change', (event) => {
+				if (event.target.checked) {
+					document.getElementById("membro").disabled=false;
+				} else {
+					document.getElementById("membro").disabled=true;
+				}
+			})
 		
-		$(document).ready(function() {
-			
-			
 			
 		});
 
