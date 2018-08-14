@@ -37,8 +37,12 @@ class Membro extends Model
         'ic_grau',
         'im_membro',
         'ic_situacao',
-        'de_anotacao'
-
+        'de_anotacao',
+        'email',
+        'tel_res',
+        'tel_cel',
+        'tel_com',
+        'ramal_com',
     ];
 
 

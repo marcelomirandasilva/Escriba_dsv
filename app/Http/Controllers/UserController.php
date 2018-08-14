@@ -35,9 +35,10 @@ class UserController extends Controller
 
         $usuario_logado     = User::find(Auth::user()->id);
         
-        $usuarios = User::all();
+        $usuarios = User::with(['membro'])->get();
+        $membros  = Membro::with(['user'])->orderBy('no_membro')->get();
 
-        return view('usuarios.lista', compact('usuarios','usuario_logado'));
+        return view('usuarios.lista', compact('usuarios','usuario_logado','membros'));
     }
 
     
@@ -59,7 +60,15 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-       
+        //se não fou um usuario com um mebro associado
+        //faz um merge com as indormações digitadas no formulário
+        if( !$request->associa)
+        {
+            $request->merge(['name' => $request->name_v]);
+            $request->merge(['email' => $request->email_v]);
+        };
+        
+        //dd($request->all());
 
         $this->validate($request, [
             'name'     => 'required|max:255',
@@ -71,7 +80,6 @@ class UserController extends Controller
         //inicia a transação no banco
         DB::beginTransaction();
         
-        //dd($request->all());
         
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
@@ -88,7 +96,6 @@ class UserController extends Controller
             //Fail, desfaz as alterações no banco de dados
             DB::rollBack();
             return redirect(url('usuarios/create'))->with(['erros' => 'Falha no cadastrado.']);
-            
         }
 
     }
@@ -222,19 +229,37 @@ class UserController extends Controller
 
     public function MudaStatus(Request $request)
     {
-      // busca o usuario
+        // busca o usuario
         $usuario = User::find($request->id);        
-
         $status_antigo = $usuario->status;    
-
         $usuario->status = $request->status;
-
         //salva o usuario
         $usuario->save();
-
-
         return json_encode($status_antigo);     
-     
    }
+
+    public function desassocia(Request $request)
+    {
+        DB::beginTransaction();
+        
+        // busca o usuario
+        $usuario = User::find($request->id);        
+        $usuario->membro_id = null;
+        $usuario->save();
+
+        
+        if( $usuario ) {
+            //Sucesso!
+            DB::commit();
+                return json_encode("OK");     
+        } else {
+            //Fail, desfaz as alterações no banco de dados
+            DB::rollBack();
+            return json_encode("FALHA");     
+        }
+
+
+   }
+   
     
 }

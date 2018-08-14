@@ -120,6 +120,12 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 		'dt_emissao_titulo'		=> $faker->date('Y-m-d', '-18 years'),
 		'nu_zona_eleitoral'		=> $faker->randomNumber(5),
 
+		'email'  					=> $faker->safeEmail,
+
+		'tel_res'  					=> "(21)".$faker->landline,
+		'tel_cel'  					=> "(21)".$faker->cellphone(true, 21),
+		'tel_com'  					=> "(21)".$faker->landline,
+		'ramal_com'					=> $faker->randomNumber(4),
 
 		'ic_estado_civil'       => $v_estado_civil,
 

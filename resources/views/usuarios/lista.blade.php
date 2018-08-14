@@ -34,6 +34,7 @@
 								<tr>
 									<th>Nome</th> 
 									<th>E-mail</th>
+									<th>Membro associado</th>
 									<th>Nível de Acesso</th>
 									<th>Ações</th>
 								</tr>						
@@ -44,10 +45,15 @@
 									<tr>
 										<td>{{ $usuario->name }}</td> 
 										<td>{{ $usuario->email }}</td>
+										@if($usuario->membro['no_membro'] != "")
+											<td>SIM</td>
+										@else
+											<td></td>
+										@endif
 										<td>{{ $usuario->acesso }}</td>
 										<td class="actions">
 											@if($usuario_logado->acesso == 'ADMINISTRADOR')
-
+												{{-- ATIVO / INATIVO --}}
 												@if($usuario->status == 'Ativo')
 													<button  
 														class="btn_desativa btn btn-danger btn-xs action  pull-right  botao_acao" 
@@ -98,14 +104,47 @@
 													<i class="glyphicon glyphicon-envelope "></i>
 												</button>
 
-												<a href="{{ url("/usuario/$usuario->id/edit") }}"
-													class="btn btn-warning btn-xs action  pull-right botao_acao " 
-													data-toggle="tooltip" 
-													data-placement="bottom" 
-													title="Associa esse Usuário a um Membro">  
-													<i class="glyphicon glyphicon-link "></i>
-												</a>
-										
+												{{-- ASSOCIAÇÃO --}}
+												@if($usuario->membro['no_membro'] != "")
+													<button  
+														class="btn_desassocia btn btn-danger btn-xs action  pull-right  botao_acao" 
+														data-toggle="tooltip" 
+														data-usuario = {{ $usuario->id }}
+														data-placement="bottom" 
+														title="Desassocia o Membro desse Usuário" >  
+														<i class="glyphicon glyphicon-link "></i>
+													</button>
+
+													<button  
+														class="btn_associa btn btn-success btn-xs action  pull-right  botao_acao" 
+														data-toggle="tooltip" 
+														data-usuario = {{ $usuario->id }}
+														data-placement="bottom" 
+														title="Associa um Membro a esse Usuário"
+														style="display: none">  
+														<i class="glyphicon glyphicon-link "></i>
+													</button>
+												@else
+													<button  
+														class="btn_desassocia btn btn-danger btn-xs action  pull-right  botao_acao" 
+														data-toggle="tooltip" 
+														data-usuario = {{ $usuario->id }}
+														data-placement="bottom" 
+														title="Desassocia o Membro desse Usuário" 
+														style="display: none">  
+														<i class="glyphicon glyphicon-link "></i>
+													</button>
+
+													<button  
+														class="btn_associa btn btn-success btn-xs action  pull-right  botao_acao" 
+														data-toggle="tooltip" 
+														data-usuario = {{ $usuario->id }}
+														data-placement="bottom" 
+														title="Associa um Membro a esse Usuário" >  
+														<i class="glyphicon glyphicon-link "></i>
+													</button>
+												@endif
+									
 											@endif
 										</td>
 									</tr>
@@ -161,6 +200,7 @@
 				stateDuration: -1,
 			});
 
+			/*  DESATIVAÇÃO do usuário */
 			$("table#tabela_usuarios").on("click", ".btn_desativa",function(){
 				let id_usuario = $(this).data('usuario');
 				let btn = $(this);
@@ -190,6 +230,7 @@
 				})
 			});
 
+			/* ATIVAÇÃO do usuário */
 			$("table#tabela_usuarios").on("click", ".btn_ativa",function(){
 				let id_usuario = $(this).data('usuario');
 				let btn = $(this);
@@ -219,11 +260,9 @@
 				})
 			});
 
+			/* ZERA SENHA */
 			$(".btn_email_senha").click(function(){
 				let id_usuario = $(this).data('usuario');
-
-				console.log("botao btn_email_senha -> ", id_usuario );
-
 				swal({
 					title: 'Confirma a REINICIALIZAÇÃO da senha do Usuário?',
 					type: 'question',
@@ -248,9 +287,43 @@
 
 			});
 
+			/* DESASSOCIA USUARIO */
+			$("table#tabela_usuarios").on("click", ".btn_desassocia",function(){
+				let id_usuario = $(this).data('usuario');
+				let btn = $(this);
+
+				swal({
+					title: 'Confirma a DESASSOCIAÇÃO do Membro deste Usuário?',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Sim',
+					cancelButtonText: 'Não',
+				}).then((result) => {
+					if (result.value) {
+						$.post('/desassocia',{
+							_token: 	'{{ csrf_token() }}',
+							id: 		id_usuario,
+						},function(data){
+							btn.css('display', 'none').siblings('button.btn_associa').css('display', 'block');
+							funcoes.notifica("success", "O usuário foi DESASSOCIADO");
+							//console.log(data)
+						})
+					}
+				})
+			});
 
 
-
+			/* ASSOCIA USUARIO */
+			$("table#tabela_usuarios").on("click", ".btn_associa",function(){
+				let id_usuario = $(this).data('usuario');
+				let btn = $(this);
+				
+				console.log({!! $membros[2] !!});
+				
+				
+			})
 
 
 
@@ -259,11 +332,34 @@
 
 			
 		});
+		
+		//			 let me =  $membros->no_membro ;
+		//				
+		//				swal({
+		//					title: 'Selecione um Membro a ASSOCIAR esse Usuário',
+		//					input: 'select',
+		//					inputOptions: me,
+		//					inputPlaceholder: '----',
+		//					showCancelButton: true,
+		//					inputValidator: function (value) {
+		//						return new Promise(function (resolve, reject) {
+		//							if (value === 'UKR') {
+		//							resolve()
+		//							} else {
+		//							reject('Você precisa selecionar um Membro :)')
+		//							}
+		//						})
+		//					}
+		//					}).then(function (result) {
+		//					swal({
+		//						type: 'success',
+		//						html: 'You selected: ' + result
+		//					})
+		//					}) 
+		//					
 	</script>
 
 @endpush
-
-
 
 
 

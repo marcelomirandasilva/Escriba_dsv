@@ -13,7 +13,8 @@
    
 	<div class="right_col" role="main">
 
-		@include('includes/mensagens')
+		{{-- faz o include das mesnsagens de erro --}}
+		{{-- @include('includes/mensagens') --}}
 		
 
 		<div class=""> </div>
@@ -36,13 +37,36 @@
 
 						{{ csrf_field() }}
 
+						<div class="form-group">
+							<label class="col-sm-4 control-label"> 
+								Associar a Membro 
+							</label>
+							<input  class="col-sm-4" type="checkbox" id="associa"  name="associa" checked
+								style="height: 25px;width:25px;margin-left: 13px;" value="true">
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label"> 
+								Membro Associado
+							</label>
+							<div class="col-sm-5">
+								<select name="membro_id" class="form-control" id="membro" >
+									<option value=""> ---- </option>  
+									@foreach($membros as $membro)
+											<option value="{{$membro->id}}"> {{$membro->no_membro}} -  {{ number_format($membro->co_cim,0,",",".")  }}   </option>  
+									@endforeach
+								</select>
+							</div>
+						</div>
+
 						{{-- Campo Nome --}}
 						<div class="form-group">
 
 							<label for="nome" class="col-sm-4 control-label">Nome</label>
 
-							<div class="col-sm-4">
-								<input value="{{ $usuario->name or old('name') }}" name="name" type="text" class="form-control" id="nome" placeholder="Nome">
+							<div class="col-sm-5">
+								<input value="{{ $usuario->name or old('name') }}" name="name_v" type="text" class="form-control" id="nome_v" placeholder="Nome" disabled>
+								<input value="{{ $usuario->name or old('name') }}" name="name" type="hidden" class="form-control" id="nome" >
 							</div>
 						</div>
 
@@ -52,8 +76,9 @@
 
 		    				<label for="email" class="col-sm-4 control-label">Email</label>
 
-		    				<div class="col-sm-4">
-		     	 				<input value="{{ $usuario->email or old('email') }}" name="email" type="email" class="form-control" id="email" placeholder="Email">
+		    				<div class="col-sm-5">
+								<input value="{{ $usuario->email or old('email') }}" name="email_v" type="email" class="form-control" id="email_v" placeholder="Email" disabled>
+								<input value="{{ $usuario->email or old('email') }}" name="email" type="hidden" class="form-control" id="email">
 		    				</div>
 
 		   				</div>
@@ -62,26 +87,30 @@
 
 						<div class="form-group">
 							<label for="senha" class="col-sm-4 control-label">Senha</label>
-							<div class="col-sm-4">
+							<div class="col-sm-2">
 								<input value="" name="password" type="password" class="form-control" id="password" placeholder="Senha">
+							</div>
+							<label for="confirmarsenha" class="col-sm-1 control-label">Confirmação</label>
+							<div class="col-sm-2">
+								<input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirmar Senha">
 							</div>
 						</div>
 
 						{{-- Campo Nova Senha --}}
 
-						<div class="form-group">
+						{{-- <div class="form-group">
 							<label for="confirmarsenha" class="col-sm-4 control-label">Confirmar Senha</label>
 							<div class="col-sm-4">
 								<input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirmar Senha">
 							</div>
-						</div>
+						</div> --}}
 
 						
 						{{-- Campo de Seleçao --}}
 
 						<div class="form-group">
 							<label for="admin" class="col-sm-4 control-label">Tipo de Usuário</label>
-							<div class="col-sm-4">
+							<div class="col-sm-5">
 								<select name="acesso" class="form-control" id="tipodeususario">
 									@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 										@foreach($tipo_acesso as $acesso)
@@ -104,27 +133,7 @@
 							</div>
 						</div>	
 									
-						<div class="form-group">
-							<label class="col-sm-4 control-label"> 
-								Associar a Membro 
-							</label>
-							<input  class="col-sm-4" type="checkbox" id="associa"  name="associa" 
-								style="height: 25px;width:25px;margin-left: 13px;" value="true">
-						</div>
-
-						<div class="form-group">
-							<label class="col-sm-4 control-label"> 
-								Membro Associado
-							</label>
-							<div class="col-sm-4">
-								<select name="membro_id" class="form-control" id="membro" disabled>
-									<option value=""> ---- </option>  
-									@foreach($membros as $membro)
-											<option value="{{$membro->id}}"> {{$membro->no_membro}} -  {{$membro->co_cim}}  </option>  
-									@endforeach
-								</select>
-							</div>
-						</div>
+						
 
 							
 
@@ -168,18 +177,70 @@
 			});
 		@endif
 
+		@if( count($errors) > 0)
+			console.log("errrrrr");
+			
+			@foreach($errors->all() as $erro)
+				$.notify({
+					icon: 'fas fa-exclamation-triangle',
+					message: "{!! $erro !!}" , 
+				},{
+					type: 'danger',
+				});
+				
+			@endforeach
+		@endif
+
+			
+
 		$(function(){
 
 			//testa se o checkbox associa esta marcado 
-			const chk_associa = document.getElementById('associa')
-			chk_associa.addEventListener('change', (event) => {
-				if (event.target.checked) {
+			$("#associa").change(function() {
+				if ($('#associa').is(':checked')){
 					document.getElementById("membro").disabled=false;
+					document.getElementById("nome_v").disabled=true;
+					document.getElementById("email_v").disabled=true;
+					
+					document.getElementById("nome").value = "";
+					document.getElementById("email").value = "";
+					document.getElementById("nome_v").value = "";
+					document.getElementById("email_v").value = "";
+
 				} else {
+					document.getElementById("membro").selectedIndex = "0";
+					document.getElementById("nome").value = "";
+					document.getElementById("email").value = "";
+					document.getElementById("nome_v").value = "";
+					document.getElementById("email_v").value = "";
+ 
 					document.getElementById("membro").disabled=true;
+					document.getElementById("nome_v").disabled=false;
+					document.getElementById("email_v").disabled=false;
 				}
 			})
-		
+			
+			$("#membro").change(function() {
+				//coloca o conteudo selecionado no slect dentro da variável
+				var selecionado = $("#membro :selected").text();
+				// retira do texo tudo o que está após o '-' ficando somente o nome do membro
+				var texto = selecionado.substring(0, selecionado.indexOf("-"));
+				//console.log(texto);
+				//coloca o nome do mebro selecionado no valor do input
+				document.getElementById("nome").value = texto;
+				document.getElementById("nome_v").value = texto;
+
+				//coloca os membros vindos do controller na variável
+				var me = {!!$membros!!};
+				
+				//coloca na variável o index do membro selecionado (subtraindo 1 pq o 1º valor do seles é "-----")
+				var idx = document.getElementById("membro").selectedIndex - 1;
+
+				//coloca o email do mebro selecionado no valor do input
+				document.getElementById("email").value = me[idx]['email'];
+				document.getElementById("email_v").value = me[idx]['email'];
+
+			})
 			
 		});
 

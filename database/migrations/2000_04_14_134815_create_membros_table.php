@@ -22,10 +22,17 @@ class CreateMembrosTable extends Migration
             $table->date('dt_nascimento')                   ->nullable();
             $table->string('no_naturalidade',20)            ->nullable();
             $table->string('no_nacionalidade',20)           ->nullable();
-
             $table->string('no_proponente',50)              ->nullable();
-
             $table->text('de_anotacao')                      ->nullable();
+            
+            //----------------------------CONTATOS------------------------
+            $table->string('email',200)                     ->nullable();
+
+            $table->char('tel_res',14)                      ->nullable();
+            $table->char('tel_cel',14)                      ->nullable();
+            $table->char('tel_com',14)                      ->nullable();
+            $table->char('ramal_com',10)                    ->nullable();
+            
 
             //-----------------------------DOCUMENTOS----------------------            
             $table->char('nu_cpf',14)                       ->nullable();

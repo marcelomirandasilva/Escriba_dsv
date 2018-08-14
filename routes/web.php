@@ -26,6 +26,10 @@ Route::post('lojas/nova_ajax', 		'LojaController@nova_ajax');
 //caminho para alterar o status do usuario ATIVO/INATIVO
 Route::post('/mudastatus',				'UserController@MudaStatus');
 
+//caminho para DESASSOCIAR um Membro do Usuário
+Route::post('/desassocia',				'UserController@desassocia');
+
+
 //========================================================================================
 // 										EMAIL
 //========================================================================================

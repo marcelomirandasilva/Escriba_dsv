@@ -15,6 +15,10 @@
         <link href="{{ asset("css/bootstrap.min.css") }}"                   rel="stylesheet">
         <!-- Font Awesome -->
         <link href="{{ asset("css/font-awesome.min.css") }}"                rel="stylesheet">
+
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}"                  rel="stylesheet">
 
@@ -82,8 +86,11 @@
         <script src="{{ asset("sweetalert2/dist/sweetalert2.min.js") }}">       </script>
 
         <!-- notify -->
-        <script src="{{ asset("js/notify.min.js") }}">                          </script>
-        
+        {{-- <script src="{{ asset("js/notify.min.js") }}">                          </script> --}}
+
+        <!-- bootstrap-notify -->
+        <script src="{{ asset("bootstrap-notify/bootstrap-notify.min.js") }}">                          </script>
+        bootstrap-notify.min
 
         <script src="{{ asset("inputmask/inputmask.js") }}">                    </script>
         <script src="{{ asset("inputmask/inputmask.extensions.js") }}">         </script>
