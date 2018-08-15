@@ -29,6 +29,9 @@ Route::post('/mudastatus',				'UserController@MudaStatus');
 //caminho para DESASSOCIAR um Membro do Usuário
 Route::post('/desassocia',				'UserController@desassocia');
 
+//caminho para ASSOCIAR um Membro do Usuário
+Route::post('/associa',					'UserController@associa');
+
 
 //========================================================================================
 // 										EMAIL

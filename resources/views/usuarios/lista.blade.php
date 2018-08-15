@@ -108,6 +108,7 @@
 												@if($usuario->membro['no_membro'] != "")
 													<button  
 														class="btn_desassocia btn btn-danger btn-xs action  pull-right  botao_acao" 
+														name = "btn_desassocia{{$usuario->id }}"
 														data-toggle="tooltip" 
 														data-usuario = {{ $usuario->id }}
 														data-placement="bottom" 
@@ -117,7 +118,8 @@
 
 													<button  
 														class="btn_associa btn btn-success btn-xs action  pull-right  botao_acao" 
-														data-toggle="tooltip" 
+														data-target="#associar_membro"
+														data-toggle="modal" 
 														data-usuario = {{ $usuario->id }}
 														data-placement="bottom" 
 														title="Associa um Membro a esse Usuário"
@@ -137,7 +139,8 @@
 
 													<button  
 														class="btn_associa btn btn-success btn-xs action  pull-right  botao_acao" 
-														data-toggle="tooltip" 
+														data-target="#associar_membro"
+														data-toggle="modal" 
 														data-usuario = {{ $usuario->id }}
 														data-placement="bottom" 
 														title="Associa um Membro a esse Usuário" >  
@@ -156,6 +159,68 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal ASSOCIAR ---------------------------------------------------------------------------------------------->
+	<div class="modal fade" id="associar_membro" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				
+				<div class="alert alert-danger" style="display: none" role="alert">
+					This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+				</div>
+
+				<div class="modal-body">
+
+					<form id="form_modal_" method="post" action="#"  >
+
+						{{ csrf_field() }}
+
+						<input value="" name="id_do_usuario" type="hidden" class="form-control" id="id_do_usuario">
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label"> 
+								Membro a Associar
+							</label>
+
+							<div class="col-sm-8">
+								<select name="membro_id" class="form-control" id="membro_associar" >
+									<option value="" selected> ---- </option>  
+									@foreach($membros as $membro)
+											<option value="{{$membro->id}}"> {{$membro->no_membro}} -  {{ number_format($membro->co_cim,0,",",".")  }}   </option>  
+									@endforeach
+								</select>
+							</div>
+						</div>
+
+						<!-- Campo Email -->
+		    			<div class="form-group">
+		    				<label for="email" class="col-sm-3 control-label">Email</label>
+		    				<div class="col-sm-8">
+								<input value="{{ $usuario->email or old('email') }}" name="email_v" type="email" class="form-control" id="email_v_associar" disabled>
+								{{-- <input value="{{ $usuario->email or old('email') }}" name="email" type="hidden" class="form-control" id="email_associar"> --}}
+		    				</div>
+						</div>
+					</form>  
+				</div>
+
+				<div class="modal-footer">
+					<div class="col-md-11 ">
+						<button type="button" class="envia_associacao btn btn-success" 
+								data-toggle="tooltip" 
+								title="Confirma a operação"> 
+							Confirma    
+						</button>
+
+						<button id="fecha_modal_cad_loja" type="button" data-toggle="tooltip" class="btn btn-danger btn_acao" title="Cancela e retorna a tela anterior" data-dismiss="modal">
+							Cancela	
+						</button>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+	<!-- /Modal ---------------------------------------------------------------------------------------------->
+
 	<!-- /page content -->
 
 	<!-- footer content -->
@@ -315,15 +380,158 @@
 			});
 
 
-			/* ASSOCIA USUARIO */
+			/* =======================  ASSOCIA USUARIO =================================================*/
+
+			//quando o batão na tabela for acionado o select será posicionado no primeiro registro, que é o '---'
 			$("table#tabela_usuarios").on("click", ".btn_associa",function(){
-				let id_usuario = $(this).data('usuario');
-				let btn = $(this);
-				
-				console.log({!! $membros[2] !!});
-				
+				document.getElementById("membro_associar").selectedIndex = 0;
+				//limpa 
+				/* document.getElementById("email_associar").value = ""; */
+				document.getElementById("email_v_associar").value = "";
+				document.getElementById("id_do_usuario").value = $(this).data('usuario');
 				
 			})
+
+			//quando o select no modal mudar ele atualiza o input de EMAIL
+			$("#membro_associar").change(function() {
+				//coloca o conteudo selecionado no select dentro da variável
+				var selecionado = $("#membro_associar :selected").text();
+				// retira do texo tudo o que está após o '-' ficando somente o nome do membro
+				var texto = selecionado.substring(0, selecionado.indexOf("-"));
+				//console.log(texto);
+				//coloca o nome do mebro selecionado no valor do input
+				/* document.getElementById("email_associar").value = texto; */
+				document.getElementById("email_v_associar").value = texto;
+
+				//coloca os membros vindos do controller na variável
+				var me = {!!$membros!!};
+				
+				//coloca na variável o index do membro selecionado (subtraindo 1 pq o 1º valor do seles é "-----")
+				var idx = document.getElementById("membro_associar").selectedIndex - 1;
+
+				//coloca o email do mebro selecionado no valor do input ou nulo caso seja selecionado o '---'
+				if( idx < 0){
+					/* document.getElementById("email_associar").value = ""; */
+					document.getElementById("email_v_associar").value = "";
+				}else{
+					/* document.getElementById("email_associar").value = me[idx]['email']; */
+					document.getElementById("email_v_associar").value = me[idx]['email'];
+				}
+
+			})
+
+			$(".envia_associacao").click(function(e){ 
+				e.preventDefault();
+			
+				let id_usuario = document.getElementById("id_do_usuario").value;
+				let btn = $(this);
+
+				//coloca os membros vindos do controller na variável
+				let me = {!!$membros!!};
+				//coloca na variável o index do membro selecionado (subtraindo 1 pq o 1º valor do seles é "-----")
+				let idx = document.getElementById("membro_associar").selectedIndex - 1;
+				//coloca o email do mebro selecionado no valor do input ou nulo caso seja selecionado o '---'
+				if( idx < 0){
+					console.log("Selecione um Membro");
+
+				}else{
+					var id_do_membro = me[idx]['id'];
+					console.log('usuario', id_usuario);
+					console.log('membro', id_do_membro);
+
+
+					swal({
+						title: 'Confirma a ASSOCIAÇÃO do Membro deste Usuário?',
+						type: 'question',
+						showCancelButton: true,
+						confirmButtonColor: '#3085d6',
+						cancelButtonColor: '#d33',
+						confirmButtonText: 'Sim',
+						cancelButtonText: 'Não',
+					}).then((result) => {
+						if (result.value) {
+
+							$.post('/associa',{
+								_token: 	'{{ csrf_token() }}',
+								user_id:		id_usuario,
+								membro_id:	id_do_membro,
+								
+							},function(data){
+								if(data){
+									btn.css('display', 'none').siblings('button.btn_desassocia').css('display', 'block');
+									
+									funcoes.notifica("success", "O usuário foi ASSOCIADO");
+									console.log(data);
+									$('#associar_membro').modal('hide'); t
+								}else{
+									funcoes.notifica("error", "Falha so ASSOCIAR");
+								}
+							})
+						}
+					})
+
+
+
+				}
+
+
+				
+			
+/* 				$.post("/lojas/nova_ajax", { 			co_titulo	: titulo,
+												no_loja 		: loja,
+												nu_loja		: numero,
+												potencia_id : potencia,
+												ic_rito	 	: rito,
+												no_pais	 	: pais,
+											 	_token 		: token }, function(dados){
+
+		 		//console.log(dados.id , dados.no_potencia);
+
+				if(dados.id)
+				{
+					$('#loja_id0').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>'); 
+					$('#loja_id1').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>'); 
+					$('#loja_id2').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');
+					$('#loja_id3').append('<option value="' + dados.id + '">' + dados.no_loja +' - Nº '+ dados.nu_loja + '</option>');  
+
+					$('.alert').html("");
+					$('.alert').hide();
+					$('#fecha_modal_cad_loja').trigger("click");
+				} else {
+					console.log(dados);
+					$('.alert').html('A ' + titulo + ' ' + loja + ' Nº ' + numero + ' já existe!!!');
+					$('.alert').show()
+				}
+			
+
+			}).fail(function(dados){
+
+				console.log(dados.responseJSON);
+					
+				let mensagem;
+
+				if(dados.responseJSON['no_loja'] )
+				{
+					mensagem = dados.responseJSON['no_loja']
+				}
+
+				if(dados.responseJSON['nu_loja'] )
+				{
+					mensagem = mensagem + '<br> ' + dados.responseJSON['nu_loja']
+				}
+				
+				if(dados.responseJSON['co_titulo'] )
+				{
+					mensagem = mensagem + '<br> ' + dados.responseJSON['co_titulo']
+				}
+
+				$('.alert').html(mensagem);
+
+				$('.alert').show()
+ */ 
+			});
+			/* =================================================================================================== */
+			
 
 
 
@@ -333,30 +541,6 @@
 			
 		});
 		
-		//			 let me =  $membros->no_membro ;
-		//				
-		//				swal({
-		//					title: 'Selecione um Membro a ASSOCIAR esse Usuário',
-		//					input: 'select',
-		//					inputOptions: me,
-		//					inputPlaceholder: '----',
-		//					showCancelButton: true,
-		//					inputValidator: function (value) {
-		//						return new Promise(function (resolve, reject) {
-		//							if (value === 'UKR') {
-		//							resolve()
-		//							} else {
-		//							reject('Você precisa selecionar um Membro :)')
-		//							}
-		//						})
-		//					}
-		//					}).then(function (result) {
-		//					swal({
-		//						type: 'success',
-		//						html: 'You selected: ' + result
-		//					})
-		//					}) 
-		//					
 	</script>
 
 @endpush

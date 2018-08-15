@@ -246,8 +246,7 @@ class UserController extends Controller
         $usuario = User::find($request->id);        
         $usuario->membro_id = null;
         $usuario->save();
-
-        
+       
         if( $usuario ) {
             //Sucesso!
             DB::commit();
@@ -257,9 +256,26 @@ class UserController extends Controller
             DB::rollBack();
             return json_encode("FALHA");     
         }
-
-
-   }
+    }
    
-    
+    public function associa(Request $request)
+    {
+        DB::beginTransaction();
+        
+        // busca o usuario
+        $usuario = User::find($request->user_id);        
+        
+        $usuario->membro_id = $request->membro_id;
+        $usuario->save();
+       
+        if( $usuario ) {
+            //Sucesso!
+            DB::commit();
+                return json_encode("true");     
+        } else {
+            //Fail, desfaz as alterações no banco de dados
+            DB::rollBack();
+            return json_encode("false");     
+        }
+    }
 }
