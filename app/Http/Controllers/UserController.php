@@ -260,10 +260,24 @@ class UserController extends Controller
    
     public function associa(Request $request)
     {
-        DB::beginTransaction();
         
+      
+        $usuario     = User::find($request->id);
+        
+        $membros  = Membro::with(['user'])->orderBy('no_membro')->get();
+        
+        //dd($membros);
+        return view('usuarios.associa', compact('usuario','membros'));
+
+    }
+
+    public function salvaAssociacao(Request $request)
+    {
+        //dd($request->all());
+        DB::beginTransaction();
+
         // busca o usuario
-        $usuario = User::find($request->user_id);        
+        $usuario = User::find($request->usuario_id);        
         
         $usuario->membro_id = $request->membro_id;
         $usuario->save();
@@ -271,11 +285,13 @@ class UserController extends Controller
         if( $usuario ) {
             //Sucesso!
             DB::commit();
-                return json_encode("true");     
+            return redirect(url('usuarios'))->with('sucesso', 'Usuário cadastrado com sucesso.');
         } else {
             //Fail, desfaz as alterações no banco de dados
             DB::rollBack();
-            return json_encode("false");     
+            return redirect(url('usuarios'))->with(['erros' => 'Falha no cadastrado.']);
         }
+
+
     }
 }

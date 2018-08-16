@@ -41,12 +41,12 @@
 							</thead>
 
 							<tbody>
-								@foreach($usuarios as $usuario)
+								@foreach($usuarios as $key=> $usuario)
 									<tr>
 										<td>{{ $usuario->name }}</td> 
 										<td>{{ $usuario->email }}</td>
 										@if($usuario->membro['no_membro'] != "")
-											<td>SIM</td>
+											<td>{{ $usuario->membro['no_membro']}}</td>
 										@else
 											<td></td>
 										@endif
@@ -108,7 +108,7 @@
 												@if($usuario->membro['no_membro'] != "")
 													<button  
 														class="btn_desassocia btn btn-danger btn-xs action  pull-right  botao_acao" 
-														name = "btn_desassocia{{$usuario->id }}"
+														name = "btn_desassocia{{$key}}"
 														data-toggle="tooltip" 
 														data-usuario = {{ $usuario->id }}
 														data-placement="bottom" 
@@ -116,16 +116,12 @@
 														<i class="glyphicon glyphicon-link "></i>
 													</button>
 
-													<button  
+													<a href="{{ url('/associa/$usuario->id') }}"
 														class="btn_associa btn btn-success btn-xs action  pull-right  botao_acao" 
-														data-target="#associar_membro"
-														data-toggle="modal" 
-														data-usuario = {{ $usuario->id }}
-														data-placement="bottom" 
 														title="Associa um Membro a esse Usuário"
 														style="display: none">  
 														<i class="glyphicon glyphicon-link "></i>
-													</button>
+													</a>
 												@else
 													<button  
 														class="btn_desassocia btn btn-danger btn-xs action  pull-right  botao_acao" 
@@ -137,15 +133,11 @@
 														<i class="glyphicon glyphicon-link "></i>
 													</button>
 
-													<button  
+													<a href="{{ url("/associa/$usuario->id") }}"
 														class="btn_associa btn btn-success btn-xs action  pull-right  botao_acao" 
-														data-target="#associar_membro"
-														data-toggle="modal" 
-														data-usuario = {{ $usuario->id }}
-														data-placement="bottom" 
 														title="Associa um Membro a esse Usuário" >  
 														<i class="glyphicon glyphicon-link "></i>
-													</button>
+													</a>
 												@endif
 									
 											@endif
@@ -160,66 +152,7 @@
 		</div>
 	</div>
 
-	<!-- Modal ASSOCIAR ---------------------------------------------------------------------------------------------->
-	<div class="modal fade" id="associar_membro" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				
-				<div class="alert alert-danger" style="display: none" role="alert">
-					This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-				</div>
-
-				<div class="modal-body">
-
-					<form id="form_modal_" method="post" action="#"  >
-
-						{{ csrf_field() }}
-
-						<input value="" name="id_do_usuario" type="hidden" class="form-control" id="id_do_usuario">
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label"> 
-								Membro a Associar
-							</label>
-
-							<div class="col-sm-8">
-								<select name="membro_id" class="form-control" id="membro_associar" >
-									<option value="" selected> ---- </option>  
-									@foreach($membros as $membro)
-											<option value="{{$membro->id}}"> {{$membro->no_membro}} -  {{ number_format($membro->co_cim,0,",",".")  }}   </option>  
-									@endforeach
-								</select>
-							</div>
-						</div>
-
-						<!-- Campo Email -->
-		    			<div class="form-group">
-		    				<label for="email" class="col-sm-3 control-label">Email</label>
-		    				<div class="col-sm-8">
-								<input value="{{ $usuario->email or old('email') }}" name="email_v" type="email" class="form-control" id="email_v_associar" disabled>
-								{{-- <input value="{{ $usuario->email or old('email') }}" name="email" type="hidden" class="form-control" id="email_associar"> --}}
-		    				</div>
-						</div>
-					</form>  
-				</div>
-
-				<div class="modal-footer">
-					<div class="col-md-11 ">
-						<button type="button" class="envia_associacao btn btn-success" 
-								data-toggle="tooltip" 
-								title="Confirma a operação"> 
-							Confirma    
-						</button>
-
-						<button id="fecha_modal_cad_loja" type="button" data-toggle="tooltip" class="btn btn-danger btn_acao" title="Cancela e retorna a tela anterior" data-dismiss="modal">
-							Cancela	
-						</button>
-					</div>
-				</div>
-			</div>
-		</div> 
-	</div>
-	<!-- /Modal ---------------------------------------------------------------------------------------------->
+	
 
 	<!-- /page content -->
 
@@ -371,9 +304,9 @@
 							_token: 	'{{ csrf_token() }}',
 							id: 		id_usuario,
 						},function(data){
-							btn.css('display', 'none').siblings('button.btn_associa').css('display', 'block');
+							btn.css('display', 'none').siblings('a.btn_associa').css('display', 'block');
 							funcoes.notifica("success", "O usuário foi DESASSOCIADO");
-							//console.log(data)
+							console.log(data)
 						})
 					}
 				})
@@ -382,43 +315,7 @@
 
 			/* =======================  ASSOCIA USUARIO =================================================*/
 
-			//quando o batão na tabela for acionado o select será posicionado no primeiro registro, que é o '---'
-			$("table#tabela_usuarios").on("click", ".btn_associa",function(){
-				document.getElementById("membro_associar").selectedIndex = 0;
-				//limpa 
-				/* document.getElementById("email_associar").value = ""; */
-				document.getElementById("email_v_associar").value = "";
-				document.getElementById("id_do_usuario").value = $(this).data('usuario');
-				
-			})
-
-			//quando o select no modal mudar ele atualiza o input de EMAIL
-			$("#membro_associar").change(function() {
-				//coloca o conteudo selecionado no select dentro da variável
-				var selecionado = $("#membro_associar :selected").text();
-				// retira do texo tudo o que está após o '-' ficando somente o nome do membro
-				var texto = selecionado.substring(0, selecionado.indexOf("-"));
-				//console.log(texto);
-				//coloca o nome do mebro selecionado no valor do input
-				/* document.getElementById("email_associar").value = texto; */
-				document.getElementById("email_v_associar").value = texto;
-
-				//coloca os membros vindos do controller na variável
-				var me = {!!$membros!!};
-				
-				//coloca na variável o index do membro selecionado (subtraindo 1 pq o 1º valor do seles é "-----")
-				var idx = document.getElementById("membro_associar").selectedIndex - 1;
-
-				//coloca o email do mebro selecionado no valor do input ou nulo caso seja selecionado o '---'
-				if( idx < 0){
-					/* document.getElementById("email_associar").value = ""; */
-					document.getElementById("email_v_associar").value = "";
-				}else{
-					/* document.getElementById("email_associar").value = me[idx]['email']; */
-					document.getElementById("email_v_associar").value = me[idx]['email'];
-				}
-
-			})
+			
 
 			$(".envia_associacao").click(function(e){ 
 				e.preventDefault();
@@ -457,12 +354,12 @@
 								membro_id:	id_do_membro,
 								
 							},function(data){
-								if(data){
-									btn.css('display', 'none').siblings('button.btn_desassocia').css('display', 'block');
+								if(data==1){
+									//btn.css('display', 'none').siblings('button.btn_desassocia').css('display', 'block');
 									
 									funcoes.notifica("success", "O usuário foi ASSOCIADO");
 									console.log(data);
-									$('#associar_membro').modal('hide'); t
+									$('#associar_membro').modal('hide'); 
 								}else{
 									funcoes.notifica("error", "Falha so ASSOCIAR");
 								}

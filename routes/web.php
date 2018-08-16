@@ -30,7 +30,8 @@ Route::post('/mudastatus',				'UserController@MudaStatus');
 Route::post('/desassocia',				'UserController@desassocia');
 
 //caminho para ASSOCIAR um Membro do Usuário
-Route::post('/associa',					'UserController@associa');
+Route::get('/associa/{id}',			'UserController@associa');
+Route::post('/associa',					'UserController@salvaAssociacao');
 
 
 //========================================================================================
