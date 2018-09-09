@@ -1,13 +1,13 @@
-@extends('layouts.blank')
+@extends('gentelella.layouts.app')
 
-@push('stylesheets')
+@push('styles')
 	<!-- Example -->
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
 @endpush
 
-@section('conteudo')
+@section('content')
 
 	@if( count($errors) > 0)
 		<div class="alert alert-roxo alert-dismissible" style="margin-top: 70px;" role="alert">

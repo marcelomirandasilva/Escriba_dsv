@@ -1,0 +1,142 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "inputmask@^4.0.0",
+        "scope": null,
+        "escapedName": "inputmask",
+        "name": "inputmask",
+        "rawSpec": "^4.0.0",
+        "spec": ">=4.0.0 <5.0.0",
+        "type": "range"
+      },
+      "C:\\laragon\\www\\sgf"
+    ]
+  ],
+  "_from": "inputmask@>=4.0.0 <5.0.0",
+  "_hasShrinkwrap": false,
+  "_id": "inputmask@4.0.0",
+  "_inCache": true,
+  "_location": "/inputmask",
+  "_nodeVersion": "8.10.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/inputmask_4.0.0_1527364302514_0.818735782035523"
+  },
+  "_npmUser": {
+    "name": "robinherbots",
+    "email": "robin.herbots@gmail.com"
+  },
+  "_npmVersion": "3.5.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "inputmask@^4.0.0",
+    "scope": null,
+    "escapedName": "inputmask",
+    "name": "inputmask",
+    "rawSpec": "^4.0.0",
+    "spec": ">=4.0.0 <5.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/inputmask/-/inputmask-4.0.0.tgz",
+  "_shasum": "98d7da2c08208a474badc692c1122edb5580247b",
+  "_shrinkwrap": null,
+  "_spec": "inputmask@^4.0.0",
+  "_where": "C:\\laragon\\www\\sgf",
+  "author": {
+    "name": "Robin Herbots",
+    "url": "https://github.com/RobinHerbots"
+  },
+  "bugs": {
+    "url": "https://github.com/RobinHerbots/Inputmask/issues"
+  },
+  "dependencies": {},
+  "description": "Inputmask is a javascript library which creates an input mask.  Inputmask can run against vanilla javascript, jQuery and jqlite.",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.4.1",
+    "babel-core": "^6.26.0",
+    "babel-helpers": "^6.24.1",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "caniuse-db": "^1.0.30000800",
+    "css-loader": "^0.28.9",
+    "grunt": "^1.0.1",
+    "grunt-available-tasks": "^0.6.3",
+    "grunt-bump": "^0.8.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-eslint": "^20.1.0",
+    "grunt-karma": "^2.0.0",
+    "grunt-nuget": "^0.3.0",
+    "grunt-release": "^0.14.0",
+    "grunt-webpack": "^3.0.2",
+    "jqlite": "^0.2.42",
+    "jquery": "^2.2.4",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-qunit": "^1.2.1",
+    "load-grunt-tasks": "^3.5.2",
+    "loader-utils": "^1.1.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "postcss": "^6.0.17",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-loader": "^2.1.0",
+    "qunitjs": "^2.4.1",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.20.1",
+    "typescript": "^2.7.1",
+    "webpack": "^3.10.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "98d7da2c08208a474badc692c1122edb5580247b",
+    "tarball": "https://registry.npmjs.org/inputmask/-/inputmask-4.0.0.tgz",
+    "fileCount": 48,
+    "unpackedSize": 6785348,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbCbrRCRA9TVsSAnZWagAAx+gP/3sIYcBMaq8rmK2NKHN6\nwMSY7js+rJPDm6Hwwjc1uakfjEEBJB3fw3OpZwOjoHWl6ZZ+GozS2YHx8cmA\n+nt2BaDw4uG3O+ornrXlWl7vj6Mw0OLlSGB4kyT+/o8krbDhuwkH73bRHijS\ngBlNA4X39PnFjOr5PI3ld3TADjnwjzpwD8zkDZFzLNPHv2SKICvBNuDvW2OS\niHuuMRrzERdSbyxfYg9BXVwYrsk6emEclNXatB4BqSVAF83JZ6lka8/smq+V\nHxlyGeuQ62XOmubU2k4Rqjna+r85O5ah8bCLnhqvxV5T9iVT+JSgvnI0WcgY\npDJhfaJCO/mMD7MNx4kqIsvzby1Cn9P/QBWcs4lKvDMKKPJyLNspYEXch6Ct\nRgaKYkGmAu23+SsxOAdy4yNoKc8SPWV7Y1Pak0LP4SIb9C/CmOVAQycAtPBM\nFpbBWGU+N8AgyJbI38KxYdoobdh6NmXfkxlwSBQkV87bWXmVU3o8MJiBE+Kv\njJBYESi8eqvCAvx1AZl9pWwaRtV1X5PiRXszSwCABKabhvx7RtDvu6qy4BhK\n2bsDhvoftkRl2DeNCy909KjjiIgxJqNBI2991FYZIDp24d0KfCD3SM/A8zwz\nKzLycMfo2AabMFLLr/xNxohUMOP7YuHkNjChAI4GU3nFRDy8mN70HRjgdUDJ\nUcaJ\r\n=ctL3\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "files": [
+    "dist/",
+    "css/"
+  ],
+  "gitHead": "4e1a2ad72da48ff0efdc183cbdce231b71119b79",
+  "homepage": "https://github.com/RobinHerbots/Inputmask",
+  "keywords": [
+    "form",
+    "input",
+    "inputmask",
+    "jquery",
+    "jquery-plugin",
+    "mask",
+    "plugins"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "robinherbots",
+      "email": "robin.herbots@gmail.com"
+    }
+  ],
+  "name": "inputmask",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobinHerbots/Inputmask.git"
+  },
+  "scripts": {
+    "qunitpack": "webpack --progress --watch --config qunit/webpack.config.js",
+    "start": "webpack --progress --watch --config webpack.config.js",
+    "test": "grunt validate"
+  },
+  "version": "4.0.0"
+}

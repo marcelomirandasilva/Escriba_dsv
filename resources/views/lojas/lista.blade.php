@@ -1,16 +1,17 @@
-@extends('layouts.blank')
+@extends('gentelella.layouts.app')
 
-@push('stylesheets')
+@push('styles')
 
-  <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
 
 @endpush
 
-@section('conteudo')
+@section('content')
 
   <!-- page content -->
   <div class="right_col" role="main">
@@ -30,7 +31,7 @@
       		</div>
       		<div class="x_content">
        			<div class="panel-body">
-         			<table class="table table-striped" id="tabela-lojas">
+         			<table class="table table-striped" id="tabela_lojas">
            				<thead>
              				<tr>
 									<th>Título</th>
@@ -104,13 +105,12 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
 	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 
-
-  	<script>
+	<script>
     	$(document).ready(function(){
 
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 
-        	$("#tabela-lojas").DataTable({
+        	$("#tabela_lojas").DataTable({
 				language : {
                             'url' : '{{ asset('js/portugues.json') }}',
                             "decimal": ",",

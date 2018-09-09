@@ -1,0 +1,386 @@
+// Fonts
+// @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+$icon-font-path: '/fonts/bootstrap/';
+@import "vendor/twbs/bootstrap-sass/assets/stylesheets/_bootstrap";
+// @import "bootstrap";
+
+// font-awesome
+@import '~gentelella/vendors/font-awesome/scss/font-awesome';
+
+// Animate CSS
+@import '~gentelella/vendors/animate.css/animate';
+
+// PNotify 
+@import '~gentelella/vendors/pnotify/dist/pnotify.css';
+// @import '~gentelella/vendors/pnotify/dist/pnotify.buttons.css';
+
+// Gentelella
+@import '~gentelella/src/scss/custom';
+
+// .navbar-laravel {
+//   background-color: #fff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// }
+
+@import 'alteracao_gentelella.scss';
+
+.logo_topo {
+		width: 120px;
+		margin-top: 20px;
+		
+}
+
+
+.cor_fundo_menu {
+	background: $menu !important;
+}
+.cor_texto_menu {
+	color: $menu !important;
+}
+
+.fas {
+	font-size: 20px !important;
+	padding-right: 10px !important;
+}
+
+.fas-tabela {
+	font-size: 12px !important;
+	padding: 2px !important;
+}
+
+.fonte_dourada {
+	color: $dourado;
+}
+
+.combustiveis {
+	padding-right: 4px !important;
+	padding-left: 	4px !important;
+	text-align: right;
+}
+
+.tabela_abastecimentos {
+	width: 100% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+	font-size: 13px;
+}
+
+input[type="text"]{
+	font-size:13px;
+}
+
+.form-control {
+	display: block;
+	width: 100%;
+	height: 30px;
+	padding: 6px 10px;
+	font-size: 13;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+
+.logo{
+	
+	width: 35px;
+	height: 35px;
+	background-size: 35px 35px;
+	//background-image: url(../images/thoth.ico);
+	position: relative;
+	bottom:  10px;
+	left:  110px;
+	display: inline-block;
+	line-height: 1;
+	float: left;
+
+}
+
+.logo_grande{
+	
+	width: 85px;
+	height: 85px;
+	background-size: 85px 85px;
+	//background-image: url(../images/thoth.ico);
+	position: relative;
+	bottom:  30px;
+	
+	display: inline-block;
+	line-height: 1;
+}
+
+.login_content h1 {
+	font: 400 35px Helvetica,Arial,sans-serif;
+	letter-spacing: -.05em;
+	line-height: 20px;
+	margin: 10px 0 30px;
+}
+
+
+.logo_side_bar{
+	
+	width: 35px;
+	height: 35px;
+	background-size: 35px 35px;
+	//background-image: url(../images/thoth.ico);
+	 position: relative;
+	top:  10px;
+	left:  -5px;
+	display: inline-block;
+	line-height: 1;
+	float: left;
+}
+.site_title {
+	font-weight: 400;
+	font-size: 32px;
+	width: 100%;
+	line-height: 60px;
+	display: block;
+	height: 55px;
+	margin: 0;
+	padding-left: 20px;
+}
+
+.site_title i {
+	border: 1px ; 
+	padding: 5px 6px;
+	border-radius: 0%; 
+}
+
+.edit{
+	background: #242063;
+}
+.icone_olho{
+	background: #329c06;
+}
+.destroy{
+	background: #b12020;
+}
+.action{
+	padding: 4px;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 1em;
+	margin: 0px 2px;
+}
+.action:hover{
+	text-decoration: none;;
+	color: #FFF;
+}
+
+.diminui_espacos{
+	padding-right: 2px !important;
+	padding-left: 4px !important;
+	font-size: 13px !important;
+	
+}
+.datas_input{
+	padding-right: 0px!important;
+	padding-left: 6px!important;
+	font-size: 12px!important;
+}
+
+.nu_loja_input{
+	
+	padding-left: 2px;
+	font-size: 13px;
+	
+}
+
+.botao_adiciona_elemento:focus, input:focus, select:focus {
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border: 1px solid #2A3F54 !important;
+  
+}
+
+
+.botao_adiciona_elemento{
+	float: right; top: 5px; 
+
+	right: 0px;
+	left: 11px;
+	bottom: 24px !important;
+	border-top-width: 1px;
+	
+
+	font: bold 11px Arial;
+	-webkit-border-radius: 4px !important ;
+	-moz-border-radius: 4px !important;
+	border-radius: 8px;
+	border: solid 1px #20538D;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+	background: #4479BA;
+	color: #FFF;
+	padding: 4px 6px;
+	text-decoration: none;
+}
+
+
+.btn_tb_cargo_remove{
+	height: 18px;
+	width: 18px;
+}
+
+
+.icone_botao_lista{
+  position: static !important;
+}
+
+.botao_lista{
+  height: 22px;
+}
+
+.botao_lista_dados{
+	padding-top: 1px;
+	padding-left: 3px;
+	height: 22px;
+}
+
+.botao_acao{
+ padding: 1px 3px 0px 3px !important;
+ font-size: 12px !important;
+}
+
+
+body .container.body .right_col {
+	background: #F7F7D8;
+}
+
+
+.btn-circulo{
+ width: 30px;
+ height: 30px;
+ text-align: center;
+ padding: 6px 0;
+ font-size: 12px;
+ line-height: 1.428571429;
+ border-radius: 15px;
+}
+
+.cor-novo{
+	background-color: blue;
+	color: #3D276B;
+}
+
+.celula_CIM { 
+	text-align: center;
+	padding-right: 45px !important;
+}
+
+.panel_telefone, .clone_telefone, .telefone_clonado, .panel_emails, .email_clonado   {
+	top: 3px;
+	padding-top: 0px;
+	padding-bottom: 5px;
+	margin-bottom: 3px;
+}
+
+.form-control:focus {
+	-webkit-box-shadow: 1px 1px 20px -3px #2A3F54 !important;
+	-moz-box-shadow:    1px 1px 20px -3px #2A3F54 !important;
+	box-shadow:         1px 1px 20px -3px #2A3F54 !important;
+}
+
+.panel_dependente, .dependente_clonado{
+	margin-bottom: 0px;
+	padding-top: 6px;
+	padding-bottom: 5px;
+
+}
+
+.btn_acao{
+  border-radius: 8px;
+}    
+
+.panel_sem_margem{
+	padding-left: 1px;
+	padding-right: 1px;
+}
+
+.alinha_esquerda{
+	padding-left: 0px;
+}
+
+
+
+
+.alert_vermelho {
+	color: #fff;
+	background-color: #b12020;
+	border-color: #3D276B;
+}
+
+.alert_verde {
+	color: #fff;
+	background-color: #3d843e;
+	border-color: #c9ab6d;
+}
+
+
+.left_col {
+	min-height: 100%;
+	width: 230px;
+	padding: 0;
+	position: fixed;
+	display: -ms-flexbox;
+	z-index: 1;
+}
+
+.sidebar-footer {
+	bottom: 0;
+	clear: both;
+	display: block;
+	padding: 5px 0 0;
+	position: fixed;
+	width: 230px;
+	background: #2A3F54;
+	z-index: 999;
+}
+
+.footer {
+	background: #fff;
+	padding: 15px 20px;
+	display: block;
+	background: #F7F7D8;
+}
+
+.tab_membro {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+}
+
+.telefone {
+	color: #b12020;
+	text-align: start;
+	direction: initial;
+}

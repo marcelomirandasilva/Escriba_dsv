@@ -16,11 +16,13 @@ return [
     'accepted'             => ':Attribute deve ser aceito.',
     'active_url'           => ':Attribute não é uma URL válida.',
     'after'                => ':Attribute deve ser uma data depois de :date.',
+    'after_or_equal'       => ':Attribute deve ser uma data posterior ou igual à :date.',
     'alpha'                => ':Attribute deve conter somente letras.',
     'alpha_dash'           => ':Attribute deve conter letras, números e traços.',
     'alpha_num'            => ':Attribute deve conter somente letras e números.',
     'array'                => ':Attribute deve ser um array.',
     'before'               => ':Attribute deve ser uma data antes de :date.',
+    'before_or_equal'      => ':Attribute deve ser uma data anterior ou igual à :date.',
     'between'              => [
         'numeric' => ':Attribute deve estar entre :min e :max.',
         'file'    => ':Attribute deve estar entre :min e :max kilobytes.',
@@ -34,13 +36,19 @@ return [
     'different'            => ':Attribute e :other devem ser diferentes.',
     'digits'               => ':Attribute deve ter :digits dígitos.',
     'digits_between'       => ':Attribute deve ter entre :min e :max dígitos.',
+    'dimensions'           => ':Attribute tem dimensões de imagem inválidas.',
+    'distinct'             => ':Attribute tem um valor duplicado.',
     'email'                => ':Attribute deve ser um endereço de e-mail válido.',
     'exists'               => 'O :attribute selecionado é inválido.',
+    'file'                 => ':Attribute deve ser um arquivo.',
     'filled'               => ':Attribute é um campo obrigatório.',
     'image'                => ':Attribute deve ser uma imagem.',
     'in'                   => ':Attribute é inválido.',
+    'in_array'             => ':Attribute não existe em :other.',
     'integer'              => ':Attribute deve ser um inteiro.',
     'ip'                   => ':Attribute deve ser um endereço IP válido.',
+    'ipv4'                 => ':Attribute deve ser um endereço IPv4 válido.',
+    'ipv6'                 => ':Attribute deve ser um endereço IPv6 válido.',
     'json'                 => ':Attribute deve ser um JSON válido.',
     'max'                  => [
         'numeric' => ':Attribute não deve ser maior que :max.',
@@ -49,6 +57,7 @@ return [
         'array'   => ':Attribute não deve ter mais que :max itens.',
     ],
     'mimes'                => ':Attribute deve ser um arquivo do tipo: :values.',
+    'mimetypes'            => ':Attribute deve ser um arquivo do tipo: :values.',
     'min'                  => [
         'numeric' => ':Attribute deve ser no mínimo :min.',
         'file'    => ':Attribute deve ter no mínimo :min kilobytes.',
@@ -57,6 +66,7 @@ return [
     ],
     'not_in'               => 'O :attribute selecionado é inválido.',
     'numeric'              => ':Attribute deve ser um número.',
+    'present'              => 'O :attribute deve estar presente.',
     'regex'                => 'O formato de :attribute é inválido.',
     'required'             => 'O campo :attribute é obrigatório.',
     'required_if'          => 'O campo :attribute é obrigatório quando :other é :value.',
@@ -75,6 +85,7 @@ return [
     'string'               => ':Attribute deve ser uma string',
     'timezone'             => ':Attribute deve ser uma timezone válida.',
     'unique'               => ':Attribute já está em uso.',
+    'uploaded'             => 'O :attribute falhou ao ser enviado.',
     'url'                  => 'O formato de :attribute é inválido.',
 
     /*
@@ -107,14 +118,15 @@ return [
 
     'attributes' => [
 
-        'nu_logradouro' => "Número",
-        'name'          => 'Nome',
-        'email'         => 'Email',
-        'password'      => 'Senha',
-        'admin'         => 'Tipo de Usuário',
-        'no_loja'       => 'Nome da loja',
-        'nu_loja'       => 'Número da loja',
-        'co_titulo'     => 'Título da Loja',
+        'secretaria_id' => "SECRETARIA",
+        'base_id'       => 'BASE',
+        'email'         => 'EMAIL',
+        'combustivel'   => 'COMBUSTÍVEL',
+        'placa'         => 'PLACA',
+        'modelo'        => 'MODELO',
+        'cor'           => 'COR',
+        'renavam'       => 'RENAVAM',
+        'ano'           => 'ANO',
 
     ],
 

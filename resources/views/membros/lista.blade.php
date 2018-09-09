@@ -1,4 +1,4 @@
-@extends('layouts.blank')
+@extends('layouts.app')
 
 @push('stylesheets')
   <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">

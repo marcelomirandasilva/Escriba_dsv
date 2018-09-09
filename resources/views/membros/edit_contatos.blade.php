@@ -9,76 +9,21 @@
 			<span class="fa fa-plus">  </span>
 		</button>   
 
-		<div class="col-md-11">
-			
-			@foreach ($membro->telefones as $key =>  $telefone )
-
-				<div class="x_panel panel_telefone1 panel_sem_margem ">            
-					{{-- bloco de telefone --}}
-					<div class="item form-group">
-					{{--  TIPO DE TELEFONE  --}}
-						<div class="col-md-5 panel_sem_margem" style="top: 4px;">
-							<select id="telefones[{{$key}}][ic_telefone]"  name="telefones[{{$key}}][ic_telefone]"  
-								class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
-								@foreach($tipo_telefone as $tipo)
-									@if ( $telefone->ic_telefone == $tipo)
-										<option value="{{$tipo}}" selected="selected"> {{$tipo}} </option>  
-									@else
-										<option value="{{$tipo}}"> {{$tipo}} </option>  
-									@endif
-								@endforeach
-							</select>
-						</div>
-
-						{{-- NUMERO DO TELEFONE  --}}
-						<div class="col-md-6" style="top: 4px;">
-							<input id="telefones[{{$key}}][nu_telefone]"   name="telefones[{{$key}}][nu_telefone]" class="form-control input-md telefone" 
-								placeholder="(99) 9999-9999"  type="tel"
-								value="{{ $telefone->nu_telefone or old('nu_telefone') }}" >
-						</div>
-						
-						<button value="excluir_tel" data-toggle="tooltip" title="Remover o telefone" 
-							class="btn btn-circulo btn-danger glyphicon 	glyphicon-trash excluir excluir_tel" selected style="display:block;">
-						</button>
+		<div class="item form-group">
+				<div class="row">
+					<div class="col-md-5 ">
+						<label class="control-label col-md-12" for="no_pai">Pai</label>
+						<input  id="no_pai" class="form-control col-md-5" name="no_pai" placeholder="Nome do Pai do Irmão" type="text" 
+						value="{{$membro->no_pai or old('no_pai')}}" >
 					</div>
-					{{-- FIM bloco de telefone --}}
-				</div>
-			@endforeach
-
-			<div class="x_panel panel_telefone panel_sem_margem ">            
-					{{-- bloco de telefone --}}
-					<div class="item form-group">
-					{{--  TIPO DE TELEFONE  --}}
-						<div class="col-md-5 panel_sem_margem" style="top: 4px;">
-							<select id="telefones[{{$key}}][ic_telefone]"  name="telefones[{{$key}}][ic_telefone]"  
-								class="form-control col-md-2 tipo-telefone"   placeholder="Tipo de telefone"   type="text" >
-								@foreach($tipo_telefone as $tipo)
-									@if ( $telefone->ic_telefone == $tipo)
-										<option value="{{$tipo}}" selected="selected"> {{$tipo}} </option>  
-									@else
-										<option value="{{$tipo}}"> {{$tipo}} </option>  
-									@endif
-								@endforeach
-							</select>
-						</div>
-
-						{{-- NUMERO DO TELEFONE  --}}
-						<div class="col-md-6" style="top: 4px;">
-							<input id="telefones[{{$key}}][nu_telefone]"   name="telefones[{{$key}}][nu_telefone]" class="form-control input-md telefone" 
-								placeholder="(99) 9999-9999"  type="tel"
-								value="{{ $telefone->nu_telefone or old('nu_telefone') }}" >
-						</div>
-						
-						<button value="excluir_tel" data-toggle="tooltip" title="Remover o telefone" 
-							class="btn btn-circulo btn-danger glyphicon 	glyphicon-trash excluir excluir_tel" selected style="display:block;">
-						</button>
+		
+					<div class="col-md-5 ">
+						<label class="control-label col-md-1" for="no_pai">Mãe</label>
+						<input  id="no_mae" class="form-control col-md-5" name="no_mae" placeholder="Nome da Mãe do Irmão" type="text"
+						value="{{$membro->no_mae or old('no_mae')}}" >
 					</div>
-					{{-- FIM bloco de telefone --}}
 				</div>
-
-
-			<div class="local_clone_tel"></div> {{-- Clonagem da div panel_dependentes --}}
-		</div>
+			</div>
 	</div>
 
    {{-- ==============================================================EMAIL ============================================ --}}

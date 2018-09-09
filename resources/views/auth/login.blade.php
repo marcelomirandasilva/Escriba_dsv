@@ -1,80 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>Escriba - Online </title>
-    
-    <!-- Bootstrap -->
-    <link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
-    <!-- MEU CSS  -->
-    <link href="{{ asset("css/styles.css") }}" rel="stylesheet">
+<html lang="pt-br">
+	@section('htmlheader_title', 'Login')
+	@include('gentelella.layouts.partials.htmlheader')
 
-    <link href="{{ asset("css/animate.css") }}" rel="stylesheet" >
+	<body class="login">
 
-</head>
+		<div id="app"> 
+			<a class="hiddenanchor" id="signup"></a>
+			<a class="hiddenanchor" id="signin"></a>
+			<div class="cor_fundo_menu" style="width:100%; height:150px; text-align: center;">
+				<img class="logo_topo" src="{{ asset("img/thoth.ico") }}">
+			</div>
 
-<body class="login">
-<div>
-    <div  class="login_wrapper">
-        <div class="animate form login_form">
-            <section class="login_content">
-				{!! BootForm::open(['url' => url('/login'), 'method' => 'post']) !!}
-                    
-                 
-                
-                <div class="animated fadeInUp" name="logo">
-                	<i class="logo_grande"></i>
-                	<span><h1> Escriba </h1> </span>
-					{{-- <h1 class="bordo" >Login </h1> --}}
+			<div class="login_wrapper">
+				{{--  login  --}}
+				<div class="animate form login_form">
+					<section class="login_content">
+						<form method="POST" action="{{ route('login') }}">
+							{{ csrf_field() }}
+							
+							<h1 class="cor_texto_roxo">Escriba</h1>
+							
+							<div>
+								<input id="email" type="email" placeholder="E-mail" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+								
+								@if ($errors->has('email'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('email') }}</strong>
+								</span>
+								@endif
+							</div>
+							<div>
+								<input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+								
+								@if ($errors->has('password'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('password') }}</strong>
+								</span>
+								@endif
+							</div>
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Lembre de mim
+								</label>
+							</div>
+							<div>
+								<button type="submit" class="btn btn-default submit">
+									Entrar
+								</button>               
+								
+								
+							</div>
+							
+							<div class="clearfix"></div>
+							
+							
+						</form>
+					</section>
 				</div>
+		
+			</div>
+		</div>
 
-				
-				<div class="animated rotateIn">
+		<!-- jQuery -->
+		@include('gentelella.layouts.partials.scripts_login')  
+		
+		
 
-					{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
-				
-					{!! BootForm::password('password', 'Senha', ['placeholder' => 'Senha']) !!}
-					
-					<div>
-						{!! BootForm::submit('Log in', ['class' => 'btn btn-default submit']) !!}
-						<a class="reset_pass" href="{{  url('/password/reset') }}">Perdeu sua senha ?</a>
-					</div>
-	                    
-					<div class="clearfix"></div>
-	                    
-					<div class="separator">
-						<p class="change_link">Novo no site?
-							<a href="{{ url('/register') }}" class="to_register"> Crie uma conta! </a>
-						</p>
-	                        
-						<div class="clearfix"></div>
-						<br />
-	                        
-						<div>
-						 
-						
-						
-						</div>
-					</div>
-				</div>
-				{!! BootForm::close() !!}
-            </section>
-        </div>
-    </div>
-</div>
-
-<script src="{{ asset("js/jquery.min.js") }}"> </script>
-
-
-</body>
+	</body>
 </html>
-

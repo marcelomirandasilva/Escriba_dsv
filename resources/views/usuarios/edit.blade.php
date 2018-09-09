@@ -1,5 +1,5 @@
 
-@extends('layouts.blank')
+@extends('layouts.app')
 
 @push('stylesheets')
 	<!-- Example -->

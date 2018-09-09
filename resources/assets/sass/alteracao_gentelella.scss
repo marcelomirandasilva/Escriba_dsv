@@ -1,0 +1,105 @@
+
+.login_content {
+	margin-top: -50px;
+	padding: 25px 0 0;
+	position: relative;
+	text-align: center;
+	text-shadow: 0 1px 0 #fff;
+	min-width: 280px;
+}
+
+input, select, label {
+ border-radius: 10px !important;
+}
+
+body {
+background: cor_fundo;
+color: #000;
+}
+.left_col {
+background: cor_fundo;
+}
+.nav_title {
+background: cor_fundo;
+}
+.sidebar-footer {
+background: cor_fundo;
+}
+.sidebar-footer a {
+background: menu_rodape;
+}
+
+.login_content h1:before,
+.login_content h1:after {
+	content: "";
+	/*height: 1px;*/
+	position: absolute;
+	top: 10px;
+	width: 70%;
+}
+
+.login_content h1:before,
+.login_content h1:after {
+	/*content: "";*/
+	/*height: 1px;*/
+	position: absolute;
+	top: 50px;
+	width: 20%;
+}
+
+.login_content h1 {
+	font: normal 61px Helvetica, Arial, sans-serif;
+	letter-spacing: -0.05em;
+	line-height: 20px;
+	margin: 10px 0 30px;
+}
+
+.form-control:focus {
+	-webkit-box-shadow: 1px 1px 20px -3px #2A3F54 !important;
+	-moz-box-shadow:    1px 1px 20px -3px #2A3F54 !important;
+	box-shadow:         1px 1px 40px -3px #2A3F54 !important;
+}
+
+.logo_side_bar{
+	width: 35px;
+	height: 35px;
+	background-size: 35px 35px;
+	//background-image: url("../img/thoth.ico");
+	position: relative;
+	top:  10px;
+	left:  -5px;
+	display: inline-block;
+	line-height: 1;
+	
+}
+
+.site_title {
+	font-weight: 400;
+	font-size: 32px;
+	width: 100%;
+	line-height: 60px;
+	display: block;
+	height: 55px;
+	margin: 0;
+	padding-left: 20px;
+}
+
+.site_title i {
+	border: 1px ;
+	padding: 5px 6px;
+	border-radius: 0%; 
+}
+
+.left_col {
+	min-height: 100%;
+	width: 230px;
+	padding: 0;
+	position: fixed;
+	display: -ms-flexbox;
+	z-index: 1;
+}
+
+.nav-md .container.body .right_col {
+	padding: 10px 7px 0;
+	margin-left: 117px;
+}
