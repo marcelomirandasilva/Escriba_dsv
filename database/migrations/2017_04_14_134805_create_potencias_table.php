@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBasesTable extends Migration
+class CreatePotenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateBasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bases', function (Blueprint $table) {
+        Schema::create('potencias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome',100);
-            $table->string('endereco',250)      ->nullable();
-
             $table->timestamps();
-            $table->softDeletes();
+            $table->string('no_potencia',60);
+            $table->string('no_continente',20)->nullable();
+            
         });
     }
 
@@ -30,6 +29,6 @@ class CreateBasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bases');
+        Schema::dropIfExists('potencias');
     }
 }

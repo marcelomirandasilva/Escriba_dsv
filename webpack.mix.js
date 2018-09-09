@@ -20,6 +20,7 @@ mix.copyDirectory('vendor/twbs/bootstrap-sass/assets/fonts/bootstrap', 'public/f
 
 mix.scripts([
     // Pntify
-    'node_modules/gentelella/vendors/pnotify/dist/pnotify.js',
-    'node_modules/gentelella/vendors/pnotify/dist/pnotify.buttons.js'
+    /* 'node_modules/gentelella/vendors/pnotify/dist/pnotify.js',
+    'node_modules/gentelella/vendors/pnotify/dist/pnotify.buttons.js' */
+    'resources/assets/js/notify.js'
 ],  'public/js/components.js');

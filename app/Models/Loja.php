@@ -16,7 +16,9 @@ class Loja extends Model
 	    'nu_loja',
 	    'dt_fundacao',
 	    'ic_rito',
-	    'potencia_id',
+		 'potencia_id',
+		 'nu_telefone',
+		 'email'
 
 	];
 

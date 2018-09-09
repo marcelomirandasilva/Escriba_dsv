@@ -9,7 +9,8 @@ require('./bootstrap');
 require('gentelella');
 require('./config');
 
-require('./bootstrap-notify.min');
+/* require('./bootstrap-notify.min'); */
+/* require('./notify.min'); */
 
 var Inputmask = require('inputmask');
 

@@ -54,17 +54,14 @@ class LojaController extends Controller
 
     public function store(Request $request)
     {
+        //inicia sessão de banco
+		DB::beginTransaction();
 
         if(trim($request->co_titulo) == null)
         {
-            $request->merge([
-                'co_titulo' => "ARLS"
-            ]);
-
+            $request->merge(['co_titulo' => "ARLS"]);
         }else{
-            $request->merge([
-                'co_titulo'  => strtoupper($request->co_titulo),
-            ]);
+            $request->merge(['co_titulo'  => strtoupper($request->co_titulo)]);
         };
 
         $request->merge([
@@ -74,8 +71,29 @@ class LojaController extends Controller
         ]);
 
 
-        // Validar dados do formulário
-        $this->validar($request);
+        $this->validate($request, [
+            'co_titulo'     => 'required|min:3|max:10',
+            'no_loja'       => 'required|min:3|max:50',
+            'nu_loja'       => 'required|numeric',
+            'potencia_id'   => 'required',
+            'ic_rito'       => 'required',
+            'dt_fundacao'   => 'nullable|date',
+            
+            //email
+            'de_email'      => 'nullable|email',
+
+            //telefone
+            'nu_telefone'   => 'nullable|min:9|max:15',
+
+            //endereço
+            'nu_cep'        => 'min:10|max:10',
+            'sg_uf'         => 'alpha|min:2|max:2',
+            'no_municipio'  => 'min:3|max:50',
+            'no_bairro'     => 'min:3|max:20',
+            'no_logradouro' => 'min:3|max:100',
+            'nu_logradouro' => 'numeric',
+
+        ]);
 
         $busca_loja = DB::table('lojas')
                      ->select(DB::raw('count(*) as count'))
@@ -104,23 +122,16 @@ class LojaController extends Controller
 
         // Criar uma nova loja
         $loja = new Loja($request->all());
-
         // Salvar no banco para obter o ID
-        $loja->save();
-
-
+        $novaLoja = $loja->save();
 
         // Criar um novo endereço com as informações inseridas
         $endereco = new Endereco($request->all());
-
-      
-
         // Associar loja ao endereço (chaves estrangeiras)
-         $endereco->loja()->associate($loja);
-
+        $endereco->loja()->associate($loja);
         // Salvar o endereço
-        $endereco->save(); 
-
+        $novoEndereco = $endereco->save(); 
+/* 
         // Cria um novo telefone com as informações inseridas
         $telefone = new Telefone($request->all());
         $telefone->loja()->associate($loja);
@@ -129,18 +140,22 @@ class LojaController extends Controller
         // Cria um novo email com as informações inseridas
         $email = new Email($request->all());
         $email->loja()->associate($loja);
-        $email->save();
+        $email->save(); */
 
 
-        if ($loja and $endereco and $telefone and $email) {
-            return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
+		if($novaLoja and $novoEndereco){
+			DB::commit();
+			return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
                                                         .$request->no_loja      .' Nº ' 
                                                         .$request->nu_loja 
                                                         .' Cadastrada com Sucesso');
+		} else {
+    		//Fail, desfaz as alterações no banco de dados
+			DB::rollBack();
+			return redirect()->back()->with(['erros' => 'Falha ao cadastrar']);   
+		}
 
-        } else {
-            return redirect()->back()->with(['erros' => 'Falha ao cadastrar']); 
-        }
+
 
     }
 

@@ -8,30 +8,11 @@
 @endpush
 
 @section('content')
-
-	@if( count($errors) > 0)
-		<div class="alert alert-roxo alert-dismissible" style="margin-top: 70px;" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Atenção!</strong><br>
-			<ul>
-				@foreach($errors->all() as $erro)
-					<li>{{ $erro }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
 	
-	{{--  @if(session('sucesso'))
-     	<div class="alert alert-dourado alert-dismissible" style="margin-top: 70px;" role="alert">
-       	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <strong>Parabéns!</strong> {!! session('sucesso') !!}
-     	</div>
-   @endif  --}}
-
+	{{-- @include('gentelella.layouts.partials.mensagens') --}}
 
 	<div class="right_col" role="main">
 
-		@include('includes/mensagens')
 
 		<div class=""> </div>
 		<div class="clearfix"></div>
@@ -66,7 +47,7 @@
 										class="form-control col-md-2" 
 										name="co_titulo" 
 										placeholder="ARLS" 
-										required="required" 
+										
 										type="text"
 										
 										style="text-transform: uppercase;"
@@ -326,14 +307,14 @@
 								</div>
 
 								{{-- Email --}}
-								<label class="col-md-2 control-label" for="de_email">Email</label>  
+								<label class="col-md-2 control-label" for="email">Email</label>  
 								<div class="col-md-5">
-									<input id="de_email" 
-											name="de_email" 
+									<input id="email" 
+											name="email" 
 											type="text" 
 											placeholder="email@servidor.com.br" 
 											class="form-control input-md email"
-											value="{{$loja->email->de_email or old('de_email')}}" >
+											value="{{$loja->email->email or old('email')}}" >
 								</div>
 
 							</div>			
@@ -446,8 +427,22 @@
 	<!-- Adicionando Javascript -->
 	<script type="text/javascript" >
 
+		
 
 		$(document).ready(function() {
+			var tempo = 0;
+			var incremento = 500;
+			// Testar se há algum erro, e mostrar a notificação
+			@if( count($errors) > 0)
+			$.notify("BOOM!", "error");
+				@foreach ($errors->all() as $error)
+					setTimeout(function(){
+						$.notify("{{ $error }}", "warn");
+						//demo.notificationRight("top", "right", "rose", "{{ $error }}");   
+					}, tempo);
+					tempo += incremento;
+				@endforeach
+			@endif
 
 			@if (session('sucesso'))
 				swal('Parabéns!', '{{ session('sucesso') }}' ,'success');

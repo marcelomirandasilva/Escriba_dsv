@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSecretariasTable extends Migration
+class CreateVisitasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateSecretariasTable extends Migration
      */
     public function up()
     {
-        Schema::create('secretarias', function (Blueprint $table) {
+        Schema::create('visitas', function (Blueprint $table) {
             $table->increments('id');
-            
-            $table->string('nome',100);
-            $table->string('sigla', 10)                     ->nullable();
-            $table->string('email')                         ->nullable();
-
+            $table->date('dt_visita');
+            $table->unsignedInteger('visitante_id');
             $table->timestamps();
-            $table->softDeletes();
+
+            
         });
     }
 
@@ -32,6 +30,6 @@ class CreateSecretariasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secretarias');
+        Schema::dropIfExists('visitas');
     }
 }
