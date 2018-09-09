@@ -85,13 +85,17 @@
 			let url_base       = "{{ url("/") }}"; 
 		</script>   
 		
-		<!-- jQuery -->
-		@include('gentelella.layouts.partials.scripts')   
+		<!-- scripts -->
+		<script src="{{ mix('/js/app.js')}}"></script>
+		<script src="{{ mix('/js/components.js')}}"></script>
+
+		@yield('scripts_blade')
+		@stack('scripts')
+
+  
 
 		
 		{{--  Optional script Blades  --}}
-
-		@stack('scripts')
 
 	</body>
 </html>

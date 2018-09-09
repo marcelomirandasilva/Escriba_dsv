@@ -32,6 +32,7 @@ class LojaController extends Controller
    public function index()
     {
         $lojas = $this->loja->all();
+        //dd($lojas);
         return view('lojas.lista', compact('lojas'));
     }
 
