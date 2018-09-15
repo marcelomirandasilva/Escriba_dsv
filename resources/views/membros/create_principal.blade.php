@@ -6,7 +6,7 @@
 		  
 				<div class="col-md-5 ">
 					<label class="control-label col-md-1" for="no_membro">Nome*</label>
-				   <input  id="no_membro" class="form-control col-md-5" name="no_membro" placeholder="Nome completo do Irmão" 
+				   <input  id="no_membro" class="form-control col-md-5" name="no_membro" placeholder="Nome completo do Membro" 
 					required="required" type="text" autofocus value="{{$membro->no_membro or old('no_membro')}}" >
 				</div>
 
@@ -90,13 +90,13 @@
 		<div class="row">
 			<div class="col-md-5 ">
 				<label class="control-label col-md-12" for="no_pai">Pai</label>
-				<input  id="no_pai" class="form-control col-md-5" name="no_pai" placeholder="Nome do Pai do Irmão" type="text" 
+				<input  id="no_pai" class="form-control col-md-5" name="no_pai" placeholder="Nome do Pai do Membro" type="text" 
 				value="{{$membro->no_pai or old('no_pai')}}" >
 			</div>
 
 			<div class="col-md-5 ">
 				<label class="control-label col-md-1" for="no_pai">Mãe</label>
-				<input  id="no_mae" class="form-control col-md-5" name="no_mae" placeholder="Nome da Mãe do Irmão" type="text"
+				<input  id="no_mae" class="form-control col-md-5" name="no_mae" placeholder="Nome da Mãe do Membro" type="text"
 				value="{{$membro->no_mae or old('no_mae')}}" >
 			</div>
 		</div>
@@ -157,7 +157,7 @@
 		<div class="row">
 			<div class="col-md-4 ">
 				<label class="control-label col-md-2 " for="no_profissao">Profissão</label>
-				<input id="no_profissao" class="form-control col-md-4" name="no_profissao" placeholder="Profissão do Irmão" type="text" value="{{$membro->no_profissao or old('no_profissao')}}" >
+				<input id="no_profissao" class="form-control col-md-4" name="no_profissao" placeholder="Profissão do Membro" type="text" value="{{$membro->no_profissao or old('no_profissao')}}" >
 			</div>
 			<div class="col-md-4 ">
 				<label class="control-label alinha_esquerda col-md-1 " for="no_empregador">Empregador</label>

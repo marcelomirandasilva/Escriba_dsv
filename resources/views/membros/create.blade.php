@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('gentelella.layouts.app')
 
-@push('stylesheets')
+@push('styles')
 	<!-- Example -->
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
 @endpush
 
-@section('conteudo')
+@section('content')
 	<div class="right_col" role="main">
 		<!---------------------- Mostra os erros de validação ------------------------------>
 		@if( count($errors) > 0 )

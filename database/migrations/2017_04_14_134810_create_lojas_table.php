@@ -24,12 +24,12 @@ class CreateLojasTable extends Migration
                                         'Memphis-Misraïm','Escocês Retificado'
                                     ]);
 
-            $table->date('dt_fundacao');
-            $table->string('nu_telefone',15);
-            $table->string('email',200);
+            $table->date('dt_fundacao')         ->nulable();
+            $table->string('nu_telefone',15)    ->nulable();
+            $table->string('email',200)         ->nulable();
            
             // FK
-            $table->integer('potencia_id')->unsigned();
+            $table->integer('potencia_id')      ->unsigned();
             
             $table->timestamps();
         });
