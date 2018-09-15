@@ -100,7 +100,6 @@ class MembroController extends Controller
 		//dd($request->all());
 
 		// Cria um novo membro
-		//$membro = new Membro($request->all());
 		$membro = new Membro($request->all());
 		
 		// Verificar se está aposentado
@@ -198,6 +197,14 @@ class MembroController extends Controller
 		} else {
 			return redirect('/membros/create')->with(['erros' => 'Falha ao cadastrar']); 
 		}
+	}
+
+	public function show(Membro $membro)
+	{
+
+		dd("Não implementado ainda");
+
+		return view('membros.show',compact('membro','anterior','proximo'));
 	}
 
 	public function edit($id)

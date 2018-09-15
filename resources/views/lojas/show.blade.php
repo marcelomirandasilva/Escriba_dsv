@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('gentelella.layouts.app')
 
-@push('stylesheets')
+@push('styles')
 	<!-- Example -->
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 @endpush
 
-@section('conteudo')
+@section('content')
 	<!-- Modal -->
 	<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
   		<div class="modal-dialog" role="document">
@@ -104,15 +104,17 @@
 							<br><br>
 
 							<div class="x_title"> </div>
-							<br> Endereço: {{$loja->endereco->no_logradouro}}, {{$loja->endereco->nu_logradouro}} -
-												{{$loja->endereco->no_bairro}} - {{$loja->endereco->no_municipio}} -
-												{{$loja->endereco->de_complemento}} - {{$loja->endereco->nu_cep}} - 
-												{{$loja->endereco->sg_uf}} - {{$loja->endereco->no_pais}}  
+							<br> Endereço: @if( isset($loja->endereco->no_logradouro)   )
+													{{$loja->endereco->no_logradouro}}, {{$loja->endereco->nu_logradouro}} -
+													{{$loja->endereco->no_bairro}} - {{$loja->endereco->no_municipio}} -
+													{{$loja->endereco->de_complemento}} - {{$loja->endereco->nu_cep}} - 
+													{{$loja->endereco->sg_uf}} - {{$loja->endereco->no_pais}}  
+												@endif
 							<br><br>
 
 							<div class="x_title"> </div>
-							<br> Telefone: {{$loja->telefone->nu_telefone}}
-							<br> Email: {{$loja->email->de_email}}
+							<br> Telefone: {{$loja->nu_telefone}}
+							<br> Email: {{$loja->email}}
 
 							<!- botoes -> 
 							<div class="ln_solid"></div>

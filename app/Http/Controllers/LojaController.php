@@ -126,29 +126,20 @@ class LojaController extends Controller
 														.' Já existe!');
 		}
 
-
-		
-
-		
-		
+	
 		// Criar uma nova loja
 		$loja = new Loja($request->all());
 		// Salvar no banco para obter o ID
 		$novaLoja = $loja->save();
 
-		//cria o endereço se for realizado a entrada dos dados
-		if($request->no_logradouro)
-		{
-			// Criar um novo endereço com as informações inseridas
-			$endereco = new Endereco($request->all());
-			// Associar loja ao endereço (chaves estrangeiras)
-			$endereco->loja()->associate($loja);
-			// Salvar o endereço
-			$novoEndereco = $endereco->save(); 
-		} else {
-			//como não irá criar o endereço, atribuo aqi true na variável para não falhar no teste da sessão de banco
-			$novoEndereco = true;
-		}
+	
+		// Criar um novo endereço com as informações inseridas
+		$endereco = new Endereco($request->all());
+		// Associar loja ao endereço (chaves estrangeiras)
+		$endereco->loja()->associate($loja);
+		// Salvar o endereço
+		$novoEndereco = $endereco->save(); 
+
 /* 
 		// Cria um novo telefone com as informações inseridas
 		$telefone = new Telefone($request->all());
@@ -239,7 +230,9 @@ class LojaController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		// dd($request->all());
+		//inicia sessão de banco
+		DB::beginTransaction();
+
 	   // Validar dados do formulário
 		//$this->validar($request);
 
@@ -254,7 +247,7 @@ class LojaController extends Controller
 							])
 					 ->get();
 
-		
+		//dd($request->all());
 		//se encontrar alguma loja na busca acima retorna erro informando
 		if ($busca_loja[0]->count > 0 ){
 
@@ -266,31 +259,22 @@ class LojaController extends Controller
 		}
 
 		$dadosFormulario = $request->all();
-
 		$loja = $this->loja->find($id);
 		
-		$status1 = $loja->update($dadosFormulario);
-
-		$status2 = $loja->endereco->update($dadosFormulario);
-
-		// $loja->endereco()->associate($request->input('pais_id'));
-
-		$status3 = $loja->endereco->update($dadosFormulario);
-
+		$salvouLoja 		= $loja->update($dadosFormulario);
 		
-		
-		$status4 = $loja->telefone->update($dadosFormulario);
-		$status5 = $loja->email->update($dadosFormulario);
+		$salvouEndereco 	= $loja->endereco->update($dadosFormulario);
+	
 
-		//dd($dadosFormulario);
 
-		if ($status1 and $status2 and $status3 and $status4 and $status5) {
-			 return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
+		if ($salvouLoja and $salvouEndereco) {
+			DB::commit();
+			return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
 														.$request->no_loja      .' Nº ' 
 														.$request->nu_loja 
 														.' Alterada com Sucesso');
 		} else {
-			//return redirect(back); 
+			DB::rollBack();
 			return redirect('lojas.edit', $id)->whith(['erros' => 'Falha ao editar']); 
 		}
 		
