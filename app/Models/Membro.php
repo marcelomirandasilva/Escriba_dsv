@@ -43,11 +43,13 @@ class Membro extends Model
         'tel_cel',
         'tel_com',
         'ramal_com',
+        'endereco_comercial_id',
+        'endereco_residencial_id',
     ];
 
 
 
-    public function enderecos()
+   /*  public function enderecos()
     {
         return $this->hasMany('App\Models\Endereco');
     }
@@ -61,7 +63,7 @@ class Membro extends Model
     {
         return $this->hasMany('App\Models\Email');
     }
-
+ */
     public function dependentes()
     {
         return $this->hasMany('App\Models\Dependente');
@@ -87,5 +89,15 @@ class Membro extends Model
     	return $this->hasOne('App\Models\User');
     }
 
+    public function endereco_residencial()
+	{
+		return $this->hasOne('App\Models\Endereco');
+    }
+    
+    public function endereco_comercial()
+	{
+		return $this->hasOne('App\Models\Endereco');
+	}
+    
     
 }

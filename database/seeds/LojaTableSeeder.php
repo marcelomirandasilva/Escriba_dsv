@@ -12,13 +12,13 @@ class LojaTableSeeder extends Seeder
         {
           
              //Criar um endereço
-            $loja->endereco()->save(factory(App\Models\Endereco::class)->make());
+            //$loja->endereco()->save(factory(App\Models\Endereco::class)->make());
 
             // Criar 2 telefones
-            $loja->telefone()->save(factory(App\Models\Telefone::class)->make());
+           // $loja->telefone()->save(factory(App\Models\Telefone::class)->make());
 
             // Criar um email
-            $loja->email()->save(factory(App\Models\Email::class)->make());
+            //$loja->email()->save(factory(App\Models\Email::class)->make());
         });
     }
 }

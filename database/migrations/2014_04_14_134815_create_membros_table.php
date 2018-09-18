@@ -20,8 +20,8 @@ class CreateMembrosTable extends Migration
             $table->mediumText('im_membro')                 ->nullable();
             $table->string('co_cim',15)                     ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
-            $table->string('no_naturalidade',20)            ->nullable();
-            $table->string('no_nacionalidade',20)           ->nullable();
+            $table->string('no_naturalidade',30)            ->nullable();
+            $table->string('no_nacionalidade',30)           ->nullable();
             $table->string('no_proponente',50)              ->nullable();
             $table->text('de_anotacao')                      ->nullable();
             
@@ -39,7 +39,7 @@ class CreateMembrosTable extends Migration
 
             $table->string('nu_identidade',20)              ->nullable();
             $table->date('dt_emissao_idt')                  ->nullable();
-            $table->string('no_orgao_emissor_idt',10)       ->nullable();
+            $table->string('no_orgao_emissor_idt',20)       ->nullable();
 
             $table->string('nu_titulo_eleitor',10)          ->nullable();
             $table->date('dt_emissao_titulo')               ->nullable();
@@ -109,9 +109,18 @@ class CreateMembrosTable extends Migration
                 'Doutorado - Completo'
                                             ])              ->nullable();
 
+            // FK
+            $table->integer('endereco_residencial_id')    ->nullable()->unsigned();
+            $table->integer('endereco_comercial_id')      ->nullable()->unsigned();
+
             
             $table->timestamps();
 
+        });
+
+        Schema::table('membros', function($table){
+            $table->foreign('endereco_comercial_id')->references('id')->on('enderecos')->onDelete('cascade');
+            $table->foreign('endereco_residencial_id')->references('id')->on('enderecos')->onDelete('cascade');
         });
     }
 

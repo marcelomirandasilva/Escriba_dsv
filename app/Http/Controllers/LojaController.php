@@ -57,6 +57,11 @@ class LojaController extends Controller
 		//inicia sessão de banco
 		DB::beginTransaction();
 
+		
+		$pais =  Pais::where('no_pais', '=', $request->no_pais)->firstOrFail();
+		$request->merge(['pais_id' => $pais->id]);
+
+		
 		if(trim($request->co_titulo) == null)
 		{
 			$request->merge(['co_titulo' => "ARLS"]);
@@ -77,7 +82,7 @@ class LojaController extends Controller
 		//dd($request->all());
 
 		$request->merge([
-			'ic_tipo_endereco'  => 'Loja',
+			//'ic_tipo_endereco'  => 'Loja',
 			'sg_uf'             => strtoupper($request->sg_uf),
 		]);
 
@@ -130,16 +135,41 @@ class LojaController extends Controller
 		// Criar uma nova loja
 		$loja = new Loja($request->all());
 		// Salvar no banco para obter o ID
+		
 		$novaLoja = $loja->save();
 
-	
-		// Criar um novo endereço com as informações inseridas
-		$endereco = new Endereco($request->all());
-		// Associar loja ao endereço (chaves estrangeiras)
-		$endereco->loja()->associate($loja);
-		// Salvar o endereço
-		$novoEndereco = $endereco->save(); 
+		if ($request->no_logradouro){
+			// Criar um novo endereço com as informações inseridas
+			
+			//dd($request->all());
+			//$endereco = new Endereco($request->all());
+			$novoEndereco = Endereco::create([
+				
+				'no_logradouro'	=> $request->no_logradouro,
+				'nu_logradouro'	=> $request->nu_logradouro,
+				'nu_cep'	=> $request->nu_cep,
+				'de_complemento'	=> $request->de_complemento,
+				'sg_uf'	=> $request->sg_uf,
+				'no_municipio'	=> $request->no_municipio,
+				'no_bairro'	=> $request->no_bairro,
+				'pais_id'	=> $request->pais_id,
+		   
+				
+			]);
+			
+			//dd($endereco);
+			//$novoEndereco = $endereco->save();
 
+			// Associar loja ao endereço (chaves estrangeiras)
+			$loja->endereco()->associate($novoEndereco);
+
+			// Salvar o endereço
+			 
+		} else {
+			$novoEndereco = true;
+		}
+
+		
 /* 
 		// Cria um novo telefone com as informações inseridas
 		$telefone = new Telefone($request->all());

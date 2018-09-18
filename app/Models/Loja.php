@@ -17,6 +17,7 @@ class Loja extends Model
 	    'dt_fundacao',
 	    'ic_rito',
 		 'potencia_id',
+		 'endereco_id',
 		 'nu_telefone',
 		 'email'
 
@@ -35,6 +36,11 @@ class Loja extends Model
 	{
 		return $this->hasOne('App\Models\Endereco');
 	}
+
+/* 	public function endereco()
+	{
+		return $this->hasOne('App\Models\Endereco');
+	} */
 
 	public function telefone()
 	{

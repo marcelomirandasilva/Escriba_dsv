@@ -24,14 +24,20 @@ class CreateLojasTable extends Migration
                                         'Memphis-Misraïm','Escocês Retificado'
                                     ]);
 
-            $table->date('dt_fundacao')         ->nulable();
-            $table->string('nu_telefone',15)    ->nulable();
-            $table->string('email',200)         ->nulable();
+            $table->date('dt_fundacao')         ->nullable();
+            $table->string('nu_telefone',15)    ->nullable();
+            $table->string('email',200)         ->nullable();
            
             // FK
             $table->integer('potencia_id')      ->unsigned();
+            $table->integer('endereco_id')      ->nullable()->unsigned();
             
             $table->timestamps();
+        });
+
+        Schema::table('lojas', function($table){
+            $table->foreign('potencia_id')->references('id')->on('potencias')->onDelete('cascade');
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
         });
     }
 
