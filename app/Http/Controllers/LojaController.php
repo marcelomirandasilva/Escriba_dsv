@@ -153,16 +153,19 @@ class LojaController extends Controller
 				'no_municipio'	=> $request->no_municipio,
 				'no_bairro'	=> $request->no_bairro,
 				'pais_id'	=> $request->pais_id,
-		   
 				
 			]);
-			
-			//dd($endereco);
+				
+				
+				
 			//$novoEndereco = $endereco->save();
-
+			
 			// Associar loja ao endereço (chaves estrangeiras)
 			$loja->endereco()->associate($novoEndereco);
-
+			
+			$novaLoja = $loja->save();
+			
+			//dd($loja);
 			// Salvar o endereço
 			 
 		} else {
