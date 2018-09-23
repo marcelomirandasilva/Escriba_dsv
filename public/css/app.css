@@ -19839,6 +19839,12 @@ input[type="text"] {
   font-size: 12px !important;
 }
 
+.horas_input {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  font-size: 12px !important;
+}
+
 .nu_loja_input {
   padding-left: 2px;
   font-size: 13px;

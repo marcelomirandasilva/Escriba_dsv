@@ -82,6 +82,7 @@ class CreateFk extends Migration
 //            $table->foreign('loja_id')      ->references('id')->on('lojas')->onDelete('set null');
 //        });
 //
+
 		Schema::enableForeignKeyConstraints();
 	}
 

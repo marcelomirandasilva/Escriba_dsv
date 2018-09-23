@@ -40,6 +40,10 @@ class CreateCondecoracoesTable extends Migration
 
             
         });
+
+        Schema::table('condecoracoes', function($table){
+            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
+        });
     }
 
     /**

@@ -17,12 +17,21 @@ class UserTableSeeder extends Seeder
         if  (! DB::table('users')->find(1)) {
            
             DB::table('users')->insert([
-                'name'              =>  'marcelo',
+                'name'              =>  'Marcelo Miranda',
                 'email'             =>  'marcelo.miranda.pp@gmail.com',
                 'password'          =>  bcrypt('teste123'),
                 'remember_token'    =>  str_random(10),
                 'avatar'            =>  '',
             ]);
+
+            DB::table('users')->insert([
+                'name'              =>  'Teste de sistema',
+                'email'             =>  'teste@teste.com',
+                'password'          =>  bcrypt('teste123'),
+                'remember_token'    =>  str_random(10),
+                'avatar'            =>  '',
+            ]);
+
         }
 
 

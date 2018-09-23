@@ -22,7 +22,14 @@ class CreatePresencaSessoesTable extends Migration
             $table->timestamps();
 
         });
+        
+        Schema::table('presenca_sessoes', function($table){
+            $table->foreign('sessao_id')->references('id')->on('sessoes')->onDelete('cascade');
+            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
+        });
     }
+
 
     /**
      * Reverse the migrations.

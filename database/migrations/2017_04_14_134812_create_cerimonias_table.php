@@ -38,6 +38,11 @@ class CreateCerimoniasTable extends Migration
             $table->timestamps();
 
          });
+
+        Schema::table('cerimonias', function($table){
+            $table->foreign('membro_id')    ->references('id')->on('membros')->onDelete('cascade');
+            $table->foreign('loja_id')      ->references('id')->on('lojas')->onDelete('set null');
+        });
     }
 
     /**

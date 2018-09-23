@@ -28,8 +28,11 @@ class CreateDependentesTable extends Migration
             $table->boolean('ic_mora_junto')                                ->nullable();
             
             $table->timestamps();
-            
         });
+
+        Schema::table('dependentes', function($table){
+            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
+        });        
     }
 
     /**

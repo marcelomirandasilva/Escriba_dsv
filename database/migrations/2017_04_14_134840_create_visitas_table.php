@@ -21,6 +21,10 @@ class CreateVisitasTable extends Migration
 
             
         });
+
+        Schema::table('visitas', function($table){
+            $table->foreign('visitante_id')->references('id')->on('visitantes')->onDelete('cascade');
+        });
     }
 
     /**

@@ -292,7 +292,7 @@ $factory->define(App\Models\Sessao::class, function(Faker\Generator $faker) {
 		'hh_termino'   	=> $faker->time($format = 'H:i:s', $max = '22:30:00', $min = '21:00:00'),
 		'ic_tipo_sessao'	=> $v_tipo_sessao,
 		'ic_grau'			=> $v_grau,
-		'de_sessao'			=> $faker->text($maxNbChars = 200),
+		'de_sessao'			=> $faker->text($maxNbChars = 100),
 
 	];
 });

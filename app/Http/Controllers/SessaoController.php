@@ -24,7 +24,7 @@ class SessaoController extends Controller
 	public function create()
 	{
 
-		$membros = Membro::where('ic_situacao', '=', 'Regular Ativo')->get();
+		$membros = Membro::where('ic_situacao', '=', 'Regular Ativo')->orderBy('no_membro')->get();
 
 		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
 		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;

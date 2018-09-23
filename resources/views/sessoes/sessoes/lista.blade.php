@@ -15,7 +15,7 @@
 
   <!-- page content -->
     	
-	<div class="x_panel modal-content animated fadeInUp">
+	<div class="x_panel modal-content ">
 		<div class="x_title">
 			<h2> Listagem de Sessões </h2>
 
@@ -44,11 +44,25 @@
 					<tbody>
 						@foreach($sessoes as $sessao )
 							<tr>
-								<td>{{ $sessao->dt_sessao           }}</td>
+								
+								<td>{{ \Carbon\Carbon::parse( $sessao->dt_sessao)->format('d/m/Y')  }}     </td>
+								
 								<td>{{ $sessao->ic_tipo_sessao      }}</td>
 								<td>{{ $sessao->ic_grau             }}</td>
-								<td>{{ $sessao->hh_inicio           }}</td>
-								<td>{{ $sessao->hh_termino          }}</td>
+
+								@if( $sessao->hh_inicio <> '00:00:00')
+									<td>{{ $sessao->hh_inicio  }}     </td>
+								@else
+									<td> --------- </td>
+								@endif
+
+								@if( $sessao->hh_termino <> '00:00:00')
+									<td>{{ $sessao->hh_termino  }}     </td>
+								@else
+									<td> --------- </td>
+								@endif
+		
+									
 
 								<td>
 									<a href="{{ url("sessoes/$sessao->id/edit") }}"

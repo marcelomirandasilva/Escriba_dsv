@@ -31,6 +31,10 @@ class CreateVisitantesTable extends Migration
             
             
         });
+
+        Schema::table('visitantes', function($table){
+            $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
+        });        
     }
 
     /**

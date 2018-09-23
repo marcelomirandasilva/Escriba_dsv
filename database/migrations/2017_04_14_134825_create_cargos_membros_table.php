@@ -24,6 +24,11 @@ class CreateCargosMembrosTable extends Migration
             $table->timestamps();
 
         });
+
+        Schema::table('cargos_membros', function($table){
+            $table->foreign('membro_id')->references('id')->on('membros')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
+        });
     }
 
     /**

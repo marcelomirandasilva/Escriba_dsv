@@ -17,12 +17,11 @@ class CreateCargosTable extends Migration
             $table->increments('id');
             $table->string('no_cargo',20);
             
-            
             $table->timestamps();
-            
-            
         });
+
     }
+
 
     /**
      * Reverse the migrations.

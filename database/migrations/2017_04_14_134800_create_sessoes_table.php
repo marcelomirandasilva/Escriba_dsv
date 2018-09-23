@@ -16,9 +16,11 @@ class CreateSessoesTable extends Migration
         Schema::create('sessoes', function (Blueprint $table) {
             $table->increments('id');
             $table->date('dt_sessao');
-            $table->time('hh_inicio')->nullable();
-            $table->time('hh_termino')->nullable();
+            $table->time('hh_inicio')                                   ->nullable();
+            $table->time('hh_termino')                                  ->nullable();
             $table->enum('ic_grau',['Aprendiz','Companheiro','Mestre']);
+            
+
             $table->enum('ic_tipo_sessao',[
             
                             'Ordinária – Regular',
