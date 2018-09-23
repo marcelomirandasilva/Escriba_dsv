@@ -27,7 +27,8 @@
 				<div class="col-md-3 left_col">
 					<div class="left_col scroll-view">
 						<div class="navbar nav_title" style="border: 0;">
-								<a href="{{ url('/') }}" class="site_title"><i class="logo_side_bar" style="background-image: url('../img/thoth.ico')"></i> <span>Escriba</span></a>
+								<a href="{{ url('/') }}" class="site_title"><i class="logo_side_bar" 
+									style="background-image: {{ asset('/img/thoth.ico')}}"></i> <span>Escriba</span></a>
 						</div>
 
 						<div class="clearfix"></div>
@@ -52,23 +53,14 @@
 
 					<!-- page content -->
 					<div class="right_col" role="main" >
-						<div class="">
-							<div class="page-title">
-								<div class="title_left">
-									<h3>@yield('page_title')</h3>
-								</div>
+						<div class="clearfix"></div>
 
-								{{-- @include('gentelella.layouts.partials.htmlsearch') --}}
-							</div>
-							<div class="clearfix"></div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
 
-							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-
-									@yield('content')
+								@yield('content')
 									
-								</div>
-							</div>           
+							</div>
 						</div>
 					</div>
 					<!-- /page content -->
@@ -89,7 +81,14 @@
 		<script src="{{ mix('/js/app.js')}}"></script>
 		{{-- <script src="{{ asset('js/notify.js') }}"></script> --}}
 		<script src="{{ mix('/js/components.js')}}"></script>
-
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				/* Para que el panel blanco area de contenido ocupe todo el contenedor */
+				//$RIGHT_COL.css({'min-height':"100%"});
+				$('.right_col').css({'min-height':"100%"});
+			});
+		</script>
 		@yield('scripts_blade')
 		@stack('scripts')
   

@@ -8,7 +8,7 @@
 			<div class="col-md-2">
 				<label class="control-label col-md-1" for="nu_cpf"> CPF* </label>
 				<input id="nu_cpf"  name="nu_cpf" class="form-control col-md-2 cpf" 
-					data-inputmask="'mask' : '999.999.999-99', 'numericInput': 'true' " type="text" 
+					{{-- data-inputmask="'mask' : '999.999.999-99', 'numericInput': 'true' " type="text"  --}}
 					placeholder="999.999.999-99"  
 					value="{{$membro->nu_cpf or old('nu_cpf')}}" 
 				>
@@ -47,7 +47,7 @@
 			<div class="col-md-2">
 				<label class="control-label col-md-1" for="nu_titulo_eleitor"> Título </label>
 				<input id="nu_titulo_eleitor"  name="nu_titulo_eleitor" class="form-control col-md-2" 
-					data-inputmask="'mask' : '99.999.999-9', 'numericInput': 'true' " type="text" 
+					{{-- data-inputmask="'mask' : '99.999.999-9', 'numericInput': 'true' " type="text"  --}}
 					placeholder="Título de Eleitor"   
 					type="text"
 					value="{{$membro->nu_titulo_eleitor or old('nu_titulo_eleitor')}}" 

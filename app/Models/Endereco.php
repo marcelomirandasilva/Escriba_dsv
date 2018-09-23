@@ -20,7 +20,7 @@ class Endereco extends Model
         'nu_logradouro',
         'nu_cep',
         'de_complemento',
-        //'ic_tipo_endereco',
+        'ic_tipo_endereco',
         'sg_uf',
         'no_municipio',
         'no_bairro',
@@ -35,17 +35,17 @@ class Endereco extends Model
     // }
 
     
- /*    public function membro()
+     public function membro()
     {
     	return $this->belongsTo('App\Models\Membro', 'membro_id');
     }
- */
+ 
     public function loja()
     {
     	return $this->belongsTo('App\Models\Loja', 'loja_id');
     }
 
-    public function residencial_membro()
+ /*    public function residencial_membro()
     {
     	return $this->belongsTo('App\Models\Membro','endereco_residencial_id');
     }
@@ -53,5 +53,5 @@ class Endereco extends Model
     public function comercial_membro()
     {
     	return $this->belongsTo('App\Models\Membro','endereco_comercial_id');
-    }
+    } */
 }

@@ -6,23 +6,24 @@
    <div class="item form-group">
 		<div class="row">
 			<input type="hidden" value="Residencial" name="enderecos[0][ic_tipo_endereco]" for="enderecos[0][ic_tipo_endereco]">
+
 			<div class="col-md-2 ">
-				<label class="control-label col-md-1 " for="enderecos[0][no_pais]">Pais</label>
-				<select id="no_pais0" class="form-control col-md-2" name="enderecos[0][no_pais]" placeholder="Nome do Pais" >
+				<label class="control-label col-md-1 " for="enderecos[0][pais_id]">Pais</label>
+				<select id="pais_id0" class="form-control col-md-2" name="enderecos[0][pais_id]" placeholder="Nome do Pais" >
 					@if(isset($edita))
 						@foreach($paises as $pais)
-							@if($pais->no_pais == $enderecos[0]->no_pais )
-								<option value="{{ $pais->no_pais }}" selected="selected"> {{ $pais->no_pais }} </option>
+							@if($pais->id == $enderecos[0]->pais_id )
+								<option value="{{ $pais->id }}" selected="selected"> {{ $pais->no_pais }} </option>
 							@else
-								<option value="{{ $pais->no_pais }}"> {{ $pais->no_pais }} </option>
+								<option value="{{ $pais->id }}"> {{ $pais->no_pais }} </option>
 							@endif
 						@endforeach
 					@else
 						@foreach($paises as $pais)
 							@if ($pais->no_pais == ('Brasil'))
-								<option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
+								<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
 							@else 
-								<option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
+								<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
 							@endif
 						@endforeach
 					@endif
@@ -80,24 +81,24 @@
 
 	<div class="item form-group">
 		<div class="row">
-			<input type="hidden" value="Residencial" name="enderecos[1][ic_tipo_endereco]" for="enderecos[1][ic_tipo_endereco]">
+			<input type="hidden" value="Comercial" name="enderecos[1][ic_tipo_endereco]" for="enderecos[1][ic_tipo_endereco]">
 			<div class="col-md-2 ">
-				<label class="control-label col-md-1 " for="enderecos[1][no_pais]">Pais</label>
-				<select id="no_pais1" class="form-control col-md-2" name="enderecos[1][no_pais]" placeholder="Nome do Pais" >
+				<label class="control-label col-md-1 " for="enderecos[1][pais_id]">Pais</label>
+				<select id="pais_id1" class="form-control col-md-2" name="enderecos[1][pais_id]" placeholder="Nome do Pais" >
 					@if(isset($edita))
 						@foreach($paises as $pais)
-							@if($pais->no_pais == $enderecos[1]->no_pais )
-								<option value="{{ $pais->no_pais }}" selected="selected"> {{ $pais->no_pais }} </option>
+							@if($pais->id == $enderecos[1]->pais_id )
+								<option value="{{ $pais->id }}" selected="selected"> {{ $pais->no_pais }} </option>
 							@else
-								<option value="{{ $pais->no_pais }}"> {{ $pais->no_pais }} </option>
+								<option value="{{ $pais->id }}"> {{ $pais->no_pais }} </option>
 							@endif
 						@endforeach
 					@else
 						@foreach($paises as $pais)
 							@if ($pais->no_pais == ('Brasil'))
-								<option value="{{$pais->no_pais}}" selected="selected"> {{$pais->no_pais}} </option>          
+								<option value="{{$pais->id}}" selected="selected"> {{$pais->no_pais}} </option>          
 							@else 
-								<option value="{{$pais->no_pais}}"> {{$pais->no_pais}} </option>  
+								<option value="{{$pais->id}}"> {{$pais->no_pais}} </option>  
 							@endif
 						@endforeach
 					@endif

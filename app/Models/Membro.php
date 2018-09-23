@@ -49,12 +49,12 @@ class Membro extends Model
 
 
 
-   /*  public function enderecos()
+     public function enderecos()
     {
         return $this->hasMany('App\Models\Endereco');
     }
 
-    public function telefones()
+   /* public function telefones()
     {
         return $this->hasMany('App\Models\Telefone');
     }
@@ -89,7 +89,7 @@ class Membro extends Model
     	return $this->hasOne('App\Models\User');
     }
 
-    public function endereco_residencial()
+    /* public function endereco_residencial()
 	{
 		return $this->hasOne('App\Models\Endereco');
     }
@@ -97,7 +97,7 @@ class Membro extends Model
     public function endereco_comercial()
 	{
 		return $this->hasOne('App\Models\Endereco');
-	}
+	} */
     
     
 }

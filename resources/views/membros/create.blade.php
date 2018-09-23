@@ -8,143 +8,132 @@
 @endpush
 
 @section('content')
-	<div class="right_col" role="main">
-		<!---------------------- Mostra os erros de validação ------------------------------>
-		@if( count($errors) > 0 )
-				<div class="alert alert-danger alert-dismissible" role="alert">
-					@foreach($errors->all() as $erro)
-							<p> {{ $erro }} </p>
-					@endforeach
-				</div>
-		@endif
-		<!------------------------------------------------------------------------------------>
+	<!---------------------- Mostra os erros de validação ------------------------------>
+	@if( count($errors) > 0 )
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				@foreach($errors->all() as $erro)
+						<p> {{ $erro }} </p>
+				@endforeach
+			</div>
+	@endif
+	<!------------------------------------------------------------------------------------>
 			
-		<div class="clearfix"></div>
+	<div class="modal-content animated  x_panel" >
+		<div class="x_title">
+			<h2> {{ $titulo }} </h2>
+			<div class="clearfix"></div>
+		</div>
+		<!-- conteudo aqui-->
+		<div class="col-md-12 ">
+			<div class="x_panel">
+				<div class="x_content ">
+					<div class="" role="tabpanel" data-example-id="togglable-tabs">
+						@if( isset($edita))
+							<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
+									{!! method_field('PUT') !!}
+						@else
+							<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
+						@endif
 
-		<div class="row caixa">
-			<div class="col-md-12">
-				<div class="x_panel modal-content">
-					<div class="x_title">
-						<h2> {{ $titulo }} </h2>
-						<div class="clearfix"></div>
-					</div>
-					<!-- conteudo aqui-->
-					<div class="col-md-12 ">
-						<div class="x_panel">
-							<div class="x_content ">
-								<div class="" role="tabpanel" data-example-id="togglable-tabs">
-									@if( isset($edita))
-										<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
-												{!! method_field('PUT') !!}
+							{{ csrf_field() }}
+							<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
+									
+								<li role="presentation" class="active">
+									<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_membro">   Principal   </a> 
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab" class="tab_membro">   Documentos  </a>
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab" class="tab_membro">   Endereços   </a>
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab" class="tab_membro">   Contatos    </a>
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab" class="tab_membro">   Dependentes </a>
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab" class="tab_membro">   Cerimonias  </a>
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content7" role="tab" id="tab_cargos" data-toggle="tab" class="tab_membro">   Cargos  </a>
+								</li>
+
+								<li role="presentation" class="">      
+															<a href="#tab_content8" role="tab" id="tab_condecoracoes" data-toggle="tab" class="tab_membro">   Condecorações  </a>
+								</li>
+								
+								<li role="presentation" class="">      
+									<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
+								</li>
+							</ul>
+
+							<div id="myTabContent" class="tab-content">
+								<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
+									@include('membros/create_principal')
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
+									@include('membros/create_documentos')
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
+									@include('membros/create_endereco')
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
+									@include('membros/create_contatos')
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
+									@if (isset($edita)) 
+										@include('membros/edit_dependentes')
 									@else
-										<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
+										@include('membros/create_dependentes')
 									@endif
+								</div>
 
-										{{ csrf_field() }}
-										<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
-												
-											<li role="presentation" class="active">
-												<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_membro">   Principal   </a> 
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab" class="tab_membro">   Documentos  </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab" class="tab_membro">   Endereços   </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab" class="tab_membro">   Contatos    </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab" class="tab_membro">   Dependentes </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab" class="tab_membro">   Cerimonias  </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content7" role="tab" id="tab_cargos" data-toggle="tab" class="tab_membro">   Cargos  </a>
-											</li>
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
+									@include('membros/create_cerimonias')
+								</div>
 
-											<li role="presentation" class="">      
-																		<a href="#tab_content8" role="tab" id="tab_condecoracoes" data-toggle="tab" class="tab_membro">   Condecorações  </a>
-											</li>
-											
-											<li role="presentation" class="">      
-												<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
-											</li>
-										</ul>
-
-										<div id="myTabContent" class="tab-content">
-											<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
-												@include('membros/create_principal')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
-												@include('membros/create_documentos')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-												@include('membros/create_endereco')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
-												@include('membros/create_contatos')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-												@if (isset($edita)) 
-													@include('membros/edit_dependentes')
-												@else
-													@include('membros/create_dependentes')
-												@endif
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
-												@include('membros/create_cerimonias')
-											</div>
-
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
-												@if (isset($edita)) 
-													@include('membros/edit_cargos')
-												@else
-													@include('membros/create_cargos')
-												@endif
-											</div>
-							
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
-												@include('membros/create_condecoracoes')
-											</div>
-							
-											<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
-												@include('membros/create_anotacoes')
-											</div>
-										</div>
-										
-										<!-- botoes --> 
-										{{-- <div class="ln_solid"></div> --}}
-										<div class="form-group">
-											<div class="col-md-offset-8">
-												<a href="{{ url("membros") }}"  class="btn btn-danger  pull-right">  Cancela     </a>
-												<button id="send" type="submit" class="btn btn-success pull-right">  Confirma    </button>
-											</div>
-										</div>
-										<!-- fim botoes --> 
-									</form>
-								</div> 
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
+									@if (isset($edita)) 
+										@include('membros/edit_cargos')
+									@else
+										@include('membros/create_cargos')
+									@endif
+								</div>
+				
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
+									@include('membros/create_condecoracoes')
+								</div>
+				
+								<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
+									@include('membros/create_anotacoes')
+								</div>
 							</div>
-						</div>
-					</div>
+							
+							<!----------- botoes ----------> 
+							<botao_ok_cancel
+								url_cancelar="{{ url("membros") }}"> 
+							</botao_ok_cancel>
+							<!----------- fim botoes ---------->
+							
+						</form>
+					</div> 
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Modal ---------------------------------------------------------------------------------------------->
 	<div class="modal fade" id="cad_loja" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
 		<div class="modal-dialog" role="document">
@@ -239,6 +228,11 @@
 
 
 @push('scripts')
+
+	<!-- AutoComplete -->
+	<script src="{{ asset('autoComplete/auto-complete.min.js') }}"                  							type="text/javascript"></script>
+
+	  
 	<!-- Datatables -->
   	<script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}"                  type="text/javascript"></script>
   	<script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"            type="text/javascript"></script>
@@ -272,8 +266,17 @@
 		let contador_linhas_tabela = 0;
 		
 		$(document).ready(function(){
-			//$("#telefones[0][nu_telefone]").inputmask("(99)9999-9999");
-			$("body").find("input.telefone").inputmask('(99)9999-9999');
+			$("#tel_res").mask("(99)9999-9999");
+			$("#tel_com").mask("(99)9999-9999");
+			$("#tel_cel").mask("(99)99999-9999");
+
+			$("#nu_cpf").mask("999.999.999-99");
+			$("#nu_titulo_eleitor").mask("99.999.999-9");
+
+			$("#co_cim").mask("999.999.999" );  
+			
+
+
 			
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 
@@ -317,10 +320,13 @@
 
 			//desabilita data de casamento se não for casado
 			$("select#ic_estado_civil").change(function(){
-				if($("select#ic_estado_civil>option:selected").text() == " Casado ")
+				if($("select#ic_estado_civil>option:selected").text().trim() == "Casado")
 				{
+					console.log("casodo");
 					document.getElementById("dt_casamento").disabled = false;
 				} else {
+					console.log("não casodo");
+
 					document.getElementById("dt_casamento").disabled = true;
 				}
 			});
@@ -411,6 +417,8 @@
 				orderFixed: [ 1, 'asc' ],
         	});
 
+
+
 			//adiciona cargos na tabela
 			var cargos_na_tabela = [];
 			$('#cad_cargo').on( 'click', function () {
@@ -421,6 +429,7 @@
 				var aa_i = $("#aa_inicio").val();
 				var aa_t = $("#aa_termino").val();
 
+				
 				if (cargo_selecionado == ""){
 					//testa se o cargo está vazio
 					$(".no_cargo").notify("O cargo deve ser informado",{
@@ -473,7 +482,7 @@
 
 					// Stringificar os campos
 					let cargos_em_string = JSON.stringify({
-						cargo_id: linha[0],
+						cargo_nome: linha[0].trim(),
 						aa_inicio: linha[1], 
 						aa_termino: linha[2]});
 

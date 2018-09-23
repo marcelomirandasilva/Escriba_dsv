@@ -12,8 +12,7 @@ require('./config');
 /* require('./bootstrap-notify.min'); */
 /* require('./notify.min'); */
 
-var Inputmask = require('inputmask');
-
+//uso: 	$("#tel_cel").mask("(99)99999-9999");
 require('jquery-mask-plugin');
 
 window.swal = require('sweetalert2');
@@ -32,6 +31,7 @@ window.Vue = require('vue');
 /* Vue.component('example-component', require('./components/ExampleComponent.vue')); */
 
 Vue.component('notificacoes', require('./components/notificacoes/Notificacoes.vue')); 
+Vue.component('botao_ok_cancel', require('./components/comum/botao_ok_cancel.vue')); 
 
 const app = new Vue({
     el: '#app'

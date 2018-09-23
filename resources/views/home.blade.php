@@ -1,13 +1,30 @@
 @extends('gentelella.layouts.app')
 
 
-{{--  Page title  --}}
-@section('page_title', 'Principal')
-
 {{--  Page Content  --}}
 @section('content')
 
-	<div class="x_panel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="x_panel modal-content animated fadeInUp">
 		<div class="x_title">
 			<h2>Plain Page</h2>
 			<ul class="nav navbar-right panel_toolbox">

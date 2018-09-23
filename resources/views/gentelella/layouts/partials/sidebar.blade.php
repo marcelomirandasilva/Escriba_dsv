@@ -30,7 +30,7 @@
 										<a href="{{ url('/calendario') }}">Calendário</a>
 									</li>
 									<li>
-										<a href="#">Sessões</a>
+										<a href="{{ url('/sessoes') }}">Sessões</a>
 									</li>
 									<li>
 										<a href="#">Atas</a>

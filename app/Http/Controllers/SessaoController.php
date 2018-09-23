@@ -2,83 +2,152 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
+use Faker\Generator as Faker;
+
+use App\Models\Sessao;
+use App\Models\Membro;
+
 
 class SessaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+	public function index()
+	{
+		$sessoes = Sessao::get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+		return view('sessoes.sessoes.lista',compact('sessoes') );
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	public function create()
+	{
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+		$membros = Membro::where('ic_situacao', '=', 'Regular Ativo')->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
+		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;
+		
+		//dd($membros);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio')) ;
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	public function store(Request $request)
+	{
+		//inicia sessão de banco
+		DB::beginTransaction();
+		$request->merge(['cnpj'     => str_replace('-', "", $request->cnpj)]);
+		$request->merge(['cnpj'     => str_replace('.', "", $request->cnpj)]);
+		$request->merge(['cnpj'     => str_replace('/', "", $request->cnpj)]);
+		$request->merge(['gasolina' => str_replace('R$', "", $request->gasolina)]);
+		$request->merge(['gasolina' => str_replace(' ', "", $request->gasolina)]);
+		$request->merge(['gasolina' => str_replace(',', ".", $request->gasolina)]);
+		$request->merge(['alcool'   => str_replace('R$', "", $request->alcool)]);
+		$request->merge(['alcool'   => str_replace(' ', "", $request->alcool)]);
+		$request->merge(['alcool'   => str_replace(',', ".", $request->alcool)]);
+		$request->merge(['diesel'   => str_replace('R$', "", $request->diesel)]);
+		$request->merge(['diesel'   => str_replace(' ', "", $request->diesel)]);
+		$request->merge(['diesel'   => str_replace(',', ".", $request->diesel)]);
+		$request->merge(['gnv'      => str_replace('R$', "", $request->gnv)]);
+		$request->merge(['gnv'      => str_replace(' ', "", $request->gnv)]);
+		$request->merge(['gnv'      => str_replace(',', ".", $request->gnv)]);
+
+		$this->validate($request,[
+			'cnpj'      => 'digits:14',
+			'nome'      => 'required|min:5',
+			'endereco'  => 'required|min:7',
+			'gasolina'  => 'required|between:0,99.999',
+			'alcool'    => 'required|between:0,99.999',
+			'diesel'    => 'required|between:0,99.999',
+			'gnv'       => 'required|between:0,99.999',
+		]);
+
+		// Criar um novo Posto
+	  $novoPosto = Posto::create($request->all());
+
+		if($novoPosto){
+			DB::commit();
+			return redirect('posto')->with('sucesso', 'Posto criado com sucesso!');
+		} else {
+			//Fail, desfaz as alterações no banco de dados
+			DB::rollBack();
+			return back()->withInput()->with('error', 'Falha ao criar o posto.');    
+		}
+	}
+
+	public function show(Sessao $sessao)
+	{
+		//
+	}
+
+	public function edit(Sessao $sessao)
+	{
+		return view('posto.create', compact('posto'));
+	}
+
+	public function update(Request $request, Sessao $sessao)
+	{
+		//inicia sessão de banco
+		DB::beginTransaction();
+
+		$request->merge(['cnpj'     => str_replace('-', "", $request->cnpj)]);
+		$request->merge(['cnpj'     => str_replace('.', "", $request->cnpj)]);
+		$request->merge(['cnpj'     => str_replace('/', "", $request->cnpj)]);
+		$request->merge(['gasolina' => str_replace('R$', "", $request->gasolina)]);
+		$request->merge(['gasolina' => str_replace(' ', "", $request->gasolina)]);
+		$request->merge(['gasolina' => str_replace(',', ".", $request->gasolina)]);
+		$request->merge(['alcool'   => str_replace('R$', "", $request->alcool)]);
+		$request->merge(['alcool'   => str_replace(' ', "", $request->alcool)]);
+		$request->merge(['alcool'   => str_replace(',', ".", $request->alcool)]);
+		$request->merge(['diesel'   => str_replace('R$', "", $request->diesel)]);
+		$request->merge(['diesel'   => str_replace(' ', "", $request->diesel)]);
+		$request->merge(['diesel'   => str_replace(',', ".", $request->diesel)]);
+		$request->merge(['gnv'      => str_replace('R$', "", $request->gnv)]);
+		$request->merge(['gnv'      => str_replace(' ', "", $request->gnv)]);
+		$request->merge(['gnv'      => str_replace(',', ".", $request->gnv)]);
+
+		
+		$this->validate($request,[
+			'cnpj'      => 'digits:14',
+			'nome'      => 'required|min:5',
+			'endereco'  => 'required|min:7',
+			'gasolina'  => 'required|between:0,99.999',
+			'alcool'    => 'required|between:0,99.999',
+			'diesel'    => 'required|between:0,99.999',
+			'gnv'       => 'required|between:0,99.999',
+		]);
+			
+		
+		// altera os dados do posto
+	  $posto->fill($request->all());
+		$salvou_posto = $posto->save();
+
+		if($salvou_posto){
+			DB::commit();
+			return redirect('posto')->with('sucesso', 'Posto Alterado com sucesso!');
+		} else {
+			//Fail, desfaz as alterações no banco de dados
+			DB::rollBack();
+			return back()->withInput()->with('error', 'Falha ao Alterar o Posto.');    
+		}
+	}
+
+	public function destroy($id)
+	{
+		//inicia sessão de banco
+		DB::beginTransaction();
+		//deleta
+		
+		$apagou_posto = Posto::find($id)->delete();
+		if($apagou_posto){
+			DB::commit();
+			return response('ok', 200);
+		} else {
+			//Fail, desfaz as alterações no banco de dados
+			DB::rollBack();
+			return response('erro', 500);
+		}
+	}
 }

@@ -274,3 +274,25 @@ $factory->define(App\Models\Cerimonia::class, function(Faker\Generator $faker) {
 	];	
 
 });
+
+$factory->define(App\Models\Sessao::class, function(Faker\Generator $faker) {
+
+	$faker = Faker\Factory::create('pt_BR');
+
+	$vetor1 			= pegaValorEnum('sessoes','ic_grau');
+	$v_grau 			= $vetor1[array_rand($vetor1,1)];
+
+	$vetor2 			= pegaValorEnum('sessoes','ic_tipo_sessao');
+	$v_tipo_sessao = $vetor2[array_rand($vetor2,1)]."";
+
+	echo $v_tipo_sessao ." ==========="  ."\n";
+	return [
+		'dt_sessao'			=> $faker->date($format = 'Y-m-d', $max = 'now'),
+		'hh_inicio'    	=> $faker->time($format = 'H:i:s', $max = '19:30:00', $min = '19:00:00'),
+		'hh_termino'   	=> $faker->time($format = 'H:i:s', $max = '22:30:00', $min = '21:00:00'),
+		'ic_tipo_sessao'	=> $v_tipo_sessao,
+		'ic_grau'			=> $v_grau,
+		'de_sessao'			=> $faker->text($maxNbChars = 200),
+
+	];
+});

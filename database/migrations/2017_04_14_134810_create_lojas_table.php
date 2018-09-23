@@ -37,7 +37,7 @@ class CreateLojasTable extends Migration
 
         Schema::table('lojas', function($table){
             $table->foreign('potencia_id')->references('id')->on('potencias')->onDelete('cascade');
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+           // $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
         });
     }
 

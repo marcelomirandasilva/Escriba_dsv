@@ -31,11 +31,13 @@
 				</div>
 				<div  class="col-md-2" >
 					<label class="control-label col-md-1" for="co_cim">CIM*</label>
-					<input   id="co_cim" class="form-control col-md-2 cim" placeholder="999.999" required="required" min="1" max="9999999" name="co_cim"  data-inputmask=" 'alias':'numeric','radixpoint':',','groupSeparator': '.','autoGroup':true " style="text-align: right;" value="{{$membro->co_cim or old('co_cim')}}" >
+					<input  style="text-align: right;"  id="co_cim" class="form-control col-md-2 cim" placeholder="999.999" 
+					required="required" min="1" max="9999999"  
+					name="co_cim"  style="text-align: right;" value="{{$membro->co_cim or old('co_cim')}}" >
 				</div>
 
 				<div class="col-md-1 col-md-offset-1">
-				   <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:120px; position:absolute; height: 150px; float: right; border-radius: 50%; margin-right: 25px; "> 
+				  {{--  <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:120px; position:absolute; height: 150px; float: right; border-radius: 50%; margin-right: 25px; ">  --}}
 				</div>
 				
 		  

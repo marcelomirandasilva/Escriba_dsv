@@ -302,7 +302,7 @@ class LojaController extends Controller
 
 		if ($salvouLoja and $salvouEndereco) {
 			DB::commit();
-			return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
+			return redirect('lojas'	)->with('sucesso',  $request->co_titulo    .' ' 
 														.$request->no_loja      .' Nº ' 
 														.$request->nu_loja 
 														.' Alterada com Sucesso');

@@ -118,10 +118,10 @@ class CreateMembrosTable extends Migration
 
         });
 
-        Schema::table('membros', function($table){
+       /*  Schema::table('membros', function($table){
             $table->foreign('endereco_comercial_id')->references('id')->on('enderecos')->onDelete('cascade');
             $table->foreign('endereco_residencial_id')->references('id')->on('enderecos')->onDelete('cascade');
-        });
+        }); */
     }
 
     /**

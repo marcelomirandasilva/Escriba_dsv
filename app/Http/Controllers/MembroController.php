@@ -39,7 +39,7 @@ class MembroController extends Controller
 
 
 
-		$membros = Membro::with(['user','telefones'])->get();
+		$membros = Membro::with(['user'])->get();
 
 		//dd($usuario_logado->acesso);
 
@@ -98,7 +98,10 @@ class MembroController extends Controller
 		$this->validar($request);
 		
 		//dd($request->all());
-
+		
+		//inicia sessão de banco
+		DB::beginTransaction();
+		
 		// Cria um novo membro
 		$membro = new Membro($request->all());
 		
@@ -113,6 +116,7 @@ class MembroController extends Controller
 			// Criar um novo endereço com as informações inseridas
 			$membro->enderecos()->save(new Endereco($endereco));
 		}
+
 		
 		//cria os cargos
 		if(isset($request->cargos_membros))
@@ -120,39 +124,25 @@ class MembroController extends Controller
 			foreach($request->cargos_membros as $key => $cargo)
 			{
 				$cg = json_decode($cargo) ;
-				$membro->cargos()->attach($cg->cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
-			}
-		}
 			
-
-		//dd($request->all());
-		
-		foreach($request->telefones as $telefone)
-		{
-			$novo_telefone = new Telefone($telefone);
-
-			//se o telefone não estiver vazio no request, adiciona
-			if( trim( $telefone['nu_telefone'] ) != "")
-			{
-				// Criar um novo telefone com as informações inseridas
-				$membro->telefones()->save($novo_telefone);
-
+				$cargo_id = Cargo::where('no_cargo', "=", $cg->cargo_nome)->first();
+				
+				$membro->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
 			}
 		}
-
 		
-		foreach($request->emails as $email)
+		
+		//verifica se existe algum dependente a ser cadastrado
+		if($request->dependentes[0]["no_dependente"] != null)
 		{
-			// Criar um novo email com as informações inseridas
-			$membro->emails()->save(new Email($email));
-		}
-
-		foreach($request->dependentes as $dependente)
-		{
-			// Criar um novo dependente com as informações inseridas
-			$membro->dependentes()->save(new Dependente($dependente));
-		}
-
+			foreach($request->dependentes as $dependente)
+			{
+				// Criar um novo dependente com as informações inseridas
+				$membro->dependentes()->save(new Dependente($dependente));
+			}
+		}	
+		
+		//dd($request->all());
 	
 		//deleta as cerimonias para serem inseridas as quem vem do formulário
 		$cerimonias = cerimonia::where("membro_id", $membro->id);
@@ -188,13 +178,14 @@ class MembroController extends Controller
 		
 
 		if ($membro) {
-
+			DB::commit();
 			return redirect('/membros/create')->with('sucesso', ' O membro '
 																		.strtoupper($request->no_membro)    .' CIM Nº ' 
 																		.$request->co_cim
 																		.' foi cadastrado com sucesso'
 																	);
 		} else {
+			DB::rollBack();
 			return redirect('/membros/create')->with(['erros' => 'Falha ao cadastrar']); 
 		}
 	}
@@ -262,6 +253,7 @@ class MembroController extends Controller
 		
 		//dd($request->all());
 
+			// Validar dados do formulário
 		$this->validate($request, [
 			'no_membro'         => 'required|min:3|max:50',
 			'co_cim'            => 'required|max:11',
@@ -269,26 +261,25 @@ class MembroController extends Controller
 													Rule::unique('membros')->ignore($id)
 											],
 
-			'dt_nascimento'     => 'date',
-			'dt_casamento'      => 'date',
-			'dt_emissao_idt'    => 'date',
-			'dt_emissao_titulo' => 'date',
-
-			'dt_cerimonia0'     => 'date',
-			'dt_cerimonia1'     => 'date',
-			'dt_cerimonia2'     => 'date',
-			'dt_cerimonia3'     => 'date',
-			'dt_cerimonia4'     => 'date',
-			'dt_cerimonia5'     => 'date',
-			'dt_condecoracao0'  => 'date',
-			'dt_condecoracao1'  => 'date',
-			'dt_condecoracao2'  => 'date',
-			'dt_condecoracao3'  => 'date',
-			'dt_condecoracao4'  => 'date',
-			'dt_condecoracao5'  => 'date',
+			'dt_nascimento'     => 'date|nullable',
+			'dt_casamento'      => 'date|nullable',
+			'dt_emissao_idt'    => 'date|nullable',
+			'dt_emissao_titulo' => 'date|nullable',
+			'dt_cerimonia0'     => 'date|nullable',
+			'dt_cerimonia1'     => 'date|nullable',
+			'dt_cerimonia2'     => 'date|nullable',
+			'dt_cerimonia3'     => 'date|nullable',
+			'dt_cerimonia4'     => 'date|nullable',
+			'dt_cerimonia5'     => 'date|nullable',
+			'dt_condecoracao0'  => 'date|nullable',
+			'dt_condecoracao1'  => 'date|nullable',
+			'dt_condecoracao2'  => 'date|nullable',
+			'dt_condecoracao3'  => 'date|nullable',
+			'dt_condecoracao4'  => 'date|nullable',
+			'dt_condecoracao5'  => 'date|nullable',
 
 			// Dependentes
-			'dependentes.*.dt_nascimento'  => 'date',
+			//'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
 		]);
 		
 		
@@ -304,43 +295,7 @@ class MembroController extends Controller
 		// Salvar no banco para obter o ID
 		$membro->save();
 		
-		/* ==================================================================================== */
-		/* TELEFONE */
-		/* ==================================================================================== */
-		//apaga todos os telefones do membro
-		$membro->telefones()->delete();
-
-		// Criar novos telefones com as informações enviadas
-		//se o telefone não estiver vazio no request, adiciona
-		//        dd($request->telefone);
-		//dd($request->telefone['nu_telefone'] );
-
-		if($request->telefone['nu_telefone'] != null)
-		{
-			// Criar um novo telefone com as informações inseridas
-			$novo_telefone = new Telefone();
-			$membro->telefones()->save($novo_telefone);
-		}
-		//dd($a);
-
-		/* ==================================================================================== */
-		/* EMAIL */
-		/* ==================================================================================== */
-		//apaga todos os emails do membro
-		$membro->emails()->delete();
-
-		
-		
-		// Criar novos emails com as informações enviadas
-		foreach($request->emails as $email)
-		{
-			if($email['email'] != null)
-			{
-					$membro->emails()->save(new Email($email));
-			}
-		}
-
-
+	
 
 		/* ==================================================================================== */
 		/* ENDEREÇO */
@@ -407,31 +362,29 @@ class MembroController extends Controller
 					$membro->condecoracoes()->save(new Condecoracao($condecoracao));    
 			}
 		}
-
+		
+		
 		/* ==================================================================================== */
 		/* OCUPAÇÂO DE CARGOS */
 		/* ==================================================================================== */
 		//apaga todas as ocupações de cargos do membro
-		$membro->ocupacao_cargos()->delete();
+		$membro->cargos()->delete();
 
-		// Criar novas ocupacao_cargos com as informações enviadas
-		//dd($request->ocupacao_cargos[0]);
-		foreach($request->ocupacao_cargos as $ocupacao)
+		
+		//cria os cargos
+		if(isset($request->cargos_membros))
 		{
-			$explodindo = json_decode( $ocupacao, true);
-			//dd($a['cargo_id']);
+			foreach($request->cargos_membros as $key => $cargo)
+			{
+				$cg = json_decode($cargo) ;
 			
-			$nova_ocupacao = new Ocupacao_cargo(
-					[
-						'cargo_id'      => $explodindo['cargo_id'],
-						'aa_inicio'     => $explodindo['aa_inicio'],
-						'aa_termino'    => $explodindo['aa_termino']
-					]
-			);
-
-			$membro->ocupacao_cargos()->save($nova_ocupacao);
+				$cargo_id = Cargo::where('no_cargo', "=", $cg->cargo_nome)->first();
+				
+				$membro->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
+			}
 		}
 
+		
 		if ($membro /*and $cerimonia*/) {
 
 			return redirect('/membros')->with('sucesso', ' O membro '
@@ -464,22 +417,22 @@ class MembroController extends Controller
 			'co_cim'            => 'required|max:11',
 			'cpf'               =>  'cpf',
 
-			'dt_nascimento'     => 'date',
-			'dt_casamento'      => 'date',
-			'dt_emissao_idt'    => 'date',
-			'dt_emissao_titulo' => 'date',
-			'dt_cerimonia0'     => 'date',
-			'dt_cerimonia1'     => 'date',
-			'dt_cerimonia2'     => 'date',
-			'dt_cerimonia3'     => 'date',
-			'dt_cerimonia4'     => 'date',
-			'dt_cerimonia5'     => 'date',
-			'dt_condecoracao0'  => 'date',
-			'dt_condecoracao1'  => 'date',
-			'dt_condecoracao2'  => 'date',
-			'dt_condecoracao3'  => 'date',
-			'dt_condecoracao4'  => 'date',
-			'dt_condecoracao5'  => 'date',
+			'dt_nascimento'     => 'date|nullable',
+			'dt_casamento'      => 'date|nullable',
+			'dt_emissao_idt'    => 'date|nullable',
+			'dt_emissao_titulo' => 'date|nullable',
+			'dt_cerimonia0'     => 'date|nullable',
+			'dt_cerimonia1'     => 'date|nullable',
+			'dt_cerimonia2'     => 'date|nullable',
+			'dt_cerimonia3'     => 'date|nullable',
+			'dt_cerimonia4'     => 'date|nullable',
+			'dt_cerimonia5'     => 'date|nullable',
+			'dt_condecoracao0'  => 'date|nullable',
+			'dt_condecoracao1'  => 'date|nullable',
+			'dt_condecoracao2'  => 'date|nullable',
+			'dt_condecoracao3'  => 'date|nullable',
+			'dt_condecoracao4'  => 'date|nullable',
+			'dt_condecoracao5'  => 'date|nullable',
 
 			// Dependentes
 			//'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
