@@ -10,6 +10,7 @@ use Faker\Generator as Faker;
 
 use App\Models\Sessao;
 use App\Models\Membro;
+use App\Models\Cargo;
 
 
 class SessaoController extends Controller
@@ -25,13 +26,16 @@ class SessaoController extends Controller
 	{
 
 		$membros = Membro::where('ic_situacao', '=', 'Regular Ativo')->orderBy('no_membro')->get();
+		$cargos  = Cargo::orderBy('no_cargo')->get();
+
+		
 
 		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
 		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;
 		
 		//dd($membros);
 
-		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio')) ;
+		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio','cargos')) ;
 	}
 
 	public function store(Request $request)

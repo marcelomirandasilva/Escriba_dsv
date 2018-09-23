@@ -100,198 +100,46 @@
 					</div>
 					
 					
-					{{--  veneravel - orador secretario  --}}
-					<div class="row">
-						<div class="form-group col-md-4 col-xs-12 col-md-offset-1">
-							<label class="control-label " for="veneravel"> Venerável </label>
-							<select   name="veneravel" id="veneravel" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
+					
+					<table id="tb_presenca_sessao"  class="table table-striped" style="width:100%">
+						<thead>
+								<tr>
+									<th>Membro</th>
+									<th>Participou</th>
+									<th>Cargo</th>
+								</tr>
+						</thead>
+						<tbody>
+							@foreach($membros as $membro )
+							<tr>
+								
+								
+								
+								<td> 
+									<input type="text" 		id="nome" 			name="nome" 		value={{ $membro->no_membro}} disabled/> 
+									<input type="hidden"		id="membro_id"    name="membro_id"	value={{ $membro->id}}/> 
+								
+								</td>
+								<td> <input type="checkbox" 	id="participou" 	name="participou" value="1" /> </td>
+								<td>
+									<select id="cargo" 	name="cargo"  >
+										<option value=""  selected style="color: #ccc;"> --- </option>
+										@foreach($cargos as $cargo)
+											<option value="{{$cargo->id}}"> {{$cargo->no_cargo}} </option>    
+										@endforeach
+									</select>
 
+								</td>
+								
+								
+									
 
-						<div class="form-group col-md-4 col-xs-12  ">
-							<label class="control-label " for="orador"> Orador </label>
-							<select   name="orador" id="orador" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
+								
+							</tr>
+						@endforeach
 
-						<div class="form-group col-md-4 col-xs-12  ">
-							<label class="control-label " for="secretario"> Secretário </label>
-							<select   name="secretario" id="secretario" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-					</div>
-
-					{{--  Tesoureiro - Chanceler - MC  --}}
-					<div class="row">
-						<div class="form-group col-md-4 col-xs-12 col-md-offset-1">
-							<label class="control-label " for="tesoureiro"> Tesoureiro </label>
-							<select   name="tesoureiro" id="tesoureiro" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-
-
-						<div class="form-group col-md-4 col-xs-12  ">
-							<label class="control-label " for="chanceler"> Chanceler </label>
-							<select   name="chanceler" id="chanceler" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-
-						<div class="form-group col-md-4 col-xs-12  ">
-							<label class="control-label " for="mc"> Mestre de Cerimônias </label>
-							<select   name="mc" id="mc" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-					</div>
-
-
-					{{--  1ºVG - 2ºVG - Cobridor  --}}
-					<div class="row">
-						<div class="form-group col-md-4 col-xs-12 col-md-offset-1">
-							<label class="control-label " for="vg1"> Primeiro Vigilante </label>
-							<select   name="vg1" id="vg1" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-
-
-						<div class="form-group col-md-4 col-xs-12  ">
-							<label class="control-label " for="vg2"> Segundo Vigilante </label>
-							<select   name="vg2" id="vg2" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-
-						<div class="form-group col-md-4 col-xs-12  ">
-							<label class="control-label " for="cobridor"> Cobridor Interno </label>
-							<select   name="cobridor" id="cobridor" class="form-control col-md-2" >
-								<option value=""  selected style="color: #ccc;"> --- </option>
-								@if (isset($edita)) 
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}" 
-											@if ( $sessao->membro->no_membro == $membro->no_membro) 
-												selected="selected"> 
-											@endif
-											{{$membro->no_membro}}</option>
-									@endforeach
-								@else
-									@foreach($membros as $membro)
-										<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
-									@endforeach
-								@endif
-							</select>
-						</div>
-					</div>
+						</tbody>
+					</table>
 
 
 
@@ -329,6 +177,21 @@
 	{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}
   	<script src="{{ asset("js/endereco.js") }}"></script>
 
+	  <!-- Datatables -->
+	<script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}"                  type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"            type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}"         type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"       type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}"              type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}"              type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}"              type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"       type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}"   type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"     type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
+	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 
 	<!-- Adicionando Javascript -->
 	<script type="text/javascript" >
@@ -356,48 +219,36 @@
 			@endif
 
 
+
+			var table = $('#tb_presenca_sessao').DataTable();
+		
+			$('#send').click( function() {
+				var data = table.$('input, select').serialize();
+				console.log(data);
+				alert(
+						"The following data would have been submitted to the server: \n\n"+
+						data.substr( 0, 120 )+'...'
+				);
+				return false;
+			} );
+
 			
-			$('[data-toggle="modal"][title]').tooltip();
-
-			$(".envia_nova_potencia").click(function(e){ 
-
-				var potencia = $("input#no_potencia").val();
-				var token = $("[name='_token']").val();
-
-				$.post("/lojas/potencia/store", { no_potencia : potencia, _token : token }, function(dados){
-
-					if(dados.id)
-					{
-						
-						//$("<option value='dados.id' selected='selected'> dados.no_potencia </option>").appendTo("potencia_id");
-
-						$('#potencia_id').append('<option value="' + dados.id + '" selected="selected">' + dados.no_potencia + '</option>'); 
-
-						//console.log("Gravou a potência");
-						//console.log(dados.id);
-
-						 $('.fecha_modal').trigger('click');
-						 
-					}
-				
-				}).fail(function(dados){
-					console.log(dados);
-				});
-			});
+		
 
 
 
 
-			{{-- Máscarasa dos campos CPF e RG --}}
 
-			$(".cpf").inputmask("999.999.999-99");
-			$(".rg").inputmask("99.999.999-9");
-			$(".cep").inputmask("99.999-999");
-			$(".data").inputmask("99/99/9999");
-			$(".celular").inputmask("(99)99999-9999");
-			$(".telefone").inputmask("(99)9999-9999");
+
+
+
+
+
+
+
+
+
 		});
-
 	</script>
 
 
@@ -406,4 +257,23 @@
 
 
 
+	membro_id=26
+	cargo=
+	membro_id=31
+	participou=1
+	cargo=20
+	membro_id=36
 	
+	cargo=&membro_id=28
+	cargo=&membro_id=16
+	cargo=&membro_id=20
+	cargo=&membro_id=3
+	cargo=&membro_id=5
+	cargo=&membro_id=17
+	cargo=&membro_id=37
+	cargo=&membro_id=10
+	cargo=&membro_id=52
+	cargo=&membro_id=49
+	cargo=&membro_id=66
+	cargo=&membro_id=18
+	cargo=
