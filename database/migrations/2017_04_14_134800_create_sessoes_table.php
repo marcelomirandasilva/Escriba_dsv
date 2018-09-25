@@ -61,7 +61,7 @@ class CreateSessoesTable extends Migration
                         ]);
 
 
-            $table->string('de_sessao',60);
+            $table->text('de_sessao');
 
             $table->timestamps();
         });

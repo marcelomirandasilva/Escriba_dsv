@@ -101,7 +101,7 @@
 					
 					
 					
-					<table id="tb_presenca_sessao"  class="table table-striped" style="width:100%">
+					<table id="tb_presenca_sessao"  class=" display compact table-striped" style="width:100%">
 						<thead>
 								<tr>
 									<th>Membro</th>
@@ -116,7 +116,7 @@
 								
 								
 								<td> 
-									<input type="text" 		id="nome" 			name="nome" 		value={{ $membro->no_membro}} disabled/> 
+									<input class="presensa_sessao" type="text" 		id="nome" 			name="nome" 		value="{{ $membro->no_membro}}" disabled/> 
 									<input type="hidden"		id="membro_id"    name="membro_id"	value={{ $membro->id}}/> 
 								
 								</td>
@@ -218,6 +218,22 @@
 				swal('Atenção!', '{{ session('ja_existe') }}' ,'warning');
 			@endif
 
+			$("#tb_presenca_sessao").DataTable({
+
+				language : {
+					'url' : '{{ asset('js/portugues.json') }}',
+					"decimal": ",",
+					"thousands": "."
+				}, 
+				  
+				stateSave: true,
+		  		stateDuration: -1,
+				"columnDefs": 
+				[
+					{ className: "text-center", "targets": [1,2] },
+				]
+
+			});
 
 
 			var table = $('#tb_presenca_sessao').DataTable();
@@ -232,6 +248,7 @@
 				return false;
 			} );
 
+			
 			
 		
 
@@ -254,26 +271,3 @@
 
 @endpush
 
-
-
-
-	membro_id=26
-	cargo=
-	membro_id=31
-	participou=1
-	cargo=20
-	membro_id=36
-	
-	cargo=&membro_id=28
-	cargo=&membro_id=16
-	cargo=&membro_id=20
-	cargo=&membro_id=3
-	cargo=&membro_id=5
-	cargo=&membro_id=17
-	cargo=&membro_id=37
-	cargo=&membro_id=10
-	cargo=&membro_id=52
-	cargo=&membro_id=49
-	cargo=&membro_id=66
-	cargo=&membro_id=18
-	cargo=
