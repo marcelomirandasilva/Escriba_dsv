@@ -59,7 +59,6 @@ class MembroController extends Controller
 		$situacao           = pegaValorEnum('membros','ic_situacao');                                                   
 		$grau               = pegaValorEnum('membros','ic_grau');                      
 		$estado_civil       = pegaValorEnum('membros','ic_estado_civil'); 
-		$tipo_telefone      = pegaValorEnum('telefones','ic_telefone'); 
 		$sexos              = pegaValorEnum('dependentes','ic_sexo'); 
 		$parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
 
@@ -79,7 +78,7 @@ class MembroController extends Controller
 		$lojas      = Loja::all()->sortBy('no_loja');    
 		
 		
-		return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
+		return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
 	}
 	
@@ -223,7 +222,7 @@ class MembroController extends Controller
 		$situacao           = pegaValorEnum('membros','ic_situacao');                                                   
 		$grau               = pegaValorEnum('membros','ic_grau');                      
 		$estado_civil       = pegaValorEnum('membros','ic_estado_civil'); 
-		$tipo_telefone      = pegaValorEnum('telefones','ic_telefone'); 
+		 
 		$sexos              = pegaValorEnum('dependentes','ic_sexo'); 
 		$parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
 		$cargos_ocupados    = [];        
@@ -239,7 +238,7 @@ class MembroController extends Controller
 		//dd($enderecos);
 		//dd($telefones[0]['nu_telefone']);
 		
-		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','tipo_telefone','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
+		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
 	}
 

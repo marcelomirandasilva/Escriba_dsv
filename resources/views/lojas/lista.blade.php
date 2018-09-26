@@ -1,5 +1,6 @@
 @extends('gentelella.layouts.app')
 
+
 @push('styles')
 
 <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
@@ -15,7 +16,7 @@
 
   <!-- page content -->
     	
-	<div class="x_panel modal-content animated fadeInUp">
+	<div class="x_panel modal-content ">
 		<div class="x_title">
 			<h2> Listagem de Lojas </h2>
 
@@ -28,7 +29,7 @@
 			</a>
 			<div class="clearfix"></div>
 		</div>
-		<div class="x_content">
+		<div class="x_content animated fadeInUp">
 			<div class="panel-body">
 				<table class="table table-striped" id="tabela_lojas">
 					<thead>

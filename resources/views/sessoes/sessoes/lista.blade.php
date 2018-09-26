@@ -28,7 +28,7 @@
 			</a>
 			<div class="clearfix"></div>
 		</div>
-		<div class="x_content">
+		<div class="x_content animated fadeInUp">
 			<div class="panel-body">
 				<table class="table table-striped" id="tabela_sessoes">
 					<thead>

@@ -15,6 +15,12 @@ use App\Models\Cargo;
 
 class SessaoController extends Controller
 {
+	public function __construct()
+	{
+	  $this->middleware('auth');
+
+	}
+
 	public function index()
 	{
 		$sessoes = Sessao::get();
@@ -40,6 +46,11 @@ class SessaoController extends Controller
 
 	public function store(Request $request)
 	{
+	
+		$data = unserialize(base64_decode($request->dados_sessao));
+		
+		dd($data);
+		
 		//inicia sessão de banco
 		DB::beginTransaction();
 		$request->merge(['cnpj'     => str_replace('-', "", $request->cnpj)]);

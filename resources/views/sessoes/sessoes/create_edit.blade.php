@@ -20,13 +20,15 @@
 		<div class="x_content animated fadeInUp">
 				
 			@if( isset($loja))
-			<form id="form_loja" method="post" action="{{ url("sessoes/$loja->id") }}" class="form-horizontal form-label-left" >
+			<form id="form_pressenca_sessao" method="post" action="{{ url("sessoes/$loja->id") }}" class="form-horizontal form-label-left" >
 					{!! method_field('PUT') !!}
 			@else
-			<form id="form_loja" method="post" action="{{ route('sessoes.store') }}" class="form-horizontal form-label-left" >
+			<form id="form_pressenca_sessao" method="post" action="{{ route('sessoes.store') }}" class="form-horizontal form-label-left" >
 			@endif
 									
 				{{ csrf_field() }}
+
+				<input id="dados_sessao" name="dados_sessao" type="hidden">  
 
 				<div class="col-md-12  col-xs-12 ">
 					<div class="form-group col-md-2 col-xs-12  ">
@@ -101,12 +103,12 @@
 					
 					
 					
-					<table id="tb_presenca_sessao"  class=" display compact table-striped" style="width:100%">
+					<table id="tb_presenca_sessao"  class=" table compact table-striped" style="width:100%">
 						<thead>
 								<tr>
 									<th>Membro</th>
-									<th>Participou</th>
-									<th>Cargo</th>
+		{{--  							<th>Participou</th>  --}}
+									<th>Presente / Cargo</th>
 								</tr>
 						</thead>
 						<tbody>
@@ -116,23 +118,23 @@
 								
 								
 								<td> 
-									<input class="presensa_sessao" type="text" 		id="nome" 			name="nome" 		value="{{ $membro->no_membro}}" disabled/> 
+									{{ $membro->no_membro}} 
 									<input type="hidden"		id="membro_id"    name="membro_id"	value={{ $membro->id}}/> 
 								
 								</td>
+{{--  
 								<td> <input type="checkbox" 	id="participou" 	name="participou" value="1" /> </td>
+  --}}
 								<td>
 									<select id="cargo" 	name="cargo"  >
-										<option value=""  selected style="color: #ccc;"> --- </option>
+										<option value=""  		selected style="color: #ccc;"> --- 			</option>
+										<option value=1000   	> Presente </option>
 										@foreach($cargos as $cargo)
 											<option value="{{$cargo->id}}"> {{$cargo->no_cargo}} </option>    
 										@endforeach
 									</select>
 
 								</td>
-								
-								
-									
 
 								
 							</tr>
@@ -230,7 +232,7 @@
 		  		stateDuration: -1,
 				"columnDefs": 
 				[
-					{ className: "text-center", "targets": [1,2] },
+					{ className: "text-center", "targets": [1] },
 				]
 
 			});
@@ -239,13 +241,17 @@
 			var table = $('#tb_presenca_sessao').DataTable();
 		
 			$('#send').click( function() {
+				event.preventDefault();
+
 				var data = table.$('input, select').serialize();
+				
+				document.getElementById("dados_sessao").value = data;
 				console.log(data);
-				alert(
-						"The following data would have been submitted to the server: \n\n"+
-						data.substr( 0, 120 )+'...'
-				);
-				return false;
+				
+				
+
+				$( "#form_pressenca_sessao" ).submit();
+				//return false;
 			} );
 
 			
