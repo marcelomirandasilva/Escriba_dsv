@@ -240,7 +240,7 @@
 
 			var table = $('#tb_presenca_sessao').DataTable();
 		
-			$('#send').click( function() {
+		  	$('#send').click( function() {
 				event.preventDefault();
 
 				var data = table.$('input, select').serialize();
@@ -252,8 +252,9 @@
 
 				$( "#form_pressenca_sessao" ).submit();
 				//return false;
-			} );
+			} );  
 
+		
 			
 			
 		

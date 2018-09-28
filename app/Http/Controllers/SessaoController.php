@@ -47,9 +47,39 @@ class SessaoController extends Controller
 	public function store(Request $request)
 	{
 	
-		$data = unserialize(base64_decode($request->dados_sessao));
+		//dd($request->all());
+
+		$urlData =  $this->parseUrl($request->dados_sessao);
+		
+		dd($urlData);
+
+		$query = explode("&", $urlData['path']);
+
+		//dd($query);
+		$parameters = array();
+		foreach($query as $key => $parameter) {
+			$param = explode("=", $parameter);
+
+			
+			$parameters[$param[0]] =  urldecode($param[1]); // $param[1];
+		}
+		$data =  $parameters;
+		
+
 		
 		dd($data);
+		
+		//dd($query);
+		/* $parameters = array();
+		foreach($query as $key => $parameter) {
+			$param = explode("=", $parameter);
+
+			dd($param);
+			array_push($parameters, $param);
+		}
+		
+		$data =  $parameters;
+		 */
 		
 		//inicia sessão de banco
 		DB::beginTransaction();
@@ -164,5 +194,22 @@ class SessaoController extends Controller
 			DB::rollBack();
 			return response('erro', 500);
 		}
+	}
+
+	function parseUrl($url, $decode = false)
+	{
+		$retorno = [];
+		$urlData = parse_url($url);
+		if (empty($urlData['path'])) { return null; }
+		$path = explode("&", $urlData['path']);
+		$parameters = array();
+		foreach($path as $parameter) {
+			$param = explode("=", $parameter);
+			
+			$parameters[$param[0]] = urldecode($param[1]); // : $param[1];
+
+			array_push($retorno, urldecode($param[0]), urldecode($param[1]));
+		}
+		return $retorno;
 	}
 }
