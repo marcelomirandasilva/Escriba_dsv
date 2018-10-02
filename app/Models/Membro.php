@@ -89,6 +89,11 @@ class Membro extends Model
     	return $this->hasOne('App\Models\User');
     }
 
+    public function sessoes()
+    {
+        return $this->belongsToMany('App\Models\Sessoes', 'membros_sessoes')->withPivot('cargo_id');
+    }
+
     /* public function endereco_residencial()
 	{
 		return $this->hasOne('App\Models\Endereco');

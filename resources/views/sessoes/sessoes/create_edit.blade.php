@@ -93,57 +93,60 @@
 					</div>
 
 
-				</div>			
+					<div class=" form-group">
+	
+						<div class="col-md-4">
+							<label class="control-label col-md-1 " for="no_membro"> Membro/visitante </label>
+							<select   name="no_membro" id="no_membro" class="form-control col-md-4 no_membro" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
+								<option value=""  selected style="color: #ccc;"> --- </option>
+								@foreach($membros as $membro)
+									<option value="{{$membro->id}}"> {{$membro->no_membro}} </option>    
+								@endforeach
+							</select>
+						</div>
+	
+	
+						<div class="col-md-4">
+							<label class="control-label col-md-1 " for="no_cargo"> Cargo </label>
+							<select   name="no_cargo" id="no_cargo" class="form-control col-md-4 no_cargo" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
+								<option value=""  selected style="color: #ccc;"> --- </option>
+								@foreach($cargos as $cargo)
+									<option value="{{$cargo->id}}"> {{$cargo->no_cargo}} </option>    
+								@endforeach
+							</select>
+						</div>
 
-				<div class="col-md-12  col-xs-12 ">
-					<div class="x_title">
-						<h4> Presenças da Sessão </h4>
-						<div class="clearfix"></div>
+						<div class="col-md-1 ">
+							<a id="bt_add_membro_sessao"
+								data-target="#bt_add_membro_sessao"
+								class="btn-circulo btn btn-primary btn-md   pull-right " 
+								data-toggle="tooltip" 
+								title="Adiciona o Membro a Sessão">
+									<span class="fa fa-plus">  </span>
+							</a> 
+						</div>
+	
 					</div>
-					
-					
-					
-					<table id="tb_presenca_sessao"  class=" table compact table-striped" style="width:100%">
-						<thead>
-								<tr>
-									<th>Membro</th>
-		{{--  							<th>Participou</th>  --}}
-									<th>Presente / Cargo</th>
-								</tr>
-						</thead>
-						<tbody>
-							@foreach($membros as $membro )
-							<tr>
-								
-								
-								
-								<td> 
-									{{ $membro->no_membro}} 
-									<input type="hidden"		id="membro_id"    name="membro_id"	value={{ $membro->id}}/> 
-								
-								</td>
-{{--  
-								<td> <input type="checkbox" 	id="participou" 	name="participou" value="1" /> </td>
-  --}}
-								<td>
-									<select id="cargo" 	name="cargo"  >
-										<option value=""  		selected style="color: #ccc;"> --- 			</option>
-										<option value=1000   	> Presente </option>
-										@foreach($cargos as $cargo)
-											<option value="{{$cargo->id}}"> {{$cargo->no_cargo}} </option>    
-										@endforeach
-									</select>
+				
 
-								</td>
+					<!------------------------------------>
 
-								
-							</tr>
-						@endforeach
-
-						</tbody>
-					</table>
-
-
+					<div class="x_content ">
+						<div class="panel-body">
+							<table class="table table-striped display compact" id="tb_presenca_sessao">
+								<thead>
+									<tr>
+										<th> Membro/visitante     </th>
+										<th> Cargo    </th>
+										<th> Ações     </th>
+									</tr>
+								</thead>
+								<tbody>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
 
 
 				</div>
@@ -198,7 +201,7 @@
 	<!-- Adicionando Javascript -->
 	<script type="text/javascript" >
 
-		
+		let contador_linhas_tabela = 0;
 
 		$(document).ready(function() {
 			var tempo = 0;
@@ -220,41 +223,83 @@
 				swal('Atenção!', '{{ session('ja_existe') }}' ,'warning');
 			@endif
 
+			//configura a tabela de cargos
 			$("#tb_presenca_sessao").DataTable({
-
 				language : {
-					'url' : '{{ asset('js/portugues.json') }}',
-					"decimal": ",",
-					"thousands": "."
-				}, 
-				  
-				stateSave: true,
-		  		stateDuration: -1,
-				"columnDefs": 
-				[
-					{ className: "text-center", "targets": [1] },
-				]
+									'url' : '{{ asset('js/portugues.json') }}',
+									"decimal": ",",
+									"thousands": "."
+								},
+				stateDuration: -1,
+				deferRender: true,
+				compact: true,
+				paginate: false,
+				searching: false,
+				orderFixed: [ 1, 'asc' ],
+        	});
 
+		
+			//adiciona cargos na tabela
+			var cargos_na_tabela = [];
+			$('#bt_add_membro_sessao').on( 'click', function () {
+				t = $('#tb_presenca_sessao').DataTable();
+				var no_membro 				= $("#no_membro :selected").val();
+				var cargo_selecionado	 = $("#no_cargo :selected").val();
+				
+				if (cargo_selecionado == ""){
+					//testa se o cargo está vazio
+					$(".no_cargo").notify("O cargo deve ser informado",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else if (no_membro =="" ){
+					//testa se as datas são maiores que 1900
+					$(".no_membro").notify("O membro deve ser informado",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else{
+					t.row.add( [
+						$("#no_membro :selected").text(),
+						$("#no_cargo :selected").text(),
+						`<a class="btn btn-warning btn-xs action btn_tb_membro_remove" data-id="${contador_linhas_tabela}" 
+											data-toggle="tooltip" data-placement="bottom" title="Remove esse Membro">  
+											<i class="glyphicon glyphicon-remove"></i>
+						</a>`
+					] ).draw( true );
+
+					contador_linhas_tabela++;
+				};
+			} );
+			
+			//remove cargos da tabela
+			$('#tb_presenca_sessao').on('click', '.btn_tb_membro_remove', function () {
+				t.row( $(this).parents('tr') )
+					.remove()
+					.draw();		
+			} );
+
+			$("#form_pressenca_sessao").submit(function(){
+
+				// Remover os cargos pré-existentes
+				$("#form_pressenca_sessao .presencas").remove();
+
+				// Iterar por todas as linhas da tabela
+				for(i=0; i<t.data().length; i++){
+	
+					let linha = t.data()[i];
+
+					// Stringificar os campos
+					let presencas_em_string = JSON.stringify({
+						no_membro:  linha[0].trim(),
+						no_cargo:   linha[1].trim()
+					});
+
+
+					// Adicionar o novo cargo no formulário
+					$("#form_pressenca_sessao").append("<input type='hidden' class='presencas' name='presencas[]' value='"+presencas_em_string+"'>");
+				}
 			});
-
-
-			var table = $('#tb_presenca_sessao').DataTable();
-		
-		  	$('#send').click( function() {
-				event.preventDefault();
-
-				var data = table.$('input, select').serialize();
-				
-				document.getElementById("dados_sessao").value = data;
-				console.log(data);
-				
-				
-
-				$( "#form_pressenca_sessao" ).submit();
-				//return false;
-			} );  
-
-		
 			
 			
 		

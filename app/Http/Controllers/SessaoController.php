@@ -11,6 +11,7 @@ use Faker\Generator as Faker;
 use App\Models\Sessao;
 use App\Models\Membro;
 use App\Models\Cargo;
+use App\Models\Visitante;
 
 
 class SessaoController extends Controller
@@ -49,77 +50,55 @@ class SessaoController extends Controller
 	
 		//dd($request->all());
 
-		$urlData =  $this->parseUrl($request->dados_sessao);
-		
-		dd($urlData);
-
-		$query = explode("&", $urlData['path']);
-
-		//dd($query);
-		$parameters = array();
-		foreach($query as $key => $parameter) {
-			$param = explode("=", $parameter);
-
-			
-			$parameters[$param[0]] =  urldecode($param[1]); // $param[1];
-		}
-		$data =  $parameters;
-		
-
-		
-		dd($data);
-		
-		//dd($query);
-		/* $parameters = array();
-		foreach($query as $key => $parameter) {
-			$param = explode("=", $parameter);
-
-			dd($param);
-			array_push($parameters, $param);
-		}
-		
-		$data =  $parameters;
-		 */
-		
 		//inicia sessão de banco
 		DB::beginTransaction();
-		$request->merge(['cnpj'     => str_replace('-', "", $request->cnpj)]);
-		$request->merge(['cnpj'     => str_replace('.', "", $request->cnpj)]);
-		$request->merge(['cnpj'     => str_replace('/', "", $request->cnpj)]);
-		$request->merge(['gasolina' => str_replace('R$', "", $request->gasolina)]);
-		$request->merge(['gasolina' => str_replace(' ', "", $request->gasolina)]);
-		$request->merge(['gasolina' => str_replace(',', ".", $request->gasolina)]);
-		$request->merge(['alcool'   => str_replace('R$', "", $request->alcool)]);
-		$request->merge(['alcool'   => str_replace(' ', "", $request->alcool)]);
-		$request->merge(['alcool'   => str_replace(',', ".", $request->alcool)]);
-		$request->merge(['diesel'   => str_replace('R$', "", $request->diesel)]);
-		$request->merge(['diesel'   => str_replace(' ', "", $request->diesel)]);
-		$request->merge(['diesel'   => str_replace(',', ".", $request->diesel)]);
-		$request->merge(['gnv'      => str_replace('R$', "", $request->gnv)]);
-		$request->merge(['gnv'      => str_replace(' ', "", $request->gnv)]);
-		$request->merge(['gnv'      => str_replace(',', ".", $request->gnv)]);
+		
 
-		$this->validate($request,[
-			'cnpj'      => 'digits:14',
-			'nome'      => 'required|min:5',
-			'endereco'  => 'required|min:7',
-			'gasolina'  => 'required|between:0,99.999',
-			'alcool'    => 'required|between:0,99.999',
-			'diesel'    => 'required|between:0,99.999',
-			'gnv'       => 'required|between:0,99.999',
-		]);
+		// Criar uma sessao
+	  	$novaSessao = Sessao::create($request->all());
 
-		// Criar um novo Posto
-	  $novoPosto = Posto::create($request->all());
 
-		if($novoPosto){
+
+		//cria as presencas 
+		if(isset($request->presencas))
+		{
+			foreach($request->presencas as $key => $presenca)
+			{
+				$cg = json_decode($presenca) ;
+			
+				$membro = Membro::where('no_membro', "=", $cg->no_membro)->first();
+				
+				//se não achar na tabela de membros irá procurar na tabela de visitantes
+				//if($membro_id == null){
+					//	$membro_id = Visitante::where('no_membro', "=", $cg->no_membro)->first();
+					//}
+					
+				$cargo  = Cargo::where('no_cargo', "=", $cg->no_cargo)->first();
+				
+				if( $novaSessao->membros()->attach($membro->id, ['cargo_id' => $cargo->id]) )
+				{
+					dd("verdadeiro");
+
+				}else{
+					dd("falso");
+				}
+				
+			
+			}
+		}
+	
+	
+		DB::commit();
+		return redirect('sessoes')->with('sucesso', 'Sessão criada com sucesso!');
+
+		/* if($novoPosto){
 			DB::commit();
 			return redirect('posto')->with('sucesso', 'Posto criado com sucesso!');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
 			return back()->withInput()->with('error', 'Falha ao criar o posto.');    
-		}
+		} */
 	}
 
 	public function show(Sessao $sessao)
@@ -202,6 +181,8 @@ class SessaoController extends Controller
 		$urlData = parse_url($url);
 		if (empty($urlData['path'])) { return null; }
 		$path = explode("&", $urlData['path']);
+
+		
 		$parameters = array();
 		foreach($path as $parameter) {
 			$param = explode("=", $parameter);

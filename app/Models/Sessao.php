@@ -21,5 +21,9 @@ class Sessao extends Model
      * Relacionamentos
      */
 
+    public function membros()
+    {
+        return $this->belongsToMany('App\Models\Membro', 'membros_sessoes')->withPivot('cargo_id');
+    }
     
 }
