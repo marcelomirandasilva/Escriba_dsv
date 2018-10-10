@@ -11,12 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call(UserTableSeeder::class);
-        //$this->call(PaisTableSeeder::class); 
-        //$this->call(PotenciaTableSeeder::class);
-        //$this->call(CargosTableSeeder::class);
-        //$this->call(LojaTableSeeder::class); 
-        //$this->call(MembroTableSeeder::class);
+        //$this->call(ConfigTableSeeder::class);
+        DB::table('configs')->insert(['hh_inicio_sessao'   => '19:00']);    
+        
+        $this->call(UserTableSeeder::class);
+        $this->call(PaisTableSeeder::class); 
+        $this->call(PotenciaTableSeeder::class);
+        $this->call(CargosTableSeeder::class);
+        $this->call(LojaTableSeeder::class); 
+        $this->call(MembroTableSeeder::class);
         $this->call(SessaoTableSeeder::class);
     }
 }

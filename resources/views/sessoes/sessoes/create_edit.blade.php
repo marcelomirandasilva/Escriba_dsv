@@ -19,13 +19,12 @@
 		</div>
 		<div class="x_content animated fadeInUp">
 				
-			@if( isset($loja))
+@if( isset($loja))
 			<form id="form_pressenca_sessao" method="post" action="{{ url("sessoes/$loja->id") }}" class="form-horizontal form-label-left" >
-					{!! method_field('PUT') !!}
-			@else
+				{!! method_field('PUT') !!}
+@else
 			<form id="form_pressenca_sessao" method="post" action="{{ route('sessoes.store') }}" class="form-horizontal form-label-left" >
-			@endif
-									
+@endif
 				{{ csrf_field() }}
 
 				<input id="dados_sessao" name="dados_sessao" type="hidden">  
@@ -42,15 +41,24 @@
 						<label class="control-label" for="hh_inicio">Inicio</label>
 						<input id="hh_inicio" class="form-control col-md-2 horas_input" name="hh_inicio"  
 						type="time" 
-						value="{{$sessao->hh_inicio or old('hh_inicio') }}" >
+						@if( isset($loja))
+							value="{{ $sessao->hh_inicio or old('hh_inicio') }}" >
+						@else
+							value="{{ $hh_inicio or old('hh_inicio') }}" >
+						@endif
 					</div>
 
 					<div class="form-group col-md-1 col-xs-12 ">
 						<label class="control-label" for="hh_termino">Término</label>
 						<input id="hh_termino" class="form-control col-md-2 horas_input" name="hh_termino"  
 						type="time" 
-						value="{{$sessao->hh_termino or old('hh_termino')}}" >
+						@if( isset($loja))
+							value="{{$sessao->hh_termino or old('hh_termino')}}" >
+						@else
+							value="{{ $hh_termino or old('hh_termino') }}" >
+						@endif
 					</div>
+
 
 					<div class=" form-group col-md-6 col-xs-12">
 						<label class="control-label " for="ic_tipo_sessao"> Tipo da Sessão </label>
@@ -163,8 +171,6 @@
 		</div>
 	</div>
 </div>
-</div>
-</div>
 
 
 
@@ -259,16 +265,26 @@
 						autoHideDelay: 5000
 					});
 				}else{
-					t.row.add( [
-						$("#no_membro :selected").text(),
-						$("#no_cargo :selected").text(),
-						`<a class="btn btn-warning btn-xs action btn_tb_membro_remove" data-id="${contador_linhas_tabela}" 
-											data-toggle="tooltip" data-placement="bottom" title="Remove esse Membro">  
-											<i class="glyphicon glyphicon-remove"></i>
-						</a>`
-					] ).draw( true );
+					console.log(t.column( 0 ).search( $("#no_membro :selected").text()));
+					if(   t.column( 0 ).search( $("#no_membro :selected").text()  ) )
+					{
+						$(".no_membro").notify("Membro já adicionado",{
+							className: "error",
+							autoHideDelay: 5000
+						});
+					}else{
 
-					contador_linhas_tabela++;
+						t.row.add( [
+							$("#no_membro :selected").text(),
+							$("#no_cargo :selected").text(),
+							`<a class="btn btn-warning btn-xs action btn_tb_membro_remove" data-id="${contador_linhas_tabela}" 
+												data-toggle="tooltip" data-placement="bottom" title="Remove esse Membro">  
+												<i class="glyphicon glyphicon-remove"></i>
+							</a>`
+						] ).draw( true );
+
+						contador_linhas_tabela++;
+					}
 				};
 			} );
 			
@@ -303,19 +319,6 @@
 			
 			
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		});
 	</script>
