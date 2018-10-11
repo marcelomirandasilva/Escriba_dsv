@@ -19878,6 +19878,10 @@ select:focus {
   width: 18px;
 }
 
+.btn_tb_membro_remove {
+  padding: 1;
+}
+
 .icone_botao_lista {
   position: static !important;
 }

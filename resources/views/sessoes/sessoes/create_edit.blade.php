@@ -208,6 +208,9 @@
 	<script type="text/javascript" >
 
 		let contador_linhas_tabela = 0;
+		let membros_tabela = [];
+		let cargos_tabela = [];
+		
 
 		$(document).ready(function() {
 			var tempo = 0;
@@ -265,15 +268,22 @@
 						autoHideDelay: 5000
 					});
 				}else{
-					console.log(t.column( 0 ).search( $("#no_membro :selected").text()));
-					if(   t.column( 0 ).search( $("#no_membro :selected").text()  ) )
-					{
-						$(".no_membro").notify("Membro já adicionado",{
+
+					
+					//busca se o membro está no array
+					if ( membros_tabela.indexOf( $("#no_membro :selected").text()) >= 0 ){
+						$(".no_membro").notify("Esse Membro já foi adicionado!!!",{
+							className: "error",
+							autoHideDelay: 5000
+						});
+					//busca se o cargo está no array
+					}else if ( cargos_tabela.indexOf( $("#no_cargo :selected").text()) >= 0 ){
+						$(".no_cargo").notify("Esse Cargo já foi adicionado!!!",{
 							className: "error",
 							autoHideDelay: 5000
 						});
 					}else{
-
+						//se não tiver adicionado na tabela
 						t.row.add( [
 							$("#no_membro :selected").text(),
 							$("#no_cargo :selected").text(),
@@ -283,16 +293,32 @@
 							</a>`
 						] ).draw( true );
 
+						//adiciona o membro e o cargos nos arrays para fazer a busca
+						membros_tabela.push($("#no_membro :selected").text());
+						cargos_tabela.push($("#no_cargo :selected").text());
+
 						contador_linhas_tabela++;
 					}
-				};
+				}
 			} );
 			
 			//remove cargos da tabela
-			$('#tb_presenca_sessao').on('click', '.btn_tb_membro_remove', function () {
-				t.row( $(this).parents('tr') )
-					.remove()
-					.draw();		
+
+			$('#tb_presenca_sessao').on('click', 'tbody  .btn_tb_membro_remove', function () {
+				/* https://stackoverflow.com/questions/43435900/get-datatables-row-data-on-button-click */
+				//console.log( t.row( $(this).closest('tr') ).data() );
+
+				//remove o membro e o cargo dos arrays de busca
+				let dados_linha = t.row( $(this).closest('tr') ).data();
+				//console.log(dados_linha);
+				
+				var index_membro = membros_tabela.indexOf(dados_linha[0]);
+				membros_tabela.splice(index_membro, 1);
+				
+				var index_cargo = cargos_tabela.indexOf(dados_linha[1]);
+				cargos_tabela.splice(index_cargo, 1);
+				
+				t.row( $(this).parents('tr') ).remove().draw();		
 			} );
 
 			$("#form_pressenca_sessao").submit(function(){
