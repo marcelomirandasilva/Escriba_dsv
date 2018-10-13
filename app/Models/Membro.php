@@ -91,7 +91,7 @@ class Membro extends Model
 
     public function sessoes()
     {
-        return $this->belongsToMany('App\Models\Sessoes', 'membros_sessoes')->withPivot('cargo_id');
+        return $this->belongsToMany('App\Models\Sessao', 'membros_sessoes')->withPivot('cargo_id');
     }
 
     /* public function endereco_residencial()

@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 use Faker\Generator as Faker;
 
+use App\Models\Visitante;
+use App\Models\Config;
 use App\Models\Sessao;
 use App\Models\Membro;
 use App\Models\Cargo;
-use App\Models\Visitante;
 
 
 class SessaoController extends Controller
@@ -35,14 +36,21 @@ class SessaoController extends Controller
 		$membros = Membro::where('ic_situacao', '=', 'Regular Ativo')->orderBy('no_membro')->get();
 		$cargos  = Cargo::orderBy('no_cargo')->get();
 
+		//carrega a hora que inicia a sessão na tabela de configurações
+		$hh_inicio = Config::first()->hh_inicio_sessao;
+
+		//adiciona 2 horas a hora de inicio
+		$timestamp = strtotime($hh_inicio) + 60*120;
+		$hh_termino = (string)strftime('%H:%M:00', $timestamp); // 24 - 12 - 2016, 11:15
 		
+		//dd($hh_inicio, $hh_termino);
 
 		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
 		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;
 		
 		//dd($membros);
 
-		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio','cargos')) ;
+		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio','hh_termino','cargos')) ;
 	}
 
 	public function store(Request $request)
@@ -74,14 +82,8 @@ class SessaoController extends Controller
 					//}
 					
 				$cargo  = Cargo::where('no_cargo', "=", $cg->no_cargo)->first();
-				
-				if( $novaSessao->membros()->attach($membro->id, ['cargo_id' => $cargo->id]) )
-				{
-					dd("verdadeiro");
 
-				}else{
-					dd("falso");
-				}
+				$novaSessao->membros()->attach($membro->id, ['cargo_id' => $cargo->id]);
 				
 			
 			}

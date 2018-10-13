@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        //$this->call(ConfigTableSeeder::class);
+        DB::table('configs')->insert(['hh_inicio_sessao'   => '19:00']);    
+        
         $this->call(UserTableSeeder::class);
         $this->call(PaisTableSeeder::class); 
         $this->call(PotenciaTableSeeder::class);

@@ -19,13 +19,12 @@
 		</div>
 		<div class="x_content animated fadeInUp">
 				
-			@if( isset($loja))
+@if( isset($loja))
 			<form id="form_pressenca_sessao" method="post" action="{{ url("sessoes/$loja->id") }}" class="form-horizontal form-label-left" >
-					{!! method_field('PUT') !!}
-			@else
+				{!! method_field('PUT') !!}
+@else
 			<form id="form_pressenca_sessao" method="post" action="{{ route('sessoes.store') }}" class="form-horizontal form-label-left" >
-			@endif
-									
+@endif
 				{{ csrf_field() }}
 
 				<input id="dados_sessao" name="dados_sessao" type="hidden">  
@@ -42,15 +41,24 @@
 						<label class="control-label" for="hh_inicio">Inicio</label>
 						<input id="hh_inicio" class="form-control col-md-2 horas_input" name="hh_inicio"  
 						type="time" 
-						value="{{$sessao->hh_inicio or old('hh_inicio') }}" >
+						@if( isset($loja))
+							value="{{ $sessao->hh_inicio or old('hh_inicio') }}" >
+						@else
+							value="{{ $hh_inicio or old('hh_inicio') }}" >
+						@endif
 					</div>
 
 					<div class="form-group col-md-1 col-xs-12 ">
 						<label class="control-label" for="hh_termino">Término</label>
 						<input id="hh_termino" class="form-control col-md-2 horas_input" name="hh_termino"  
 						type="time" 
-						value="{{$sessao->hh_termino or old('hh_termino')}}" >
+						@if( isset($loja))
+							value="{{$sessao->hh_termino or old('hh_termino')}}" >
+						@else
+							value="{{ $hh_termino or old('hh_termino') }}" >
+						@endif
 					</div>
+
 
 					<div class=" form-group col-md-6 col-xs-12">
 						<label class="control-label " for="ic_tipo_sessao"> Tipo da Sessão </label>
@@ -163,8 +171,6 @@
 		</div>
 	</div>
 </div>
-</div>
-</div>
 
 
 
@@ -202,6 +208,9 @@
 	<script type="text/javascript" >
 
 		let contador_linhas_tabela = 0;
+		let membros_tabela = [];
+		let cargos_tabela = [];
+		
 
 		$(document).ready(function() {
 			var tempo = 0;
@@ -259,24 +268,57 @@
 						autoHideDelay: 5000
 					});
 				}else{
-					t.row.add( [
-						$("#no_membro :selected").text(),
-						$("#no_cargo :selected").text(),
-						`<a class="btn btn-warning btn-xs action btn_tb_membro_remove" data-id="${contador_linhas_tabela}" 
-											data-toggle="tooltip" data-placement="bottom" title="Remove esse Membro">  
-											<i class="glyphicon glyphicon-remove"></i>
-						</a>`
-					] ).draw( true );
 
-					contador_linhas_tabela++;
-				};
+					
+					//busca se o membro está no array
+					if ( membros_tabela.indexOf( $("#no_membro :selected").text()) >= 0 ){
+						$(".no_membro").notify("Esse Membro já foi adicionado!!!",{
+							className: "error",
+							autoHideDelay: 5000
+						});
+					//busca se o cargo está no array
+					}else if ( cargos_tabela.indexOf( $("#no_cargo :selected").text()) >= 0 ){
+						$(".no_cargo").notify("Esse Cargo já foi adicionado!!!",{
+							className: "error",
+							autoHideDelay: 5000
+						});
+					}else{
+						//se não tiver adicionado na tabela
+						t.row.add( [
+							$("#no_membro :selected").text(),
+							$("#no_cargo :selected").text(),
+							`<a class="btn btn-warning btn-xs action btn_tb_membro_remove" data-id="${contador_linhas_tabela}" 
+												data-toggle="tooltip" data-placement="bottom" title="Remove esse Membro">  
+												<i class="glyphicon glyphicon-remove"></i>
+							</a>`
+						] ).draw( true );
+
+						//adiciona o membro e o cargos nos arrays para fazer a busca
+						membros_tabela.push($("#no_membro :selected").text());
+						cargos_tabela.push($("#no_cargo :selected").text());
+
+						contador_linhas_tabela++;
+					}
+				}
 			} );
 			
 			//remove cargos da tabela
-			$('#tb_presenca_sessao').on('click', '.btn_tb_membro_remove', function () {
-				t.row( $(this).parents('tr') )
-					.remove()
-					.draw();		
+
+			$('#tb_presenca_sessao').on('click', 'tbody  .btn_tb_membro_remove', function () {
+				/* https://stackoverflow.com/questions/43435900/get-datatables-row-data-on-button-click */
+				//console.log( t.row( $(this).closest('tr') ).data() );
+
+				//remove o membro e o cargo dos arrays de busca
+				let dados_linha = t.row( $(this).closest('tr') ).data();
+				//console.log(dados_linha);
+				
+				var index_membro = membros_tabela.indexOf(dados_linha[0]);
+				membros_tabela.splice(index_membro, 1);
+				
+				var index_cargo = cargos_tabela.indexOf(dados_linha[1]);
+				cargos_tabela.splice(index_cargo, 1);
+				
+				t.row( $(this).parents('tr') ).remove().draw();		
 			} );
 
 			$("#form_pressenca_sessao").submit(function(){
@@ -303,19 +345,6 @@
 			
 			
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		});
 	</script>
