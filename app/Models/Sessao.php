@@ -26,4 +26,8 @@ class Sessao extends Model
         return $this->belongsToMany('App\Models\Membro', 'membros_sessoes')->withPivot('cargo_id');
     }
     
+    public function cargos()
+    {
+        return $this->belongsToMany('App\Models\Cargo', 'membros_sessoes')->withPivot('cargo_id');
+    }
 }

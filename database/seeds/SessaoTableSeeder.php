@@ -14,7 +14,7 @@ class SessaoTableSeeder extends Seeder
     public function run()
     {
 
-        factory(App\Models\Sessao::class, 10)->create();
+        factory(App\Models\Sessao::class, 5)->create();
         
 
     }

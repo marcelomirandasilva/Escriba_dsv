@@ -42,21 +42,15 @@ class SessaoController extends Controller
 		//adiciona 2 horas a hora de inicio
 		$timestamp = strtotime($hh_inicio) + 60*120;
 		$hh_termino = (string)strftime('%H:%M:00', $timestamp); // 24 - 12 - 2016, 11:15
-		
-		//dd($hh_inicio, $hh_termino);
 
 		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
 		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;
-		
-		//dd($membros);
 
 		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio','hh_termino','cargos')) ;
 	}
 
 	public function store(Request $request)
 	{
-	
-		//dd($request->all());
 
 		//inicia sessão de banco
 		DB::beginTransaction();
@@ -65,27 +59,13 @@ class SessaoController extends Controller
 		// Criar uma sessao
 	  	$novaSessao = Sessao::create($request->all());
 
-
-
 		//cria as presencas 
 		if(isset($request->presencas))
 		{
 			foreach($request->presencas as $key => $presenca)
 			{
 				$cg = json_decode($presenca) ;
-			
-				$membro = Membro::where('no_membro', "=", $cg->no_membro)->first();
-				
-				//se não achar na tabela de membros irá procurar na tabela de visitantes
-				//if($membro_id == null){
-					//	$membro_id = Visitante::where('no_membro', "=", $cg->no_membro)->first();
-					//}
-					
-				$cargo  = Cargo::where('no_cargo', "=", $cg->no_cargo)->first();
-
-				$novaSessao->membros()->attach($membro->id, ['cargo_id' => $cargo->id]);
-				
-			
+				$novaSessao->membros()->attach($cg->membro_id, ['cargo_id' => $cg->cargo_id]);
 			}
 		}
 	
@@ -108,9 +88,32 @@ class SessaoController extends Controller
 		//
 	}
 
-	public function edit(Sessao $sessao)
+	public function edit( $id)
 	{
-		return view('posto.create', compact('posto'));
+		$membros = Membro::where('ic_situacao', '=', 'Regular Ativo')->orderBy('no_membro')->get();
+		$cargos  = Cargo::orderBy('no_cargo')->get();
+		
+		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
+		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;
+		
+		$sessao = Sessao::with('membros','cargos')->find($id);
+		
+		$dados_tabela = [];
+
+		foreach ($sessao->membros as $key => $membr ) {
+			
+			$dados_tabela[$key] = [	
+											"membro_id" => $sessao->membros[$key]->id,
+											"membro" 	=> $sessao->membros[$key]->no_membro,
+											"cargo_id" 	=> $sessao->cargos[$key]->id,
+											"cargo"  	=> $sessao->cargos[$key]->no_cargo
+										 ];
+
+		};
+
+		//dd( $dados_tabela);
+
+		return view('sessoes.sessoes.create_edit', compact('sessao','membros','graus','tipos_sessao','cargos','dados_tabela' )) ;
 	}
 
 	public function update(Request $request, Sessao $sessao)

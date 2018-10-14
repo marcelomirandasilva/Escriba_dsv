@@ -20,8 +20,8 @@ class CreateMembrosTable extends Migration
             $table->mediumText('im_membro')                 ->nullable();
             $table->string('co_cim',15)                     ->nullable();
             $table->date('dt_nascimento')                   ->nullable();
-            $table->string('no_naturalidade',30)            ->nullable();
-            $table->string('no_nacionalidade',30)           ->nullable();
+            $table->string('no_naturalidade',40)            ->nullable();
+            $table->string('no_nacionalidade',40)           ->nullable();
             $table->string('no_proponente',50)              ->nullable();
             $table->text('de_anotacao')                      ->nullable();
             
