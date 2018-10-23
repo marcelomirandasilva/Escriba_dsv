@@ -27,10 +27,10 @@
 								<a>Sessões<span class="fa fa-chevron-down"></span></a>
 								<ul class="nav child_menu">
 									<li class="sub_menu">
-										<a href="{{ url('/calendario') }}">Calendário</a>
+										<a href="{{ url('/sessoes') }}">Sessões</a>
 									</li>
 									<li>
-										<a href="{{ url('/sessoes') }}">Sessões</a>
+											<a href="{{ url('/calendario') }}">Calendário</a>
 									</li>
 									<li>
 										<a href="#">Atas</a>

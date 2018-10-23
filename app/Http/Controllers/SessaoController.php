@@ -46,12 +46,23 @@ class SessaoController extends Controller
 		$graus   		=  pegaValorEnum('sessoes','ic_grau') ;
 		$tipos_sessao  =  pegaValorEnum('sessoes','ic_tipo_sessao') ;
 
-		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio','hh_termino','cargos')) ;
+		$dados_tabela	= [];
+
+		return view('sessoes.sessoes.create_edit', compact('membros','graus','tipos_sessao','hh_inicio','hh_termino','cargos','dados_tabela')) ;
 	}
 
 	public function store(Request $request)
 	{
 
+		$this->validate($request, [
+			'dt_sessao'   		=> 'date',
+			'hh_inicio'     	=> 'required',
+			'hh_termino'      => 'required',
+			'ic_tipo_sessao'  => 'required|',
+			'ic_grau'   		=> 'required',
+			
+		]);
+			
 		//inicia sessão de banco
 		DB::beginTransaction();
 		
@@ -111,55 +122,47 @@ class SessaoController extends Controller
 
 		};
 
-		//dd( $dados_tabela);
-
 		return view('sessoes.sessoes.create_edit', compact('sessao','membros','graus','tipos_sessao','cargos','dados_tabela' )) ;
 	}
 
 	public function update(Request $request, Sessao $sessao)
 	{
+
+		$this->validate($request, [
+			'dt_sessao'   		=> 'date',
+			'hh_inicio'     	=> 'required',
+			'hh_termino'      => 'required',
+			'ic_tipo_sessao'  => 'required|',
+			'ic_grau'   		=> 'required',
+			
+		]);
+
 		//inicia sessão de banco
 		DB::beginTransaction();
 
-		$request->merge(['cnpj'     => str_replace('-', "", $request->cnpj)]);
-		$request->merge(['cnpj'     => str_replace('.', "", $request->cnpj)]);
-		$request->merge(['cnpj'     => str_replace('/', "", $request->cnpj)]);
-		$request->merge(['gasolina' => str_replace('R$', "", $request->gasolina)]);
-		$request->merge(['gasolina' => str_replace(' ', "", $request->gasolina)]);
-		$request->merge(['gasolina' => str_replace(',', ".", $request->gasolina)]);
-		$request->merge(['alcool'   => str_replace('R$', "", $request->alcool)]);
-		$request->merge(['alcool'   => str_replace(' ', "", $request->alcool)]);
-		$request->merge(['alcool'   => str_replace(',', ".", $request->alcool)]);
-		$request->merge(['diesel'   => str_replace('R$', "", $request->diesel)]);
-		$request->merge(['diesel'   => str_replace(' ', "", $request->diesel)]);
-		$request->merge(['diesel'   => str_replace(',', ".", $request->diesel)]);
-		$request->merge(['gnv'      => str_replace('R$', "", $request->gnv)]);
-		$request->merge(['gnv'      => str_replace(' ', "", $request->gnv)]);
-		$request->merge(['gnv'      => str_replace(',', ".", $request->gnv)]);
-
 		
-		$this->validate($request,[
-			'cnpj'      => 'digits:14',
-			'nome'      => 'required|min:5',
-			'endereco'  => 'required|min:7',
-			'gasolina'  => 'required|between:0,99.999',
-			'alcool'    => 'required|between:0,99.999',
-			'diesel'    => 'required|between:0,99.999',
-			'gnv'       => 'required|between:0,99.999',
-		]);
-			
+		// altera os dados do sessao
+		$sessao->fill($request->all());
 		
-		// altera os dados do posto
-	  $posto->fill($request->all());
-		$salvou_posto = $posto->save();
+		//cria as presencas 
+		if(isset($request->presencas))
+		{
+			foreach($request->presencas as $key => $presenca)
+			{
+				$cg = json_decode($presenca) ;
+				$sessao->membros()->attach($cg->membro_id, ['cargo_id' => $cg->cargo_id]);
+			}
+		}
 
-		if($salvou_posto){
+		$salvou_sessao = $sessao->save();
+
+		if($salvou_sessao){
 			DB::commit();
-			return redirect('posto')->with('sucesso', 'Posto Alterado com sucesso!');
+			return redirect('sessao')->with('sucesso', 'sessao Alterado com sucesso!');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
-			return back()->withInput()->with('error', 'Falha ao Alterar o Posto.');    
+			return back()->withInput()->with('error', 'Falha ao Alterar o sessao.');    
 		}
 	}
 
