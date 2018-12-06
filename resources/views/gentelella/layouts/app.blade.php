@@ -27,8 +27,10 @@
 				<div class="col-md-3 left_col">
 					<div class="left_col scroll-view">
 						<div class="navbar nav_title" style="border: 0;">
-								<a href="{{ url('/') }}" class="site_title"><i class="logo_side_bar" 
-									style="background-image: {{ asset('/img/thoth.ico')}}"></i> <span>Escriba</span></a>
+							<a href="{{ url('/') }}" class="site_title">
+								<span>Escriba</span>
+								<i class="logo_side_bar" style="background-image: {{ asset('/img/thoth.ico')}}"></i> 
+							</a>
 						</div>
 
 						<div class="clearfix"></div>
@@ -46,10 +48,11 @@
 						<!-- /menu footer buttons -->
 					</div>
 				</div>
+				
+				<!-- top navigation -->
+				@include('gentelella.layouts.partials.mainheader')
+				<!-- /top navigation -->
 				<div id="app">
-					<!-- top navigation -->
-					@include('gentelella.layouts.partials.mainheader')
-					<!-- /top navigation -->
 
 					<!-- page content -->
 					<div class="right_col" role="main" >

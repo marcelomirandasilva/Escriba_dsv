@@ -45,6 +45,17 @@ class Membro extends Model
         'ramal_com',
         'endereco_comercial_id',
         'endereco_residencial_id',
+
+        'dt_iniciacao',
+        'loja_id_iniciacao',
+        'dt_elevacao',
+        'loja_id_elevacao',
+        'dt_exaltacao',
+        'loja_id_exaltacao',
+        'dt_instalacao',
+        'loja_id_instalacao',
+        'dt_filiacao',
+        'dt_regularizacao',
     ];
 
 

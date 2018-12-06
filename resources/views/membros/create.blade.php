@@ -25,202 +25,202 @@
 		</div>
 		<!-- conteudo aqui-->
 		<div class="col-md-12 ">
-			<div class="x_panel">
-				<div class="x_content ">
-					<div class="" role="tabpanel" data-example-id="togglable-tabs">
-						@if( isset($edita))
-							<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
-									{!! method_field('PUT') !!}
-						@else
-							<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
-						@endif
+			
+			<div class="x_content ">
+				<div class="" role="tabpanel" data-example-id="togglable-tabs">
+					@if( isset($edita))
+						<form id="form_membro" method="post" action="{{ url("membros/$membro->id") }}"  >
+								{!! method_field('PUT') !!}
+					@else
+						<form id="form_membro" method="post" action="{{ route('membros.store') }}"  >
+					@endif
 
-							{{ csrf_field() }}
-							<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
-									
-								<li role="presentation" class="active">
-									<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_membro">   Principal   </a> 
-								</li>
+						{{ csrf_field() }}
+						<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
 								
-								<li role="presentation" class="">      
-									<a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab" class="tab_membro">   Documentos  </a>
-								</li>
-								
-								<li role="presentation" class="">      
-									<a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab" class="tab_membro">   Endereços   </a>
-								</li>
-								
-								<li role="presentation" class="">      
-									<a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab" class="tab_membro">   Contatos    </a>
-								</li>
-								
-								<li role="presentation" class="">      
-									<a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab" class="tab_membro">   Dependentes </a>
-								</li>
-								
-								<li role="presentation" class="">      
-									<a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab" class="tab_membro">   Cerimonias  </a>
-								</li>
-								
-								<li role="presentation" class="">      
-									<a href="#tab_content7" role="tab" id="tab_cargos" data-toggle="tab" class="tab_membro">   Cargos  </a>
-								</li>
+							<li role="presentation" class="active">
+								<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_membro">   Principal   </a> 
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content2" role="tab" id="tab_documentos" data-toggle="tab" class="tab_membro">   Documentos  </a>
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content3" role="tab" id="tab_enderecos" data-toggle="tab" class="tab_membro">   Endereços   </a>
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content4" role="tab" id="tab_contatos" data-toggle="tab" class="tab_membro">   Contatos    </a>
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content5" role="tab" id="tab_dependentes" data-toggle="tab" class="tab_membro">   Dependentes </a>
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content6" role="tab" id="tab_cerimonias" data-toggle="tab" class="tab_membro">   Cerimonias  </a>
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content7" role="tab" id="tab_cargos" data-toggle="tab" class="tab_membro">   Cargos  </a>
+							</li>
 
-								<li role="presentation" class="">      
-															<a href="#tab_content8" role="tab" id="tab_condecoracoes" data-toggle="tab" class="tab_membro">   Condecorações  </a>
-								</li>
-								
-								<li role="presentation" class="">      
-									<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
-								</li>
-							</ul>
+							<li role="presentation" class="">      
+														<a href="#tab_content8" role="tab" id="tab_condecoracoes" data-toggle="tab" class="tab_membro">   Condecorações  </a>
+							</li>
+							
+							<li role="presentation" class="">      
+								<a href="#tab_content9" role="tab" id="tab_observacoes" data-toggle="tab" class="tab_membro">   Anotações  </a>
+							</li>
+						</ul>
 
-							<div id="myTabContent" class="tab-content">
-								<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
-									@include('membros/create_principal')
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
-									@include('membros/create_documentos')
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
-									@include('membros/create_endereco')
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
-									@include('membros/create_contatos')
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-									@if (isset($edita)) 
-										@include('membros/edit_dependentes')
-									@else
-										@include('membros/create_dependentes')
-									@endif
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
-									@include('membros/create_cerimonias')
-								</div>
-
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
-									@if (isset($edita)) 
-										@include('membros/edit_cargos')
-									@else
-										@include('membros/create_cargos')
-									@endif
-								</div>
-				
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
-									@include('membros/create_condecoracoes')
-								</div>
-				
-								<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
-									@include('membros/create_anotacoes')
-								</div>
+						<div id="myTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
+								@include('membros/create_principal')
 							</div>
-							
-							<!----------- botoes ----------> 
-							<botao_ok_cancel
-								url_cancelar="{{ url("membros") }}"> 
-							</botao_ok_cancel>
-							<!----------- fim botoes ---------->
-							
-						</form>
-					</div> 
-				</div>
+
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content2" aria-labelledby="tab_doc">
+								@include('membros/create_documentos')
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content3" aria-labelledby="tab_end">
+								@include('membros/create_endereco')
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content4" aria-labelledby="tab_con">
+								@include('membros/create_contatos')
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
+								@if (isset($edita)) 
+									@include('membros/edit_dependentes')
+								@else
+									@include('membros/create_dependentes')
+								@endif
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
+								@include('membros/create_cerimonias')
+							</div>
+
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content7" aria-labelledby="tab_carg">
+								@if (isset($edita)) 
+									@include('membros/edit_cargos')
+								@else
+									@include('membros/create_cargos')
+								@endif
+							</div>
+			
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content8" aria-labelledby="tab_cond">
+								@include('membros/create_condecoracoes')
+							</div>
+			
+							<div role="tabpanel" class="tab-pane fade"            id="tab_content9" aria-labelledby="tab_obs">
+								@include('membros/create_anotacoes')
+							</div>
+						</div>
+						
+						<!----------- botoes ----------> 
+						<botao_ok_cancel
+							url_cancelar="{{ url("membros") }}"> 
+						</botao_ok_cancel>
+						<!----------- fim botoes ---------->
+						
+					</form>
+				</div> 
 			</div>
 		</div>
 	</div>
-	
-	<!-- Modal ---------------------------------------------------------------------------------------------->
-	<div class="modal fade" id="cad_loja" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				
-				<div class="alert alert-danger" style="display: none" role="alert">
-					This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-				</div>
+</div>
 
-				<div class="modal-body">
+<!-- Modal ---------------------------------------------------------------------------------------------->
+<div class="modal fade" id="cad_loja" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			
+			<div class="alert alert-danger" style="display: none" role="alert">
+				This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+			</div>
 
-					<form id="form_modal_" method="post" action="#"  >
+			<div class="modal-body">
 
-						{{ csrf_field() }}
+				<form id="form_modal_" method="post" action="#"  >
 
-						<div class="item form-group">
-							<label class="control-label col-md-2 col-sm-2 col-xs-12" for="co_titulo">
-								Título <span class="required">*</span>
-							</label>
-							<div class="col-md-2 ">
-								<input id="co_titulo" class="form-control col-md-2"  name="co_titulo" placeholder="ARLS" required="required" type="text" style="text-transform: uppercase;" autofocus>
-							</div>
+					{{ csrf_field() }}
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="co_titulo">
+							Título <span class="required">*</span>
+						</label>
+						<div class="col-md-2 ">
+							<input id="co_titulo" class="form-control col-md-2"  name="co_titulo" placeholder="ARLS" required="required" type="text" style="text-transform: uppercase;" autofocus>
 						</div>
-
-						<div class="item form-group">
-							<label class="control-label col-md-2 " for="no_loja">
-								Nome 
-								<span class="required">*</span>
-							</label>
-							<div class="col-md-9">
-								<input type="no_loja" id="no_loja" name="no_loja" placeholder="Nome da Loja" required="required" class="form-control" type="text">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-2" for="nu_loja">
-								Número 
-								<span class="required">*</span>
-							</label>
-							<div class="col-md-2 " >
-								<input type="nu_loja" id="nu_loja" name="nu_loja" placeholder="00000" required="required" class="form-control  " type="number" min="0" max="9999999" step="1">
-							</div>
-						</div>
-
-						<div class="item form-group">
-							<label class="control-label col-md-2 " for="potencia_id">Potência*</label>
-							<div class="col-md-9" >
-								<select id="potencia_id"  class="form-control col-md-5 "  name="potencia_id"  placeholder="Nome da Potência" type="text" data-live-search="true" style="width:90%;">
-									@foreach($potencias as $potencia)
-										@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
-											<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
-										@else 
-											<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>
-										@endif
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-2 " for="ic_rito">Rito*</label>
-							<div class="col-md-5 ">
-								<select id="ic_rito" class="form-control col-md-2" name="ic_rito" placeholder="Rito praticado" type="text">
-									@foreach($ritos as $rito)
-										@if ($rito == ('Brasileiro'))
-											<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
-										@else 
-											<option value="{{$rito}}"> {{$rito}} </option>  
-										@endif
-									@endforeach
-								</select>
-							</div>
-						</div>
-					</form>  
-				</div>
-				<div class="modal-footer">
-					<div class="col-md-11 ">
-						<button type="button" class="envia_nova_loja btn btn-success" data-toggle="tooltip" title="Confirma a operação"> 
-							Confirma    
-						</button>
-
-						<button id="fecha_modal_cad_loja" type="button" data-toggle="tooltip" class="btn btn-danger btn_acao" title="Cancela e retorna a tela anterior" data-dismiss="modal">
-							Cancela	
-						</button>
 					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 " for="no_loja">
+							Nome 
+							<span class="required">*</span>
+						</label>
+						<div class="col-md-9">
+							<input type="no_loja" id="no_loja" name="no_loja" placeholder="Nome da Loja" required="required" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="item form-group">
+						<label class="control-label col-md-2" for="nu_loja">
+							Número 
+							<span class="required">*</span>
+						</label>
+						<div class="col-md-2 " >
+							<input type="nu_loja" id="nu_loja" name="nu_loja" placeholder="00000" required="required" class="form-control  " type="number" min="0" max="9999999" step="1">
+						</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 " for="potencia_id">Potência*</label>
+						<div class="col-md-9" >
+							<select id="potencia_id"  class="form-control col-md-5 "  name="potencia_id"  placeholder="Nome da Potência" type="text" data-live-search="true" style="width:90%;">
+								@foreach($potencias as $potencia)
+									@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
+										<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
+									@else 
+										<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>
+									@endif
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="item form-group">
+						<label class="control-label col-md-2 " for="ic_rito">Rito*</label>
+						<div class="col-md-5 ">
+							<select id="ic_rito" class="form-control col-md-2" name="ic_rito" placeholder="Rito praticado" type="text">
+								@foreach($ritos as $rito)
+									@if ($rito == ('Brasileiro'))
+										<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
+									@else 
+										<option value="{{$rito}}"> {{$rito}} </option>  
+									@endif
+								@endforeach
+							</select>
+						</div>
+					</div>
+				</form>  
+			</div>
+			<div class="modal-footer">
+				<div class="col-md-11 ">
+					<button type="button" class="envia_nova_loja btn btn-success" data-toggle="tooltip" title="Confirma a operação"> 
+						Confirma    
+					</button>
+
+					<button id="fecha_modal_cad_loja" type="button" data-toggle="tooltip" class="btn btn-danger btn_acao" title="Cancela e retorna a tela anterior" data-dismiss="modal">
+						Cancela	
+					</button>
 				</div>
 			</div>
-		</div> 
-	</div>
+		</div>
+	</div> 
+
 	<!-- /Modal ---------------------------------------------------------------------------------------------->
 
 
@@ -249,6 +249,7 @@
   	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
   	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 	  
+
 	<script type="text/javascript">
 		var t = "";
 		@if (session('sucesso'))
@@ -273,10 +274,8 @@
 			$("#nu_cpf").mask("999.999.999-99");
 			$("#nu_titulo_eleitor").mask("99.999.999-9");
 
-			$("#co_cim").mask("999.999.999" );  
+			$("#co_cim").mask("999.999.999",{reverse: true} );  
 			
-
-
 			
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 
@@ -288,30 +287,25 @@
 			//========================================================================================================		
 
 			if( $('#send').on( 'click', function (e) {
-				//e.preventDefault();
-				console.log($("#ic_grau :selected").text());
-				//testa se o cargo está vazio
-
-				console.log("entrou candiato");
 
 				if ( $("#ic_grau :selected").text() === "Candidato")
 				{
 					$("#co_cim").val('0000000');
-					console.log("entrou candiato");
 				}
 
 				if ( $("#no_membro").val() === "")
 				{
+					e.preventDefault();
 					$("#tab_principal").click();
 					$("#no_membro").notify("O Nome do Membro deve ser informado",{className: "error",autoHideDelay: 5000});
 
 				}else if ( $("#ic_grau :selected").text() === " --- "){
-
+					e.preventDefault();
 					$("#tab_principal").click();
 					$("#ic_grau").notify("O Grau do Membro deve ser informado",{className: "error",autoHideDelay: 5000});
 
 				}else if ( $("#co_cim").val() === ""){
-
+					e.preventDefault();
 					$("#tab_principal").click();
 					$("#co_cim").notify("O Número do CIM deve ser informado",{className: "error",autoHideDelay: 5000});
 				};

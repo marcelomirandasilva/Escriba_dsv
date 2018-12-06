@@ -20,7 +20,7 @@
 			<div class="col-md-2">
 				<label class="col-md-1 control-label" for="rg">RG</label>
 				<input id="nu_identidade" name="nu_identidade" class="form-control input-md {{--  rg  --}}"
-					placeholder="999.999.999-99"  
+					placeholder="999.999.999-99" maxlength="20" 
 					value="{{$membro->nu_identidade or old('nu_identidade')}}" >
 			</div>
 			<div class="col-md-2">
@@ -48,7 +48,7 @@
 				<label class="control-label col-md-1" for="nu_titulo_eleitor"> Título </label>
 				<input id="nu_titulo_eleitor"  name="nu_titulo_eleitor" class="form-control col-md-2" 
 					{{-- data-inputmask="'mask' : '99.999.999-9', 'numericInput': 'true' " type="text"  --}}
-					placeholder="Título de Eleitor"   
+					placeholder="Título de Eleitor"   maxlength="10"
 					type="text"
 					value="{{$membro->nu_titulo_eleitor or old('nu_titulo_eleitor')}}" 
 				>
@@ -57,6 +57,7 @@
 			<div class="col-md-2">
 				<label class="col-md-12 control-label" for="rg">Zona Eleitoral</label>
 				<input id="nu_zona_eleitoral" name="nu_zona_eleitoral" class="form-control input-md"
+					max=9999
 					data-inputmask="'mask' : '999.999', 'numericInput': 'true' " type="text" placeholder="999.999"  
 					value="{{$membro->nu_zona_eleitoral or old('nu_zona_eleitoral')}}" 
 				>

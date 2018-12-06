@@ -20,9 +20,8 @@ class CreateDependentesTable extends Migration
             $table->date('dt_nascimento')                                   ->nullable();
             
             $table->enum('ic_grau_parentesco',[
-                            'Avós','Bisavós','Bisneto(a)','Companheiro(a)',
-                            'Cônjuge','Enteado(a)','Ex-esposa','Filho(a)',
-                            'Irmão(ã)','Neto(a)','Pais','Outros'
+                            'Avós','Bisavós','Bisneto(a)','Esposa','Ex-esposa',
+                            'Filho(a)','Enteado(a)','Irmão(ã)','Neto(a)','Pais','Outros'
                         ])                                                  ->nullable();
             $table->enum('ic_sexo',['Feminino', 'Masculino', 'Outros'])     ->nullable();
             $table->boolean('ic_mora_junto')                                ->nullable();

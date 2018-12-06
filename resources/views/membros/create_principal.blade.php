@@ -13,7 +13,7 @@
 				<div class="col-md-2">
 					<label class="control-label col-md-1 " for="ic_grau"> Grau* </label>
 				   <select name="ic_grau" id="ic_grau" class="form-control col-md-1" >
-						<option value=""  selected style="color: #ccc;"> --- </option>
+						<option value=""  selected style="color: #ccc;" > --- </option>
 						@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 						   @foreach($grau as $ic_grau)
 								@if ( $membro->ic_grau == $ic_grau)
@@ -31,9 +31,9 @@
 				</div>
 				<div  class="col-md-2" >
 					<label class="control-label col-md-1" for="co_cim">CIM*</label>
-					<input  style="text-align: right;"  id="co_cim" class="form-control col-md-2 cim" placeholder="999.999" 
+					<input   id="co_cim" class="form-control col-md-2 cim" placeholder="999.999" 
 					required="required" min="1" max="9999999"  
-					name="co_cim"  style="text-align: right;" value="{{$membro->co_cim or old('co_cim')}}" >
+					name="co_cim"  value="{{$membro->co_cim or old('co_cim')}}" >
 				</div>
 
 				<div class="col-md-1 col-md-offset-1">

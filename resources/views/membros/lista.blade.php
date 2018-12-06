@@ -42,8 +42,8 @@
 						@foreach($membros as $membro )
 							<tr>
 								<td> {{ $membro->no_membro  }}                                                   </td>
-								<td> {{ number_format($membro->co_cim,0,",",".")  }}      </td>
-								{{-- <td> {{ $membro->co_cim  }}      </td> --}}
+								{{-- <td> {{ number_format($membro->co_cim,0,",",".")  }}      </td> --}}
+								<td> {{ $membro->co_cim  }}      </td>
 
 								@if( $membro->dt_nascimento <> '0000-00-00')
 									<td>{{ \Carbon\Carbon::parse( $membro->dt_nascimento)->format('d/m/Y')  }}     </td>
@@ -104,7 +104,8 @@
 			 	"thousands": "."
 		  	}, 
 		  		stateSave: true,
-		  		stateDuration: -1,
+				stateDuration: -1,
+				responsive: true,
 				"columnDefs": 
 				[
 					{ className: "text-center", "targets": [2,4] },

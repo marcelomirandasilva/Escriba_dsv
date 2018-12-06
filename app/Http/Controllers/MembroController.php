@@ -88,7 +88,7 @@ class MembroController extends Controller
 		if(trim($request->ic_grau) == "Candidato")
 		{
 			$request->merge([
-					'co_cim' => "0.000.000"
+					'co_cim' => "000.000"
 			]);
 
 		}
@@ -142,7 +142,7 @@ class MembroController extends Controller
 		}	
 		
 		//dd($request->all());
-	
+	/* 
 		//deleta as cerimonias para serem inseridas as quem vem do formulário
 		$cerimonias = cerimonia::where("membro_id", $membro->id);
 		$cerimonias->delete();
@@ -158,7 +158,7 @@ class MembroController extends Controller
 				$membro->cerimonias()->save(new cerimonia($cerimonia));    
 			}
 		}
-
+ */
 		//deleta as condecoracaos para serem inseridas as quem vem do formulário
 		$condecoracoes = Condecoracao::where("membro_id", $membro->id);
 		$condecoracoes->delete();
@@ -259,6 +259,7 @@ class MembroController extends Controller
 			'cpf'               =>  [  'cpf',
 													Rule::unique('membros')->ignore($id)
 											],
+			'ic_grau'				=> 'required',
 
 			'dt_nascimento'     => 'date|nullable',
 			'dt_casamento'      => 'date|nullable',
@@ -332,20 +333,7 @@ class MembroController extends Controller
 		}
 
 
-		//deleta as cerimonias para serem inseridas as quem vem do formulário
-		$cerimonias = cerimonia::where("membro_id", $membro->id);
-		$cerimonias->delete();
-		// Cria um novo cerimonia com as informações inseridas
-		foreach($request->cerimonias as $cerimonia)
-		{
-			//testa se o cerimonia foi preenchido no formulario
-			//ser for, cadastra, senão, passa para a próxima
-			if( $cerimonia['dt_cerimonia'] )
-			{
-					// Criar nova cerimonia com as informações inseridas
-					$membro->cerimonias()->save(new cerimonia($cerimonia));    
-			}
-		}
+		
 
 		//deleta as condecoracaos para serem inseridas as quem vem do formulário
 		$condecoracoes = Condecoracao::where("membro_id", $membro->id);

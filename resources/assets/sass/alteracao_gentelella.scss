@@ -104,3 +104,11 @@ background: menu_rodape;
 	margin-left: 117px;
 } */
 
+body.nav-sm .container.body .left_col {
+	width: 70px;
+	padding: 0;
+	/*position: fixed;*/
+	position:absolute;
+	height: 100%;
+	z-index: 200;
+}

@@ -61,16 +61,6 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 	$vetor = pegaValorEnum('membros','ic_escolaridade');
 	$v_escolaridade  = $vetor[array_rand($vetor,1)];
 	
-/*	$v_dt_iniciacao          = null;
-	$v_loja_id_iniciacao     = null;
-	$v_dt_elevacao           = null;
-	$v_loja_id_elevacao      = null;
-	$v_dt_exaltacao          = null;
-	$v_loja_id_exaltacao     = null;
-	$v_dt_instalacao         = null;
-	$v_loja_id_instalacao    = null;*/
-
-
 
 	switch ($v_grau) {
 
@@ -236,10 +226,14 @@ $factory->define(App\Models\Dependente::class, function(Faker\Generator $faker) 
 
 	$faker = Faker\Factory::create('pt_BR');
 
+	// GRAU DE PARENTESCO	
+	$vetor = pegaValorEnum('dependentes','ic_grau_parentesco');
+	$v_ic_grau_parentesco = $vetor[array_rand($vetor,1)];
+
 	return [
 		'no_dependente'         => $faker->name,
 		'dt_nascimento'     		=> $faker->date('Y-m-d', '-18 years'),
-		'ic_grau_parentesco'		=> $faker->randomElement(['Avós','Bisavós','Bisneto(a)','Companheiro(a)','Cônjuge','Enteado(a)','Ex-esposa','Filho(a)', 'Irmão(ã)','Neto(a)','Pais','Outros']),
+		'ic_grau_parentesco'		=> $v_ic_grau_parentesco,
 	];
 
 });
