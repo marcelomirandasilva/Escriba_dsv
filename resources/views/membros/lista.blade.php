@@ -95,6 +95,14 @@
 
   	<script>
 	 	$(document).ready(function(){
+			@if (session('sucesso'))
+				swal({
+					title:  'Parabéns',
+					text:   ' {!! session('sucesso') !!}',
+					type:   'success'
+				});
+			@endif
+			
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 			$("#tabela-membros").DataTable({
 

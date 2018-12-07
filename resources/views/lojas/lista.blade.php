@@ -108,7 +108,11 @@
     	$(document).ready(function(){
 
 			@if (session('sucesso'))
-				swal('Parabéns!', '{{ session('sucesso') }}' ,'success');
+				swal({
+					title:  'Parabéns',
+					text:   ' {!! session('sucesso') !!}',
+					type:   'success'
+				});
 			@endif
 
 

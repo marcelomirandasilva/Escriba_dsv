@@ -5,71 +5,69 @@
 
    <div class="item form-group">
 		<div class="row">
-			<input type="hidden" name="condecoracoes[0][ic_condecoracao]" value="Remido">
+			
 			<div class="col-md-2 ">
 				<label class="control-label col-md-12 " for="dt_remido">Remido</label>
-				<input id="dt_condecoracao0" name="condecoracoes[0][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao0 or old('condecoracoes.0.dt_condecoracao')}}" >
+				<input id="dt_remido" name="dt_remido" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_remido or old('dt_remido')}}" >
 			</div>
-
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_remido">Nº do Ato</label>
-				<input id="nu_ato0" name="condecoracoes[0][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato0 or old('condecoracoes.0.nu_ato')}}" >
+				<label class="control-label col-md-12 " for="nu_remido">Nº do Ato</label>
+				<input id="nu_remido" name="nu_remido" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_remido or old('nu_remido')}}" >
 			</div>
 
-			<input type="hidden" name="condecoracoes[1][ic_condecoracao]" value="Emérito">
+			
 			
 			<div class="col-md-3"></div>
 
 			<div class="col-md-2 ">
 				<label class="control-label col-md-12 " for="dt_emerito">Emérito</label>
-				<input id="dt_condecoracao1" name="condecoracoes[1][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao1 or old('condecoracoes.1.dt_condecoracao')}}" >
+				<input id="dt_emerito" name="dt_emerito" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_emerito or old('dt_emerito')}}" >
 			</div>
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_emerito">Nº do Ato</label>
-				<input id="nu_ato1" name="condecoracoes[1][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato1 or old('condecoracoes.1.nu_ato')}}" >      
+				<label class="control-label col-md-12 " for="nu_emerito">Nº do Ato</label>
+				<input id="nu_emerito" name="nu_emerito" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_emerito or old('nu_emerito')}}" >      
 			</div>
 		</div>
    </div>
 
    <div class="item form-group">
 		<div class="row">
-			<input type="hidden" name="condecoracoes[2][ic_condecoracao]" value="Benemérito">
+			
 			<div class="col-md-2 ">
 				<label class="control-label col-md-12 " for="dt_benemerito">Benemérito</label>
-				<input   id="dt_condecoracao2" name="condecoracoes[2][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao2 or old('condecoracoes.2.dt_condecoracao')}}" >
+				<input   id="dt_benemerito" name="dt_benemerito" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_benemerito or old('dt_benemerito')}}" >
 			</div>
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_benemerito">Nº do Ato</label>
-				<input id="nu_ato2" name="condecoracoes[2][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato2 or old('condecoracoes.2.nu_ato')}}" >      
+				<label class="control-label col-md-12 " for="nu_benemerito">Nº do Ato</label>
+				<input id="nu_benemerito" name="nu_benemerito" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_benemerito or old('nu_benemerito')}}" >      
 			</div>
 
 			<div class="col-md-3"></div>
 
-			<input type="hidden" name="condecoracoes[3][ic_condecoracao]" value="Grande Benemérito">
+			
 			<div class="col-md-2 ">
-				<label class="control-label col-md-12 " for="dt_g_benemerito">Gde Benemérito</label>
-				<input   id="dt_condecoracao3" name="condecoracoes[3][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao3 or old('condecoracoes.3.dt_condecoracao')}}" >
+				<label class="control-label col-md-12 " for="dt_grande_benemerito">Gde Benemérito</label>
+				<input   id="dt_grande_benemerito" name="dt_grande_benemerito" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_grande_benemerito or old('dt_grande_benemerito')}}" >
 			</div>
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_g_Benemerito">Nº do Ato</label>
-				<input id="nu_ato3" name="condecoracoes[3][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato3 or old('condecoracoes.3.nu_ato')}}" >
+				<label class="control-label col-md-12 " for="nu_grande_benemerito">Nº do Ato</label>
+				<input id="nu_grande_benemerito" name="nu_grande_benemerito" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_grande_benemerito or old('nu_grande_benemerito')}}" >
 			</div>
 		</div>
    </div>
@@ -79,34 +77,34 @@
    <!------------------------------------>
    <div class="item form-group">
 		<div class="row">
-			<input type="hidden" name="condecoracoes[4][ic_condecoracao]" value="Estrela da Distinção Maçônica">
+			
 			<div class="col-md-3 ">
-				<label class="control-label col-md-12 " for="dt_estrela_dis_mac">Estrela da Distinção Maçônica</label>
-				<input   id="dt_condecoracao4" name="condecoracoes[4][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao4 or old('condecoracoes.4.dt_condecoracao')}}" >
+				<label class="control-label col-md-12 " for="dt_estrela_distincao">Estrela da Distinção Maçônica</label>
+				<input   id="dt_estrela_distincao" name="dt_estrela_distincao" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_estrela_distincao or old('dt_estrela_distincao')}}" >
 			</div>
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_estrela_dis_mac">Nº do Ato</label>
-				<input id="nu_ato4" name="condecoracoes[4][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato4 or old('condecoracoes.4.nu_ato')}}" >
+				<label class="control-label col-md-12 " for="nu_estrela_distincao">Nº do Ato</label>
+				<input id="nu_estrela_distincao" name="nu_estrela_distincao" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_estrela_distincao or old('nu_estrela_distincao')}}" >
 			</div>
 
 			<div class="col-md-1"></div>
 
-			<input type="hidden" name="condecoracoes[5][ic_condecoracao]" value="Cruz da Perfeição Macônica">
+			
 			<div class="col-md-3 ">
-				<label class="control-label col-md-12 " for="dt_cruz_perf">Cruz da Perfeição Macônica</label>
-				<input   id="dt_condecoracao5" name="condecoracoes[5][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao5 or old('condecoracoes.5.dt_condecoracao')}}" >
+				<label class="control-label col-md-12 " for="dt_cruz_perfeicao">Cruz da Perfeição Macônica</label>
+				<input   id="dt_cruz_perfeicao" name="dt_cruz_perfeicao" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_cruz_perfeicao or old('dt_cruz_perfeicao')}}" >
 			</div>
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_cruz_perf">Nº do Ato</label>
-				<input id="nu_ato5" name="condecoracoes[5][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato5 or old('condecoracoes.5.nu_ato')}}" >
+				<label class="control-label col-md-12 " for="nu_cruz_perfeicao">Nº do Ato</label>
+				<input id="nu_cruz_perfeicao" name="nu_cruz_perfeicao" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_cruz_perfeicao or old('nu_cruz_perfeicao')}}" >
 			</div>
 		</div>
    </div>
@@ -114,19 +112,19 @@
    <!------------------------------------>
    <div class="item form-group">
 		<div class="row">
-			<input type="hidden" name="condecoracoes[6][ic_condecoracao]" value="Comenda Dom Pedro I">
+			
 			<div class="col-md-3 ">
-				<label class="control-label col-md-12 " for="dt_com_dom_pedro">Comenda Dom Pedro I</label>
-				<input   id="dt_condecoracao6" name="condecoracoes[6][dt_condecoracao]" class="form-control col-md-2 datas_input" 
-				type="date" min="1500-01-01" max="2050-01-01"
-					value="{{$dt_condecoracao6 or old('condecoracoes.6.dt_condecoracao')}}" >
+				<label class="control-label col-md-12 " for="dt_comanda_DPI">Comenda Dom Pedro I</label>
+				<input   id="dt_comanda_DPI" name="dt_comanda_DPI" class="form-control col-md-2 datas_input" 
+					type="date" min="1500-01-01" max="2050-01-01"
+					value="{{$membro->dt_comanda_DPI or old('dt_comanda_DPI')}}" >
 			</div>
 
 
 			<div class="col-md-2">
-				<label class="control-label col-md-12 " for="ato_com_dom_pedro">Nº do Ato</label>
-				<input id="nu_ato6" name="condecoracoes[6][nu_ato]" class="form-control col-md-2"  type="text" 
-					value="{{$nu_ato6 or old('condecoracoes.6.nu_ato')}}" >
+				<label class="control-label col-md-12 " for="nu_comanda_DPI">Nº do Ato</label>
+				<input id="nu_comanda_DPI" name="nu_comanda_DPI" class="form-control col-md-2"  type="text" 
+					value="{{$membro->nu_comanda_DPI or old('nu_comanda_DPI')}}" >
 			</div>
 		</div>
    </div>

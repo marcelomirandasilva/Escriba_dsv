@@ -19,7 +19,16 @@ class Loja extends Model
 		 'potencia_id',
 		 'endereco_id',
 		 'nu_telefone',
-		 'email'
+		 'email',
+		 
+		 'pais_id',
+		 'sg_uf',
+		 'no_municipio',
+		 'no_bairro',
+		 'no_logradouro',
+		 'nu_logradouro',
+		 'de_complemento',
+		 'nu_cep',
 
 	];
 
@@ -32,9 +41,9 @@ class Loja extends Model
 		return $this->belongsTo('App\Models\Potencia');
 	}
 
-	public function endereco()
+	public function pais()
 	{
-		return $this->belongsTo('App\Models\Endereco');
+		return $this->belongsTo('App\Models\Pais');
 	}
 
 /* 	public function endereco()

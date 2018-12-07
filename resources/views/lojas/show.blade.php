@@ -104,11 +104,11 @@
 							<br><br>
 
 							<div class="x_title"> </div>
-							<br> Endereço: @if( isset($loja->endereco->no_logradouro)   )
-													{{$loja->endereco->no_logradouro}}, {{$loja->endereco->nu_logradouro}} -
-													{{$loja->endereco->no_bairro}} - {{$loja->endereco->no_municipio}} -
-													{{$loja->endereco->de_complemento}} - {{$loja->endereco->nu_cep}} - 
-													{{$loja->endereco->sg_uf}} - {{$loja->endereco->no_pais}}  
+							<br> Endereço: @if( isset($loja->no_logradouro)   )
+													{{$loja->no_logradouro}}, {{$loja->nu_logradouro}} -
+													{{$loja->no_bairro}} - {{$loja->no_municipio}} -
+													{{$loja->de_complemento}} - {{$loja->nu_cep}} - 
+													{{$loja->sg_uf}} - {{$loja->pais->no_pais}}  
 												@endif
 							<br><br>
 

@@ -14,7 +14,6 @@ use App\Models\Cargo;
 use App\Models\Telefone;
 use App\Models\Email;
 use App\Models\Dependente;
-use App\Models\Condecoracao;
 use App\Models\Cerimonia;
 use App\Models\Potencia;
 use Illuminate\Validation\Rule;
@@ -87,15 +86,40 @@ class MembroController extends Controller
 		//se for candidaro, coloca zeros no CIM
 		if(trim($request->ic_grau) == "Candidato")
 		{
-			$request->merge([
-					'co_cim' => "000.000"
-			]);
-
+			$request->merge(['co_cim' => "000.000"]);
 		}
 
+		if(trim($request->loja_id_iniciacao) == "null"){$request->merge(['loja_id_iniciacao' => null]);}
+		if(trim($request->loja_id_elevacao) == "null"){$request->merge(['loja_id_elevacao' => null]);}
+		if(trim($request->loja_id_exaltacao) == "null"){$request->merge(['loja_id_exaltacao' => null]);}
+		if(trim($request->loja_id_instalacao) == "null"){$request->merge(['loja_id_instalacao' => null]);}
+
 		// Validar dados do formulário
-		$this->validar($request);
-		
+		$this->validate($request, [
+			'no_membro'         	=> 'required|min:3|max:50',
+			'co_cim'            	=> 'required|max:11',
+			'cpf'               	=>  'cpf',
+
+			'dt_nascimento'     	=> 'date|nullable',
+			'dt_casamento'      	=> 'date|nullable',
+			'dt_emissao_idt'    	=> 'date|nullable',
+			'dt_emissao_titulo' 	=> 'date|nullable',
+			'dt_iniciacao'     	=> 'date|nullable',
+			'dt_elevacao'     	=> 'date|nullable',
+			'dt_exaltacao'     	=> 'date|nullable',
+			'dt_instalacao'     	=> 'date|nullable',
+			'dt_filiacao'     	=> 'date|nullable',
+			'dt_regularizacao'  	=> 'date|nullable',
+			'dt_honorario'			=> 'date|nullable',
+			'dt_remido'				=> 'date|nullable',
+			'dt_emerito'			=> 'date|nullable',
+			'dt_benemerito'		=> 'date|nullable',
+			'dt_grande_benemerito'	=> 'date|nullable',
+			'dt_estrela_distincao'	=> 'date|nullable',
+			'dt_cruz_perfeicao'	=> 'date|nullable',
+			'dt_comanda_DPI'		=> 'date|nullable',
+		]);
+
 		//dd($request->all());
 		
 		//inicia sessão de banco
@@ -109,13 +133,6 @@ class MembroController extends Controller
 
 		// Salvar no banco para obter o ID
 		$membro->save();
-
-		foreach($request->enderecos as $endereco)
-		{
-			// Criar um novo endereço com as informações inseridas
-			$membro->enderecos()->save(new Endereco($endereco));
-		}
-
 		
 		//cria os cargos
 		if(isset($request->cargos_membros))
@@ -141,44 +158,10 @@ class MembroController extends Controller
 			}
 		}	
 		
-		//dd($request->all());
-	/* 
-		//deleta as cerimonias para serem inseridas as quem vem do formulário
-		$cerimonias = cerimonia::where("membro_id", $membro->id);
-		$cerimonias->delete();
-		// Cria um novo cerimonia com as informações inseridas
-		foreach($request->cerimonias as $cerimonia)
-		{
-			//testa se o cerimonia foi preenchido no formulario
-			//ser for, cadastra, senão, passa para a próxima
-			if( array_key_exists('dt_cerimonia', $cerimonia) and $cerimonia['dt_cerimonia'] != "" )
-			{
-				
-				// Criar nova cerimonia com as informações inseridas
-				$membro->cerimonias()->save(new cerimonia($cerimonia));    
-			}
-		}
- */
-		//deleta as condecoracaos para serem inseridas as quem vem do formulário
-		$condecoracoes = Condecoracao::where("membro_id", $membro->id);
-		$condecoracoes->delete();
-		// Cria um novo condecoracao com as informações inseridas
-		foreach($request->condecoracoes as $condecoracao)
-		{
-			//testa se o condecoracao foi preenchido no formulario
-			//ser for, cadastra, senão, passa para a próxima
-			if( array_key_exists('dt_condecoracao', $condecoracao ) )
-			{
-					// Criar nova condecoracao com as informações inseridas
-					$membro->condecoracoes()->save(new Condecoracao($condecoracao));    
-			}
-		}
-
-		
-
+	
 		if ($membro) {
 			DB::commit();
-			return redirect('/membros/create')->with('sucesso', ' O membro '
+			return redirect('/membros')->with('sucesso', ' O membro '
 																		.strtoupper($request->no_membro)    .' CIM Nº ' 
 																		.$request->co_cim
 																		.' foi cadastrado com sucesso'
@@ -188,6 +171,7 @@ class MembroController extends Controller
 			return redirect('/membros/create')->with(['erros' => 'Falha ao cadastrar']); 
 		}
 	}
+
 
 	public function show(Membro $membro)
 	{
@@ -201,11 +185,6 @@ class MembroController extends Controller
 	{
 		$membro = $this->membro->find($id);
 
-		//dd($membro->cargos->pivot->aa_inicio);
-		//dd($membro->telefones[0]->nu_telefone);
-
-		$enderecos          = $membro->enderecos;
-		$telefones          = $membro->telefones;
 		$emails             = $membro->emails;
 		$dependentes        = $membro->dependentes;
 		$potencias          = Potencia::all()->sortBy('no_potencia');
@@ -214,7 +193,6 @@ class MembroController extends Controller
 		
 		$edita = true;
 		$titulo = "Edição de Membro";
-
 
 		$aposentado         = ['Sim','Não'];
 
@@ -234,9 +212,6 @@ class MembroController extends Controller
 
 		$paises     = Pais::all()->sortBy('nome');
 		$lojas      = Loja::all()->sortBy('no_loja');
-
-		//dd($enderecos);
-		//dd($telefones[0]['nu_telefone']);
 		
 		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
@@ -251,35 +226,35 @@ class MembroController extends Controller
 	{
 		
 		//dd($request->all());
+		if(trim($request->loja_id_iniciacao) == "null"){$request->merge(['loja_id_iniciacao' => null]);}
+		if(trim($request->loja_id_elevacao) == "null"){$request->merge(['loja_id_elevacao' => null]);}
+		if(trim($request->loja_id_exaltacao) == "null"){$request->merge(['loja_id_exaltacao' => null]);}
+		if(trim($request->loja_id_instalacao) == "null"){$request->merge(['loja_id_instalacao' => null]);}
 
-			// Validar dados do formulário
+		// Validar dados do formulário
 		$this->validate($request, [
-			'no_membro'         => 'required|min:3|max:50',
-			'co_cim'            => 'required|max:11',
-			'cpf'               =>  [  'cpf',
-													Rule::unique('membros')->ignore($id)
-											],
-			'ic_grau'				=> 'required',
+			'no_membro'         	=> 'required|min:3|max:50',
+			'co_cim'            	=> 'required|max:11',
+			'cpf'               	=>  'cpf',
 
-			'dt_nascimento'     => 'date|nullable',
-			'dt_casamento'      => 'date|nullable',
-			'dt_emissao_idt'    => 'date|nullable',
-			'dt_emissao_titulo' => 'date|nullable',
-			'dt_cerimonia0'     => 'date|nullable',
-			'dt_cerimonia1'     => 'date|nullable',
-			'dt_cerimonia2'     => 'date|nullable',
-			'dt_cerimonia3'     => 'date|nullable',
-			'dt_cerimonia4'     => 'date|nullable',
-			'dt_cerimonia5'     => 'date|nullable',
-			'dt_condecoracao0'  => 'date|nullable',
-			'dt_condecoracao1'  => 'date|nullable',
-			'dt_condecoracao2'  => 'date|nullable',
-			'dt_condecoracao3'  => 'date|nullable',
-			'dt_condecoracao4'  => 'date|nullable',
-			'dt_condecoracao5'  => 'date|nullable',
-
-			// Dependentes
-			//'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
+			'dt_nascimento'     	=> 'date|nullable',
+			'dt_casamento'      	=> 'date|nullable',
+			'dt_emissao_idt'    	=> 'date|nullable',
+			'dt_emissao_titulo' 	=> 'date|nullable',
+			'dt_iniciacao'     	=> 'date|nullable',
+			'dt_elevacao'     	=> 'date|nullable',
+			'dt_exaltacao'     	=> 'date|nullable',
+			'dt_instalacao'     	=> 'date|nullable',
+			'dt_filiacao'     	=> 'date|nullable',
+			'dt_regularizacao'  	=> 'date|nullable',
+			'dt_honorario'			=> 'date|nullable',
+			'dt_remido'				=> 'date|nullable',
+			'dt_emerito'			=> 'date|nullable',
+			'dt_benemerito'		=> 'date|nullable',
+			'dt_grande_benemerito'	=> 'date|nullable',
+			'dt_estrela_distincao'	=> 'date|nullable',
+			'dt_cruz_perfeicao'	=> 'date|nullable',
+			'dt_comanda_DPI'		=> 'date|nullable',
 		]);
 		
 		
@@ -301,13 +276,13 @@ class MembroController extends Controller
 		/* ENDEREÇO */
 		/* ==================================================================================== */
 		//apaga todos os endereços do membro
-		$membro->enderecos()->delete();
+		/* $membro->enderecos()->delete();
 
 		// Criar novos endereços com as informações enviadas
 		foreach($request->enderecos as $endereco)
 		{
 			$membro->enderecos()->save(new Endereco($endereco));
-		}
+		} */
 		
 		/* ==================================================================================== */
 		/* DEPENDENTE */
@@ -333,23 +308,6 @@ class MembroController extends Controller
 		}
 
 
-		
-
-		//deleta as condecoracaos para serem inseridas as quem vem do formulário
-		$condecoracoes = Condecoracao::where("membro_id", $membro->id);
-		$condecoracoes->delete();
-		// Cria um novo condecoracao com as informações inseridas
-		foreach($request->condecoracoes as $condecoracao)
-		{
-			//testa se o condecoracao foi preenchido no formulario
-			//ser for, cadastra, senão, passa para a próxima
-			if( $condecoracao['dt_condecoracao'] )
-			{
-					// Criar nova condecoracao com as informações inseridas
-					$membro->condecoracoes()->save(new Condecoracao($condecoracao));    
-			}
-		}
-		
 		
 		/* ==================================================================================== */
 		/* OCUPAÇÂO DE CARGOS */
@@ -395,36 +353,7 @@ class MembroController extends Controller
 	}
 
 
-	protected function validar($request)
-	{
-		// Validar
-		
-		$this->validate($request, [
-			'no_membro'         => 'required|min:3|max:50',
-			'co_cim'            => 'required|max:11',
-			'cpf'               =>  'cpf',
-
-			'dt_nascimento'     => 'date|nullable',
-			'dt_casamento'      => 'date|nullable',
-			'dt_emissao_idt'    => 'date|nullable',
-			'dt_emissao_titulo' => 'date|nullable',
-			'dt_cerimonia0'     => 'date|nullable',
-			'dt_cerimonia1'     => 'date|nullable',
-			'dt_cerimonia2'     => 'date|nullable',
-			'dt_cerimonia3'     => 'date|nullable',
-			'dt_cerimonia4'     => 'date|nullable',
-			'dt_cerimonia5'     => 'date|nullable',
-			'dt_condecoracao0'  => 'date|nullable',
-			'dt_condecoracao1'  => 'date|nullable',
-			'dt_condecoracao2'  => 'date|nullable',
-			'dt_condecoracao3'  => 'date|nullable',
-			'dt_condecoracao4'  => 'date|nullable',
-			'dt_condecoracao5'  => 'date|nullable',
-
-			// Dependentes
-			//'dependentes.*.dt_nascimento'           => 'required_with:dependentes.*.no_dependente|date',
-		]);
-	}
+	
 
 }
 

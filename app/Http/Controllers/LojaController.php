@@ -7,9 +7,6 @@ use App\Bibliotecas\Geral;
 use App\Models\Loja;
 use App\Models\Pais;
 use App\Models\Potencia;
-use App\Models\Endereco;
-use App\Models\Telefone;
-use App\Models\Email;
 use DB;
 
 use Illuminate\Http\Request;
@@ -138,59 +135,13 @@ class LojaController extends Controller
 		
 		$novaLoja = $loja->save();
 
-		if ($request->no_logradouro){
-			// Criar um novo endereço com as informações inseridas
-			
-			//dd($request->all());
-			//$endereco = new Endereco($request->all());
-			$novoEndereco = Endereco::create([
-				
-				'no_logradouro'	=> $request->no_logradouro,
-				'nu_logradouro'	=> $request->nu_logradouro,
-				'nu_cep'	=> $request->nu_cep,
-				'de_complemento'	=> $request->de_complemento,
-				'sg_uf'	=> $request->sg_uf,
-				'no_municipio'	=> $request->no_municipio,
-				'no_bairro'	=> $request->no_bairro,
-				'pais_id'	=> $request->pais_id,
-				
-			]);
-				
-				
-				
-			//$novoEndereco = $endereco->save();
-			
-			// Associar loja ao endereço (chaves estrangeiras)
-			$loja->endereco()->associate($novoEndereco);
-			
-			$novaLoja = $loja->save();
-			
-			//dd($loja);
-			// Salvar o endereço
-			 
-		} else {
-			$novoEndereco = true;
-		}
 
-		
-/* 
-		// Cria um novo telefone com as informações inseridas
-		$telefone = new Telefone($request->all());
-		$telefone->loja()->associate($loja);
-		$telefone->save();
-
-		// Cria um novo email com as informações inseridas
-		$email = new Email($request->all());
-		$email->loja()->associate($loja);
-		$email->save(); */
-
-
-		if($novaLoja and $novoEndereco){
+		if($novaLoja ){
 			DB::commit();
-			return redirect()->back()->with('sucesso',  $request->co_titulo    .' ' 
-														.$request->no_loja      .' Nº ' 
-														.$request->nu_loja 
-														.' Cadastrada com Sucesso');
+			return redirect('/lojas')->with('sucesso',  $request->co_titulo    .' ' 
+												.$request->no_loja      .' Nº ' 
+												.$request->nu_loja 
+												.' Cadastrada com Sucesso');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
@@ -247,8 +198,6 @@ class LojaController extends Controller
 		$titulo = "Edição da Loja: {$loja->co_titulo} {$loja->no_loja} N°{$loja->nu_loja}";
 
   
-
-
 		return view('lojas.create_edit',compact('potencias','paises','ritos','loja', 'titulo','edita'));
 
 
@@ -296,11 +245,10 @@ class LojaController extends Controller
 		
 		$salvouLoja 		= $loja->update($dadosFormulario);
 		
-		$salvouEndereco 	= $loja->endereco->update($dadosFormulario);
-	
+		
 
 
-		if ($salvouLoja and $salvouEndereco) {
+		if ($salvouLoja) {
 			DB::commit();
 			return redirect('lojas'	)->with('sucesso',  $request->co_titulo    .' ' 
 														.$request->no_loja      .' Nº ' 
@@ -419,26 +367,6 @@ class LojaController extends Controller
 
 		// Salvar no banco para obter o ID
 		$loja->save();
-
-		 // Criar um novo endereço com as informações inseridas
-		$endereco = new Endereco($request->all());
-	
-
-		// Associar loja ao endereço (chaves estrangeiras)
-		 $endereco->loja()->associate($loja);
-
-		// Salvar o endereço
-		$endereco->save(); 
-
-		// Cria um novo telefone com as informações inseridas
-		$telefone = new Telefone($request->all());
-		$telefone->loja()->associate($loja);
-		$telefone->save();
-
-		// Cria um novo email com as informações inseridas
-		$email = new Email($request->all());
-		$email->loja()->associate($loja);
-		$email->save();
 
 
 		return  $loja;

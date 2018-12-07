@@ -106,7 +106,7 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 		'co_cim'                => $faker->numberBetween($min = 11111, $max = 9999999),
 		'dt_nascimento'         => $faker->date('Y-m-d', '-18 years'),
 		'no_naturalidade'			=> $faker->city,
-		'no_nacionalidade'		=> $faker->country,
+		'no_nacionalidade'		=> $faker->city,
 		'nu_cpf'                => $faker->cpf,
 		'nu_identidade'         => $faker->rg,
 		'dt_emissao_idt'			=> $faker->date('Y-m-d', '-18 years'),
@@ -137,8 +137,26 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 		'ic_situacao'           => $v_situacao, //$faker->randomElement(['Regular','Suspenso','Ativo','Oriente Eterno','Quit Placet']),
 
 		'ic_escolaridade'       => $v_escolaridade,
-		'endereco_comercial_id'	=> factory('App\Models\Endereco')->create()->id,
-		'endereco_residencial_id'	=> factory('App\Models\Endereco')->create()->id,
+		//'endereco_comercial_id'	=> factory('App\Models\Endereco')->create()->id,
+		//'endereco_residencial_id'	=> factory('App\Models\Endereco')->create()->id,
+
+		'pais_id_res'			=> App\Models\Pais::all()->random()->id,
+		'sg_uf_res'			 	=> $faker->stateAbbr,
+		'no_municipio_res'	=> $faker->city,
+		'no_bairro_res'		=> $faker->cityPrefix,
+		'no_logradouro_res'  => $faker->streetName,
+		'nu_logradouro_res'  => $faker->randomNumber(3),
+		'de_complemento_res' => $faker->secondaryAddress,
+		'nu_cep_res'         => $faker->randomNumber(5)."-".$faker->randomNumber(3),
+
+		'pais_id_com'			=> App\Models\Pais::all()->random()->id,
+		'sg_uf_com'			 	=> $faker->stateAbbr,
+		'no_municipio_com' 	=> $faker->city,
+		'no_bairro_com'		=> $faker->cityPrefix,
+		'no_logradouro_com'  => $faker->streetName,
+		'nu_logradouro_com'  => $faker->randomNumber(3),
+		'de_complemento_com' => $faker->secondaryAddress,
+		'nu_cep_com'         => $faker->randomNumber(5)."-".$faker->randomNumber(3),
 
 	];
 });
@@ -157,7 +175,16 @@ $factory->define(App\Models\Loja::class, function(Faker\Generator $faker) {
 		'potencia_id'  => App\Models\Potencia::all()->random()->id,
 		'email' 			=> 	$faker->safeEmail,
 		'nu_telefone'  => "(21) $faker->landline",
-		'endereco_id'	=> factory('App\Models\Endereco')->create()->id,
+		//'endereco_id'	=> factory('App\Models\Endereco')->create()->id,
+
+		'pais_id'			=> App\Models\Pais::all()->random()->id,
+		'sg_uf'			 	=> $faker->stateAbbr,
+		'no_municipio'	=> $faker->city,
+		'no_bairro'		=> $faker->cityPrefix,
+		'no_logradouro'  => $faker->streetName,
+		'nu_logradouro'  => $faker->randomNumber(3),
+		'de_complemento' => $faker->secondaryAddress,
+		'nu_cep'         => $faker->randomNumber(5)."-".$faker->randomNumber(3),
 	];
 });
 

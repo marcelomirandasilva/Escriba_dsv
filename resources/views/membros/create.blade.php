@@ -252,13 +252,7 @@
 
 	<script type="text/javascript">
 		var t = "";
-		@if (session('sucesso'))
-		swal({
-			title:  'Parabéns',
-			text:   ' {!! session('sucesso') !!}',
-			type:   'success'
-		});
-		@endif
+		
 		
 		
 		var cont_telefone=1 
@@ -330,60 +324,64 @@
 				var valor = $(this).val();
 				
 				$("#tab_cerimonias" ).show();
+				$("#tab_cargos" ).show();
 				$("#tab_condecoracoes" ).show();                  
 
-				document.getElementById("dt_cerimonia4").disabled 	= false; //filiação
-				document.getElementById("dt_cerimonia5").disabled 	= false; //regularização
+				document.getElementById("dt_filiacao").disabled 	= false; //filiação
+				document.getElementById("dt_regularizacao").disabled 	= false; //regularização
 				document.getElementById("co_cim").disabled 			= false;
 
 
-				document.getElementById("dt_cerimonia0").disabled 	= false;	//iniciação
-				document.getElementById("loja_id0").disabled 		= false;
+				document.getElementById("dt_iniciacao").disabled 	= false;	//iniciação
+				document.getElementById("loja_id_iniciacao").disabled 		= false;
 
-				document.getElementById("dt_cerimonia1").disabled	= false;	//Elevação
-				document.getElementById("loja_id1").disabled 		= false;
+				document.getElementById("dt_elevacao").disabled	= false;	//Elevação
+				document.getElementById("loja_id_elevacao").disabled 		= false;
 
-				document.getElementById("dt_cerimonia2").disabled 	= false;	//Exaltação
-				document.getElementById("loja_id2").disabled 		= false;
+				document.getElementById("dt_exaltacao").disabled 	= false;	//Exaltação
+				document.getElementById("loja_id_exaltacao").disabled 		= false;
 
-				document.getElementById("dt_cerimonia3").disabled 	= false;	//Instalação
-				document.getElementById("loja_id3").disabled 		= false;
+				document.getElementById("dt_instalacao").disabled 	= false;	//Instalação
+				document.getElementById("loja_id_instalacao").disabled 		= false;
 
 
 				if (valor == "Candidato"){
 						document.getElementById("co_cim").disabled = true;
 						$("#tab_cerimonias" ).hide();
+						$("#tab_cargos" ).hide();
 						$("#tab_condecoracoes" ).hide();                  
 						document.getElementById("co_cim").disabled = true;
 						
 				} else if (valor == "Aprendiz"){
 
+						$("#tab_cargos" ).hide();
 						$("#tab_condecoracoes" ).hide();                  
 						
-						document.getElementById("dt_cerimonia1").disabled 	= true;
-						document.getElementById("loja_id1").disabled		 	= true;
-						document.getElementById("dt_cerimonia2").disabled 	= true;
-						document.getElementById("loja_id2").disabled 		= true;
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
+						document.getElementById("dt_elevacao").disabled 			= true;
+						document.getElementById("loja_id_elevacao").disabled		= true;
+						document.getElementById("dt_exaltacao").disabled 			= true;
+						document.getElementById("loja_id_exaltacao").disabled 	= true;
+						document.getElementById("dt_instalacao").disabled 			= true;
+						document.getElementById("loja_id_instalacao").disabled 	= true;
 
 						document.getElementById("co_cim").disabled 			= false;
 
 				} else if (valor == "Companheiro"){
 
+						$("#tab_cargos" ).hide();
 						$("#tab_condecoracoes" ).hide();                  
 					
-						document.getElementById("dt_cerimonia2").disabled 	= true;
-						document.getElementById("loja_id2").disabled 		= true;
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
+						document.getElementById("dt_exaltacao").disabled 			= true;
+						document.getElementById("loja_id_exaltacao").disabled 	= true;
+						document.getElementById("dt_instalacao").disabled 			= true;
+						document.getElementById("loja_id_instalacao").disabled 	= true;
 
 						document.getElementById("co_cim").disabled 			= false;
 
 				} else if (valor == "Mestre"){
 						
-						document.getElementById("dt_cerimonia3").disabled 	= true;
-						document.getElementById("loja_id3").disabled 		= true;
+						document.getElementById("dt_instalacao").disabled 			= true;
+						document.getElementById("loja_id_instalacao").disabled 	= true;
 
 						document.getElementById("co_cim").disabled 			= false;
 				}
@@ -495,30 +493,30 @@
 			//Atualiza os campos do endereço de acordo com o cep digitado
 			
 			//Se o pais for diferente de BRASIL, desabilita o cep e UF
-			$("#no_pais0").change(function(){
-				if($("#no_pais0>option:selected").text() == " Brasil ")
+			$("#pais_id_res").change(function(){
+				if($("#pais_id_res>option:selected").text() == " Brasil ")
 				{
 						console.log("brasil");
-						$("#cep0, #sg_uf0").removeAttr('disabled');
+						$("#nu_cep_res, #sg_uf_res").removeAttr('disabled');
 				}else{
-						$("#cep0, #sg_uf0").attr('disabled', 'disabled');
+						$("#nu_cep_res, #sg_uf_res").attr('disabled', 'disabled');
 				}
 			});
 
-			$("#no_pais1").change(function(){
+			$("#pais_id_com").change(function(){
 				console.log("mudou");
 				
-				if($("#no_pais1>option:selected").text() == " Brasil ")
+				if($("#pais_id_com>option:selected").text() == " Brasil ")
 				{
-					$("#cep1, #sg_uf1").removeAttr('disabled');
+					$("#cep_com, #sg_uf_com").removeAttr('disabled');
 				}else{
-					$("#cep1, #sg_uf1").attr('disabled', 'disabled');
+					$("#cep_com, #sg_uf_com").attr('disabled', 'disabled');
 				}
 			});
 			//==========================================================
 			
 			//Quando o campo CEP RESIDENCIAL perde o foco.
-			$("#cep0").blur(function() {
+			$("#nu_cep_res").blur(function() {
 				
 				//Nova variável "cep" somente com dígitos.
 				var cep = $(this).val().replace(/\D/g, '');
@@ -534,44 +532,44 @@
 						if(validacep.test(cep)) {
 
 							//Preenche os campos com "..." enquanto consulta webservice.
-							$("#no_logradouro0").val("...");
-							$("#no_bairro0").val("...");
-							$("#no_municipio0").val("...");
-							$("#sg_uf0").val("...");
-							$("#ibge0").val("...");
+							$("#no_logradouro_res").val("...");
+							$("#no_bairro_res").val("...");
+							$("#no_municipio_res").val("...");
+							$("#sg_uf_res").val("...");
+							$("#ibge_res").val("...");
 
 							//Consulta o webservice viacep.com.br/
 							$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
 									if (!("erro" in dados)) {
 										//Atualiza os campos com os valores da consulta.
-										$("#no_logradouro0").val(dados.logradouro);
-										$("#no_bairro0").val(dados.bairro);
-										$("#no_municipio0").val(dados.localidade);
-										$("#sg_uf0").val(dados.uf);
-										$("#ibge").val(dados.ibge);
+										$("#no_logradouro_res").val(dados.logradouro);
+										$("#no_bairro_res").val(dados.bairro);
+										$("#no_municipio_res").val(dados.localidade);
+										$("#sg_uf_res").val(dados.uf);
+										$("#ibge_res").val(dados.ibge);
 									} //end if.
 									else {
 										//CEP pesquisado não foi encontrado.
-										limpa_formulário_cep(0);
+										limpa_formulário_cep("_res");
 										alert("CEP não encontrado.");
 									}
 							});
 						} //end if.
 						else {
 							//cep é inválido.
-							limpa_formulário_cep(0);
+							limpa_formulário_cep("_res");
 							alert("Formato de CEP inválido.");
 						}
 				} //end if.
 				else {
 						//cep sem valor, limpa formulário.
-						limpa_formulário_cep(0);
+						limpa_formulário_cep("_res");
 				}
 			});
 
 			//Quando o campo CEP COMERCIAL perde o foco.
-			$("#cep1").blur(function() {
+			$("#nu_cep_com").blur(function() {
 				
 				//Nova variável "cep" somente com dígitos.
 				var cep = $(this).val().replace(/\D/g, '');
@@ -587,39 +585,39 @@
 						if(validacep.test(cep)) {
 
 							//Preenche os campos com "..." enquanto consulta webservice.
-							$("#no_logradouro1").val("...");
-							$("#no_bairro1").val("...");
-							$("#no_municipio1").val("...");
-							$("#sg_uf1").val("...");
-							$("#ibge1").val("...");
+							$("#no_logradouro_com").val("...");
+							$("#no_bairro_com").val("...");
+							$("#no_municipio_com").val("...");
+							$("#sg_uf_com").val("...");
+							$("#ibge_com").val("...");
 
 							//Consulta o webservice viacep.com.br/
 							$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
 									if (!("erro" in dados)) {
 										//Atualiza os campos com os valores da consulta.
-										$("#no_logradouro1").val(dados.logradouro);
-										$("#no_bairro1").val(dados.bairro);
-										$("#no_municipio1").val(dados.localidade);
-										$("#sg_uf1").val(dados.uf);
-										$("#ibge").val(dados.ibge);
+										$("#no_logradouro_com").val(dados.logradouro);
+										$("#no_bairro_com").val(dados.bairro);
+										$("#no_municipio_com").val(dados.localidade);
+										$("#sg_uf_com").val(dados.uf);
+										$("#ibge_com").val(dados.ibge);
 									} //end if.
 									else {
 										//CEP pesquisado não foi encontrado.
-										limpa_formulário_cep(1);
+										limpa_formulário_cep("_com");
 										alert("CEP não encontrado.");
 									}
 							});
 						} //end if.
 						else {
 							//cep é inválido.
-							limpa_formulário_cep(1);
+							limpa_formulário_cep("_com");
 							alert("Formato de CEP inválido.");
 						}
 				} //end if.
 				else {
 						//cep sem valor, limpa formulário.
-						limpa_formulário_cep(1);
+						limpa_formulário_cep("_com");
 				}
 			});
 

@@ -27,17 +27,27 @@ class CreateLojasTable extends Migration
             $table->date('dt_fundacao')         ->nullable();
             $table->string('nu_telefone',15)    ->nullable();
             $table->string('email',200)         ->nullable();
-           
-            // FK
+
+            $table->char('sg_uf',2)                 ->nullable();
+			$table->string('no_municipio',50)       ->nullable();
+			$table->string('no_bairro',20)          ->nullable();
+			$table->string('no_logradouro',100)     ->nullable();
+			$table->integer('nu_logradouro')        ->nullable();
+			$table->string('de_complemento',20)     ->nullable();
+            $table->char('nu_cep',10)               ->nullable();
+            $table->unsignedInteger('pais_id')      ->nullable();
+
+          
+
             $table->integer('potencia_id')      ->unsigned();
-            $table->integer('endereco_id')      ->nullable()->unsigned();
+
             
             $table->timestamps();
         });
 
         Schema::table('lojas', function($table){
             $table->foreign('potencia_id')->references('id')->on('potencias')->onDelete('cascade');
-           // $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+            $table->foreign('pais_id')->references('id')->on('paises')->onDelete('set null');	
         });
     }
 

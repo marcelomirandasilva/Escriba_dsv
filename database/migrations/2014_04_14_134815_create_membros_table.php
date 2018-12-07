@@ -109,11 +109,6 @@ class CreateMembrosTable extends Migration
                 'Doutorado - Incompleto',
                 'Doutorado - Completo'
                                             ])              ->nullable();
-
-            // FK
-            $table->integer('endereco_residencial_id')    ->nullable()->unsigned();
-            $table->integer('endereco_comercial_id')      ->nullable()->unsigned();
-
             //-----------------------------CERIMONIAS----------------------      
 
             $table->date('dt_iniciacao')                    ->nullable();
@@ -128,19 +123,58 @@ class CreateMembrosTable extends Migration
             $table->unsignedInteger('loja_id_exaltacao')    ->nullable();
             $table->unsignedInteger('loja_id_instalacao')   ->nullable();
             
-            //-------------------------------------------------------------
+            //----------- ENDEREÇOS --------------------------------------
 
+            $table->char('sg_uf_res',2)                 ->nullable();
+			$table->string('no_municipio_res',50)       ->nullable();
+			$table->string('no_bairro_res',20)          ->nullable();
+			$table->string('no_logradouro_res',100)     ->nullable();
+			$table->integer('nu_logradouro_res')        ->nullable();
+			$table->string('de_complemento_res',20)     ->nullable();
+            $table->char('nu_cep_res',10)               ->nullable();
+            $table->unsignedInteger('pais_id_res')      ->nullable();
 
+            $table->char('sg_uf_com',2)                 ->nullable();
+			$table->string('no_municipio_com',50)       ->nullable();
+			$table->string('no_bairro_com',20)          ->nullable();
+			$table->string('no_logradouro_com',100)     ->nullable();
+			$table->integer('nu_logradouro_com')        ->nullable();
+			$table->string('de_complemento_com',20)     ->nullable();
+            $table->char('nu_cep_com',10)               ->nullable();
+            $table->unsignedInteger('pais_id_com')      ->nullable();
             
-            $table->timestamps();
+            //------------CONDECORACOES------------------------------------
 
+            $table->date('dt_honorario')            ->nullable();
+            $table->date('dt_remido')               ->nullable();
+            $table->date('dt_emerito')               ->nullable();
+            $table->date('dt_benemerito')            ->nullable();
+            $table->date('dt_grande_benemerito')    ->nullable();
+            $table->date('dt_estrela_distincao')    ->nullable();
+            $table->date('dt_cruz_perfeicao')       ->nullable();
+            $table->date('dt_comanda_DPI')          ->nullable();
+
+            $table->integer('nu_honorario')         ->nullable();
+            $table->integer('nu_remido')            ->nullable();
+            $table->integer('nu_emerito')            ->nullable();
+            $table->integer('nu_benemerito')         ->nullable();
+            $table->integer('nu_grande_benemerito') ->nullable();
+            $table->integer('nu_estrela_distincao') ->nullable();
+            $table->integer('nu_cruz_perfeicao')    ->nullable();
+            $table->integer('nu_comanda_DPI')       ->nullable();
+
+
+            $table->timestamps();
         });
 
         Schema::table('membros', function($table){
-            $table->foreign('loja_id_iniciacao')->references('id')->on('lojas')->onDelete('cascade');
-            $table->foreign('loja_id_elevacao')->references('id')->on('lojas')->onDelete('cascade');
-            $table->foreign('loja_id_exaltacao')->references('id')->on('lojas')->onDelete('cascade');
-            $table->foreign('loja_id_instalacao')->references('id')->on('lojas')->onDelete('cascade');
+            $table->foreign('loja_id_iniciacao')->references('id')->on('lojas')->onDelete('set null');
+            $table->foreign('loja_id_elevacao')->references('id')->on('lojas')->onDelete('set null');
+            $table->foreign('loja_id_exaltacao')->references('id')->on('lojas')->onDelete('set null');
+            $table->foreign('loja_id_instalacao')->references('id')->on('lojas')->onDelete('set null');
+
+            $table->foreign('pais_id_res')->references('id')->on('paises')->onDelete('set null');	
+            $table->foreign('pais_id_com')->references('id')->on('paises')->onDelete('set null');	
 
         }); 
     }

@@ -12,7 +12,6 @@ class Membro extends Model
 
     protected $fillable =[
 
-
         'no_membro',
         'co_cim',
         'dt_nascimento',
@@ -56,15 +55,51 @@ class Membro extends Model
         'loja_id_instalacao',
         'dt_filiacao',
         'dt_regularizacao',
+
+        'sg_uf_res',
+        'no_municipio_res',
+        'no_bairro_res',
+        'no_logradouro_res',
+        'nu_logradouro_res',
+        'de_complemento_res',
+        'nu_cep_res',
+  
+        'sg_uf_com',
+        'no_municipio_com',
+        'no_bairro_com',
+        'no_logradouro_com',
+        'nu_logradouro_com',
+        'de_complemento_com',
+        'nu_cep_com',
+
+        'dt_honorario',
+        'dt_remido',
+        'dt_emerito',
+        'dt_benemerito',
+        'dt_grande_benemerito',
+        'dt_estrela_distincao',
+        'dt_cruz_perfeicao',
+        'dt_comanda_DPI',
+
+        'nu_honorario',
+        'nu_remido',
+        'nu_emerito',
+        'nu_benemerito',
+        'nu_grande_benemerito',
+        'nu_estrela_distincao',
+        'nu_cruz_perfeicao',
+        'nu_comanda_DPI',
+
+
     ];
 
 
 
-     public function enderecos()
+/*      public function enderecos()
     {
         return $this->hasMany('App\Models\Endereco');
     }
-
+ */
    /* public function telefones()
     {
         return $this->hasMany('App\Models\Telefone');
@@ -80,16 +115,16 @@ class Membro extends Model
         return $this->hasMany('App\Models\Dependente');
     }
 
-    public function condecoracoes()
+/*     public function condecoracoes()
     {
         return $this->hasMany('App\Models\Condecoracao');
     }
-
-    public function cerimonias()
+ */
+/*     public function cerimonias()
     {
         return $this->hasMany('App\Models\Cerimonia');
     }
-
+ */
     public function cargos()
     {
         return $this->belongsToMany('App\Models\Cargo', 'cargos_membros')->withPivot('aa_inicio','aa_termino')->withTimestamps();
