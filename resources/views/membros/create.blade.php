@@ -410,6 +410,19 @@
         	});
 
 
+			//ano do cargo
+			$("#aa_inicio").change(function(){
+				
+				let min = parseInt( $("#aa_inicio").val() ) ;
+				let max = min + 2;
+
+				console.log(min, "  -  ", max);
+				$("#aa_termino").attr({"min" : min,"max" : max});
+
+				$("#aa_termino").val(max);
+
+			});
+
 
 			//adiciona cargos na tabela
 			var cargos_na_tabela = [];
