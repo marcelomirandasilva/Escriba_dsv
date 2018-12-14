@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
         }
 
 
-        factory(App\Models\User::class, 50)->create()->each(function($User){});
+        //factory(App\Models\User::class, 50)->create()->each(function($User){});
         
 
     }
