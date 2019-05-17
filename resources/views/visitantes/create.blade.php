@@ -27,29 +27,75 @@
 		<div class="col-md-12 ">
 			
 			<div class="x_content ">
-				<div class="" role="tabpanel" data-example-id="togglable-tabs">
+				<div class="" role="tabpanel">
 					@if( isset($edita))
 						<form id="form_visitante" method="post" action="{{ url("visitantes/$visitante->id") }}"  >
 								{!! method_field('PUT') !!}
 					@else
 						<form id="form_visitante" method="post" action="{{ route('visitantes.store') }}"  >
 					@endif
-
 						{{ csrf_field() }}
-						<ul id="myTab" class="nav nav-tabs bar_tabs " role="tablist">
-								
-							<li role="presentation" class="active">
-								<a href="#tab_content1" role="tab" id="tab_principal" data-toggle="tab" class="tab_visitante">   Principal   </a> 
-							</li>
-						</ul>
+						
 
-						<div id="myTabContent" class="tab-content">
-							<div role="tabpanel" class="tab-pane fade active in"  id="tab_content1" aria-labelledby="tab_pri">
-								@include('visitantes/create_principal')
+							<div class="clearfix"></div>
+						
+							<div class="item form-group">
+								<div class="row">
+									<div class="col-md-5 ">
+										<label class="control-label col-md-1" for="no_visitante">Nome*</label>
+										<input  id="no_visitante" class="form-control col-md-5" name="no_visitante" placeholder="Nome completo do Membro" 
+										required="required" type="text" autofocus value="{{$visitante->no_visitante or old('no_visitante')}}" >
+									</div>
+					
+									<div class="col-md-1">
+										<label class="control-label col-md-2 " for="ic_grau"> Grau* </label>
+										<select name="ic_grau" id="ic_grau" class="form-control col-md-1" >
+											<option value=""  selected style="color: #ccc;" > --- </option>
+											@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+												@foreach($grau as $ic_grau)
+													@if ( $visitante->ic_grau == $ic_grau)
+														<option value="{{$ic_grau}}" selected="selected">{{$ic_grau}}</option>
+													@else
+														<option value="{{$ic_grau}}">{{$ic_grau}}</option>  
+													@endif
+												@endforeach
+											@else
+												@foreach($grau as $ic_grau)
+													<option value="{{$ic_grau}}"> {{$ic_grau}} </option>    
+												@endforeach
+											@endif
+										</select>
+									</div>
+									<div  class="col-md-2" >
+										<label class="control-label col-md-1" for="co_cim">CIM*</label>
+										<input   id="co_cim" class="form-control col-md-2 cim" placeholder="999.999" 
+										required="required" min="1" max="9999999"  
+										name="co_cim"  value="{{$visitante->co_cim or old('co_cim')}}" >
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<label class="control-label col-md-1 " for="no_loja"> Loja* </label>
+										<select name="no_loja" id="no_loja" class="form-control col-md-1" >
+											<option value=""  selected style="color: #ccc;" > --- </option>
+											@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
+											
+												@foreach($lojas as $loja)
+													@if ( $visitante->loja->no_loja == $loja->no_loja)
+														<option value="{{$loja->no_loja}}" selected="selected">{{$loja->no_loja}}</option>
+													@else
+														<option value="{{$loja->no_loja}}">{{$loja->no_loja}}</option>  
+													@endif
+												@endforeach
+											@else
+												@foreach($lojas as $loja)
+													<option value="{{$loja->no_loja}}"> {{$loja->no_loja}} -  {{$loja->nu_loja}} -  {{$loja->potencia->no_potencia}}  </option>    
+												@endforeach
+											@endif
+										</select>
+									</div>
 							</div>
-
-
-						</div>
 						
 						<!----------- botoes ----------> 
 						<botao_ok_cancel
@@ -162,23 +208,23 @@
 	<!-- AutoComplete -->
 	<script src="{{ asset('autoComplete/auto-complete.min.js') }}"                  							type="text/javascript"></script>
 
-	  
+	
 	<!-- Datatables -->
-  	<script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}"                  type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"            type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}"         type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"       type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}"              type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}"              type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}"              type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}" type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"       type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}"   type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"     type="text/javascript"></script>
-  	<script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
-  	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
-  	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
-	  
+	<script src="{{ asset('datatables/datatables.net/js/jquery.dataTables.min.js') }}"                  type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"            type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/dataTables.buttons.min.js') }}"         type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"       type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.flash.min.js') }}"              type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.html5.min.js') }}"              type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-buttons/js/buttons.print.min.js') }}"              type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"       type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-responsive/js/dataTables.responsive.min.js') }}"   type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"     type="text/javascript"></script>
+	<script src="{{ asset('datatables/datatables.net-scroller/js/dataTables.scroller.min.js') }}"       type="text/javascript"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
+	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
+	
 
 	<script type="text/javascript">
 		var t = "";
@@ -337,7 +383,7 @@
 				paginate: false,
 				searching: false,
 				orderFixed: [ 1, 'asc' ],
-        	});
+			});
 
 
 			//ano do cargo
@@ -730,9 +776,9 @@
 			// Botão de excluir dependente
 			$("body").on("click", "button.excluir_dependente", function(e){ 
 				var self = this;
-				 e.preventDefault();
+				e.preventDefault();
 
-            swal({
+				swal({
 					title: "Atenção!",
 					text: "Você realmente deseja excluir o(a) dependente ?",
 					type: "warning",
@@ -743,7 +789,7 @@
 					cancelButtonClass: "btn-cor-padrao modal-content",
 					cancelButtonText: "Cancelar",
 					confirmButtonClass: 'btn-cor-perigo modal-content',
-				 }).then(result => {
+				}).then(result => {
 					if (result.value) {
 						$(self).parent().parent().parent().addClass('animated fadeOut').fadeOut(985).queue(function() { $(self).parent().parent().parent().remove(); })
 						
@@ -751,7 +797,7 @@
 						
 					}
 				})
- 			});
+			});
 
 			$("#form_visitante").submit(function(e){
 				//e.preventDefault();
@@ -868,9 +914,9 @@
 												potencia_id : potencia,
 												ic_rito	 	: rito,
 												no_pais	 	: pais,
-											 	_token 		: token }, function(dados){
+												_token 		: token }, function(dados){
 
-		 		//console.log(dados.id , dados.no_potencia);
+				//console.log(dados.id , dados.no_potencia);
 
 				if(dados.id)
 				{
