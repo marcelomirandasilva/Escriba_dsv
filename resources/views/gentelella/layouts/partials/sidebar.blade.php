@@ -8,6 +8,9 @@
 					<li>
 						<li><a href="{{ url('/membros') }}">Membros</a></li>
 					</li>
+					<li>
+						<li><a href="{{ url('/visitantes') }}">Visitantes</a></li>
+					</li>
 
 					<li>
 						<a>Sessões<span class="fa fa-chevron-down"></span></a>

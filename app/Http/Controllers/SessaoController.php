@@ -140,10 +140,11 @@ class SessaoController extends Controller
 		//inicia sessão de banco
 		DB::beginTransaction();
 
-		
+		//dd($sessao);
 		// altera os dados do sessao
 		$sessao->fill($request->all());
-		
+		$salvou_sessao = $sessao->save();
+		//dd($request->all());
 		//cria as presencas 
 		if(isset($request->presencas))
 		{
@@ -154,11 +155,10 @@ class SessaoController extends Controller
 			}
 		}
 
-		$salvou_sessao = $sessao->save();
 
 		if($salvou_sessao){
 			DB::commit();
-			return redirect('sessao')->with('sucesso', 'sessao Alterado com sucesso!');
+			return redirect('sessoes')->with('sucesso', 'sessao Alterado com sucesso!');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();

@@ -379,6 +379,7 @@
 					$("#form_pressenca_sessao").append("<input type='hidden' class='presencas' name='presencas[]' value='"+presencas_em_string+"'>");
 				}
 
+				console.log("ssss");
 			
 			});
 			

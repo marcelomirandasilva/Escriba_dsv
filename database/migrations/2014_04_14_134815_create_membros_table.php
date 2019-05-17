@@ -32,6 +32,7 @@ class CreateMembrosTable extends Migration
             $table->char('tel_cel',14)                      ->nullable();
             $table->char('tel_com',14)                      ->nullable();
             $table->char('ramal_com',10)                    ->nullable();
+            $table->text('de_contato')                     ->nullable();
             
 
             //-----------------------------DOCUMENTOS----------------------            

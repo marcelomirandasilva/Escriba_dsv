@@ -21,7 +21,15 @@ class CreateVisitantesTable extends Migration
             $table->char('co_cim',10);
 
             $table->date('dt_nascimento')           ->nullable();
-            $table->char('ic_estado_civil',1)       ->nullable();
+            
+            $table->enum('ic_estado_civil', [
+                'Solteiro',
+                'Casado', 
+                'Divorciado',
+                'Viúvo',
+                'Separado',
+                'União estável'
+            ])              ->nullable();
 
             $table->enum('ic_grau',['AM','CM','MM','MI']);
             $table->integer('loja_id')->unsigned();

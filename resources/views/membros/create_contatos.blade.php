@@ -28,7 +28,14 @@
 				</div>
 				
 			</div>
-
+			<div class="form-group">
+				
+					<div class="col-md-12 ">
+						<label class="control-label col-md-12" for="de_contato"> Observações </label>
+						<textarea id="de_contato"  name="de_contato" class="form-control" rows="3" >{{$membro->de_contato or old('de_contato')}}</textarea>
+					</div>
+			</div>
+		
 		</div>
 	</div>
    	

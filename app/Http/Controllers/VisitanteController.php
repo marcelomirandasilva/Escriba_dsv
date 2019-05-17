@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Membro;
+use App\Models\Visitante;
 use App\Models\Endereco;
 use App\Models\Pais;
 use App\Models\User;
@@ -20,13 +20,13 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
  
-class MembroController extends Controller
+class VisitanteController extends Controller
 {
 	// todas as rotas aqui serão antes autenticadas
-	private $membro;
-	public function __construct(membro $membro)
+	private $visitante;
+	public function __construct(visitante $visitante)
 	{
-		$this->membro = $membro; 
+		$this->visitante = $visitante; 
 		
 		// todas as rotas aqui serão antes autenticadas
 		$this->middleware('auth');
@@ -36,13 +36,11 @@ class MembroController extends Controller
 	{
       $usuario_logado     = User::find(Auth::user()->id);
 
+		$visitantes = Visitante::with(['loja'])->get();
 
+		//dd($visitantes[0]->loja->no_loja);
 
-		$membros = Membro::with(['user'])->get();
-
-		//dd($usuario_logado->acesso);
-
-		return view('membros/lista', compact('membros','usuario_logado'));
+		return view('visitantes/lista', compact('visitantes','usuario_logado'));
 
 	}
 
@@ -50,17 +48,9 @@ class MembroController extends Controller
 
 	public function create()
 	{
-		$titulo = "Cadastro de Membros";
-
-		$aposentado         = ['Sim','Não'];
-
-		$escolaridade       = pegaValorEnum('membros','ic_escolaridade');                                                   
-		$situacao           = pegaValorEnum('membros','ic_situacao');                                                   
-		$grau               = pegaValorEnum('membros','ic_grau');                      
-		$estado_civil       = pegaValorEnum('membros','ic_estado_civil'); 
-		$sexos              = pegaValorEnum('dependentes','ic_sexo'); 
-		$parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
-
+		$titulo = "Cadastro de Visitantes";
+		$grau               = pegaValorEnum('visitantes','ic_grau');                      
+		$estado_civil       = pegaValorEnum('visitantes','ic_estado_civil'); 
 		$potencias          = Potencia::all()->sortBy('no_potencia');
 		$ritos              = pegaValorEnum('lojas','ic_rito') ;
 
@@ -70,14 +60,12 @@ class MembroController extends Controller
 		
 		//orderna os valores dos arrays
 		sort($estado_civil);
-		sort($situacao);
-		sort($parentescos);
 		
 		$paises     = Pais::all()->sortBy('nome');        
 		$lojas      = Loja::all()->sortBy('no_loja');    
 		
 		
-		return view('membros.create',compact(['estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
+		return view('visitantes.create',compact(['estado_civil','grau','titulo','lojas','potencias','ritos',]));
 		
 	}
 	
@@ -96,7 +84,7 @@ class MembroController extends Controller
 
 		// Validar dados do formulário
 		$this->validate($request, [
-			'no_membro'         	=> 'required|min:3|max:50',
+			'visitante'         	=> 'required|min:3|max:50',
 			'co_cim'            	=> 'required|max:11',
 			'cpf'               	=>  'cpf',
 
@@ -125,25 +113,25 @@ class MembroController extends Controller
 		//inicia sessão de banco
 		DB::beginTransaction();
 		
-		// Cria um novo membro
-		$membro = new Membro($request->all());
+		// Cria um novo visitante
+		$visitante = new Visitante($request->all());
 		
 		// Verificar se está aposentado
-		$membro->ic_aposentado = $request->aposentado ? 1 : 0;
+		$visitante->ic_aposentado = $request->aposentado ? 1 : 0;
 
 		// Salvar no banco para obter o ID
-		$membro->save();
+		$visitante->save();
 		
 		//cria os cargos
-		if(isset($request->cargos_membros))
+		if(isset($request->visitantes))
 		{
-			foreach($request->cargos_membros as $key => $cargo)
+			foreach($request->visitantes as $key => $cargo)
 			{
 				$cg = json_decode($cargo) ;
 			
 				$cargo_id = Cargo::where('no_cargo', "=", $cg->cargo_nome)->first();
 				
-				$membro->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
+				$visitante->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
 			}
 		}
 		
@@ -154,52 +142,52 @@ class MembroController extends Controller
 			foreach($request->dependentes as $dependente)
 			{
 				// Criar um novo dependente com as informações inseridas
-				$membro->dependentes()->save(new Dependente($dependente));
+				$visitante->dependentes()->save(new Dependente($dependente));
 			}
 		}	
 		
 	
-		if ($membro) {
+		if ($visitante) {
 			DB::commit();
-			return redirect('/membros')->with('sucesso', ' O membro '
-																		.strtoupper($request->no_membro)    .' CIM Nº ' 
+			return redirect('/visitantes')->with('sucesso', ' O visitante '
+																		.strtoupper($request->visitante)    .' CIM Nº ' 
 																		.$request->co_cim
 																		.' foi cadastrado com sucesso'
 																	);
 		} else {
 			DB::rollBack();
-			return redirect('/membros/create')->with(['erros' => 'Falha ao cadastrar']); 
+			return redirect('/visitantes/create')->with(['erros' => 'Falha ao cadastrar']); 
 		}
 	}
 
 
-	public function show(Membro $membro)
+	public function show(Visitante $visitante)
 	{
 
 		dd("Não implementado ainda");
 
-		return view('membros.show',compact('membro','anterior','proximo'));
+		return view('visitantes.show',compact('visitante','anterior','proximo'));
 	}
 
 	public function edit($id)
 	{
-		$membro = $this->membro->find($id);
+		$visitante = $this->visitante->find($id);
 
-		$emails             = $membro->emails;
-		$dependentes        = $membro->dependentes;
+		$emails             = $visitante->emails;
+		$dependentes        = $visitante->dependentes;
 		$potencias          = Potencia::all()->sortBy('no_potencia');
 		$ritos              = pegaValorEnum('lojas','ic_rito') ;
 		$cargos             = Cargo::all()->sortBy('no_cargo');
 		
 		$edita = true;
-		$titulo = "Edição de Membro";
+		$titulo = "Edição de Visitante";
 
 		$aposentado         = ['Sim','Não'];
 
-		$escolaridade       = pegaValorEnum('membros','ic_escolaridade');                                                   
-		$situacao           = pegaValorEnum('membros','ic_situacao');                                                   
-		$grau               = pegaValorEnum('membros','ic_grau');                      
-		$estado_civil       = pegaValorEnum('membros','ic_estado_civil'); 
+		$escolaridade       = pegaValorEnum('visitantes','ic_escolaridade');                                                   
+		$situacao           = pegaValorEnum('visitantes','ic_situacao');                                                   
+		$grau               = pegaValorEnum('visitantes','ic_grau');                      
+		$estado_civil       = pegaValorEnum('visitantes','ic_estado_civil'); 
 		 
 		$sexos              = pegaValorEnum('dependentes','ic_sexo'); 
 		$parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
@@ -213,13 +201,13 @@ class MembroController extends Controller
 		$paises     = Pais::all()->sortBy('nome');
 		$lojas      = Loja::all()->sortBy('no_loja');
 		
-		return view('membros.create',compact(['membro','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
+		return view('visitantes.create',compact(['visitante','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
 		
 	}
 
 	public function destroy($id)
 	{
-		return "exclui o Membro: {$id}";
+		return "exclui o Visitante: {$id}";
 	}
 
 	public function update(Request $request, $id)
@@ -233,7 +221,7 @@ class MembroController extends Controller
 
 		// Validar dados do formulário
 		$this->validate($request, [
-			'no_membro'         	=> 'required|min:3|max:50',
+			'visitante'         	=> 'required|min:3|max:50',
 			'co_cim'            	=> 'required|max:11',
 			'cpf'               	=>  'cpf',
 
@@ -258,37 +246,37 @@ class MembroController extends Controller
 		]);
 		
 		
-		// Busca o membro;
-		$membro = Membro::find($id);
+		// Busca o visitante;
+		$visitante = Visitante::find($id);
 
-		//Atualizar os dados do membro;
-		$membro->update($request->all());
+		//Atualizar os dados do visitante;
+		$visitante->update($request->all());
 
 		// atualiza o status de aposentadoria
-		$membro->ic_aposentado = $request->aposentado ? 1 : 0;
+		$visitante->ic_aposentado = $request->aposentado ? 1 : 0;
 		
 		// Salvar no banco para obter o ID
-		$membro->save();
+		$visitante->save();
 		
 	
 
 		/* ==================================================================================== */
 		/* ENDEREÇO */
 		/* ==================================================================================== */
-		//apaga todos os endereços do membro
-		/* $membro->enderecos()->delete();
+		//apaga todos os endereços do visitante
+		/* $visitante->enderecos()->delete();
 
 		// Criar novos endereços com as informações enviadas
 		foreach($request->enderecos as $endereco)
 		{
-			$membro->enderecos()->save(new Endereco($endereco));
+			$visitante->enderecos()->save(new Endereco($endereco));
 		} */
 		
 		/* ==================================================================================== */
 		/* DEPENDENTE */
 		/* ==================================================================================== */
-		//apaga todos os dependentes do membro
-		$membro->dependentes()->delete();
+		//apaga todos os dependentes do visitante
+		$visitante->dependentes()->delete();
 		//dd($request->all());
 
 		// Criar novos dependentes com as informações enviadas
@@ -301,7 +289,7 @@ class MembroController extends Controller
 					foreach($request->dependentes as $dependente)
 					{
 						$novo_dependente = new Dependente($dependente);
-						$membro->dependentes()->save($novo_dependente);
+						$visitante->dependentes()->save($novo_dependente);
 						$b++;
 					}
 			}
@@ -312,33 +300,33 @@ class MembroController extends Controller
 		/* ==================================================================================== */
 		/* OCUPAÇÂO DE CARGOS */
 		/* ==================================================================================== */
-		//apaga todas as ocupações de cargos do membro
-		$membro->cargos()->delete();
+		//apaga todas as ocupações de cargos do visitante
+		$visitante->cargos()->delete();
 
 		
 		//cria os cargos
-		if(isset($request->cargos_membros))
+		if(isset($request->visitantes))
 		{
-			foreach($request->cargos_membros as $key => $cargo)
+			foreach($request->visitantes as $key => $cargo)
 			{
 				$cg = json_decode($cargo) ;
 			
 				$cargo_id = Cargo::where('no_cargo', "=", $cg->cargo_nome)->first();
 				
-				$membro->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
+				$visitante->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
 			}
 		}
 
 		
-		if ($membro /*and $cerimonia*/) {
+		if ($visitante /*and $cerimonia*/) {
 
-			return redirect('/membros')->with('sucesso', ' O membro '
-																		.strtoupper($request->no_membro)    .' CIM Nº ' 
+			return redirect('/visitantes')->with('sucesso', ' O visitante '
+																		.strtoupper($request->visitante)    .' CIM Nº ' 
 																		.$request->co_cim
 																		.' foi cadastrado com sucesso'
 																	);
 		} else {
-			return redirect('/membros')->with(['erros' => 'Falha ao cadastrar']); 
+			return redirect('/visitantes')->with(['erros' => 'Falha ao cadastrar']); 
 		}
 
 	}

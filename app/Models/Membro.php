@@ -42,6 +42,7 @@ class Membro extends Model
         'tel_cel',
         'tel_com',
         'ramal_com',
+        'de_contato',
         'endereco_comercial_id',
         'endereco_residencial_id',
 

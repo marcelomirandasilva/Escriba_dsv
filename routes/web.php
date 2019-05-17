@@ -44,6 +44,7 @@ Route::post('/zerarsenhausuario',	'EmailController@ZerarSenhaUsuario');
 
 //resources
 Route::resource('membros', 			'MembroController');
+Route::resource('visitantes',			'VisitanteController');
 Route::resource('lojas', 				'LojaController');
 Route::resource('usuarios', 			'UserController');
 Route::resource('sessoes', 			'SessaoController');

@@ -71,4 +71,8 @@ class Loja extends Model
 		return $this->belongsTo('App\Models\Cerimonia');
 	}
 
+	public function visitantes()
+	{
+		return $this->hasMany('App\Models\Visitante');
+	}
 }
