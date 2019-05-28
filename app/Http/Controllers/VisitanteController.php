@@ -71,82 +71,28 @@ class VisitanteController extends Controller
 	
 	public function store(Request $request)
 	{
-		//se for candidaro, coloca zeros no CIM
-		if(trim($request->ic_grau) == "Candidato")
-		{
-			$request->merge(['co_cim' => "000.000"]);
-		}
-
-		if(trim($request->loja_id_iniciacao) == "null"){$request->merge(['loja_id_iniciacao' => null]);}
-		if(trim($request->loja_id_elevacao) == "null"){$request->merge(['loja_id_elevacao' => null]);}
-		if(trim($request->loja_id_exaltacao) == "null"){$request->merge(['loja_id_exaltacao' => null]);}
-		if(trim($request->loja_id_instalacao) == "null"){$request->merge(['loja_id_instalacao' => null]);}
-
+		
 		// Validar dados do formulário
 		$this->validate($request, [
-			'visitante'         	=> 'required|min:3|max:50',
+			'no_visitante'       => 'required|min:3|max:50',
+			'ic_grau'            => 'required',
 			'co_cim'            	=> 'required|max:11',
-			'cpf'               	=>  'cpf',
-
-			'dt_nascimento'     	=> 'date|nullable',
-			'dt_casamento'      	=> 'date|nullable',
-			'dt_emissao_idt'    	=> 'date|nullable',
-			'dt_emissao_titulo' 	=> 'date|nullable',
-			'dt_iniciacao'     	=> 'date|nullable',
-			'dt_elevacao'     	=> 'date|nullable',
-			'dt_exaltacao'     	=> 'date|nullable',
-			'dt_instalacao'     	=> 'date|nullable',
-			'dt_filiacao'     	=> 'date|nullable',
-			'dt_regularizacao'  	=> 'date|nullable',
-			'dt_honorario'			=> 'date|nullable',
-			'dt_remido'				=> 'date|nullable',
-			'dt_emerito'			=> 'date|nullable',
-			'dt_benemerito'		=> 'date|nullable',
-			'dt_grande_benemerito'	=> 'date|nullable',
-			'dt_estrela_distincao'	=> 'date|nullable',
-			'dt_cruz_perfeicao'	=> 'date|nullable',
-			'dt_comanda_DPI'		=> 'date|nullable',
+			'loja_id'            =>  'required'
 		]);
-
-		//dd($request->all());
-		
+			
+			
 		//inicia sessão de banco
 		DB::beginTransaction();
+			
 		
 		// Cria um novo visitante
 		$visitante = new Visitante($request->all());
 		
-		// Verificar se está aposentado
-		$visitante->ic_aposentado = $request->aposentado ? 1 : 0;
-
 		// Salvar no banco para obter o ID
 		$visitante->save();
 		
-		//cria os cargos
-		if(isset($request->visitantes))
-		{
-			foreach($request->visitantes as $key => $cargo)
-			{
-				$cg = json_decode($cargo) ;
+		//dd($request->all());
 			
-				$cargo_id = Cargo::where('no_cargo', "=", $cg->cargo_nome)->first();
-				
-				$visitante->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
-			}
-		}
-		
-		
-		//verifica se existe algum dependente a ser cadastrado
-		if($request->dependentes[0]["no_dependente"] != null)
-		{
-			foreach($request->dependentes as $dependente)
-			{
-				// Criar um novo dependente com as informações inseridas
-				$visitante->dependentes()->save(new Dependente($dependente));
-			}
-		}	
-		
-	
 		if ($visitante) {
 			DB::commit();
 			return redirect('/visitantes')->with('sucesso', ' O visitante '
@@ -173,35 +119,22 @@ class VisitanteController extends Controller
 	{
 		$visitante = $this->visitante->find($id);
 
-		$emails             = $visitante->emails;
-		$dependentes        = $visitante->dependentes;
-		$potencias          = Potencia::all()->sortBy('no_potencia');
-		$ritos              = pegaValorEnum('lojas','ic_rito') ;
-		$cargos             = Cargo::all()->sortBy('no_cargo');
-		
-		$edita = true;
-		$titulo = "Edição de Visitante";
-
-		$aposentado         = ['Sim','Não'];
-
-		$escolaridade       = pegaValorEnum('visitantes','ic_escolaridade');                                                   
-		$situacao           = pegaValorEnum('visitantes','ic_situacao');                                                   
 		$grau               = pegaValorEnum('visitantes','ic_grau');                      
 		$estado_civil       = pegaValorEnum('visitantes','ic_estado_civil'); 
-		 
-		$sexos              = pegaValorEnum('dependentes','ic_sexo'); 
-		$parentescos        = pegaValorEnum('dependentes','ic_grau_parentesco'); 
-		$cargos_ocupados    = [];        
+		$potencias          = Potencia::all()->sortBy('no_potencia');
+		$ritos              = pegaValorEnum('lojas','ic_rito') ;
 
-		//orderna os valores dos arrays
-		sort($estado_civil);
-		sort($situacao);
-		sort($parentescos);
 
-		$paises     = Pais::all()->sortBy('nome');
-		$lojas      = Loja::all()->sortBy('no_loja');
+
 		
-		return view('visitantes.create',compact(['visitante','edita','enderecos', 'telefones', 'emails','dependentes','estado_civil','grau','situacao','escolaridade','aposentado','paises','titulo','parentescos','lojas','sexos','potencias','ritos','cargos','cargos_ocupados']));
+		$edita 	= true;
+		$titulo 	= "Edição de Visitante";
+
+		$grau		= pegaValorEnum('visitantes','ic_grau');                      
+		
+		$lojas   = Loja::all()->sortBy('no_loja');
+		
+		return view('visitantes.create',compact(['edita','grau','lojas','titulo','visitante', 'potencias','ritos']));
 		
 	}
 

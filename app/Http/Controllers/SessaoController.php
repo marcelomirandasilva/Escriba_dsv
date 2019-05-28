@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Faker\Generator as Faker;
 
 use App\Models\Visitante;
-use App\Models\Config;
+use App\Models\Setup;
 use App\Models\Sessao;
 use App\Models\Membro;
 use App\Models\Cargo;
@@ -37,7 +37,7 @@ class SessaoController extends Controller
 		$cargos  = Cargo::orderBy('no_cargo')->get();
 
 		//carrega a hora que inicia a sessão na tabela de configurações
-		$hh_inicio = Config::first()->hh_inicio_sessao;
+		$hh_inicio = Setup::first()->hh_inicio_sessao;
 
 		//adiciona 2 horas a hora de inicio
 		$timestamp = strtotime($hh_inicio) + 60*120;

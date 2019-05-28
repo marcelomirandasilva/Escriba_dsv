@@ -14,22 +14,29 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
 		
-		@stack('styles')
+		<link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
 		
+		<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+	
 		<link rel="stylesheet" href="{{ mix('/css/app.css') }}">      
-</head>
+	</head>
 
 	
 	<body class="nav-md">
 		<div class="container body"  >
 
-			<div class="main_container">
+			<div class="main_container" >
 				<div class="col-md-3 left_col">
 					<div class="left_col scroll-view">
 						<div class="navbar nav_title" style="border: 0;">
 							<a href="{{ url('/') }}" class="site_title">
+								<img class="logo_side_bar" src="{{ asset("img/thoth.ico") }}">
 								<span>Escriba</span>
-								<i class="logo_side_bar" style="background-image: {{ asset('/img/thoth.ico')}}"></i> 
 							</a>
 						</div>
 
@@ -55,11 +62,20 @@
 				<div id="app">
 
 					<!-- page content -->
-					<div class="right_col" role="main" >
+					<div class="right_col" role="main" style="min-height: 583px;" >
 						<div class="clearfix"></div>
 
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12">
+								<!---------------------- Mostra os erros de validação ------------------------------>
+								@if( count($errors) > 0 )
+									<div class="alert alert-danger alert-dismissible" role="alert">
+										@foreach($errors->all() as $erro)
+												<p> {{ $erro }} </p>
+										@endforeach
+									</div>
+								@endif
+								<!------------------------------------------------------------------------------------>
 
 								@yield('content')
 									
@@ -85,13 +101,6 @@
 		{{-- <script src="{{ asset('js/notify.js') }}"></script> --}}
 		<script src="{{ mix('/js/components.js')}}"></script>
 		
-		<script type="text/javascript">
-			$(document).ready(function() {
-				/* Para que el panel blanco area de contenido ocupe todo el contenedor */
-				//$RIGHT_COL.css({'min-height':"100%"});
-				$('.right_col').css({'min-height':"100%"});
-			});
-		</script>
 		@yield('scripts_blade')
 		@stack('scripts')
   

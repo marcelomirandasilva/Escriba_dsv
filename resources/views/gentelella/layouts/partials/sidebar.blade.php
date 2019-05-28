@@ -79,6 +79,7 @@
 				<ul class="nav child_menu">
 					@if((Auth::user()->acesso == 'ADMINISTRADOR'))
 					<li><a href="{{ url('/usuarios') }}">Usuários</a></li>
+					<li><a href="{{ url('/setups') }}">Setups</a></li>
 					@endif
 					<li><a href="{{ url('senha') }}">Alerar Senha</a></li>
 					<li><a href="{{ url('perfil') }}">Alerar Perfil</a></li>

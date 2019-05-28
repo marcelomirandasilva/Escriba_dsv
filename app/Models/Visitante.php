@@ -12,7 +12,7 @@ class Visitante extends Model
 	protected $fillable =[
 		'no_visitante',
 		'co_cim',
-		'dt_nascimento',
+		'loja_id',
 		'ic_grau'
 	];
 

@@ -1,7 +1,8 @@
 @extends('gentelella.layouts.app')
 
 @section('content')
-	
+
+			
 	<div class="modal-content animated  x_panel" >
 		<div class="x_title">
 			<h2> {{ $titulo }} </h2>

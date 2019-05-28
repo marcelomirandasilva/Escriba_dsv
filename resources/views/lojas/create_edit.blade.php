@@ -1,9 +1,5 @@
 @extends('gentelella.layouts.app')
 
-@push('styles')
-	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-@endpush
-
 @section('content')
 	
 	{{-- @include('gentelella.layouts.partials.mensagens') --}}
