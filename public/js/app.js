@@ -11484,8 +11484,8 @@ window.Vue = __webpack_require__(55);
 Vue.component('notificacoes', __webpack_require__(58));
 Vue.component('botao_ok_cancel', __webpack_require__(61));
 
-var app = new Vue({
-  el: '#app'
+var root = new Vue({
+  el: '#root'
 });
 
 /***/ }),
@@ -34574,9 +34574,9 @@ pointBorderWidth:1,data:[31,74,6,39,20,85,7]},{label:"My Second dataset",backgro
 /***/ (function(module, exports) {
 
 // remove (Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.)
-$(document).ready(function () {
+/* $(document).ready(function () {
     $('.ui-pnotify').remove();
-});
+}); */
 
 /* // AJUSTE DO MENU SIDE-BAR. sem esse codigo ele não funciona quando usar o vue.js
 $SIDEBAR_MENU.find('a').on('click', function (ev) {

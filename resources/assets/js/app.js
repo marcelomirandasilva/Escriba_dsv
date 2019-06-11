@@ -22,6 +22,8 @@ require('./scripts');
 window.Vue = require('vue');
 
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -33,7 +35,7 @@ window.Vue = require('vue');
 Vue.component('notificacoes', require('./components/notificacoes/Notificacoes.vue')); 
 Vue.component('botao_ok_cancel', require('./components/comum/botao_ok_cancel.vue')); 
 
-const app = new Vue({
-    el: '#app'
+const root = new Vue({
+    el: '#root'
 });
 
