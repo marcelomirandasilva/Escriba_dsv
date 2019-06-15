@@ -64,7 +64,7 @@
 					<!-- top navigation -->
 					@include('gentelella.layouts.partials.mainheader')
 					<!-- /top navigation -->
-					<div id="root">
+					<div id="app">
 
 						<!-- page content -->
 						<div class="right_col" role="main" style="min-height: 583px;" >

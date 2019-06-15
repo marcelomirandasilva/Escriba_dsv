@@ -16,7 +16,7 @@ class CreateSetupsTable extends Migration
         Schema::create('setups', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->integer('loja_id')->unsigned();
+            //$table->integer('loja_id')->unsigned();
             $table->time('hh_inicio_sessao');
             
             $table->enum('dt_semana_sessao',[
@@ -42,9 +42,9 @@ class CreateSetupsTable extends Migration
             
         });
 
-        Schema::table('setups', function($table){
+       /*  Schema::table('setups', function($table){
             $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
-        });        
+        });   */      
     }
 
     /**

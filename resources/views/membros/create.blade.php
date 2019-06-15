@@ -164,10 +164,10 @@
 			$("#tel_com").mask("(99)9999-9999");
 			$("#tel_cel").mask("(99)99999-9999");
 
-			$("#nu_cpf").mask("999.999.999-99");
-			$("#nu_titulo_eleitor").mask("99.999.999-9");
+			$("#nu_cpf").mask('000.000.000-00', {reverse: true});
+			$("#nu_titulo_eleitor").mask("99.999.999-9",  {reverse: true});
 
-			$("#co_cim").mask("999.999.999",{reverse: true} );  
+			$("#co_cim").mask("#.000.000",{reverse: true} );  
 			
 			
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );

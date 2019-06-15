@@ -22,7 +22,8 @@ require('./scripts');
 window.Vue = require('vue');
 
 
-
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,7 +36,7 @@ window.Vue = require('vue');
 Vue.component('notificacoes', require('./components/notificacoes/Notificacoes.vue')); 
 Vue.component('botao_ok_cancel', require('./components/comum/botao_ok_cancel.vue')); 
 
-const root = new Vue({
-    el: '#root'
+const app = new Vue({
+    el: '#app'
 });
 
