@@ -152,11 +152,17 @@ class MembroController extends Controller
 		{
 			foreach($request->dependentes_membros as $key => $dependente)
 			{
-				$novoDependente = (json_decode($dependente));
-				//$novoDependente = new Dependente(json_decode($dependente));
-
-				dd( $novoDependente);
+				$decodeDependente = (json_decode($dependente));
+				
+				$novoDependente 								= new Dependente();
+				$novoDependente->no_dependente 			= $decodeDependente->no_dependente;
+				$novoDependente->ic_sexo					= $decodeDependente->ic_sexo;
+				$novoDependente->ic_grau_parentesco 	= $decodeDependente->ic_grau_parentesco;
+				$novoDependente->dt_nascimento 			= $decodeDependente->dt_nascimento;
+				
+				
 				$membro->dependentes()->save($novoDependente);
+				//dd( $membro);
 			}
 		}
 		
