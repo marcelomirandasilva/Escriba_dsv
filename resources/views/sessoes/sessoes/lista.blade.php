@@ -7,15 +7,11 @@
 	<div class="x_panel modal-content ">
 		<div class="x_title">
 			<h2> Listagem de Sessões </h2>
-
-			<a href="{{ url('sessoes/create') }}"
-				class="btn-circulo btn btn-primary btn-md   pull-right "
-				data-toggle="tooltip"
-				data-placement="bottom"
-				title="Adiciona uma Sessão">
-				<span class="fa fa-plus">  </span>
-			</a>
-			<div class="clearfix"></div>
+			<botao_adiciona
+				url="{{ url('sessoes/create') }}"
+				descricao="Adiciona uma Sessão"
+			/> 
+			
 		</div>
 		<div class="x_content animated fadeInUp">
 			<div class="panel-body">

@@ -160,12 +160,12 @@
 		let contador_linhas_tabela_dependentes = 0;
 		
 		$(document).ready(function(){
-			$("#tel_res").mask("(99)9999-9999");
-			$("#tel_com").mask("(99)9999-9999");
-			$("#tel_cel").mask("(99)99999-9999");
+			$("#tel_res").mask("(00)9000-0000");
+			$("#tel_com").mask("(00)9000-0000");
+			$("#tel_cel").mask("(00)90000-0000");
 
 			$("#nu_cpf").mask('000.000.000-00', {reverse: true});
-			$("#nu_titulo_eleitor").mask("99.999.999-9",  {reverse: true});
+			$("#nu_titulo_eleitor").mask("00.000.000-0",  {reverse: true});
 
 			$("#co_cim").mask("#.000.000",{reverse: true} );  
 			

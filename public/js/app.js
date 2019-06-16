@@ -11490,6 +11490,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_the_mask___default.a);
 
 Vue.component('notificacoes', __webpack_require__(59));
 Vue.component('botao_ok_cancel', __webpack_require__(62));
+Vue.component('botao_adiciona', __webpack_require__(81));
 
 var app = new Vue({
   el: '#app'
@@ -50455,7 +50456,7 @@ exports = module.exports = __webpack_require__(65)(false);
 
 
 // module
-exports.push([module.i, "\n.alinha_direita{\n\ttext-align: right;\n}\n", ""]);
+exports.push([module.i, "\n.alinha_direita{\n\ttext-align: right;\n}\n.botoes{\n\n\tborder-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -50860,7 +50861,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-success  ",
+          staticClass: "btn btn-success  botoes",
           attrs: {
             id: "send",
             type: "submit",
@@ -50874,7 +50875,7 @@ var render = function() {
       _c(
         "a",
         {
-          staticClass: "btn btn-danger  ",
+          staticClass: "btn btn-danger  botoes",
           attrs: {
             href: _vm.url_cancelar,
             "data-toggle": "tooltip",
@@ -50901,6 +50902,178 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(82)
+}
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = __webpack_require__(84)
+/* template */
+var __vue_template__ = __webpack_require__(85)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/comum/botao_adiciona.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0de74cad", Component.options)
+  } else {
+    hotAPI.reload("data-v-0de74cad", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(83);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(66)("6e6f221e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0de74cad\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./botao_adiciona.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0de74cad\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./botao_adiciona.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(65)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.btn-adiciona{\n\t\ttext-align: center;\n\t\tfont-size: 13px;\n\t\tline-height: 1.428571429;\n\t\tborder-radius: 10px;\n\t\t\n    padding-top: 4px;\n    padding-bottom: 4px;\n    padding-left: 8px;\n    padding-right: 8px;\n}\n.cor{\n\t\tcolor: currentColor!important;\n}\n.descricao {\n    \tfont-size: 14px !important;\n\t \tpadding-right: 10px !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	mounted: function mounted() {
+		console.log('Component mounted.');
+	},
+
+
+	props: ['url', 'descricao']
+
+});
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass: " btn btn-primary btn-md   pull-right btn-adiciona",
+        attrs: {
+          href: _vm.url,
+          "data-toggle": "tooltip",
+          "data-placement": "bottom",
+          title: _vm.descricao
+        }
+      },
+      [
+        _c("span", { staticClass: "fa fas fa-plus-circle cor" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "descricao cor" }, [_vm._v(" Novo ")])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "clearfix" })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0de74cad", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

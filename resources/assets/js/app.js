@@ -35,6 +35,7 @@ Vue.use(VueTheMask)
 
 Vue.component('notificacoes', require('./components/notificacoes/Notificacoes.vue')); 
 Vue.component('botao_ok_cancel', require('./components/comum/botao_ok_cancel.vue')); 
+Vue.component('botao_adiciona', require('./components/comum/botao_adiciona.vue')); 
 
 const app = new Vue({
     el: '#app'
