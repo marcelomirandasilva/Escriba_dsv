@@ -8,11 +8,11 @@ class Setup extends Model
 {
     
     protected $fillable =[
-        'hh_inicio_sessao',
+        'id',
         'loja_id',
-        'hh_inicio_sessao',
         'dt_semana_sessao',
-        'dt_frequencia_sessao',
-
+        'de_complemento_dt_sessao',
+        'hh_inicio_sessao',
+        'cnpj',
     ];
 }
