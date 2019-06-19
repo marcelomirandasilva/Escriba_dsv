@@ -131,6 +131,10 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
 	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 
+
+	{{-- REDIRECT JS https://github.com/mgalante/jquery.redirect --}}
+	<script src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"                 type="text/javascript"></script>
+
 	<script>
     	$(document).ready(function(){
 
@@ -158,14 +162,9 @@
 				let btn = $(this);
 
 				console.log(id_sessao);
-				$.redirect(http://localhost/test/test1.php,{
-						user_name: "khan",
-						city : "Meerut",
-					country : "country"
-						});
-				
-				see=https://github.com/mgalante/jquery.redirect
-				window.location.href = url_base + "/sessoes/presencas/" + id_sessao; 
+				$.redirect(url_base + "/sessoes", {sessao: id_sessao}, "POST", "_blank");
+
+/* 				window.location.href = url_base + "/sessoes/presencas/" + id_sessao;  */
 			});
 
 

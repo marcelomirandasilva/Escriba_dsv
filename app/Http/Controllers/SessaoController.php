@@ -53,7 +53,7 @@ class SessaoController extends Controller
 
 	public function store(Request $request)
 	{
-
+dd("aqui");
 		$this->validate($request, [
 			'dt_sessao'   		=> 'date',
 			'hh_inicio'     	=> 'required',

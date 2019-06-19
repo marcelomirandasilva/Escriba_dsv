@@ -61,6 +61,7 @@ Route::resource('setups', 				'SetupController');
 
 
 
+
 //Route::group(['prefix' => 'irmaos'],function(){
 //	Route::get ('/',              	'IrmaoController@index');
 //	Route::get ('/create',        	'IrmaoController@create');
