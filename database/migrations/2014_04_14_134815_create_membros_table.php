@@ -72,7 +72,6 @@ class CreateMembrosTable extends Migration
 
 
             $table->enum('ic_grau', [
-                                        'Candidato',
                                         'Aprendiz', 
                                         'Companheiro',
                                         'Mestre',
@@ -112,12 +111,15 @@ class CreateMembrosTable extends Migration
                                             ])              ->nullable();
             //-----------------------------CERIMONIAS----------------------      
 
+            $table->enum('ic_ingresso_loja', ['Iniciação','Filiação','Honorário','Fundação da Loja',])->nullable();
+            $table->date('dt_ingresso_loja')                 ->nullable();
             $table->date('dt_iniciacao')                    ->nullable();
             $table->date('dt_elevacao')                     ->nullable();
             $table->date('dt_exaltacao')                    ->nullable();
             $table->date('dt_instalacao')                   ->nullable();
-            $table->date('dt_filiacao')                     ->nullable();
-            $table->date('dt_regularizacao')                ->nullable();
+            
+            /*$table->date('dt_filiacao')                     ->nullable();
+            $table->date('dt_regularizacao')                ->nullable(); */
             
             $table->unsignedInteger('loja_id_iniciacao')    ->nullable();
             $table->unsignedInteger('loja_id_elevacao')     ->nullable();
@@ -146,7 +148,6 @@ class CreateMembrosTable extends Migration
             
             //------------CONDECORACOES------------------------------------
 
-            $table->date('dt_honorario')            ->nullable();
             $table->date('dt_remido')               ->nullable();
             $table->date('dt_emerito')               ->nullable();
             $table->date('dt_benemerito')            ->nullable();
@@ -155,7 +156,6 @@ class CreateMembrosTable extends Migration
             $table->date('dt_cruz_perfeicao')       ->nullable();
             $table->date('dt_comanda_DPI')          ->nullable();
 
-            $table->integer('nu_honorario')         ->nullable();
             $table->integer('nu_remido')            ->nullable();
             $table->integer('nu_emerito')            ->nullable();
             $table->integer('nu_benemerito')         ->nullable();

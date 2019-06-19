@@ -70,7 +70,7 @@ class SessaoController extends Controller
 		// Criar uma sessao
 	  	$novaSessao = Sessao::create($request->all());
 
-		//cria as presencas 
+/* 		//cria as presencas 
 		if(isset($request->presencas))
 		{
 			foreach($request->presencas as $key => $presenca)
@@ -79,7 +79,7 @@ class SessaoController extends Controller
 				$novaSessao->membros()->attach($cg->membro_id, ['cargo_id' => $cg->cargo_id]);
 			}
 		}
-	
+	 */
 	
 		DB::commit();
 		return redirect('sessoes')->with('sucesso', 'Sessão criada com sucesso!');
@@ -125,7 +125,7 @@ class SessaoController extends Controller
 		return view('sessoes.sessoes.create_edit', compact('sessao','membros','graus','tipos_sessao','cargos','dados_tabela' )) ;
 	}
 
-	public function update(Request $request, Sessao $sessao)
+	public function update(Request $request, $id)
 	{
 
 		$this->validate($request, [
@@ -140,12 +140,15 @@ class SessaoController extends Controller
 		//inicia sessão de banco
 		DB::beginTransaction();
 
-		//dd($sessao);
+		//dd($id);
+		$sessao = Sessao::find($id);
+
 		// altera os dados do sessao
 		$sessao->fill($request->all());
 		$salvou_sessao = $sessao->save();
-		//dd($request->all());
-		//cria as presencas 
+		
+		
+		/* //cria as presencas 
 		if(isset($request->presencas))
 		{
 			foreach($request->presencas as $key => $presenca)
@@ -153,16 +156,16 @@ class SessaoController extends Controller
 				$cg = json_decode($presenca) ;
 				$sessao->membros()->attach($cg->membro_id, ['cargo_id' => $cg->cargo_id]);
 			}
-		}
+		} */
 
 
 		if($salvou_sessao){
 			DB::commit();
-			return redirect('sessoes')->with('sucesso', 'sessao Alterado com sucesso!');
+			return redirect('sessoes')->with('sucesso', 'Sessão Alterada com sucesso!');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
-			return back()->withInput()->with('error', 'Falha ao Alterar o sessao.');    
+			return back()->withInput()->with('error', 'Falha ao Alterar a Sessão.');    
 		}
 	}
 

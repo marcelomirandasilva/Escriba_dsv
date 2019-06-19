@@ -54,7 +54,6 @@
 									<a href="{{ url("sessoes/$sessao->id/edit") }}"
 										class="btn btn-danger btn-xs action botao_lista pull-right "
 										data-toggle="tooltip"
-										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
 										title="Apaga essa Sessão">
 										<i class="glyphicon glyphicon-remove icone_botao_lista"></i>
@@ -62,7 +61,6 @@
 									<a href="{{ url("sessoes/$sessao->id/edit") }}"
 										class="btn btn-warning btn-xs action botao_lista pull-right "
 										data-toggle="tooltip"
-										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
 										title="Edita essa Sessão">
 										<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
@@ -70,7 +68,6 @@
 									<a href="{{ url("sessoes/$sessao->id") }}"
 										class="btn btn-primary btn-xs  action botao_lista pull-right "
 										data-toggle="tooltip"
-										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
 										title="Visualiza essa Sessão">
 										<i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
@@ -78,7 +75,6 @@
 									<a href="{{ url("sessoes/$sessao->id") }}"
 										class="btn btn-info btn-xs  action botao_lista pull-right "
 										data-toggle="tooltip"
-										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
 										title="Expediente da Sessão">
 										<i class="glyphicon glyphicon-envelope icone_botao_lista"></i>
@@ -86,16 +82,13 @@
 									<a href="{{ url("sessoes/$sessao->id") }}"
 										class="btn btn-info btn-xs  action botao_lista pull-right "
 										data-toggle="tooltip"
-										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
 										title="Ata da Sessão">
 										<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
 									</a>
-									<a href="#"
-										id="btn_presenca"
+									<a href="{{ url("sessoes/$sessao->id/edit") }}"
 										class="btn btn-success btn-xs action botao_lista pull-right "
 										data-toggle="tooltip"
-										data-sessao = {{ $sessao->id }}
 										data-placement="bottom"
 										title="Presença na Sessão">
 										<i class="glyphicon glyphicon-hand-up icone_botao_lista"></i>
@@ -150,25 +143,7 @@
 				stateSave: true,
 				stateDuration: -1,
 				  
-			});
-			  
-			$("table#tabela_sessoes").on("click", "#btn_presenca",function(){
-				event.preventDefault();
-				let id_sessao = $(this).data('sessao');
-				let btn = $(this);
-
-				console.log(id_sessao);
-				$.redirect(http://localhost/test/test1.php,{
-						user_name: "khan",
-						city : "Meerut",
-					country : "country"
-						});
-				
-				see=https://github.com/mgalante/jquery.redirect
-				window.location.href = url_base + "/sessoes/presencas/" + id_sessao; 
-			});
-
-
+        	});
     	});
   	</script>
 @endpush

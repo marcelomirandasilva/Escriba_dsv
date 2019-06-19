@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ConfigTableSeeder extends Seeder
+class SetupsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class ConfigTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('configs')->insert(['hh_inicio_sessao'   => '19:00']);    
+       // DB::table('setups')->insert(['hh_inicio_sessao'   => '19:00']);    
         
 
     }
