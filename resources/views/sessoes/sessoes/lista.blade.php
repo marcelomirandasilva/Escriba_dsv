@@ -162,7 +162,7 @@
 				let btn = $(this);
 
 				console.log(id_sessao);
-				$.redirect(url_base + "/sessoes", {sessao: id_sessao}, "POST", "_blank");
+				$.redirect(url_base + "/presencas", {sessao: id_sessao, _token: "{{ csrf_token() }}" }, "POST");
 
 /* 				window.location.href = url_base + "/sessoes/presencas/" + id_sessao;  */
 			});

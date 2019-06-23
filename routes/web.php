@@ -49,6 +49,7 @@ Route::resource('lojas', 				'LojaController');
 Route::resource('usuarios', 			'UserController');
 Route::resource('sessoes', 			'SessaoController');
 Route::resource('setups', 				'SetupController');
+Route::resource('presencas', 			'PresencaController');
 
 
 

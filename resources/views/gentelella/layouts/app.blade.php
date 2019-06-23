@@ -100,6 +100,25 @@
 		<script>
 			//variáveis globais ao sistema
 			let url_base       = "{{ url("/") }}"; 
+			//mensagens de sucesso
+			@if (session('sucesso'))
+				$.notify("{{ session('sucesso') }}", "success");
+			@endif
+
+			@if (session('ja_existe'))
+				swal('Atenção!', '{{ session('ja_existe') }}' ,'warning');
+			@endif
+
+
+			// Testar se há algum erro, e mostrar a notificação 
+			var tempo = 0;
+			var incremento = 500;
+			@if ($errors->any())
+				@foreach ($errors->all() as $error)
+					setTimeout(function(){funcoes.notificationRight("top", "right", "danger", "{{ $error }}"); }, tempo);
+					tempo += incremento;
+				@endforeach
+			@endif
 		</script>   
 		
 		<!-- scripts -->
@@ -107,6 +126,11 @@
 		
 		<script src="{{ mix('/js/components.js')}}"></script>
 		
+
+		
+
+
+
 		@yield('scripts_blade')
 		@stack('scripts')
   
