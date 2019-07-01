@@ -25,15 +25,8 @@ class PresencaController extends Controller
 	}
 
 
-	public function create()
+	public function registra(Request $request)
 	{
-		//
-	}
-
-	
-	public function store(Request $request)
-	{
-		//dd($request->all());
 		
 		$sessao 		= Sessao::find($request->sessao);
 		
@@ -76,6 +69,12 @@ class PresencaController extends Controller
 		return view('sessoes.presencas.create_edit', compact('dados_tabela','sessao','membros','visitantes','cargos' )) ;
 		
 
+	}
+
+	
+	public function store(Request $request)
+	{
+		
 	}
 
 

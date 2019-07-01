@@ -23,35 +23,37 @@
 				<input id="dados_sessao" name="dados_sessao" type="hidden">  
 
 				<div class="col-md-12  col-xs-12 ">
-					<div class="form-group col-md-2 col-xs-12  ">
-						<label class="control-label" for="dt_sessao">Data da Sessão</label>
-						<input type = "date" id="dt_sessao" class="form-control col-md-2" name="dt_sessao"  value="{{$sessao->dt_sessao}}" disabled>
+					<div class=" form-group">
+						<div class="col-md-2 col-xs-12  ">
+							<label class="control-label" for="dt_sessao">Data da Sessão</label>
+							<input type = "date" id="dt_sessao" class="form-control col-md-2" name="dt_sessao"  value="{{$sessao->dt_sessao}}" disabled>
+						</div>
+
+						<div class="col-md-1 col-xs-12 ">
+							<label class="control-label" for="hh_inicio">Inicio</label>
+							<input id="hh_inicio" class="form-control col-md-2 horas_input" name="hh_inicio"  value="{{ $sessao->hh_inicio}}" disabled>
+						</div>
+
+						<div class="col-md-1 col-xs-12 ">
+							<label class="control-label" for="hh_termino">Término</label>
+							<input id="hh_termino" class="form-control col-md-2 horas_input" name="hh_termino"  value="{{$sessao->hh_termino}}" disabled>
+						</div>
+
+						<div class=" col-md-6 col-xs-12">
+							<label class="control-label " for="ic_tipo_sessao"> Tipo da Sessão </label>
+							<input id="ic_tipo_sessao" class="form-control col-md-2" name="ic_tipo_sessao"  value="{{$sessao->ic_tipo_sessao}}" disabled>
+						</div>
+
+						<div class="col-md-2 col-xs-12 ">
+							<label class="control-label " for="ic_grau"> Grau da Sessão </label>
+							<input id="ic_grau" class="form-control col-md-2" name="ic_grau"  value="{{$sessao->ic_grau}}" disabled>
+						</div>
 					</div>
 
-					<div class="form-group col-md-1 col-xs-12 ">
-						<label class="control-label" for="hh_inicio">Inicio</label>
-						<input id="hh_inicio" class="form-control col-md-2 horas_input" name="hh_inicio"  value="{{ $sessao->hh_inicio}}" disabled>
-					</div>
-
-					<div class="form-group col-md-1 col-xs-12 ">
-						<label class="control-label" for="hh_termino">Término</label>
-						<input id="hh_termino" class="form-control col-md-2 horas_input" name="hh_termino"  value="{{$sessao->hh_termino}}" disabled>
-					</div>
-
-					<div class=" form-group col-md-6 col-xs-12">
-						<label class="control-label " for="ic_tipo_sessao"> Tipo da Sessão </label>
-						<input id="ic_tipo_sessao" class="form-control col-md-2" name="ic_tipo_sessao"  value="{{$sessao->ic_tipo_sessao}}" disabled>
-					</div>
-
-					<div class="form-group col-md-2 col-xs-12 ">
-						<label class="control-label " for="ic_grau"> Grau da Sessão </label>
-						<input id="ic_grau" class="form-control col-md-2" name="ic_grau"  value="{{$sessao->ic_grau}}" disabled>
-					</div>
-
+					
 
 					<div class=" form-group">
-	
-						<div class="col-md-5">
+							<div class="col-md-5">
 							<label class="control-label col-md-1 " for="no_membro"> Membro/visitante </label>
 							<select   name="no_membro" id="no_membro" class="form-control col-md-4 no_membro" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
 								<option value=""  selected style="color: #ccc;"> --- </option>
@@ -60,7 +62,6 @@
 								@endforeach
 							</select>
 						</div>
-	
 	
 						<div class="col-md-5">
 							<label class="control-label col-md-1 " for="no_cargo"> Cargo </label>
@@ -72,8 +73,6 @@
 							</select>
 						</div>
 
-						
-
 						<div class="col-md-1 ">
 							<button id="bt_add_membro_sessao"
 								data-target="#bt_add_membro_sessao"
@@ -84,7 +83,6 @@
 									<span class="fa fa-plus">  </span>
 							</button> 
 						</div>
-	
 					</div>
 				
 				
@@ -208,13 +206,13 @@
 				var membro_id 		= $("#no_membro :selected").val();
 				var cargo_id		= $("#no_cargo :selected").val();
 				
-				if (cargo_id == ""){
+				/* if (cargo_id == ""){
 					//testa se o cargo está vazio
 					$(".no_cargo").notify("O cargo deve ser informado",{
 						className: "error",
 						autoHideDelay: 5000
 					});
-				}else if (membro_id =="" ){
+				}else */ if (membro_id =="" ){
 					//testa se as datas são maiores que 1900
 					$(".no_membro").notify("O membro deve ser informado",{
 						className: "error",
