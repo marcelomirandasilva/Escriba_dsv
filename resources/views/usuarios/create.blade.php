@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@push('stylesheets')
-	<!-- Example -->
-	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-
-@endpush
-
 @section('conteudo')
 	<!-- page content -->
 	{{-- Mostrar os erros de validação --}}

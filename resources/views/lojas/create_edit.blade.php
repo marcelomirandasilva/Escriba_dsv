@@ -1,12 +1,5 @@
 @extends('gentelella.layouts.app')
 
-@push('styles')
-	<!-- Example -->
-	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-
-@endpush
-
 @section('content')
 	
 	{{-- @include('gentelella.layouts.partials.mensagens') --}}
@@ -36,15 +29,8 @@
 						Título <span class="required">*</span>
 					</label>
 					<div class="col-md-2 ">
-						<input id="co_titulo"   
-							class="form-control col-md-2" 
-							name="co_titulo" 
-							placeholder="ARLS" 
-							
-							type="text"
-							
-							style="text-transform: uppercase;"
-							autofocus
+						<input id="co_titulo" class="form-control col-md-2" name="co_titulo" placeholder="ARLS" type="text"
+							style="text-transform: uppercase;" autofocus
 							value="{{$loja->co_titulo or old('co_titulo')}}" >
 					</div>
 

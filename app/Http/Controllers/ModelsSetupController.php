@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posto;
+use App\ModelsSetup;
 use Illuminate\Http\Request;
 
-class PostoController extends Controller
+class ModelsSetupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PostoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Posto  $posto
+     * @param  \App\ModelsSetup  $modelsSetup
      * @return \Illuminate\Http\Response
      */
-    public function show(Posto $posto)
+    public function show(ModelsSetup $modelsSetup)
     {
         //
     }
@@ -52,10 +52,10 @@ class PostoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Posto  $posto
+     * @param  \App\ModelsSetup  $modelsSetup
      * @return \Illuminate\Http\Response
      */
-    public function edit(Posto $posto)
+    public function edit(ModelsSetup $modelsSetup)
     {
         //
     }
@@ -64,10 +64,10 @@ class PostoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Posto  $posto
+     * @param  \App\ModelsSetup  $modelsSetup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Posto $posto)
+    public function update(Request $request, ModelsSetup $modelsSetup)
     {
         //
     }
@@ -75,10 +75,10 @@ class PostoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Posto  $posto
+     * @param  \App\ModelsSetup  $modelsSetup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posto $posto)
+    public function destroy(ModelsSetup $modelsSetup)
     {
         //
     }

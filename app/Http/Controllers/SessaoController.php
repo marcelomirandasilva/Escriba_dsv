@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Faker\Generator as Faker;
 
 use App\Models\Visitante;
-use App\Models\Config;
+use App\Models\Setup;
 use App\Models\Sessao;
 use App\Models\Membro;
 use App\Models\Cargo;
@@ -37,7 +37,7 @@ class SessaoController extends Controller
 		$cargos  = Cargo::orderBy('no_cargo')->get();
 
 		//carrega a hora que inicia a sessão na tabela de configurações
-		$hh_inicio = Config::first()->hh_inicio_sessao;
+		$hh_inicio = Setup::first()->hh_inicio_sessao;
 
 		//adiciona 2 horas a hora de inicio
 		$timestamp = strtotime($hh_inicio) + 60*120;
@@ -53,7 +53,6 @@ class SessaoController extends Controller
 
 	public function store(Request $request)
 	{
-
 		$this->validate($request, [
 			'dt_sessao'   		=> 'date',
 			'hh_inicio'     	=> 'required',
@@ -70,7 +69,7 @@ class SessaoController extends Controller
 		// Criar uma sessao
 	  	$novaSessao = Sessao::create($request->all());
 
-		//cria as presencas 
+/* 		//cria as presencas 
 		if(isset($request->presencas))
 		{
 			foreach($request->presencas as $key => $presenca)
@@ -79,7 +78,7 @@ class SessaoController extends Controller
 				$novaSessao->membros()->attach($cg->membro_id, ['cargo_id' => $cg->cargo_id]);
 			}
 		}
-	
+	 */
 	
 		DB::commit();
 		return redirect('sessoes')->with('sucesso', 'Sessão criada com sucesso!');
@@ -125,7 +124,7 @@ class SessaoController extends Controller
 		return view('sessoes.sessoes.create_edit', compact('sessao','membros','graus','tipos_sessao','cargos','dados_tabela' )) ;
 	}
 
-	public function update(Request $request, Sessao $sessao)
+	public function update(Request $request, $id)
 	{
 
 		$this->validate($request, [
@@ -140,11 +139,15 @@ class SessaoController extends Controller
 		//inicia sessão de banco
 		DB::beginTransaction();
 
-		
+		//dd($id);
+		$sessao = Sessao::find($id);
+
 		// altera os dados do sessao
 		$sessao->fill($request->all());
+		$salvou_sessao = $sessao->save();
 		
-		//cria as presencas 
+		
+		/* //cria as presencas 
 		if(isset($request->presencas))
 		{
 			foreach($request->presencas as $key => $presenca)
@@ -152,17 +155,16 @@ class SessaoController extends Controller
 				$cg = json_decode($presenca) ;
 				$sessao->membros()->attach($cg->membro_id, ['cargo_id' => $cg->cargo_id]);
 			}
-		}
+		} */
 
-		$salvou_sessao = $sessao->save();
 
 		if($salvou_sessao){
 			DB::commit();
-			return redirect('sessao')->with('sucesso', 'sessao Alterado com sucesso!');
+			return redirect('sessoes')->with('sucesso', 'Sessão Alterada com sucesso!');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
-			return back()->withInput()->with('error', 'Falha ao Alterar o sessao.');    
+			return back()->withInput()->with('error', 'Falha ao Alterar a Sessão.');    
 		}
 	}
 

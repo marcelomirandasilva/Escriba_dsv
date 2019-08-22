@@ -1,7 +1,7 @@
 // remove (Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.)
-$(document).ready(function () {
+/* $(document).ready(function () {
     $('.ui-pnotify').remove();
-});
+}); */
 
 
 /* // AJUSTE DO MENU SIDE-BAR. sem esse codigo ele não funciona quando usar o vue.js

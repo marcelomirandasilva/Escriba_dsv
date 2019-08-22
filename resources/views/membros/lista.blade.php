@@ -1,16 +1,5 @@
 @extends('gentelella.layouts.app')
 
-@push('styles')
-
-  <link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
-
-  
-@endpush
-
 @section('content')
 
 
@@ -20,11 +9,12 @@
   	<div class="modal-content x_panel" >
 		<div class="x_title">
 			<h2> Listagem de Membros </h2>
-			<a href="{{ url('membros/create') }}" 
-				class="btn-circulo btn btn-primary btn-md   pull-right " data-toggle="tooltip"  data-placement="bottom" title="Adiciona um Membro">
-				<span class="fa fa-plus">  </span>
-			</a>
-			<div class="clearfix"></div>
+			<botao_adiciona
+				url="{{ url('membros/create') }}"
+				descricao="Adiciona um Membro"
+			/> 
+			
+			
 		</div>
 		<div class="x_content animated fadeInUp">
 			<div class="panel-body">

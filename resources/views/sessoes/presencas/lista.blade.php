@@ -6,60 +6,92 @@
     	
 	<div class="x_panel modal-content ">
 		<div class="x_title">
-			<h2> Listagem de Lojas </h2>
-
-			<a href="{{ url('lojas/create') }}"
-				class="btn-circulo btn btn-primary btn-md   pull-right "
-				data-toggle="tooltip"
-				data-placement="bottom"
-				title="Adiciona uma Loja">
-				<span class="fa fa-plus">  </span>
-			</a>
-			<div class="clearfix"></div>
+			<h2> Listagem de Sessões </h2>
+			<botao_adiciona
+				url="{{ url('sessoes/create') }}"
+				descricao="Adiciona uma Sessão"
+			/> 
+			
 		</div>
-		<div class="x_content animated fadeInUp">
+		<div class="x_content {{-- animated fadeInUp --}}">
 			<div class="panel-body">
-				<table class="table table-striped" id="tabela_lojas">
+				<table class="table table-striped" id="tabela_sessoes">
 					<thead>
 						<tr>
-							<th>Título</th>
-							<th>Loja</th>
-							<th>Num</th>
-							<th>Fundação</th>
-							<th>Potencia</th>
+							<th>Data</th>
+							<th>Tipo</th>
+							<th>Grau</th>
+							<th>Inicio</th>
+							<th>Término</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($lojas as $loja )
+						@foreach($sessoes as $sessao )
 							<tr>
-								<td>{{ $loja->co_titulo                                             }}</td>
-								<td>{{ $loja->no_loja                                               }}</td>
-								<td>{{ $loja->nu_loja                                               }}</td>
-								<!---testa se a data de fundação é null -->
+								
+								<td>{{ \Carbon\Carbon::parse( $sessao->dt_sessao)->format('d/m/Y')  }}     </td>
+								
+								<td>{{ $sessao->ic_tipo_sessao      }}</td>
+								<td>{{ $sessao->ic_grau             }}</td>
 
-								@if( $loja->dt_fundacao <> '0000-00-00')
-									<td>{{ \Carbon\Carbon::parse( $loja->dt_fundacao)->format('d/m/Y')  }}</td>
+								@if( $sessao->hh_inicio <> '00:00:00')
+									<td>{{ $sessao->hh_inicio  }}     </td>
 								@else
-									<td> -------------- </td>
+									<td> --------- </td>
 								@endif
 
-								<td>{{ $loja->potencia->no_potencia                                 }}</td>
+								@if( $sessao->hh_termino <> '00:00:00')
+									<td>{{ $sessao->hh_termino  }}     </td>
+								@else
+									<td> --------- </td>
+								@endif
+		
+									
 
 								<td>
-									<a href="{{ url("lojas/$loja->id/edit") }}"
+									
+									<a href="{{ url("sessoes/$sessao->id/edit") }}"
+										class="btn btn-danger btn-xs action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-placement="bottom"
+										title="Apaga essa Sessão">
+										<i class="glyphicon glyphicon-remove icone_botao_lista"></i>
+									</a>
+									<a href="{{ url("sessoes/$sessao->id/edit") }}"
 										class="btn btn-warning btn-xs action botao_lista pull-right "
 										data-toggle="tooltip"
 										data-placement="bottom"
-										title="Edita essa Loja">
+										title="Edita essa Sessão">
 										<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
 									</a>
-									<a href="{{ url("lojas/$loja->id") }}"
+									<a href="{{ url("sessoes/$sessao->id") }}"
 										class="btn btn-primary btn-xs  action botao_lista pull-right "
 										data-toggle="tooltip"
 										data-placement="bottom"
-										title="Visualiza essa Loja">
+										title="Visualiza essa Sessão">
 										<i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
+									</a>
+									<a href="{{ url("sessoes/$sessao->id") }}"
+										class="btn btn-info btn-xs  action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-placement="bottom"
+										title="Expediente da Sessão">
+										<i class="glyphicon glyphicon-envelope icone_botao_lista"></i>
+									</a>
+									<a href="{{ url("sessoes/$sessao->id") }}"
+										class="btn btn-info btn-xs  action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-placement="bottom"
+										title="Ata da Sessão">
+										<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
+									</a>
+									<a href="{{ url("sessoes/$sessao->id/edit") }}"
+										class="btn btn-success btn-xs action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-placement="bottom"
+										title="Presença na Sessão">
+										<i class="glyphicon glyphicon-hand-up icone_botao_lista"></i>
 									</a>
 								</td>
 							</tr>
@@ -96,17 +128,13 @@
     	$(document).ready(function(){
 
 			@if (session('sucesso'))
-				swal({
-					title:  'Parabéns',
-					text:   ' {!! session('sucesso') !!}',
-					type:   'success'
-				});
+				swal('Parabéns!', '{{ session('sucesso') }}' ,'success');
 			@endif
 
 
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 
-        	$("#tabela_lojas").DataTable({
+        	$("#tabela_sessoes").DataTable({
 				language : {
                             'url' : '{{ asset('js/portugues.json') }}',
                             "decimal": ",",
@@ -115,11 +143,6 @@
 				stateSave: true,
 				stateDuration: -1,
 				  
-				"columnDefs":
-        		[
-					{ className: "text-center", "targets": [5] },
-					{ className: "text-right",  "targets": [2] }
-				]
         	});
     	});
   	</script>

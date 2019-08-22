@@ -19,7 +19,7 @@ use App\Models\Potencia;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
-
+ 
 class MembroController extends Controller
 {
 	// todas as rotas aqui serão antes autenticadas
@@ -83,6 +83,7 @@ class MembroController extends Controller
 	
 	public function store(Request $request)
 	{
+		//dd($request->all());
 		//se for candidaro, coloca zeros no CIM
 		if(trim($request->ic_grau) == "Candidato")
 		{
@@ -120,7 +121,6 @@ class MembroController extends Controller
 			'dt_comanda_DPI'		=> 'date|nullable',
 		]);
 
-		//dd($request->all());
 		
 		//inicia sessão de banco
 		DB::beginTransaction();
@@ -145,18 +145,37 @@ class MembroController extends Controller
 				
 				$membro->cargos()->attach($cargo_id, ['aa_inicio' => $cg->aa_inicio, 'aa_termino' => $cg->aa_termino]);
 			}
+		
+		}
+		//cria os dependentes
+		if(isset($request->dependentes_membros))
+		{
+			foreach($request->dependentes_membros as $key => $dependente)
+			{
+				$decodeDependente = (json_decode($dependente));
+				
+				$novoDependente 								= new Dependente();
+				$novoDependente->no_dependente 			= $decodeDependente->no_dependente;
+				$novoDependente->ic_sexo					= $decodeDependente->ic_sexo;
+				$novoDependente->ic_grau_parentesco 	= $decodeDependente->ic_grau_parentesco;
+				$novoDependente->dt_nascimento 			= $decodeDependente->dt_nascimento;
+				
+				
+				$membro->dependentes()->save($novoDependente);
+				//dd( $membro);
+			}
 		}
 		
 		
-		//verifica se existe algum dependente a ser cadastrado
-		if($request->dependentes[0]["no_dependente"] != null)
-		{
-			foreach($request->dependentes as $dependente)
-			{
-				// Criar um novo dependente com as informações inseridas
-				$membro->dependentes()->save(new Dependente($dependente));
-			}
-		}	
+//		//verifica se existe algum dependente a ser cadastrado
+//		if($request->dependentes[0]["no_dependente"] != null)
+//		{
+//			foreach($request->dependentes as $dependente)
+//			{
+//				// Criar um novo dependente com as informações inseridas
+//				$membro->dependentes()->save(new Dependente($dependente));
+//			}
+//		}	
 		
 	
 		if ($membro) {
@@ -185,6 +204,7 @@ class MembroController extends Controller
 	{
 		$membro = $this->membro->find($id);
 
+		//dd($membro->dependentes);
 		$emails             = $membro->emails;
 		$dependentes        = $membro->dependentes;
 		$potencias          = Potencia::all()->sortBy('no_potencia');

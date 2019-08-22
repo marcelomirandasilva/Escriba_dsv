@@ -1,22 +1,7 @@
 @extends('gentelella.layouts.app')
 
-@push('styles')
-	<!-- Example -->
-	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
-	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-
-@endpush
-
 @section('content')
-	<!---------------------- Mostra os erros de validação ------------------------------>
-	@if( count($errors) > 0 )
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				@foreach($errors->all() as $erro)
-						<p> {{ $erro }} </p>
-				@endforeach
-			</div>
-	@endif
-	<!------------------------------------------------------------------------------------>
+	
 			
 	<div class="modal-content animated  x_panel" >
 		<div class="x_title">
@@ -93,11 +78,8 @@
 							</div>
 
 							<div role="tabpanel" class="tab-pane fade"            id="tab_content5" aria-labelledby="tab_dep">
-								@if (isset($edita)) 
-									@include('membros/edit_dependentes')
-								@else
-									@include('membros/create_dependentes')
-								@endif
+			
+								@include('membros/create_dependentes')
 							</div>
 
 							<div role="tabpanel" class="tab-pane fade"            id="tab_content6" aria-labelledby="tab_cer">
@@ -135,93 +117,8 @@
 </div>
 
 <!-- Modal ---------------------------------------------------------------------------------------------->
-<div class="modal fade" id="cad_loja" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			
-			<div class="alert alert-danger" style="display: none" role="alert">
-				This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-			</div>
-
-			<div class="modal-body">
-
-				<form id="form_modal_" method="post" action="#"  >
-
-					{{ csrf_field() }}
-
-					<div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="co_titulo">
-							Título <span class="required">*</span>
-						</label>
-						<div class="col-md-2 ">
-							<input id="co_titulo" class="form-control col-md-2"  name="co_titulo" placeholder="ARLS" required="required" type="text" style="text-transform: uppercase;" autofocus>
-						</div>
-					</div>
-
-					<div class="item form-group">
-						<label class="control-label col-md-2 " for="no_loja">
-							Nome 
-							<span class="required">*</span>
-						</label>
-						<div class="col-md-9">
-							<input type="no_loja" id="no_loja" name="no_loja" placeholder="Nome da Loja" required="required" class="form-control" type="text">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-2" for="nu_loja">
-							Número 
-							<span class="required">*</span>
-						</label>
-						<div class="col-md-2 " >
-							<input type="nu_loja" id="nu_loja" name="nu_loja" placeholder="00000" required="required" class="form-control  " type="number" min="0" max="9999999" step="1">
-						</div>
-					</div>
-
-					<div class="item form-group">
-						<label class="control-label col-md-2 " for="potencia_id">Potência*</label>
-						<div class="col-md-9" >
-							<select id="potencia_id"  class="form-control col-md-5 "  name="potencia_id"  placeholder="Nome da Potência" type="text" data-live-search="true" style="width:90%;">
-								@foreach($potencias as $potencia)
-									@if ($potencia->no_potencia == ('Grande Oriente do Brasil'))
-										<option value="{{$potencia->id}}" selected="selected">{{$potencia->no_potencia}}</option>
-									@else 
-										<option value="{{$potencia->id}}">{{$potencia->no_potencia}}</option>
-									@endif
-								@endforeach
-							</select>
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-2 " for="ic_rito">Rito*</label>
-						<div class="col-md-5 ">
-							<select id="ic_rito" class="form-control col-md-2" name="ic_rito" placeholder="Rito praticado" type="text">
-								@foreach($ritos as $rito)
-									@if ($rito == ('Brasileiro'))
-										<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
-									@else 
-										<option value="{{$rito}}"> {{$rito}} </option>  
-									@endif
-								@endforeach
-							</select>
-						</div>
-					</div>
-				</form>  
-			</div>
-			<div class="modal-footer">
-				<div class="col-md-11 ">
-					<button type="button" class="envia_nova_loja btn btn-success" data-toggle="tooltip" title="Confirma a operação"> 
-						Confirma    
-					</button>
-
-					<button id="fecha_modal_cad_loja" type="button" data-toggle="tooltip" class="btn btn-danger btn_acao" title="Cancela e retorna a tela anterior" data-dismiss="modal">
-						Cancela	
-					</button>
-				</div>
-			</div>
-		</div>
-	</div> 
-
-	<!-- /Modal ---------------------------------------------------------------------------------------------->
+{{-- @include('lojas/modal_create_edit') --}}
+<!-- /Modal ---------------------------------------------------------------------------------------------->
 
 
 @endsection
@@ -252,23 +149,25 @@
 
 	<script type="text/javascript">
 		var t = "";
+		//var td = "";
 		
 		
 		
 		var cont_telefone=1 
 		var cont_email=1;
 		var cont_dependente=1;
-		let contador_linhas_tabela = 0;
+		let contador_linhas_tabela_cargos = 0;
+		let contador_linhas_tabela_dependentes = 0;
 		
 		$(document).ready(function(){
-			$("#tel_res").mask("(99)9999-9999");
-			$("#tel_com").mask("(99)9999-9999");
-			$("#tel_cel").mask("(99)99999-9999");
+			$("#tel_res").mask("(00)9000-0000");
+			$("#tel_com").mask("(00)9000-0000");
+			$("#tel_cel").mask("(00)90000-0000");
 
-			$("#nu_cpf").mask("999.999.999-99");
-			$("#nu_titulo_eleitor").mask("99.999.999-9");
+			$("#nu_cpf").mask('000.000.000-00', {reverse: true});
+			$("#nu_titulo_eleitor").mask("00.000.000-0",  {reverse: true});
 
-			$("#co_cim").mask("999.999.999",{reverse: true} );  
+			$("#co_cim").mask("#.000.000",{reverse: true} );  
 			
 			
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
@@ -384,102 +283,6 @@
 						document.getElementById("loja_id_instalacao").disabled 	= true;
 
 						document.getElementById("co_cim").disabled 			= false;
-				}
-			});
-
-
-			//========================================================================================================
-			//========================================================================================================
-			//==============================            CARGOS                       =================================
-			//========================================================================================================
-			//========================================================================================================
-
-			//configura a tabela de cargos
-			$("#tabela_cargos").DataTable({
-				language : {
-									'url' : '{{ asset('js/portugues.json') }}',
-									"decimal": ",",
-									"thousands": "."
-								},
-				stateDuration: -1,
-				deferRender: true,
-				compact: true,
-				paginate: false,
-				searching: false,
-				orderFixed: [ 1, 'asc' ],
-        	});
-
-
-
-			//adiciona cargos na tabela
-			var cargos_na_tabela = [];
-			$('#cad_cargo').on( 'click', function () {
-				t = $('#tabela_cargos').DataTable();
-				var cargo_selecionado = $("#no_cargo :selected").val();
-				var aa_inicio = $("#aa_inicio").val();
-				var aa_termino = $("#aa_termino").val();
-				var aa_i = $("#aa_inicio").val();
-				var aa_t = $("#aa_termino").val();
-
-				
-				if (cargo_selecionado == ""){
-					//testa se o cargo está vazio
-					$(".no_cargo").notify("O cargo deve ser informado",{
-						className: "error",
-						autoHideDelay: 5000
-					});
-				}else if (aa_inicio < 1900 ){
-					//testa se as datas são maiores que 1900
-					$("#aa_inicio").notify("Data incorreta",{
-						className: "error",
-						autoHideDelay: 5000
-					});
-				}else if (aa_termino < 1900 ){
-					//testa se as datas são maiores que 1900
-					$("#aa_termino").notify("Data incorreta",{
-						className: "error",
-						autoHideDelay: 5000
-					});
-				}else{
-					t.row.add( [
-						$("#no_cargo :selected").text(),
-						$("#aa_inicio").val(),
-						$("#aa_termino").val(),
-						`<a class="btn btn-warning btn-xs action btn_tb_cargo_remove" data-id="${contador_linhas_tabela}" 
-											data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
-											<i class="glyphicon glyphicon-remove"></i>
-						</a>`
-					] ).draw( true );
-
-					contador_linhas_tabela++;
-				};
-			} );
-			
-			//remove cargos da tabela
-			$('#tabela_cargos').on('click', '.btn_tb_cargo_remove', function () {
-				t.row( $(this).parents('tr') )
-					.remove()
-					.draw();		
-			} );
-
-			$("#form_membro").submit(function(){
-
-				// Remover os cargos pré-existentes
-				$("#form_membro .cargos_membros").remove();
-
-				// Iterar por todas as linhas da tabela
-				for(i=0; i<t.data().length; i++){
-	
-					let linha = t.data()[i];
-
-					// Stringificar os campos
-					let cargos_em_string = JSON.stringify({
-						cargo_nome: linha[0].trim(),
-						aa_inicio: linha[1], 
-						aa_termino: linha[2]});
-
-					// Adicionar o novo cargo no formulário
-					$("#form_membro").append("<input type='hidden' class='cargos_membros' name='cargos_membros[]' value='"+cargos_em_string+"'>");
 				}
 			});
 
@@ -621,197 +424,196 @@
 				}
 			});
 
-			
-			
+
 			//========================================================================================================
 			//========================================================================================================
-			//==============================            CONTATOS                     =================================
+			//==============================            CARGOS                       =================================
 			//========================================================================================================
-			//========================================================================================================		
+			//========================================================================================================
 
-			// Clonar div panel_telefones
-			$(".clonar_tel").click(function(e){
+			//configura a tabela de cargos
+			$("#tabela_cargos").DataTable({
+				language : {
+									'url' : '{{ asset('js/portugues.json') }}',
+									"decimal": ",",
+									"thousands": "."
+								},
+				stateDuration: -1,
+				deferRender: true,
+				compact: true,
+				paginate: false,
+				searching: false,
+				orderFixed: [ 1, 'asc' ],
+        	});
 
-				e.preventDefault();
 
-				$(".panel_telefone").clone()
-
-				// Adicionar a classe clone e remover a classe panel_telefones
-				.addClass("telefone_clonado x_panel")
-				.removeClass("panel_telefone")
-
-				// Mostrar o botão excluir
-				.find("button.excluir_tel").css("display","block")
-
-				// Colocar os campos clonados no lugar correto
-				.parent().parent().appendTo(".local_clone_tel")
-
-				// Alterar os names dos inputs para preencher o vetor de telefone corretamente
-				.find("select[name='telefones[0][ic_telefone]']")
-						.attr("name", "telefones["+cont_telefone+"][ic_telefone]")
-						.attr("id", "telefones["+cont_telefone+"][ic_telefone]")
-						.val("")
+			//ano do cargo
+			$("#aa_inicio").change(function(){
 				
-				.parent().parent().parent().find("input[name='telefones[0][nu_telefone]']")
-						.attr("name", "telefones["+cont_telefone+"][nu_telefone]")
-						.attr("id", "telefones["+cont_telefone+"][nu_telefone]")
-						.val("");
-				
-				// Incrementar o contador de telefone
-				cont_telefone++;
+				let min = parseInt( $("#aa_inicio").val() ) ;
+				let max = min + 2;
+
+				console.log(min, "  -  ", max);
+				$("#aa_termino").attr({"min" : min,"max" : max});
+
+				$("#aa_termino").val(max);
+
 			});
-			
-			$("body").on("change", ".tipo-telefone",function(){
-				//console.log("mudou");
-				var itemSelecionado = $(this).val();
-				var nomeSelecionado = this.attributes["data-cod"].value;
 
 
-				console.log(nomeSelecionado);
+			//adiciona cargos na tabela
+			//var cargos_na_tabela = [];
+			$('#cad_cargo').on( 'click', function () {
+				
+				var cargo_selecionado 	= $("#no_cargo :selected").val();
+				var aa_inicio 				= $("#aa_inicio").val();
+				var aa_termino 			= $("#aa_termino").val();
+				var aa_i 					= $("#aa_inicio").val();
+				var aa_t 					= $("#aa_termino").val();
 
-				if(itemSelecionado == 'Celular')
-				{
-					console.log("celular");
-					$(this).parent().parent().find("input.telefone").inputmask('(99)99999-9999');
+				
+				if (cargo_selecionado == ""){
+					//testa se o cargo está vazio
+					$(".no_cargo").notify("O cargo deve ser informado",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else if (aa_inicio < 1900 ){
+					//testa se as datas são maiores que 1900
+					$("#aa_inicio").notify("Data incorreta",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else if (aa_termino < 1900 ){
+					//testa se as datas são maiores que 1900
+					$("#aa_termino").notify("Data incorreta",{
+						className: "error",
+						autoHideDelay: 5000
+					});
 				}else{
-					console.log("outros");
-					$(this).parent().parent().find("input.telefone").inputmask('(99)9999-9999');
-				}
+					$('#tabela_cargos').DataTable().row.add( [
+						$("#no_cargo :selected").text(),
+						$("#aa_inicio").val(),
+						$("#aa_termino").val(),
+						`<a class="btn btn-warning btn-xs action btn_tb_cargo_remove" data-id="${contador_linhas_tabela_cargos}" 
+											data-toggle="tooltip" data-placement="bottom" title="Remove esse Cargo">  
+											<i class="glyphicon glyphicon-remove"></i>
+						</a>`
+					] ).draw( true );
+
+					contador_linhas_tabela_cargos++;
+				};
 			});
-
-
-			// Botão de excluir telefone
-
-			$("body").on("click", "button.excluir_tel", function(){ 
-				$(this).parent().parent().remove(); 
-			});
-
-			//=================================== clone email====================================================
-			// Clonar div clonar_email
-			$(".clonar_email").click(function(e){
-
-				e.preventDefault();
-
-				$(".panel_emails").clone()
-
-				// Adicionar a classe clone e remover a classe 
-
-				.addClass("email_clonado x_panel")
-				.removeClass("panel_emails")
-
-				// Mostrar o botão excluir
-
-				.find("button.excluir_email").css("display","block")
-
-				// Colocar os campos clonados no lugar correto
-
-				.parent().parent().appendTo(".local_clone_email")
-
-				// Alterar os names dos inputs para preencher o vetor de dependentes corretamente
-
-				.find("input[name='emails[0][email]']")
-						.attr("name", "emails["+cont_email+"][email]")
-						.attr("id", "emails["+cont_email+"][email]")
-						.val("");
-				
-				// Incrementar o contador de dependentes
-				console.log(cont_email);
-				cont_email++;
-			});
-
-			// Botão de excluir telefone
-
-			$("body").on("click", "button.excluir_email", function(){ 
-
-				$(this).parent().parent().remove(); 
-
-			});
-	
 			
+			//remove cargos da tabela
+			$('#tabela_cargos').on('click', '.btn_tb_cargo_remove', function () {
+				$('#tabela_cargos').DataTable().row( $(this).parents('tr') )
+					.remove()
+					.draw();		
+			} );
+
 			//========================================================================================================
 			//========================================================================================================
 			//==============================            DEPENDENTE                   =================================
 			//========================================================================================================
 			//========================================================================================================		
 
-			//=================================== clone DEPENDENTE====================================================
+			//configura a tabela de dependentes
+			$("#tabela_dependentes").DataTable({
+				language : {
+									'url' : '{{ asset('js/portugues.json') }}',
+									"decimal": ",",
+									"thousands": "."
+								},
+				stateDuration: -1,
+				deferRender: true,
+				compact: true,
+				paginate: false,
+				searching: false,
+				orderFixed: [ 1, 'asc' ],
+        	});
 
-			$(".clonar_dependente").click(function(e){
-				e.preventDefault();
+			//adiciona dependentes na tabela
+			$('#cad_dependente').on( 'click', function () {
+				//td = $('#tabela_dependentes').DataTable();
+				var no_dependente 				= $("#no_dependente").val();
+				var ic_sexo 						= $("#ic_sexo :selected").val();
+				var ic_grau_parentesco 			= $("#ic_grau_parentesco :selected").val();
+				var dt_nascimento 				= $("#dt_nascimento_dependente").val();
 				
-				//conta quantos paineis existem na tela
-				let 	qtd_painel = document.getElementsByClassName('dependente_clonado').length;
-				qtd_painel = qtd_painel + document.getElementsByClassName('clone_dependente').length;
-				//qtd_painel = qtd_painel + document.getElementsByClassName('panel_dependente').length;
-
-				cont_dependente = qtd_painel+1;
-
-				$(".clone_dependente").clone()
-
-				// Adicionar a classe clone e remover a classe 
-				.addClass("dependente_clonado x_panel")
-				.removeClass("clone_dependente")
-
-				// Mostrar o botão excluir
-				.find("button.excluir_dependente").css("display","block")
-
-				// Colocar os campos clonados no lugar correto
-				.parent().parent().parent().appendTo(".local_clone_dependente")
-
-				// Alterar os names dos inputs para preencher o vetor de dependentes corretamente
-				.find("input.nome-dependente")
-						.attr("name", "dependentes["+cont_dependente+"][no_dependente]")
-						.attr("id", "dependentes["+cont_dependente+"][no_dependente]")
-						.val("")
-						.parent().parent().parent()
-
-				.find("select.sexo-dependente")
-						.attr("name", "dependentes["+cont_dependente+"][ic_sexo]")
-						.attr("id", "dependentes["+cont_dependente+"][ic_sexo]")
-						.val("")
-
-				.parent().parent().find("select.parentesco-dependente")
-						.attr("name", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
-						.attr("id", "dependentes["+cont_dependente+"][ic_grau_parentesco]")
-						.val("")
-
-				.parent().parent().find("input.nascimento-dependente")
-						.attr("name", "dependentes["+cont_dependente+"][dt_nascimento]")
-						.attr("id", "dependentes["+cont_dependente+"][dt_nascimento]")
-						.val("");
 				
-				// Incrementar o contador de dependentes
-				cont_dependente++;
-			});
+				if (no_dependente == ""){
+					//testa se o nome está vazio
+					$("#no_dependente").notify("O nome deve ser informado",{
+						className: "error",
+						autoHideDelay: 5000
+					});
+				}else{
+					console.log("adiciona");
+					$('#tabela_dependentes').DataTable().row.add( [
+						no_dependente,
+						ic_sexo,
+						ic_grau_parentesco,
+						dt_nascimento,
+						`<a class="btn btn-warning btn-xs action btn_tb_dependente_remove" data-id="${contador_linhas_tabela_dependentes}" 
+											data-toggle="tooltip" data-placement="bottom" title="Remove esse dependente">  
+											<i class="glyphicon glyphicon-remove"></i>
+						</a>`
+					] ).draw( true );
 
-			// Botão de excluir dependente
-			$("body").on("click", "button.excluir_dependente", function(e){ 
-				var self = this;
-				 e.preventDefault();
+					contador_linhas_tabela_dependentes++;
+				};
+			} );
+			
+			//remove dependentes da tabela
+			$('#tabela_dependentes').on('click', '.btn_tb_dependente_remove', function () {
+				$('#tabela_dependentes').DataTable().row( $(this).parents('tr') )
+					.remove()
+					.draw();		
+			} );
 
-            swal({
-					title: "Atenção!",
-					text: "Você realmente deseja excluir o(a) dependente ?",
-					type: "warning",
-					showCancelButton: true,
 
-					confirmButtonClass: "btn-cor-perigo modal-content",
-					confirmButtonText: "Sim, exclua!",
-					cancelButtonClass: "btn-cor-padrao modal-content",
-					cancelButtonText: "Cancelar",
-					confirmButtonClass: 'btn-cor-perigo modal-content',
-				 }).then(result => {
-					if (result.value) {
-						$(self).parent().parent().parent().addClass('animated fadeOut').fadeOut(985).queue(function() { $(self).parent().parent().parent().remove(); })
-						
-						
-						
-					}
-				})
- 			});
+			//========================================================================================================
+			//========================================================================================================
+			//==============================            SUBMIT FORM                  =================================
+			//========================================================================================================
+			//========================================================================================================
 
 			$("#form_membro").submit(function(e){
 				//e.preventDefault();
+
+				//empacota os CARGOS
+				// Remover os cargos pré-existentes
+				$("#form_membro .cargos_membros").remove();
+				// Iterar por todas as linhas da tabela
+				for(i=0; i<$('#tabela_cargos').DataTable().data().length; i++){
+					let linha = $('#tabela_cargos').DataTable().data()[i];
+					// Stringificar os campos
+					let cargos_em_string = JSON.stringify({
+						cargo_nome: linha[0].trim(),
+						aa_inicio: linha[1], 
+						aa_termino: linha[2]});
+					// Adicionar o novo cargo no formulário
+					$("#form_membro").append("<input type='hidden' class='cargos_membros' name='cargos_membros[]' value='"+cargos_em_string+"'>");
+				};
+						
+				//empacota os DEPENDENTES
+				// Remover os dependentes pré-existentes
+				$("#form_membro .dependentes_membros").remove();
+				// Iterar por todas as linhas da tabela
+				for(i=0; i< $('#tabela_dependentes').DataTable().data().length; i++){
+					let linha = $('#tabela_dependentes').DataTable().data()[i];
+					// Stringificar os campos
+					let dependentes_em_string = JSON.stringify({
+						no_dependente:		 			linha[0].trim(),
+						ic_sexo:		 					linha[1],
+						ic_grau_parentesco:		 	linha[2],
+						dt_nascimento:					linha[3]
+					});
+					// Adicionar o novo cargo no formulário
+					$("#form_membro").append("<input type='hidden' class='dependentes_membros' name='dependentes_membros[]' value='"+dependentes_em_string+"'>");
+				}
+		
 				console.log("Enviou o form", $(this).serializeArray())
 			})
 
@@ -821,82 +623,82 @@
 
 		//=========== AUTOCOMPLETE CERIMONIAS ===========================
 		new autoComplete({
-				selector: 'input[name="fk_loja_iniciacao"]',
-				minChars: 1,
-				offsetLeft: 1,
-				delay: 50,
-				source: function(term, suggest){
-					term = term.toLowerCase();
-					var choices = [];
-					@foreach($lojas as $loja)
-							choices.push('{{$loja->no_loja}}');  
-					@endforeach
-						
-					var matches = [];
-					for (i=0; i<choices.length; i++)
-							if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-								suggest(matches);
-				}
+			selector: 'input[name="fk_loja_iniciacao"]',
+			minChars: 1,
+			offsetLeft: 1,
+			delay: 50,
+			source: function(term, suggest){
+				term = term.toLowerCase();
+				var choices = [];
+				@foreach($lojas as $loja)
+						choices.push('{{$loja->no_loja}}');  
+				@endforeach
+					
+				var matches = [];
+				for (i=0; i<choices.length; i++)
+						if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+							suggest(matches);
+			}
 		});
 			
 		//--------------------------------------------------------------
 		new autoComplete({
-				selector: 'input[name="fk_loja_elevacao"]',
-				minChars: 1,
-				offsetLeft: 1,
-				delay: 50,
-				source: function(term, suggest){
-					term = term.toLowerCase();
-					var choices = [];
-					@foreach($lojas as $loja)
-							choices.push('{{$loja->no_loja}}');  
-					@endforeach
-						
-					var matches = [];
-					for (i=0; i<choices.length; i++)
-							if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-								suggest(matches);
-				}
+			selector: 'input[name="fk_loja_elevacao"]',
+			minChars: 1,
+			offsetLeft: 1,
+			delay: 50,
+			source: function(term, suggest){
+				term = term.toLowerCase();
+				var choices = [];
+				@foreach($lojas as $loja)
+						choices.push('{{$loja->no_loja}}');  
+				@endforeach
+					
+				var matches = [];
+				for (i=0; i<choices.length; i++)
+						if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+							suggest(matches);
+			}
 		});
 			
 		//--------------------------------------------------------------
 		new autoComplete({
-				selector: 'input[name="fk_loja_exaltacao"]',
-				minChars: 1,
-				offsetLeft: 1,
-				delay: 50,
-				source: function(term, suggest){
-					term = term.toLowerCase();
-					var choices = [];
-					@foreach($lojas as $loja)
-							choices.push('{{$loja->no_loja}}');  
-					@endforeach
-						
-					var matches = [];
-					for (i=0; i<choices.length; i++)
-							if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-								suggest(matches);
-				}
+			selector: 'input[name="fk_loja_exaltacao"]',
+			minChars: 1,
+			offsetLeft: 1,
+			delay: 50,
+			source: function(term, suggest){
+				term = term.toLowerCase();
+				var choices = [];
+				@foreach($lojas as $loja)
+						choices.push('{{$loja->no_loja}}');  
+				@endforeach
+					
+				var matches = [];
+				for (i=0; i<choices.length; i++)
+						if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+							suggest(matches);
+			}
 		});
 			
 		//--------------------------------------------------------------
 		new autoComplete({
-				selector: 'input[name="fk_loja_instalacao"]',
-				minChars: 1,
-				offsetLeft: 1,
-				delay: 50,
-				source: function(term, suggest){
-					term = term.toLowerCase();
-					var choices = [];
-					@foreach($lojas as $loja)
-							choices.push('{{$loja->no_loja}}');  
-					@endforeach
-						
-					var matches = [];
-					for (i=0; i<choices.length; i++)
-							if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
-								suggest(matches);
-				}
+			selector: 'input[name="fk_loja_instalacao"]',
+			minChars: 1,
+			offsetLeft: 1,
+			delay: 50,
+			source: function(term, suggest){
+				term = term.toLowerCase();
+				var choices = [];
+				@foreach($lojas as $loja)
+						choices.push('{{$loja->no_loja}}');  
+				@endforeach
+					
+				var matches = [];
+				for (i=0; i<choices.length; i++)
+						if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+							suggest(matches);
+			}
 		});
 
 		//=======================	MODAL CADASTRO DE LOJA DENTRO DO CADASTRO DE MEMBROS =======================

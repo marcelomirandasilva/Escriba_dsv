@@ -139,6 +139,13 @@
    <div class="item form-group">
 		<div class="row">
 			<div class="col-md-2 ">
+				<label class="control-label col-md-1 " for="dt_honorario">Honorário</label>
+				<input id="dt_honorario" name="dt_honorario" class="form-control col-md-2 datas_input"  
+				type="date" min="1500-01-01" max="2050-01-01" 
+				value="{{$membro->dt_honorario or old('dt_honorario')}}" >      
+			</div>
+			
+			<div class="col-md-2 ">
 				<label class="control-label col-md-1 " for="dt_filiacao">Filiação</label>
 				<input id="dt_filiacao" name="dt_filiacao" class="form-control col-md-2 datas_input"  
 				type="date" min="1500-01-01" max="2050-01-01" 

@@ -162,6 +162,45 @@ $factory->define(App\Models\Membro::class, function(Faker\Generator $faker) {
 });
 
 
+
+$factory->define(App\Models\Visitante::class, function(Faker\Generator $faker) {
+
+	$faker = Faker\Factory::create('pt_BR');
+
+	// ESTADO CIVIL
+	$vetor = pegaValorEnum('visitantes','ic_estado_civil');
+	$v_estado_civil = $vetor[array_rand($vetor,1)];
+	
+
+	//SITUACAO
+	$vetor = pegaValorEnum('visitantes','ic_situacao');      
+	$v_situacao = $vetor[array_rand($vetor,1)];      
+
+	//GRAU
+	$vetor = pegaValorEnum('visitantes','ic_grau');
+	$v_grau = $vetor[array_rand($vetor,1)];
+
+
+
+	return [
+
+		'no_visitante'          => $faker->name,
+		'co_cim'                => $faker->numberBetween($min = 11111, $max = 9999999),
+		'dt_nascimento'         => $faker->date('Y-m-d', '-18 years'),
+		'ic_estado_civil'       => $v_estado_civil,
+
+		'email'  					=> $faker->safeEmail,
+		'telefone'  				=> "(21)".$faker->cellphone(true, 21),
+
+		'ic_grau'               => $v_grau,
+		'loja_id'					=> App\Models\Loja::all()->random()->id,
+
+		'ic_situacao'           => $v_situacao, 
+
+	];
+});
+
+
 $factory->define(App\Models\Loja::class, function(Faker\Generator $faker) {
 
 	$faker = Faker\Factory::create('pt_BR');

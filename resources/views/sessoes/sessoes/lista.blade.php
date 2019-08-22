@@ -1,16 +1,5 @@
 @extends('gentelella.layouts.app')
 
-@push('styles')
-
-<link href="{{ asset('datatables/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('datatables/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
-
-
-@endpush
-
 @section('content')
 
   <!-- page content -->
@@ -18,17 +7,13 @@
 	<div class="x_panel modal-content ">
 		<div class="x_title">
 			<h2> Listagem de Sessões </h2>
-
-			<a href="{{ url('sessoes/create') }}"
-				class="btn-circulo btn btn-primary btn-md   pull-right "
-				data-toggle="tooltip"
-				data-placement="bottom"
-				title="Adiciona uma Sessão">
-				<span class="fa fa-plus">  </span>
-			</a>
-			<div class="clearfix"></div>
+			<botao_adiciona
+				url="{{ url('sessoes/create') }}"
+				descricao="Adiciona uma Sessão"
+			/> 
+			
 		</div>
-		<div class="x_content animated fadeInUp">
+		<div class="x_content {{-- animated fadeInUp --}}">
 			<div class="panel-body">
 				<table class="table table-striped" id="tabela_sessoes">
 					<thead>
@@ -65,19 +50,55 @@
 									
 
 								<td>
+									
+									<a href="{{ url("sessoes/$sessao->id/edit") }}"
+										class="btn btn-danger btn-xs action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-sessao = {{$sessao->id}}
+										data-placement="bottom"
+										title="Apaga essa Sessão">
+										<i class="glyphicon glyphicon-remove icone_botao_lista"></i>
+									</a>
 									<a href="{{ url("sessoes/$sessao->id/edit") }}"
 										class="btn btn-warning btn-xs action botao_lista pull-right "
 										data-toggle="tooltip"
+										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
-										title="Edita essa sessao">
+										title="Edita essa Sessão">
 										<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
 									</a>
 									<a href="{{ url("sessoes/$sessao->id") }}"
 										class="btn btn-primary btn-xs  action botao_lista pull-right "
 										data-toggle="tooltip"
+										data-sessao = {{$sessao->id}}
 										data-placement="bottom"
-										title="Visualiza essa sessao">
+										title="Visualiza essa Sessão">
 										<i class="glyphicon glyphicon-eye-open icone_botao_lista"></i>
+									</a>
+									<a href="{{ url("sessoes/$sessao->id") }}"
+										class="btn btn-info btn-xs  action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-sessao = {{$sessao->id}}
+										data-placement="bottom"
+										title="Expediente da Sessão">
+										<i class="glyphicon glyphicon-envelope icone_botao_lista"></i>
+									</a>
+									<a href="{{ url("sessoes/$sessao->id") }}"
+										class="btn btn-info btn-xs  action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-sessao = {{$sessao->id}}
+										data-placement="bottom"
+										title="Ata da Sessão">
+										<i class="glyphicon glyphicon-pencil icone_botao_lista"></i>
+									</a>
+									<a href="#"
+										id="btn_presenca"
+										class="btn btn-success btn-xs action botao_lista pull-right "
+										data-toggle="tooltip"
+										data-sessao = {{ $sessao->id }}
+										data-placement="bottom"
+										title="Presença na Sessão">
+										<i class="glyphicon glyphicon-hand-up icone_botao_lista"></i>
 									</a>
 								</td>
 							</tr>
@@ -110,6 +131,10 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"                   type="text/javascript"></script>
 	<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"                 type="text/javascript"></script>
 
+
+	{{-- REDIRECT JS https://github.com/mgalante/jquery.redirect --}}
+	<script src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"                 type="text/javascript"></script>
+
 	<script>
     	$(document).ready(function(){
 
@@ -129,7 +154,21 @@
 				stateSave: true,
 				stateDuration: -1,
 				  
-        	});
+			});
+			  
+			$("table#tabela_sessoes").on("click", "#btn_presenca",function(){
+				event.preventDefault();
+				let id_sessao = $(this).data('sessao');
+				let btn = $(this);
+
+				console.log(id_sessao);
+				$.redirect(url_base + "/presencas/registra", {sessao: id_sessao, _token: "{{ csrf_token() }}" }, "POST");
+				
+
+/* 				window.location.href = url_base + "/sessoes/presencas/" + id_sessao;  */
+			});
+
+
     	});
   	</script>
 @endpush

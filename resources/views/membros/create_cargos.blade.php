@@ -5,8 +5,8 @@
    <!------------------------------------>
 
 	<div class="item form-group">
-		<label class="control-label col-md-1 " for="no_cargo"> Cargo </label>
 		<div class="col-md-4">
+			<label class="control-label col-md-1 " for="no_cargo"> Cargo </label>
 		   <select   name="no_cargo" id="no_cargo" class="form-control col-md-4 no_cargo" style="padding-right: 6px; padding-left: 6px; padding-bottom: 4px;">
 				<option value=""  selected style="color: #ccc;"> --- </option>
 				@foreach($cargos as $cargo)
@@ -15,16 +15,16 @@
 		   </select>
 		</div>
 
-		<label class="control-label col-md-1 " for="aa_inicio">Inicio</label>
-		<div class="col-md-1">
+		<div class="col-md-2">
+			<label class="control-label col-md-1 " for="aa_inicio">Inicio</label>
 		   <input id="aa_inicio" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
 			name="aa_inicio"   
 			data-inputmask="'mask' : '9999', 'numericInput': 'true' " 
 			value="{{$membro->cargo->aa_inicio or old('aa_inicio')}}" >
 		</div>
 
-		<label class="control-label col-md-1 " for="aa_termino">Término</label>
-		<div class="col-md-1">
+		<div class="col-md-2">
+			<label class="control-label col-md-1 " for="aa_termino">Término</label>
 		   <input id="aa_termino" class="form-control col-md-2 datas_input"  type="number" min="1500-01-01" max="2050-01-01"
 			name="aa_termino"   
 			data-inputmask="'mask' : '9999', 'numericInput': 'true' " 

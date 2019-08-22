@@ -34,19 +34,25 @@ Route::get('/associa/{id}',			'UserController@associa');
 Route::post('/associa',					'UserController@salvaAssociacao');
 
 
+Route::post('/presencas/registra',	'PresencaController@registra');
+
 //========================================================================================
 // 										EMAIL
 //========================================================================================
 //caminho para envio de emails
-Route::post('/senhausuario',			'EmailController@EnviarSenhaUsuario');
-Route::post('/zerarsenhausuario',	'EmailController@ZerarSenhaUsuario');
+//Route::post('/senhausuario',			'EmailController@EnviarSenhaUsuario');
+//Route::post('/zerarsenhausuario',	'EmailController@ZerarSenhaUsuario');
 
 
 //resources
 Route::resource('membros', 			'MembroController');
+Route::resource('visitantes',			'VisitanteController');
 Route::resource('lojas', 				'LojaController');
 Route::resource('usuarios', 			'UserController');
 Route::resource('sessoes', 			'SessaoController');
+Route::resource('setups', 				'SetupController');
+Route::resource('presencas', 			'PresencaController');
+
 
 
 

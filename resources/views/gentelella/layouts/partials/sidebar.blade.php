@@ -8,6 +8,12 @@
 					<li>
 						<li><a href="{{ url('/membros') }}">Membros</a></li>
 					</li>
+					<li>
+						<li><a href="{{ url('/visitantes') }}">Visitantes</a></li>
+					</li>
+					<li>
+						<li><a href="{{ url('/candidatos') }}">Candidatos</a></li>
+					</li>
 
 					<li>
 						<a>Sessões<span class="fa fa-chevron-down"></span></a>
@@ -75,7 +81,8 @@
 			<li><a><i class="fa fa-cog"></i>Configurações<span class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					@if((Auth::user()->acesso == 'ADMINISTRADOR'))
-					<li><a href="{{ url('/usuarios') }}">Usuários</a></li>
+						<li><a href="{{ url('/usuarios') }}">Usuários</a></li>
+						<li><a href="{{ url('/configs') }}">Loja</a></li>
 					@endif
 					<li><a href="{{ url('senha') }}">Alerar Senha</a></li>
 					<li><a href="{{ url('perfil') }}">Alerar Perfil</a></li>
