@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PaisTableSeeder::class); 
         $this->call(PotenciaTableSeeder::class);
         $this->call(CargosTableSeeder::class);
-        $this->call(LojaTableSeeder::class); 
-        $this->call(MembroTableSeeder::class); 
+        //$this->call(LojaTableSeeder::class); 
+        //$this->call(MembroTableSeeder::class); 
         
-        $this->call(VisitanteTableSeeder::class); 
-        $this->call(SessaoTableSeeder::class);
+        //$this->call(VisitanteTableSeeder::class); 
+        //$this->call(SessaoTableSeeder::class);
     }
 }
