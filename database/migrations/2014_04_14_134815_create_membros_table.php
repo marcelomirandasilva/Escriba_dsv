@@ -78,10 +78,6 @@ class CreateMembrosTable extends Migration
                                         'M.Instalado'
                                     ])                      ->nullable();
 
-
-
-
-           
             
 
             $table->enum('ic_situacao', [

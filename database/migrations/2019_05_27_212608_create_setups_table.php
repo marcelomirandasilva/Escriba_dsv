@@ -15,10 +15,32 @@ class CreateSetupsTable extends Migration
     {
         Schema::create('setups', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('potencia_id')          ->unsigned();
+            $table->string('co_titulo',10);
+            $table->string('no_loja',50);
+            $table->smallInteger('nu_loja');
+            $table->enum('ic_rito', [
+                                        'Escocês', 'Brasileiro','York','Moderno','Adonhiramita','Emulação ','Schröder',
+                                        'Memphis-Misraïm','Escocês Retificado'
+                                    ]);
+
+            $table->date('dt_fundacao')             ->nullable();
+            $table->string('nu_telefone',15)        ->nullable();
+            $table->string('email',200)             ->nullable();
+
+            $table->char('sg_uf',2)                 ->nullable();
+			$table->string('no_municipio',50)       ->nullable();
+			$table->string('no_bairro',20)          ->nullable();
+			$table->string('no_logradouro',100)     ->nullable();
+			$table->integer('nu_logradouro')        ->nullable();
+			$table->string('de_complemento',20)     ->nullable();
+            $table->char('nu_cep',10)               ->nullable();
+            $table->unsignedInteger('pais_id')      ->nullable();
+            $table->string('cnpj',18)               ->nullable();  
+
             
-            $table->integer('loja_id')                      ->unsigned();
-           
-            $table->enum('dt_semana_sessao',[
+
+            $table->enum('ic_dia_sessao',[
                 'segunda-feira',
                 'terça-feira',
                 'quarta-feira',
@@ -28,9 +50,9 @@ class CreateSetupsTable extends Migration
                 'domingo',
                 ]);
                 
-            $table->string('de_complemento_dt_sessao',18)   ->nullable();  
+            $table->string('de_complemento_dia_sessao',50)   ->nullable();  
             $table->time('hh_inicio_sessao');
-            $table->string('cnpj',18)                       ->nullable();  
+
 
             $table->timestamps();
 
@@ -38,9 +60,7 @@ class CreateSetupsTable extends Migration
             
         });
 
-        Schema::table('setups', function($table){
-            $table->foreign('loja_id')->references('id')->on('lojas')->onDelete('cascade');
-        });        
+          
     }
 
     /**

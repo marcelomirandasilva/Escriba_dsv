@@ -90,50 +90,50 @@ class MembroController extends Controller
 			$request->merge(['co_cim' => "000.000"]);
 		}
 
-		if(trim($request->loja_id_iniciacao) == "null"){$request->merge(['loja_id_iniciacao' => null]);}
-		if(trim($request->loja_id_elevacao) == "null"){$request->merge(['loja_id_elevacao' => null]);}
-		if(trim($request->loja_id_exaltacao) == "null"){$request->merge(['loja_id_exaltacao' => null]);}
-		if(trim($request->loja_id_instalacao) == "null"){$request->merge(['loja_id_instalacao' => null]);}
+		if(trim($request->loja_id_iniciacao) 	== "null"){$request->merge(['loja_id_iniciacao'  => null]);}
+		if(trim($request->loja_id_elevacao) 	== "null"){$request->merge(['loja_id_elevacao'   => null]);}
+		if(trim($request->loja_id_exaltacao) 	== "null"){$request->merge(['loja_id_exaltacao'  => null]);}
+		if(trim($request->loja_id_instalacao) 	== "null"){$request->merge(['loja_id_instalacao' => null]);}
 
 		// Validar dados do formulário
 		$this->validate($request, [
-			'no_membro'         	=> 'required|min:3|max:50',
-			'co_cim'            	=> 'required|max:11',
-			'cpf'               	=>  'cpf',
+			'no_membro'         		=> 'required|min:3|max:50',
+			'co_cim'            		=> 'required|max:11',
+			'cpf'               		=>  'cpf',
 
-			'dt_nascimento'     	=> 'date|nullable',
-			'dt_casamento'      	=> 'date|nullable',
-			'dt_emissao_idt'    	=> 'date|nullable',
-			'dt_emissao_titulo' 	=> 'date|nullable',
-			'dt_iniciacao'     	=> 'date|nullable',
-			'dt_elevacao'     	=> 'date|nullable',
-			'dt_exaltacao'     	=> 'date|nullable',
-			'dt_instalacao'     	=> 'date|nullable',
-			'dt_filiacao'     	=> 'date|nullable',
-			'dt_regularizacao'  	=> 'date|nullable',
-			'dt_honorario'			=> 'date|nullable',
-			'dt_remido'				=> 'date|nullable',
-			'dt_emerito'			=> 'date|nullable',
-			'dt_benemerito'		=> 'date|nullable',
+			'dt_nascimento'     		=> 'date|nullable',
+			'dt_casamento'      		=> 'date|nullable',
+			'dt_emissao_idt'    		=> 'date|nullable',
+			'dt_emissao_titulo' 		=> 'date|nullable',
+			'dt_iniciacao'     		=> 'date|nullable',
+			'dt_elevacao'     		=> 'date|nullable',
+			'dt_exaltacao'     		=> 'date|nullable',
+			'dt_instalacao'     		=> 'date|nullable',
+			'dt_filiacao'     		=> 'date|nullable',
+			'dt_regularizacao'  		=> 'date|nullable',
+			'dt_honorario'				=> 'date|nullable',
+			'dt_remido'					=> 'date|nullable',
+			'dt_emerito'				=> 'date|nullable',
+			'dt_benemerito'			=> 'date|nullable',
 			'dt_grande_benemerito'	=> 'date|nullable',
 			'dt_estrela_distincao'	=> 'date|nullable',
-			'dt_cruz_perfeicao'	=> 'date|nullable',
-			'dt_comanda_DPI'		=> 'date|nullable',
+			'dt_cruz_perfeicao'		=> 'date|nullable',
+			'dt_comanda_DPI'			=> 'date|nullable',
 		]);
 
-		
 		//inicia sessão de banco
 		DB::beginTransaction();
 		
 		// Cria um novo membro
 		$membro = new Membro($request->all());
-		
+				
 		// Verificar se está aposentado
 		$membro->ic_aposentado = $request->aposentado ? 1 : 0;
 
 		// Salvar no banco para obter o ID
 		$membro->save();
 		
+		dd($request->all());
 		//cria os cargos
 		if(isset($request->cargos_membros))
 		{

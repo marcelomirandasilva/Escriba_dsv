@@ -1,7 +1,7 @@
 @extends('gentelella.layouts.app')
 
 @section('content')
-	
+	 
 	{{-- @include('gentelella.layouts.partials.mensagens') --}}
 
 	<div class="x_panel modal-content animated fadeInUp">
