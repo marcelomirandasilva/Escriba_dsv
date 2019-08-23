@@ -17,14 +17,13 @@ require('jquery-mask-plugin');
 
 window.swal = require('sweetalert2');
 
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
+
 require('./funcoes');
 require('./scripts');
 window.Vue = require('vue');
 
-
-import VueTheMask from 'vue-the-mask'
-
-Vue.use(VueTheMask)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

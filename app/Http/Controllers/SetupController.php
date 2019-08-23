@@ -7,14 +7,24 @@ use Illuminate\Http\Request;
 
 use App\Bibliotecas\Geral;
 
+use App\Models\User;
 use App\Models\Loja;
 use App\Models\Pais;
 use App\Models\Potencia;
 use DB;
 
 
+
 class SetupController extends Controller
 {
+	public function __construct(User $user)
+	{
+		 // todas as rotas aqui serão antes autenticadas
+		 $this->middleware('auth');
+
+		 //$this->middleware('is_administrador')->except(['alterarSenha']);
+	}
+
 	public function index()
 	{
 		
@@ -24,7 +34,7 @@ class SetupController extends Controller
 
 		$potencias  	= Potencia::all()->sortBy('no_potencia');
 		$paises     	= Pais::all()->sortBy('nome');        
-		$ritos      	=  pegaValorEnum('lojas','ic_rito') ;
+		$ritos      	=  pegaValorEnum('lojas','ic_rito',true) ;
 		$dias_sessao 	=  pegaValorEnum('setups','ic_dia_sessao') ;
 
 		//dd($dias_sessao);
@@ -40,7 +50,7 @@ class SetupController extends Controller
 
 	public function store(Request $request)
 	{
-		//
+		dd($request->all());
 	}
 
 	public function show(Setup $setup)

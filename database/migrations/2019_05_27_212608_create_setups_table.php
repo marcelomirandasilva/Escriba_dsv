@@ -20,9 +20,9 @@ class CreateSetupsTable extends Migration
             $table->string('no_loja',50);
             $table->smallInteger('nu_loja');
             $table->enum('ic_rito', [
-                                        'Escocês', 'Brasileiro','York','Moderno','Adonhiramita','Emulação ','Schröder',
-                                        'Memphis-Misraïm','Escocês Retificado'
-                                    ]);
+                'ESCOCÊS', 'BRASILEIRO','YORK','MODERNO','ADONHIRAMITA','EMULAÇÃO ','SCHRÖDER',
+                'MEMPHIS-MISRAÏM','ESCOCÊS RETIFICADO'
+            ]);
 
             $table->date('dt_fundacao')             ->nullable();
             $table->string('nu_telefone',15)        ->nullable();
@@ -41,14 +41,14 @@ class CreateSetupsTable extends Migration
             
 
             $table->enum('ic_dia_sessao',[
-                'segunda-feira',
-                'terça-feira',
-                'quarta-feira',
-                'quinta-feira',
-                'sexta-feira',
-                'sábado',
-                'domingo',
-                ]);
+                'SEGUNDA-FEIRA',
+                'TERÇA-FEIRA',
+                'QUARTA-FEIRA',
+                'QUINTA-FEIRA',
+                'SEXTA-FEIRA',
+                'SÁBADO',
+                'DOMINGO',
+            ]);
                 
             $table->string('de_complemento_dia_sessao',50)   ->nullable();  
             $table->time('hh_inicio_sessao');

@@ -70,6 +70,7 @@
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<label class="control-label" for="ic_rito">Rito*</label>
 						<select id="ic_rito" class="form-control" name="ic_rito" placeholder="Rito praticado" type="text">
+							<option value=""  selected style="color: #ccc;"> --- </option>
 							@if (isset($edita)) <!-- variavel para verificar se foi chamado pela edição -->
 								@foreach($ritos as $rito)
 									@if ( $setup->ic_rito == $rito)
@@ -80,11 +81,7 @@
 								@endforeach
 							@else
 								@foreach($ritos as $rito)
-									@if ($rito == ('Brasileiro'))
-										<option value="{{$rito}}" selected="selected"> {{$rito}} </option>          
-									@else 
 										<option value="{{$rito}}"> {{$rito}} </option>  
-									@endif
 								@endforeach
 							@endif
 						</select>
@@ -181,8 +178,11 @@
 				<div class="item form-group">
 					{{-- Telefone --}}
 					<div class="col-md-2 col-sm-2 col-xs-12">
-						<label class="control-label" for="nu_telefone">Tel.</label>
-						<input id="nu_telefone" name="nu_telefone" type="text" placeholder="(99)9999-9999" class="form-control input-md telefone" value="{{$setup->nu_telefone or old('nu_telefone')}}" >
+						<label class="control-label" for="nu_telefone">Telefone</label>
+						
+						<input type="text" id="nu_telefone" class="form-control" name="nu_telefone" 
+							minlength="4" maxlength="100" v-mask="['(##) ####-####', '(##) #####-####']"  
+							value="{{$setup->nu_telefone or old('nu_telefone')}}">	
 					</div>
 
 					{{-- Email --}}
@@ -323,6 +323,12 @@
 		VMasker ($("#nu_cnpj")).maskPattern("99.999.999/9999-99");
 
 		$(document).ready(function() {
+
+			//transforma todas as letras do input em MAIÚSCULAS
+			$('input').keyup(function() {
+				this.value = this.value.toLocaleUpperCase();
+			});
+
 			var tempo = 0;
 			var incremento = 500;
 			// Testar se há algum erro, e mostrar a notificação
@@ -381,7 +387,7 @@
 			$(".cep").inputmask("99.999-999");
 			$(".data").inputmask("99/99/9999");
 			$(".celular").inputmask("(99)99999-9999");
-			$(".telefone").inputmask("(99)9999-9999");
+			//$(".telefone").inputmask("(99)9999-9999");
 		});
 
 	</script>

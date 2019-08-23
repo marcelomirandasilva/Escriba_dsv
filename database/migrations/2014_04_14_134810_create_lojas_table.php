@@ -20,9 +20,9 @@ class CreateLojasTable extends Migration
             $table->string('no_loja',50);
             $table->smallInteger('nu_loja');
             $table->enum('ic_rito', [
-                                        'Escocês', 'Brasileiro','York','Moderno','Adonhiramita','Emulação ','Schröder',
-                                        'Memphis-Misraïm','Escocês Retificado'
-                                    ]);
+                'ESCOCÊS', 'BRASILEIRO','YORK','MODERNO','ADONHIRAMITA','EMULAÇÃO ','SCHRÖDER',
+                'MEMPHIS-MISRAÏM','ESCOCÊS RETIFICADO'
+            ]);
 
             $table->date('dt_fundacao')         ->nullable();
             $table->string('nu_telefone',15)    ->nullable();
